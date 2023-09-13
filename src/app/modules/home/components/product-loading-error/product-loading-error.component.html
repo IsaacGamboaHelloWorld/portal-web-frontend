@@ -1,0 +1,17 @@
+<div class="cont-loading-error">
+  <div *ngIf="product?.loading">
+    <div class="lds-css ng-scope">
+      <div class="lds-flickr">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <p class="paragraph-small">{{'HOME.PRODUCTS.LOADING_PRODUCT' | translate}}.</p>
+  </div>
+  <div class="error-product" *ngIf="!product?.loading && product?.error">
+    <strong>¡{{'HOME.ERROR_PRODUCT.TITLE' | translate}}!</strong>
+    <p class="paragraph-small">{{'HOME.ERROR_PRODUCT.DESCRIPTION' | translate}}</p>
+    <button class="btn btn-primary" (click)="loadProduct()">{{'PRODUCT.ERROR.BTN' | translate}}</button>
+  </div>
+</div>

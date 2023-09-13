@@ -1,0 +1,86 @@
+<div class="adl-content-2fa">
+    <form [formGroup]="formG" autocomplete="off">
+        <div *ngIf="isAllowed" class="content-virtual">
+            <div class="content-virtual">
+                <app-lottie-animation [width]="'80px'" [height]="'80px'" [path]="allowedIcon" [renderer]="'canvas'" [loop]="false"></app-lottie-animation>
+                <h2 *ngIf="allowedHeading" class="title" [innerHTML]="allowedHeading"></h2>
+                <p *ngIf="allowedDescription" class="description" [innerHTML]="allowedDescription"></p>
+            </div>
+            <div *ngFor="let response of challengeResponse.challengeResponses">
+                <div *ngIf="response.success && response.response.code" class="content-otp">
+                    <fieldset class="set-state-succes-bg">
+                        <input *ngFor="let key of stringToArray(response.response.code)" type="text" value="{{key}}">
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isDenied" class="content-virtual">
+            <div class="content-virtual">
+                <img *ngIf="deniedIcon" class="img-icon" [src]="deniedIcon" alt="icono">
+                <h5 *ngIf="deniedHeading" class="title" [innerHTML]="deniedHeading"></h5>
+                <p *ngIf="deniedDescription" class="description" [innerHTML]="deniedDescription"></p>
+                <p *ngIf="deniedHeading" class="description-pse" [innerHTML]="descPseOne"></p>
+                <p *ngIf="deniedHeading" class="description-pse" [innerHTML]="descPseTwo"></p>
+            </div>
+        </div>
+        <div *ngIf="isChallenge">
+            <div class="content-virtual">
+                <img *ngIf="icon" class="img-icon" [src]="icon" alt="icono-challenge">
+                <h5 *ngIf="heading" class="title" [innerHTML]="heading"></h5>
+                <p *ngIf="description" class="description" [innerHTML]="description"></p>
+            </div>
+            <div *ngIf="isOtp">
+                <div class="content-otp">
+                    <fieldset [ngClass]="{ 'error-otp': isError }">
+                        <input [ngClass]="{'invalid-otp-input': isError}" *ngFor="let key of inputs; index as i"
+                            (keyup)="goToNextInput(i, $event)" (paste)="onPaste($event)" type="text" min="0" max="9"
+                            maxlength="1" size="1" formControlName="char{{key}}" id="char{{key}}" autocomplete="off"
+                            appOnlyNumbers placeholder="-" #inputToken>
+                    </fieldset>
+                </div>
+                <p *ngIf="challengeResponse.errorMessage" class="error">{{ challengeResponse.errorMessage }}</p>
+                <p *ngIf="withoutReceiving" class="without-received">{{ withoutReceiving }}</p>
+                <ng-content *ngIf="showBtnNewCode" select="[twofa-btn-new-code]"></ng-content>
+                <p *ngIf="!showBtnNewCode && timerText" class="timer" innerHtml="{{ timer$ | async }}">
+                </p>
+            </div>
+            <div *ngIf="isWebAuthn">
+                <input type="hidden" formControlName="publicKey" id="publicKey">
+            </div>
+        </div>
+        <div *ngIf="isSelectChallenge">
+            <div class="content-virtual">
+                <img *ngIf="selectChallengeIcon" class="img-icon" [src]="selectChallengeIcon" alt="icono">
+                <h2 *ngIf="selectChallengeHeading" class="title" [innerHTML]="selectChallengeHeading"></h2>
+                <p *ngIf="selectChallengeDescription" class="description" [innerHTML]="selectChallengeDescription"></p>
+            </div>
+            <div class="content-select">
+                <fieldset>
+                    <div *ngIf="showSelectWebAuthn" class="radio">
+                        <input type="radio" id="WEB_AUTHN" formControlName="challenge" name="challenge" value="WEB_AUTHN">
+                        <label for="WEB_AUTHN" [innerHtml]="webAuthnDescription"></label>
+                    </div>
+                    <div *ngIf="showSelectTotp" class="radio">
+                        <input type="radio" id="TOTP" formControlName="challenge" name="challenge" value="TOTP">
+                        <label for="TOTP" [innerHtml]="totpDescription"></label>
+                    </div>
+                    <div *ngIf="showSelectHard" class="radio">
+                        <input type="radio" id="HARD" formControlName="challenge" name="challenge" value="HARD">
+                        <label for="HARD" [innerHtml]="hardDescription"></label>
+                    </div>
+                    <div *ngIf="showSelectEnhanced" class="radio">
+                        <input type="radio" id="ENHANCED" formControlName="challenge" name="challenge" value="ENHANCED">
+                        <label for="ENHANCED" [innerHtml]="enhancedDescription"></label>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="buttons">
+            <ng-content *ngIf="isChallenge || isSelectChallenge" select="[twofa-btn-cancel]"></ng-content>
+            <ng-content *ngIf="isChallenge" select="[twofa-btn-continue]"></ng-content>
+            <ng-content *ngIf="isSelectChallenge" select="[twofa-btn-select]"></ng-content>
+            <ng-content *ngIf="deniedAssign" select="[twofa-btn-denied-assign]"></ng-content>
+            <ng-content *ngIf="isDenied" select="[twofa-btn-denied-continue]"></ng-content>
+        </div>
+    </form>
+</div>

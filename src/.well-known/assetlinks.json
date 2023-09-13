@@ -1,0 +1,14 @@
+[
+  {
+     "relation":[
+        "delegate_permission/common.handle_all_urls"
+     ],
+     "target":{
+        "namespace":"android_app",
+        "package_name":"com.grupoavalpo.pwa",
+        "sha256_cert_fingerprints":[
+           "22:6C:55:B4:FD:EE:95:FD:B9:DC:45:C2:26:C7:D3:82:A6:92:92:D1:C3:E7:71:CC:E0:A6:25:DD:39:85:32:1A"
+        ]
+     }
+  }
+]

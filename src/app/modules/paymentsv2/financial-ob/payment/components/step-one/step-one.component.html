@@ -1,0 +1,27 @@
+<div class="animated fade-in-up cont-step-one-payment">
+    <form class="form-global" [formGroup]="formStart">
+        <div class="field-container">
+            <app-card-change-data *ngIf="(productDefault$ | async)" [form]="formStart" [property]="'account_origin'" [options]="(productsOrigin$ | async)" [append]="modal" [dataCard]="(productDefault$ | async)" [label]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP1.FROM_LBL' | translate"></app-card-change-data>
+        </div>
+        <div class="field-container">
+            <app-card-loan-selected [form]="formStart" [property]="'loan_destination'" [dataCard]="(activePayment$ | async)" [label]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP1.TO_LBL' | translate"></app-card-loan-selected>
+        </div>
+        <div class="button-container">
+            <button type="submit" class="btn btn-primary" [disabled]="formStart.invalid" (click)="submitData()">{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP1.CONTINUE_BTN' | translate}}</button>
+        </div>
+    </form>
+</div>
+
+<ng-template #loadingTemplate>
+    <div class="form-group">
+        <div class="card-account">
+            <div class="itemLoading shadow-1dp" *ngFor="let i of [].constructor(loadingItems)">
+                <p class="title-loading placeholder"></p>
+                <p class="text-loading placeholder"></p>
+                <p class="value-loading placeholder "></p>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<div #modal></div>

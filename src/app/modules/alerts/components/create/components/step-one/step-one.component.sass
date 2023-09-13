@@ -1,0 +1,143 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+.create-step-one
+  .cont-bar-progress
+    width: 563px
+    margin: 0 auto 60px
+    text-align: center
+  .cont-desc
+    margin: 50px auto
+    p
+      font-style: normal
+      font-weight: 400
+      font-size: 14px
+      line-height: 24px
+  .cont-check-all
+    display: flex
+    justify-content: flex-end
+    align-items: center
+    .check-all
+      margin: 0 10px
+  .cont-options-step-one
+    width: 100%
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    height: auto
+    li
+      padding-top: 14px
+      padding-right: 14px
+      &:last-child
+        padding-right: 0
+      .box-border
+        border: solid 1.3px $g-500
+      .box
+        display: flex
+        align-items: center
+        flex-direction: row
+        cursor: pointer
+        width: 296px
+        height: 68px
+        border-radius: 12px
+        box-shadow: 0 1px 2px 0 #00000024
+        background-color: $carbon-light-100
+        .cont-icon
+          margin-left: auto
+          display: flex
+          justify-content: center
+          align-items: center
+          width: 40px
+          height: 40px
+          background-color: $secondary-100
+          border-radius: 200px
+          -moz-border-radius: 200px
+          -webkit-border-radius: 200px
+          img
+            width: 24px
+        .cont-text
+          margin: 0 auto
+        .cont-checkbox
+          margin-right: auto
+  .button-container
+    margin: 0 auto
+    text-align: center
+    padding-top: 32px
+
+input[type="checkbox"]
+  position: relative
+  width: 24px
+  height: 24px
+  color: $hlt-600
+  border: 1px solid $carbon-light-900
+  border-radius: 6px
+  appearance: none
+  outline: 0
+  cursor: pointer
+  transition: background 175ms cubic-bezier(0.1, 0.1, 0.25, 1)
+  &::before
+    position: absolute
+    content: ''
+    display: block
+    top: 3px
+    left: 9px
+    width: 6px
+    height: 13px
+    border-style: solid
+    border-color: #ffffff
+    border-width: 0 2px 2px 0
+    -webkit-transform: rotate(45deg)
+    -ms-transform: rotate(45deg)
+    transform: rotate(45deg)
+    opacity: 0
+
+  &:checked
+    color: $carbon-light-100
+    border-color: $hlt-600
+    background: $hlt-600
+    &::before
+      opacity: 1
+    ~ label::before
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%)
+
+@media only screen and (max-width: $break-small-phone)
+  .create-step-one
+    width: 100%
+    .cont-bar-progress
+      width: 100%
+    .cont-options-step-one
+      li
+        width: 100%
+        padding-right: 0
+        .box
+          width: 100%
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .create-step-one
+    width: 100%
+    .cont-bar-progress
+      width: 100%
+    .cont-options-step-one
+      li
+        width: 100%
+        padding-right: 0
+        .box
+          width: 100%
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .create-step-one
+    width: 100%
+    .cont-bar-progress
+      width: 100%
+    .cont-options-step-one
+      li
+        width: 100%
+        padding-right: 0
+        .box
+          width: 100%
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+@media only screen and (min-width: $break-desktop-xlg-min)

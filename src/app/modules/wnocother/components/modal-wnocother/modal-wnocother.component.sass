@@ -1,0 +1,61 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+
+.cont-modal-wconother
+  background: $carbon-light-100
+  border-radius: 15px
+  padding: 24px
+  text-align: center
+  width: 344px
+  .title
+    height: 56px
+    margin-bottom: 16px
+    font-family: Inter
+    font-size: 16px
+    font-weight: 600
+    font-stretch: normal
+    font-style: normal
+    line-height: 1.75
+    letter-spacing: normal
+    text-align: center
+    color: #0d0d0d
+  ul
+    height: 343px
+    text-align: left
+    li>p
+      width: 295px
+      margin: 24px 0
+      font-family: Inter
+      font-size: 13px
+      font-weight: normal
+      font-stretch: normal
+      font-style: normal
+      line-height: 2.15
+      letter-spacing: normal
+  .bold-text
+    font-weight: 600
+  .checkbox
+    display: flex
+    text-align: left
+    label:before
+      border-radius: 5px
+    p
+      font-weight: 500
+      font-size: 12px
+      font-stretch: normal
+      font-style: normal
+      line-height: 2
+      letter-spacing: normal
+      height: 24px
+  .btnModal
+    padding-top: 24px
+  button
+    width: 100%
+@media only screen and (max-width: $break-tablet)
+  .cont-modal-wconother
+    width: 100%
+    ul
+      li>p
+        width: 100%

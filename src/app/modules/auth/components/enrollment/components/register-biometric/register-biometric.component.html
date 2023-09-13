@@ -1,0 +1,39 @@
+<div class="animated fade-in-up cont-register-biometric">
+  <div class="register-biometric">
+    <div class="top-image-container">
+      <img [src]="'/80-idea-mark.svg' | imageCdn" alt="">
+    </div>
+    <h4>{{'AUTH.ENROLLMENT.VALIDATE_UNIVERSAL_PASSWORD.TITLE' | translate}}</h4>
+    <form class="form-global" autocomplete="off" [formGroup]="registerForm" (ngSubmit)="forgotPassword()">
+      <fieldset class="form-group">
+        <div class="cont-float-icon" formGroupName="content">
+          <app-ds-input
+          [label]="'AUTH.ENROLLMENT.VALIDATE_UNIVERSAL_PASSWORD.PASSWORD' | translate"
+          [form]="registerForm"
+          [property]="'content'"
+          [subProperty]="'universalPassword'"
+          [typeText]="inputType"
+          [iconRight]="(!showPassword ? '/24-essential-eye-5.svg' : '/24-essential-eye-6.svg') | imageCdn"
+          [showIcon]="showPassword"
+          [textTooltip]="(!showPassword ? 'Mostrar' : 'Ocultar') | translate"
+          (eventIcon)="toggleInputType()"></app-ds-input>
+        </div>
+        <div *ngIf="registerForm.controls['content']['controls']['universalPassword'].errors &&
+        (!registerForm.controls['content']['controls']['universalPassword'].pristine ||
+        (registerForm.controls['content']['controls']['universalPassword'].dirty &&
+        registerForm.controls['content']['controls']['universalPassword'].touched))" class="error-msg">
+        {{'AUTH.ENROLLMENT.FILL_NEW_UNIVERSAL_PASSWORD.NEW_PASSWORD_FORMAT_ERROR' | translate}}
+      </div>
+    </fieldset>
+    <fieldset>
+      <app-btn
+      [type]="'submit'"
+      [disabled]="registerForm.invalid || (isLoading$ | async)"
+      [text]="(!register ? 'AUTH.ENROLLMENT.BIOMETRIC.BIOMETRIC_BTN' : 'AUTH.ENROLLMENT.BIOMETRIC.REGISTER_BTN') | translate"
+      [id]="'btn_login'"
+      [isLoading]="(isLoading$ | async)"
+      [class]="'btn btn-primary'"></app-btn>
+    </fieldset>
+  </form>
+</div>
+</div>

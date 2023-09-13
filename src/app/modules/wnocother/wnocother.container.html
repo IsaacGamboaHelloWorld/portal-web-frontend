@@ -1,0 +1,18 @@
+<app-template-system
+  [sectionContent]="content"
+  [fullContent]="false"
+  [navigatorActive]="true"
+  [currentStep]="viewBack ? (step$ | async)?.step : maxStep"
+  [maxStep]="maxStep"
+  [showClose]="true"
+  [backUrl]="backUrl"
+  [paramRoute1]="param1"
+  [paramRoute2]="param2"
+  (eventModal)="backHome($event)"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-wnocother">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

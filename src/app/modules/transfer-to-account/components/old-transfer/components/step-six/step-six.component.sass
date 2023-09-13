@@ -1,0 +1,33 @@
+@import '../../../../../../../sass/variables'
+@import '../../../../../../../sass/colors'
+@import '../../../../../../../sass/mixins'
+
+
+.cont-step-scheduled
+  .footer-step
+    .box-green
+      width: 176px
+      height: 48px
+      border-radius: 8px
+      background-color: $g-100
+      display: flex
+      justify-content: center
+      align-items: center
+      margin-right: 16px
+      transform: rotate(0deg)
+      .link
+        color: $g-500
+        margin-left: 0
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-scheduled
+    .footer-step
+      display: flex
+      flex-direction: column-reverse
+      .box-green
+        width: 100%
+        margin: 0
+        transform: rotate(0deg)
+      button
+        width: 100%
+        margin-bottom: 23px

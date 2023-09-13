@@ -1,0 +1,16 @@
+<app-template-system
+    [title]="'TO_PLUS.TITLE' | translate"
+    [sectionContent]="content"
+    [navigatorActive]="true"
+    [currentStep]="viewBack ? (step$ | async) : maxStep"
+    [maxStep]="maxStep"
+    [showClose]="true"
+    [fullContent]="true"
+    [backUrl]="backUrl"
+    (eventModal)="backHome($event)"
+></app-template-system>
+<ng-template #content>
+    <div class="main-your-plus pb-col-sp-4">
+        <router-outlet></router-outlet>
+    </div>
+</ng-template>

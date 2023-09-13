@@ -1,0 +1,93 @@
+<div class="animated fade-in-up step-end-fd">
+  <ng-container *ngIf="!!( statusPaymentPse$ | async)?.success; else errorTmp">
+    <ng-container [ngSwitch]="(statusPaymentDataPse$ | async)?.paymentData?.statusCode"> 
+      <ng-container *ngSwitchCase="statusPaymentConst.Pending" [ngTemplateOutlet]="pendingTmp"></ng-container>
+      <ng-container *ngSwitchCase="statusPaymentConst.Rejected" [ngTemplateOutlet]="errorTmp"></ng-container>
+      <ng-container *ngSwitchCase="statusPaymentConst.Approved" [ngTemplateOutlet]="successTmp"></ng-container>
+      <ng-container *ngSwitchDefault [ngTemplateOutlet]="loadingTmp"></ng-container>
+    </ng-container>
+  </ng-container>
+</div>
+
+<ng-template #loadingTmp>
+  <app-ds-states-card [state]="getStatusCard.loading" ></app-ds-states-card>
+</ng-template>
+
+<ng-template #pendingTmp>
+  <app-ds-states-card
+    [state]="getStatusCard.warning"
+    [title]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.PENDING.TITLE' | translate"
+    [description]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.PENDING.DESCRIPTION' | translate"
+    [btnTextPrimary]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.PENDING.BTN_OK' | translate"
+    (eventClick)="redirect(navigate.payment_type)"
+  ></app-ds-states-card>
+</ng-template>
+
+<ng-template #errorTmp>
+  <app-ds-states-card
+    [state]="getStatusCard.error"
+    [title]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.ERROR.TITLE' | translate"
+    [description]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.ERROR.DESCRIPTION' | translate"
+    [btnTextPrimary]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.ERROR.BTN_OK' | translate"
+    (eventClick)="redirect(navigate.payment_type)"
+  ></app-ds-states-card>
+</ng-template>
+
+<ng-template #successTmp>
+  <app-ticket
+    [imageTicket]="'/like_success.svg' | imageCdn"
+    [btnText]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.SUCCESS.DESC_BTN' | translate: { value: 'icon-download-bottom' }"
+    [title]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.SUCCESS.TITLE_LBL' | translate"
+    [description]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.SUCCESS.SUBTITLE_LBL' | translate"
+    [messageTitle]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.SUCCESS.AMOUNT_LBL' | translate"
+    [messageText]="(statusPaymentDataPse$ | async)?.paymentData?.amount | currencyFormat : true : 'decimal-vouchers'"
+    [listTemplate]="list"
+    [id]="'voucher-payment'"
+    [disabled]="disabled"
+    (btnAction)="download()"
+    [btnLoadingText]="'TRANSFER.SUCCESS.LOADING_DOWNLOAD' | translate: { img: ('/loading-text.gif' |imageCdn) } "
+    [response]="statusPaymentDataPse$ | async"></app-ticket>
+  <div class="footer-step-end">
+      <button class="btn btn-primary" [routerLink]="navigate.payment_type">{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.SUCCESS.FINAL_BTN' | translate}}</button>
+  </div>
+
+  <ng-template #list>
+    <ul>
+      <li>
+          <span>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.SUCCESS.FROM_LBL' | translate}}</span>
+          <p> {{ 'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_1.PSE' | translate }} </p>
+      </li>
+      <li>
+          <span>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.SUCCESS.TO_LBL' | translate}}</span>
+          <ng-container [ngSwitch]="(statusPaymentDataPse$ | async)?.paymentData?.productType">
+            <ng-container *ngSwitchCase="getTypePayment.CREDIT_CARD" [ngTemplateOutlet]="typeCreditCardTmp"></ng-container>
+            <ng-container *ngSwitchCase="getTypePayment.TC" [ngTemplateOutlet]="typeCreditCardTmp"></ng-container>
+            <ng-container *ngSwitchDefault [ngTemplateOutlet]="typeFreeDestiny"></ng-container>
+          </ng-container>
+      </li>
+      <li>
+        <span>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.SUCCESS.APPROVAL_LBL' | translate}}</span>
+        <p> {{ (statusPaymentDataPse$ | async)?.approvalId }} </p>
+      </li>
+      <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+          <p [innerHTML]="costTransfer | currencyFormat : true : 'decimal-vouchers fs-14' "></p>
+      </li>
+    </ul>
+  </ng-template>
+</ng-template>
+
+<ng-template #typeCreditCardTmp>
+  <p class="type-product-pay">
+    <img [src]="((statusPaymentDataPse$ | async)?.paymentData?.productId | typeCreditCard)?.img | imageCdn" alt="">
+    {{'PRODUCT_TYPES.' + (statusPaymentDataPse$ | async)?.paymentData?.productType?.toUpperCase() | translate }}
+    No. {{ (statusPaymentDataPse$ | async)?.paymentData?.productId | creditCardMask | creditCardHidden | slice: -8 }}
+  </p>
+</ng-template>
+
+<ng-template #typeFreeDestiny>
+  <p class="type-product-pay">
+    {{'PRODUCT_TYPES.' + (statusPaymentDataPse$ | async)?.paymentData?.productType | translate }}
+    No - {{ (statusPaymentDataPse$ | async)?.paymentData?.productId }}
+  </p>
+</ng-template>

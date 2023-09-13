@@ -1,0 +1,230 @@
+<div class="smart-card-secondary-balances" *ngIf="hasBalances">
+    <ng-container [ngSwitch]="typeProduct">
+        <ng-container *ngSwitchCase="T_DA">
+            <div class="secondary-item">
+                <p class="paragraph-default">
+                    {{'DETAIL.DETAIL_DEPOSIT_ACCOUNT.MONEY_AVAILABLE' | translate}}
+                </p>
+                <h4 [innerHTML]="info?.productAccountBalances?.saldo_disponible?.amount | currencyFormat: true"></h4>
+            </div>
+            <div class="secondary-item">
+                <p class="paragraph-default">
+                    {{'DETAIL.DETAIL_DEPOSIT_ACCOUNT.MONEY_EXCHANGE' | translate}}
+                </p>
+                <h4 [innerHTML]="info?.productAccountBalances?.saldo_canje?.amount | currencyFormat: true"></h4>
+            </div>
+            <ng-container *ngIf="havePockets">
+                <div class="secondary-item">
+                    <p>
+                        {{'DETAIL.DETAIL_DEPOSIT_ACCOUNT.MONEY_POCKETS' | translate}}
+                    </p>
+                    <h4 *ngIf="mustShowTotalSavedOnPockets" [innerHTML]="pocketsByProduct()?.totalSavedOnPockets | currencyFormat: true"></h4>
+                    <h4 *ngIf="mustShowGetPocketsButton"><a class="link" (click)="fetchPockets()">{{'DETAIL.DETAIL_DEPOSIT_ACCOUNT.VIEW_POCKETS_BALANCE_BTN' | translate}}</a>
+                    </h4>
+                    <h4 *ngIf="mustShowRetryGetPocketsButton"><a class="link" (click)="fetchPockets()">{{'DETAIL.DETAIL_DEPOSIT_ACCOUNT.RETRY_VIEW_POCKETS_BALANCE_BTN' | translate}}</a>
+                    </h4>
+                    <h4 *ngIf="pocketsByProductState.loading">
+                        <app-btn [type]="'link'" [class]="'link'" [disabled]="pocketsByProductState.loading" [isLoading]="pocketsByProductState.loading"></app-btn>
+                    </h4>
+                </div>
+                <ng-container *ngIf="pocketsLoaded">
+                    <ul class="pockets-on-detail" [ngClass]="{'on': showAdditionalData }" *ngIf="pocketsAmount > 1; else onePocket">
+                        <li *ngFor="let pocket of pocketsByProduct()?.pockets">
+                            <div class="secondary-item">
+                                <p>
+                                    {{'DETAIL.DETAIL_DEPOSIT_ACCOUNT.POCKET_BULLET_ON_LIST' | translate}} {{pocket.pocketName}}
+                                </p>
+                                <h4 [innerHTML]="pocket.amountSaved | currencyFormat: true"></h4>
+                            </div>
+                        </li>
+                    </ul>
+                </ng-container>
+                <div class="more-info" *ngIf="pocketsLoaded && pocketsAmount > 1">
+                    <a (click)="openAditional()">
+                        <em class="icon-arrow2-right" [ngClass]="{'opened': showAdditionalData}"></em>
+                    </a>
+                </div>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="T_CA">
+            <ng-container *ngIf="hasOverDraftDays; else hasNotOverDraftDays">
+                <div class="secondary-item">
+                    <p>
+                        {{'DETAIL.DETAIL_CURRENT_ACCOUNT.DAYS_OVERDRAFT' | translate}}
+                    </p>
+                    <h4>{{ info?.overDraftDays}}</h4>
+                </div>
+                <div class="secondary-item">
+                    <p>
+                        {{'DETAIL.DETAIL_CURRENT_ACCOUNT.AVAILABLE_OVERDRAFT' | translate}}
+                    </p>
+                    <h4 [innerHTML]="info?.productAccountBalances?.cupo_disponible_sobregiro?.amount | currencyFormat: true"></h4>
+                </div>
+                <div class="secondary-item">
+                    <p>
+                        {{'DETAIL.DETAIL_CURRENT_ACCOUNT.QUOTA_OVERDRAFT' | translate}}
+                    </p>
+                    <h4 [innerHTML]="info?.productAccountBalances?.cupo_disponible_sobregiro?.amount | currencyFormat: true"></h4>
+                </div>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="T_CC">
+            <ng-container *ngIf="neededToPay; else notNeededToPay">
+                <div class="account-status-info">
+                    <div class="secondary-item">
+                        <p>
+                            {{'DETAIL.DETAIL_CREDIT_CARD.TOTAL_DEBT' | translate}}
+                        </p>
+                        <h4 [innerHTML]="info?.productAccountBalances?.pago_total_pesos?.amount | currencyFormat: true"></h4>
+                    </div>
+                    <div class="secondary-item">
+                        <p>
+                            {{'DETAIL.DETAIL_CREDIT_CARD.NEXT_PAYMENT' | translate}}
+                        </p>
+                        <h4>{{info?.dueDate | date:'dd/MMM/yyyy' | replace : '.' : ''}}</h4>
+                    </div>
+                    <div class="secondary-item">
+                        <p>
+                            {{'DETAIL.DETAIL_CREDIT_CARD.QUOTA_AVAILABLE' | translate}}
+                        </p>
+                        <h4 [innerHTML]="info?.productAccountBalances?.cupo_disponible_compras_pesos?.amount | currencyFormat: true"></h4>
+                    </div>
+                    <div class="secondary-item">
+                        <p>
+                            {{'DETAIL.DETAIL_CREDIT_CARD.QUOTA_ADVANCE' | translate}}
+                        </p>
+                        <h4 [innerHTML]="info?.productAccountBalances?.cupo_disponible_avances_pesos?.amount | currencyFormat: true"></h4>
+                    </div>
+                    <div class="secondary-item" *ngIf="delinquentBalance > 0">
+                        <p>
+                            {{'DETAIL.DETAIL_CREDIT_CARD.DELINQUENT_BALANCE' | translate}}
+                        </p>
+                        <h4 [innerHTML]="delinquentBalance | currencyFormat: true"></h4>
+                    </div>
+                    <div class="secondary-item" *ngIf="showAdditionalData && paymentsToApply > 0">
+                        <p (mousedown)="openTooltip('.tooltip1')" (mouseleave)="closeTip('.tooltip1')">
+                            <a class="icon-exclamation-circle"></a> {{'DETAIL.DETAIL_CREDIT_CARD.PAYMENTS_TO_APPLY' | translate}}
+                        </p>
+                        <h4 [innerHTML]="paymentsToApply | currencyFormat: true"></h4>
+                    </div>
+                    <div class="secondary-item-tooltip tooltip tooltip1">
+                        <span>
+              {{'DETAIL.DETAIL_CREDIT_CARD.PAYMENTS_TO_APPLY_TOOLTIP' | translate}}
+            </span>
+                    </div>
+                    <div class="secondary-item" *ngIf="showAdditionalData && purchasesToApply > 0">
+                        <p (mousedown)="openTooltip('.tooltip2')" (mouseleave)="closeTip('.tooltip2')">
+                            <a class="icon-exclamation-circle"></a> {{'DETAIL.DETAIL_CREDIT_CARD.PURCHASES_TO_APPLY' | translate}}
+                        </p>
+                        <h4 [innerHTML]="purchasesToApply | currencyFormat: true"></h4>
+                    </div>
+                    <div class="secondary-item-tooltip tooltip tooltip2">
+                        <span>
+              {{'DETAIL.DETAIL_CREDIT_CARD.PURCHASES_TO_APPLY_TOOLTIP' | translate}}
+            </span>
+                    </div>
+
+                    <div class="secondary-item" *ngIf="showAdditionalData">
+                        <p>
+                            {{'DETAIL.DETAIL_CREDIT_CARD.QUOTA_TOTAL' | translate}}
+                        </p>
+                        <h4 [innerHTML]="info?.productAccountBalances?.cupo_total?.amount | currencyFormat: true"></h4>
+                    </div>
+                    <div class="more-info" *ngIf="purchasesToApply > 0 || paymentsToApply > 0 || neededToPay">
+                        <a (click)="openAditional()">
+                            <em class="icon-arrow2-right" [ngClass]="{'opened': showAdditionalData}"></em>
+                        </a>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</div>
+
+<ng-template #hasNotOverDraftDays>
+    <div class="secondary-item">
+        <p>
+            {{'DETAIL.DETAIL_CURRENT_ACCOUNT.MONEY_AVAILABLE' | translate}}
+        </p>
+        <h4 [innerHTML]=" info?.productAccountBalances?.saldo_disponible.amount | currencyFormat: true"></h4>
+    </div>
+    <div class="secondary-item">
+        <p>
+            {{'DETAIL.DETAIL_CURRENT_ACCOUNT.AVAILABLE_OVERDRAFT' | translate}}
+        </p>
+        <h4 [innerHTML]="info?.productAccountBalances?.cupo_disponible_sobregiro?.amount | currencyFormat: true"></h4>
+    </div>
+    <div class="secondary-item">
+        <p>
+            {{'DETAIL.DETAIL_CURRENT_ACCOUNT.QUOTA_OVERDRAFT' | translate}}
+        </p>
+        <h4 [innerHTML]="info?.productAccountBalances?.cupos_aprobado_sobregiro?.amount | currencyFormat: true"></h4>
+    </div>
+</ng-template>
+
+<ng-template #notNeededToPay>
+    <div class="secondary-item">
+        <p>
+            {{'DETAIL.DETAIL_CREDIT_CARD.QUOTA_ADVANCE' | translate}}
+        </p>
+        <h4 [innerHTML]="info?.productAccountBalances?.cupo_disponible_avances_pesos?.amount | currencyFormat: true"></h4>
+    </div>
+    <div class="secondary-item">
+        <p>
+            {{'DETAIL.DETAIL_CREDIT_CARD.QUOTA_TOTAL' | translate}}
+        </p>
+        <h4 [innerHTML]="info?.productAccountBalances?.cupo_total?.amount | currencyFormat: true"></h4>
+    </div>
+    <div class="secondary-item" *ngIf="!pilotView">
+        <p>
+            {{'DETAIL.DETAIL_CREDIT_CARD.CUTOFF_DAY' | translate}}
+        </p>
+        <h4>{{info?.dueDate | date:'dd/MMM/yyyy' | replace : '.' : ''}}</h4>
+    </div>
+    <div class="secondary-item" *ngIf="showAdditionalData">
+        <p (mousedown)="openTooltip('.tooltip1')" (mouseleave)="closeTip('.tooltip1')">
+            <a class="icon-exclamation-circle"></a> {{'DETAIL.DETAIL_CREDIT_CARD.PAYMENTS_TO_APPLY' | translate}}
+        </p>
+        <h4 [innerHTML]="paymentsToApply | currencyFormat: true"></h4>
+    </div>
+    <div class="secondary-item-tooltip tooltip tooltip1" *ngIf="showAdditionalData">
+        <span>
+      {{'DETAIL.DETAIL_CREDIT_CARD.PAYMENTS_TO_APPLY_TOOLTIP' | translate}}
+    </span>
+    </div>
+    <div class="secondary-item" *ngIf="showAdditionalData">
+        <p (mousedown)="openTooltip('.tooltip2')" (mouseleave)="closeTip('.tooltip2')">
+            <a class="icon-exclamation-circle"></a> {{'DETAIL.DETAIL_CREDIT_CARD.PURCHASES_TO_APPLY' | translate}}
+        </p>
+        <h4 [innerHTML]="purchasesToApply | currencyFormat: true"></h4>
+    </div>
+    <div class="secondary-item-tooltip tooltip tooltip2" *ngIf="showAdditionalData">
+        <span>
+      {{'DETAIL.DETAIL_CREDIT_CARD.PURCHASES_TO_APPLY_TOOLTIP' | translate}}
+    </span>
+    </div>
+    <div class="secondary-item">
+        <p>
+            {{'DETAIL.DETAIL_CREDIT_CARD.TOTAL_DEBT' | translate}}
+        </p>
+        <h4 [innerHTML]="info?.productAccountBalances?.pago_total_pesos?.amount | currencyFormat: true"></h4>
+    </div>
+    <div class="more-info" *ngIf="purchasesToApply > 0 || paymentsToApply > 0">
+        <a (click)="openAditional()">
+            <em class="icon-arrow2-right" [ngClass]="{'opened': showAdditionalData}"></em>
+        </a>
+    </div>
+</ng-template>
+
+<ng-template #onePocket>
+    <ul class="pockets-on-detail one">
+        <li *ngFor="let pocket of pocketsByProduct()?.pockets">
+            <div class="secondary-item">
+                <p>
+                    {{'DETAIL.DETAIL_DEPOSIT_ACCOUNT.POCKET_BULLET_ON_LIST' | translate}} {{pocket.pocketName}}
+                </p>
+                <h4 [innerHTML]="pocket.amountSaved | currencyFormat: true"></h4>
+            </div>
+        </li>
+    </ul>
+</ng-template>

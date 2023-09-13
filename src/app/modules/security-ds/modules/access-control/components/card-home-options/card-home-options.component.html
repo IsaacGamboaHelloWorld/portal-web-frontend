@@ -1,0 +1,56 @@
+<div class="ac-card-options" [ngClass]="{'locked': !stateFront}">
+  <ng-container *ngIf="!loading; else loadingState">
+    <!-- image -->
+    <div class="img-container pb-rounded-50">
+      <img [src]="
+      (typeChannel === getTypeChannel.PB ? 
+        stateFront ? '/24-essential-computer-4.svg' : '/24-essential-computer-4-gray.svg'
+        : 
+        stateFront ? '/24-essential-cellphone.svg' : '/24-essential-cellphone-gray.svg'
+      ) | imageCdn" alt="">
+    </div>
+    <!-- body -->
+    <div class="ac-body-card">
+
+      <div class="content">
+        <h4 class="title">{{ ('SECURITY.ACCESS_CONTROL.HOME.' + typeChannel) | translate }}</h4>
+        <p class="state" [ngClass]="{'pb-invisible': typeChannel === getTypeChannel.MB && stateFront}"> 
+          {{ (stateFront ? 'SECURITY.ACCESS_CONTROL.HOME.YOUR_ARE'
+              : 'SECURITY.ACCESS_CONTROL.HOME.BLOCKED_ENTRY')
+              | translate }}
+        </p>
+    
+        <p class="last-entry">{{ 'SECURITY.ACCESS_CONTROL.HOME.LAST_ENTRY' | translate }}</p>
+        <strong class="date">{{ lastSession | date: 'dd/MM/yyyy, h:mm a' | replace : '.' : '' }}</strong>
+      </div>
+
+      <div class="check-container">
+        <app-checkbox-slide
+          [text]="(stateFront ? 'SECURITY.ACCESS_CONTROL.HOME.LOCK_ENTRY' : 'SECURITY.ACCESS_CONTROL.HOME.UNLOCK_ENTRY') | translate" 
+          [inline]="true" 
+          [check]="stateFront"
+          (stateCheck)="changeStatus($event)"></app-checkbox-slide>
+      </div>
+
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #loadingState>
+  <div class="box item-loading-ac">
+		<div class="bg-icon-loading placeholder"></div>
+    <div class="body-loading">
+      <div class="content">
+        <p class="title-loading placeholder width-80"></p>
+        <p class="text-loading placeholder width-60"></p>
+
+        <p class="text-loading placeholder width-40"></p>
+        <p class="text-loading placeholder width-70"></p>
+      </div>
+
+      <div class="check-loading">
+        <p class="title-loading placeholder width-80"></p>
+      </div>
+    </div>
+	</div>
+</ng-template>

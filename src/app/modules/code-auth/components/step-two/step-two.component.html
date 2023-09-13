@@ -1,0 +1,32 @@
+<div class="animated fade-in-up cont-step-two-2fa">
+  <div class="cont-step-two">
+    <div class="cont">
+      <div class="circle">
+        <img [src]="'/validacion-identidad.png' | imageCdn" alt="">
+      </div>
+    </div>
+    <div class="text">
+      <p class="title">{{'CODE_AUTH.FORM.TITLE' | translate}}</p>
+      <p>{{'CODE_AUTH.FORM.TEXT' | translate}}</p>
+    </div>
+    <form class="form-global" [formGroup]="formStepTwo" (ngSubmit)="submitForm()">
+      <fieldset class="form-group">
+        <label>{{'CODE_AUTH.FORM.LABEL' | translate}} {{code}}</label>
+        <input type="password" class="input-bp" formControlName="codeAuth" appOnlyNumbers>
+        <div *ngIf="showErrorPass" class="error-msg">
+          <p>{{'CODE_AUTH.FORM.INVALID' | translate}}</p>
+        </div>
+      </fieldset>
+      <fieldset class="form-group submit-step-two">
+        <app-btn
+          [type]="'submit'"
+          [disabled]="formStepTwo.invalid || (stateAssing | async)?.loading"
+          [text]="'CODE_AUTH.FORM.BTN' | translate"
+          [id]="'btn-step-two'"
+          [isLoading]="(stateAssing | async)?.loading"
+          [class]="'btn-primary'"
+        ></app-btn>
+      </fieldset>
+    </form>
+  </div>
+</div>

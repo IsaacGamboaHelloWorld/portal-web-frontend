@@ -1,0 +1,10 @@
+<div class="container-home-profile">
+    <div class="cont-home-profile">
+        <div class="align-home-profile">
+            <div class="cont-home-profile-smart-card">
+                <app-profile-card [user]="(userInfo$ | async)?.data"></app-profile-card>
+                <app-action-card [iconPath]="'/clock.png' | imageCdn" [category]="'CUSTOMER_PROFILE.HOME.VIEW_PROFILE_TITLE' | translate" [description]="'CUSTOMER_PROFILE.HOME.VIEW_PROFILE_DESCRIPTION' | translate" [navPath]="routes.view"></app-action-card>
+            </div>
+        </div>
+    </div>
+</div>

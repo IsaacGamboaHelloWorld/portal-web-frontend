@@ -1,0 +1,129 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.profile-section-card
+  &.collapsed
+    .top-profile-section-card
+      &::after
+        display: none
+      margin-bottom: 0px
+    .bottom-profile-section-card
+      height: 0px
+      overflow: hidden
+    .separator
+      display: none
+  background: $carbon-light-100
+  width: 100%
+  border-radius: 10px
+  color: $carbon-dark-900
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+  padding: 24px
+  margin-bottom: 14px
+  text-align: left
+  .top-profile-section-card
+    margin-bottom: 20px
+    div
+      display: inline-block
+      margin-right: 17px
+    a
+      float: right
+      margin-right: 7px
+      em
+        font-size: $f-14 + 10
+        color: $g-500
+        transform: rotate(90deg)
+        display: inline-block
+        position: absolute
+        margin-left: -12px
+        &:hover
+          margin-left: -22px
+          margin-top: 10px
+        &::before
+          z-index: 2
+          position: relative
+        &::after
+          width: 1px
+          height: 1px
+          display: inline-block
+          content: ''
+          position: relative
+          border-radius: 100%
+          z-index: 1
+        &:hover::after
+          width: 44px
+          height: 44px
+          animation-name: hover-back
+          animation-duration: .2s
+          background: $gb-500
+          left: -35px
+          top: 11px
+        &.opened
+          transform: rotate(-90deg)
+          &::before
+            z-index: 2
+            position: relative
+          &::after
+            z-index: 1
+          &:hover::before
+            top: -23px
+            left: 42px
+          &:hover::after
+            width: 44px
+            height: 44px
+            animation-name: hover-back
+            animation-duration: .2s
+            background: $gb-500
+            left: 5px
+            top: -11px
+    .icon
+      width: 34px
+      height: 34px
+      display: inline
+      img
+        width: 34px
+    .action
+      div
+        display: flex
+        height: 30px
+        span
+          align-self: center
+          font-size: 14px
+          line-height: 2.29
+          font-weight: 500
+  .separator
+      border-bottom: 1px solid $carbon-light-900
+      width: 100%
+      content: ''
+      bottom: 0
+      display: block
+      margin-bottom: 20px
+  .bottom-profile-section-card
+    .bottom-profile-section-card-content
+      margin-top: 12px
+    .edit-section-card
+      align-self: center
+      text-align: center
+      button
+        width: 100%
+        max-width: 265px
+  
+@media only screen and (max-width: $break-tablet)
+  .profile-section-card
+    .bottom-profile-section-card
+      .edit-section-card
+        button
+          max-width: 100%
+    
+@media only screen and (max-width: 1023px)
+  .profile-section-card
+    .bottom-profile-section-card
+      .edit-section-card
+          max-width: 100%
+    
+@media only screen and (max-width: $break-mobile)
+  .profile-section-card
+    .bottom-profile-section-card
+      .edit-section-card
+          max-width: 100%
+    

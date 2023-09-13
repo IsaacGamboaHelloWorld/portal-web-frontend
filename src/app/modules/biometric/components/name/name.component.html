@@ -1,0 +1,28 @@
+<div class="animated fade-in-up cont-set-name-biometric">
+  <div class="set-name-biometric" *ngIf="rawId">
+    <div class="top-image-container">
+      <img [src]="'/80-devices.svg' | imageCdn" alt="">
+    </div>
+    <form class="form-global" autocomplete="off" [formGroup]="formNameCredential" (ngSubmit)="submitName()">
+      <div class="form-group">
+        <p class="label-name">{{'AUTH.ENROLLMENT.BIOMETRIC.TITLE_NAME' | translate}}</p>
+        <app-ds-input
+        [form]="formNameCredential"
+        [property]="'name'"
+        [typeText]="'text'"
+        [placeholder]="'AUTH.ENROLLMENT.BIOMETRIC.PLACEHOLDER_NAME' | translate">
+      </app-ds-input>
+      </div>
+      <div class="form-group cont-btn-name">
+        <app-btn
+        [type]="'submit'"
+        [disabled]="formNameCredential.invalid || isLoading"
+        [text]="'AUTH.ENROLLMENT.BIOMETRIC.BIOMETRIC_SAVE' | translate"
+        [id]="'btn_login'"
+        [isLoading]="isLoading"
+        [class]="'btn btn-primary'"
+        ></app-btn>
+      </div>
+    </form>
+  </div>
+</div>

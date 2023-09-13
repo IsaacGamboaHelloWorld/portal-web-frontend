@@ -1,0 +1,21 @@
+<div class="cont-step-register-affiliation">
+    <div class="info-steps">
+        <form class="form-global" [formGroup]="formData" (ngSubmit)="submitForm()">
+            <fieldset class="form-group">
+                <label>{{'REGISTER_PRODUCT_AFFILIATION.ORIGIN_ACCOUNT_LBL' | translate}}</label>
+                <div class="select-bp">
+                    <select formControlName="product" [compareWith]="compareFnOrigin">
+                        <option value="null" selected disabled>{{'REGISTER_PRODUCT_AFFILIATION.CHOOSE_ORIGIN_ACCOUNT_PLACEHOLDER' | translate}}</option>
+                        <option *ngFor="let product of productsOrigin$ | async; trackBy: trackByFn" [ngValue]="product">
+                            {{'PRODUCT_TYPES.' + product.typeAccount | translate}}
+                            {{product.id}} {{loadAmount(product, 'PAYMENTS.AVAILABLE_BALANCE' | translate, product?.productAccountBalances?.saldo_disponible?.amount | currencyFormat, 'TRANSFER.LOADING_AMOUNT' | translate)}}
+                        </option>
+                    </select>
+                </div>
+            </fieldset>
+            <fieldset class="submit-step">
+                <button type="submit" class="btn btn-primary" [disabled]="formData.invalid">{{'REGISTER_PRODUCT_AFFILIATION.CHECK_BTN' | translate}}</button>
+            </fieldset>
+        </form>
+    </div>
+</div>

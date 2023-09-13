@@ -1,0 +1,43 @@
+<div class="item-table-historic-movements">
+  <div class="items-table">
+    <div class="row-1">
+      <div class="col-icon">
+        <img class="round-img" [src]="getIcon() | imageCdn" [alt]="'TO_PLUS.TITLE' | translate">
+      </div>
+      <div class="cont-historic-movements display-block">
+        <table>
+          <tbody>
+            <tr>
+              <td class="td-1">
+                <p class="col-1 date capitalize">{{data?.CreatedDt | createDate | date:'dd/MMM/yyyy - HH:mm': 'UTC-5' |
+                  replace :
+                  '.' : ''}}</p>
+              </td>
+              <td class="td-2 display-flex">
+                <p *ngIf="data?.TrnType === types.CANJE" style="color: #E70000">-</p>
+                <p class="col-2 title"
+                  [ngStyle]="{'color': data?.TrnType === types.CANJE ? '#E70000' : data?.TrnType === types.ACUMULACION ? '#009A48' : 'black' }">
+                  {{(data?.TotalPoints | number)| replace : ',' : '.'}}</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="td-1">
+                <p class="col-1 title"> {{data?.BranchName}}</p>
+              </td>
+              <td class="td-2">
+                <p class="col-2 title">{{'TO_PLUS.LAST_MOVEMENTS.POINTS' | translate}}</p>
+              </td>
+            </tr>
+            <tr>
+              <td class="td-1">
+                <p class="col-1 value" *ngIf="(data?.TrnType) === types.CANJE">{{'TO_PLUS.LAST_MOVEMENTS.VALUE' |
+                  translate}}
+                  {{data?.TotalAmount | currencyFormat}}</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

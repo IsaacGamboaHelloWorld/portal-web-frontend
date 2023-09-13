@@ -1,0 +1,24 @@
+<div class="choose-type-payment-component">
+    <div class="navigation-opts not-select" *ngIf="!(step === 6 || step === 5)">
+        <a [routerLink]="navigate.paymentsOld"><em class="icon-arrow-left"></em> {{'GO_BACK' | translate}}</a>
+    </div>
+    <div class="choose-type-head-payment">
+        <h2>{{'PAYMENTS.CHOOSE_STEP.TITLE' | translate}}</h2>
+    </div>
+    <div class="choose-type-payment-option">
+        <a class="btn-graph animated shadow-1dp" (click)="setPaymentType('normal')" id="OPT_BANK">
+            <app-lottie-animation [width]="'80px'" [height]="'80px'" [path]="baseAssets + '/assets/animations/obligacionbancaria.json'" [renderer]="'canvas'"></app-lottie-animation>
+            <span>{{'PAYMENTS.CHOOSE_STEP.OPT_BANK' | translate}}</span> {{'PAYMENTS.CHOOSE_STEP.OPT_BANK_DESC' | translate}}
+        </a>
+        <a class="btn-graph animated shadow-1dp" (click)="setPaymentType('public')" id="OPT_BILL">
+            <app-lottie-animation [width]="'80px'" [height]="'80px'" [path]="baseAssets + '/assets/animations/serviciospublicos.json'" [renderer]="'canvas'"></app-lottie-animation>
+            <span>{{'PAYMENTS.CHOOSE_STEP.OPT_BILL' | translate}}</span> {{'PAYMENTS.CHOOSE_STEP.OPT_BILL_DESC' | translate}}
+        </a>
+        <a class="btn-graph animated shadow-1dp" (click)="setPaymentType('taxes')" id="OPT_PAYMENT_TAXES">
+            <div class="cont-img">
+                <img [src]="'/otros-pagos.png' | imageCdn" [alt]="'DETAIL.PAYMENT_BTN' | translate">
+            </div>
+            <span>{{'PAYMENTS.CHOOSE_STEP.OPT_PAYMENT_TAXES' | translate}}</span> {{'PAYMENTS.CHOOSE_STEP.OPT_TAXES_DESC' | translate}}
+        </a>
+    </div>
+</div>

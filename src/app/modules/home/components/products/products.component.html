@@ -1,0 +1,29 @@
+<section class="home-products" *ngIf="hasProducts">
+
+  <h6>{{ 'PRODUCT_TYPES.' + type_account | translate}} <span class="quantity-products">{{quantityProducts}}</span></h6>
+
+
+  <ul class="cont-section-products">
+    <li *ngFor="let product of products; trackBy: trackByFn; let i of index">
+      <ng-container [ngSwitch]="type_account">
+
+        <ng-container *ngSwitchCase="account.DEPOSIT_ACCOUNT">
+          <app-product-deposit-account [product]="product" [id]="product.id"></app-product-deposit-account>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="account.CREDIT_CARD">
+          <app-product-credit-card [product]="product" (clickBox)="redirect($event)" [id]="product.id | slice:12"></app-product-credit-card>
+        </ng-container>
+
+				<ng-container *ngSwitchCase="account.CERTIFIED_DEPOSIT_TERM">
+					<app-product-cdt [product]="product" [id]="product.id"></app-product-cdt>
+				</ng-container>
+
+				<ng-container *ngSwitchCase="account.CURRENT_ACCOUNT">
+					<app-product-current-account [product]="product" [id]="product.id"></app-product-current-account>
+				</ng-container>
+
+      </ng-container>
+    </li>
+  </ul>
+</section>

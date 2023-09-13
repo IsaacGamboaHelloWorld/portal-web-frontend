@@ -1,0 +1,153 @@
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+
+/*.cont-footer
+  display: flex
+  justify-content: space-between
+  align-items: center
+  img
+    height: 28px
+    width: auto
+  p
+    font-size: $f-14 - 2
+    color: $carbon-mid-400*/
+
+/* media only screen and (max-width: $break-mobile)
+  .cont-footer
+    justify-content: center
+    flex-direction: column
+    padding-left: 0
+    img
+      margin-bottom: 28px
+      height: 27px
+    p
+      text-align: center
+      span
+        display: block*/
+.cont-footer
+  padding: 31px 24px 31px 24px
+  .cont-logos-footer
+    height: 24px
+    text-align: center
+    .logo-more
+      height: 16px
+      width: auto
+      margin-top: 5px
+      margin-left: 24px
+    img
+      height: 24px
+      width: auto
+  .cont-version-footer
+    text-align: center
+    margin-top: 12px
+    margin-bottom: 24px
+    height: 20px
+    p
+      font-size: $f-14 - 2
+      color: $carbon-mid-400
+
+@media only screen and (max-width: $break-small-phone)
+  .cont-footer
+    padding: 31px 24px 0px 24px
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .cont-footer
+    padding: 31px 24px 0px 24px
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .cont-footer
+    padding: 31px 24px 0px 24px
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+  .cont-footer
+    padding: 31px 24px 0px 24px
+
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+  .cont-footer
+    margin-top: 0
+    .grid-x
+      display: grid
+      grid-template-columns: 1fr 1fr
+      grid-template-rows: auto
+      .cell
+        width: auto
+    .cont-logos-footer
+      height: 24px
+      text-align: left
+      position: relative
+      .logo-more
+        display: none
+      img
+        height: 24px
+        width: auto
+    .cont-version-footer
+      text-align: right
+      margin: 0
+      height: 20px
+
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+  .cont-footer
+    margin-top: 0
+    .grid-x
+      display: grid
+      grid-template-columns: 1fr 1fr
+      grid-template-rows: auto
+      .cell
+        width: auto
+    .cont-logos-footer
+      height: 24px
+      text-align: left
+      position: relative
+      .logo-more
+        display: none
+      img
+        height: 24px
+        width: auto
+    .cont-version-footer
+      text-align: right
+      margin: 0
+      height: 20px
+
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+  .cont-footer
+    margin-top: 0
+    .grid-x
+      display: grid
+      grid-template-columns: 1fr 1fr
+      grid-template-rows: auto
+      .cell
+        width: auto
+    .cont-logos-footer
+      height: 24px
+      text-align: left
+      position: relative
+      .logo-more
+        display: none
+      img
+        height: 24px
+        width: auto
+    .cont-version-footer
+      text-align: right
+      margin: 0
+      height: 20px
+
+@media only screen and (min-width: $break-desktop-xlg-min)
+  .cont-footer
+    margin-top: 0
+    padding: 31px 80px 31px 80px
+    .grid-x
+      display: grid
+      grid-template-columns: 1fr 1fr
+      grid-template-rows: auto
+      .cell
+        width: auto
+    .cont-logos-footer
+      height: 24px
+      text-align: left
+      position: relative
+      .logo-more
+        display: none
+      img
+        height: 24px
+        width: auto
+    .cont-version-footer
+      text-align: right
+      margin: 0
+      height: 20px

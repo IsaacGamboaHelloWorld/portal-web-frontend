@@ -1,0 +1,95 @@
+@import '../../../sass/mixins'
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+
+.container-wnocother
+  height: 100%
+  width: 100%
+  display: flex
+  justify-content: center
+  .cont-step-two
+    max-width: 100%
+
+.cont-wnocother
+  .choose-type-wnocother
+    margin-top: 0
+    .choose-type-wnocother-nav
+      display: flex
+      justify-content: space-between
+      align-items: center
+      a
+        color: $carbon-mid-400
+        margin-right: 10px
+        transition: .3s
+        i
+          +inline(middle)
+          color: $gc-600
+          font-size: $f-20 + 4
+          &.icon-arrow-left
+            border: 1px solid $gc-600
+            border-radius: 100%
+            font-size: $f-20
+            margin-right: 10px
+        &.close-wnocother
+          margin: 0
+          i
+            margin-left: 10px
+        &:hover
+          color: $carbon-dark-900
+      .choose-type-head-wnocother
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin-bottom: 161px
+      h2
+        font-weight: 600
+        margin-top: 35px
+    .empty
+      display: flex
+      justify-content: center
+      align-items: center
+      min-height: 64vh
+      text-align: center
+      img
+        width: 120px
+        height: auto
+        margin-bottom: 13px
+    .choose-type-wnocother-option
+      text-align: center
+      margin-top: 177px
+@media only screen and (max-width: $break-tablet)
+  .cont-wnocother
+    .choose-type-wnocother
+      margin-top: 0
+      .choose-type-wnocother-option
+        text-align: center
+        margin-top: 90px
+
+@media only screen and (max-width: $break-mobile)
+  .cont-wnocother
+    .choose-type-wnocother
+      margin-top: 0
+      .choose-type-wnocother-nav
+        display: flex
+        justify-content: space-between
+        align-items: center
+        margin: 20px 16px 0 16px
+      .choose-type-wnocother-option
+        text-align: center
+        margin: 27px 16px 0 16px
+  .choose-type-wnocother-component
+    margin-top: 22px
+    padding: 0 15px
+    .choose-type-head-wnocother
+      flex-direction: column
+      justify-content: flex-start
+      align-items: flex-start
+      h2
+        font-size: $f-20 + 4
+        margin-bottom: 24px
+        padding: 0
+      a
+        width: 100%
+        text-align: center
+    .empty
+      min-height: 60vh

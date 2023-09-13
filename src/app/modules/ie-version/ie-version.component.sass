@@ -1,0 +1,122 @@
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+@import '../../../sass/mixins'
+
+.container-ieerror
+  display: flex
+  justify-content: center
+  flex-direction: column
+  align-items: center
+  min-height: 100vh
+
+  .logo
+      position: absolute
+      top: 42px
+      left: 79px
+      img
+          width: 167px
+
+.image-container
+    min-height: 230px
+
+    .circle-green
+        img
+            position: absolute
+            top: 50%
+            left: 50%
+            margin: -94px
+
+.text-container
+    width: 296px
+    text-align: center
+    margin: 0 auto
+    padding-top: 50px
+
+    h2
+        font-weight: 600
+    
+    p
+        margin-top: 17px
+
+        &.text-suggestion
+            font-weight: 600
+    
+    img
+        border-radius: 100%
+        margin: 18px 12px
+
+.cont-circles
+  position: absolute
+  z-index: -1
+  width: 100%
+  height: 100%
+  overflow: hidden
+
+.circle-big,
+.circle-medium,
+.circle-small,
+.circle-green,
+.cont-signs
+  position: absolute
+  left: 50%
+  top: 40%
+  border-radius: 50%
+
+.circle-big
+  width: 482px
+  height: 482px
+  border: 1px solid #eeeeee
+  margin: -241px 0 0 -241px
+  transition-delay: 2s
+
+.circle-medium,
+.cont-signs
+  width: 374px
+  height: 374px
+  border: 1px solid $black-100
+  margin: -187px 0 0 -187px
+  transition-delay: 1.5s
+
+.circle-small
+  width: 280px
+  height: 280px
+  border: 1px solid $carbon-light-900
+  margin: -140px 0 0 -140px
+  transition-delay: 1s
+
+.circle-green
+  width: 188px
+  height: 188px
+  margin: -94px 0 0 -94px
+  transition-delay: 1s
+
+
+.footer-ie
+  width: 100%
+  position: absolute
+  bottom: 42px
+  padding: 0 79px
+
+@media only screen and (max-width: $break-mobile)
+
+    .circle-big,
+    .circle-medium,
+    .circle-small,
+    .circle-green,
+    .cont-signs
+        top: 28%
+
+    .container-ieerror
+        .logo
+            position: absolute
+            top: 42px
+            left: 50%
+            margin: 0 -93px
+            img
+                width: 167px
+    .image-container
+        min-height: 90px
+
+    .text-container
+        button
+            width: 100%

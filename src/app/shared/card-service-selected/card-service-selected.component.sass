@@ -1,0 +1,53 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.card-service-selected
+  width: 320px
+  height: 129px
+  border-radius: 12px
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+  background-color: white
+  border-left: 4px solid $gc-850
+  .mask
+    width: 12px
+    height: 100%
+    left: -1px
+    background-color: white
+    float: left
+    position: relative
+    border-radius: 8px
+  .head
+    margin-left: 24px
+    margin-top: 24px
+    position: absolute
+    p
+      font-size: $f-14 - 1
+      color: $carbon-mid-600
+      margin-bottom: 8px
+      font-weight: 500
+      &.nickname
+        font-size: $f-14
+        color: $black-750
+        font-weight: 500
+      &.value
+        font-size: $f-14 - 1
+        color: $black-750
+        font-weight: 500
+    span
+      font-size: $f-14 - 3
+      color: $carbon-mid-600
+      display: block
+      margin-bottom: 8px
+
+@media only screen and (max-width: $break-mobile)
+  .card-service-selected
+    width: 213px
+    .head
+      margin-left: 16px
+      p
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        max-width: 185px

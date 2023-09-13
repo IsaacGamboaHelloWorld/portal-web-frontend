@@ -1,0 +1,103 @@
+<div class="wrapper-home-finance">
+	<p class="title-finances">{{'HOME.ALL_AMOUNT.TITLE' | translate}}</p>
+</div>
+<section class="cont-total-finance">
+	<div class="cont-box" *ngIf="(hasFinance$ | async) else loadingTemplate">
+		<div class="box" *ngIf="(findByProperty('MY_CURRENT_BAG') | async)?.amount else loadingItem">
+			<div class="bg-icon-finance">
+				<img [src]="'/24-payments-finance-piggy-bank-1.svg' | imageCdn" alt="">
+			</div>
+			<p class="numbers" [innerHTML]=" (findByProperty('MY_CURRENT_BAG') | async)?.amount | currencyFormat : true : 'decimal-vouchers' "></p>
+			<span class="subtitle">{{'HOME.ALL_AMOUNT.TOT_SAVING' | translate}}</span>
+		</div>
+		<div class="box" *ngIf="(findByProperty('MY_TOTAL_DEBTS') | async)?.amount  else loadingItem">
+			<div class="bg-icon-finance">
+				<img [src]="'/24-money-banknote-8.svg' | imageCdn" alt="">
+			</div>
+			<p class="numbers" [innerHTML]=" (findByProperty('MY_TOTAL_DEBTS') | async)?.amount | currencyFormat : true : 'decimal-vouchers' "></p>
+			<span class="subtitle">{{'HOME.ALL_AMOUNT.TOT_CREDITS' | translate}}</span>
+		</div>
+
+		<div class="box" *ngIf="!(hasFinance$ | async)">
+			<p class="title-text">{{'HOME.ALL_AMOUNT.NOT_LOAD.TITLE' | translate}}</p>
+			<span class="subt-text">{{'HOME.ALL_AMOUNT.NOT_LOAD.TEXT' | translate}}</span>
+			<img class="logo-hasFinance" [src]="'/numero-de-intentos-excedido.png' | imageCdn" alt="">
+		</div>
+
+		<div class="box" *ngIf="!(finance$ | async) && (hasFinance$ | async)">
+			<p class="title-text">{{'HOME.ALL_AMOUNT.RELOAD.TITLE' | translate}}</p>
+			<span class="subt-text">{{'HOME.ALL_AMOUNT.RELOAD.TEXT' | translate}}</span>
+			<div class="btn-refresh">
+				<img [src]="'/button-refresh-arrow.png' | imageCdn" alt="">
+			</div>
+		</div>
+		<div class="box cont-box-width-slide">
+			<div class="cont-column column medium-10 large-10 other-credits-checkbox">
+				<div class="bg-icon-finance">
+					<img [src]="'/24-money-banknote-8.svg' | imageCdn" alt="">
+				</div>
+				<p class="numbers">{{'Otros creditos' | translate}}</p>
+				<span class="subtitle">{{'Libranzas.' | translate}}</span>
+			</div>
+			<div class="cont-column-slide column medium-2 large-2">
+				<div class="btn-slide">
+					<app-checkbox-slide (stateCheck)="loadOtherCredits()" [check]="checkOtherProducts$ | async"></app-checkbox-slide>
+				</div>
+			</div>
+		</div>
+		<div class="box cont-box-width-slide">
+			<div class="cont-column column medium-10 large-10">
+				<img class="logo-show-aval" [src]="'/aval.png' | imageCdn" alt="">
+				<span class="text-show-aval">{{'HOME.ALL_AMOUNT.SHOW_AVAL' | translate}}</span>
+			</div>
+			<div class="cont-column-slide column medium-2 large-2">
+				<div class="btn-slide">
+					<app-checkbox-slide (stateCheck)="loadOtherProducts($event)" [check]="check$ | async"></app-checkbox-slide>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<ng-template #loadingTemplate>
+		<div class="cont-box">
+			<div class="box itemLoading shadow-1dp" *ngFor="let i of [].constructor(loadingItems)">
+				<div class="bg-icon-loading placeholder"></div>
+				<p class="title-loading placeholder width-50"></p>
+				<p class="text-loading placeholder width-20"></p>
+			</div>
+			<div class="box cont-box-width-slide">
+				<div class="cont-column column medium-10 large-10 other-credits-checkbox">
+					<div class="bg-icon-finance">
+						<img [src]="'/24-money-banknote-8.svg' | imageCdn" alt="">
+					</div>
+					<p class="numbers">{{'Otros creditos' | translate}}</p>
+					<span class="subtitle">{{'Libranzas.' | translate}}</span>
+				</div>
+				<div class="cont-column-slide column medium-2 large-2">
+					<div class="btn-slide">
+						<app-checkbox-slide (stateCheck)="loadOtherCredits()" [check]="checkOtherProducts$ | async"></app-checkbox-slide>
+					</div>
+				</div>
+			</div>
+			<div class="box cont-box-width-slide">
+				<div class="cont-column column medium-10 large-10">
+					<img class="logo-show-aval" [src]="'/aval.png' | imageCdn" alt="">
+					<span class="text-show-aval">{{'HOME.ALL_AMOUNT.SHOW_AVAL' | translate}}</span>
+				</div>
+				<div class="cont-column-slide column medium-2 large-2">
+					<div class="btn-slide">
+						<app-checkbox-slide (stateCheck)="loadOtherProducts($event)" [check]="check$ | async"></app-checkbox-slide>
+					</div>
+				</div>
+			</div>
+		</div>
+	</ng-template>
+</section>
+
+<ng-template #loadingItem>
+	<div class="box itemLoading shadow-1dp">
+		<div class="bg-icon-loading placeholder"></div>
+		<p class="title-loading placeholder width-50"></p>
+		<p class="text-loading placeholder width-20"></p>
+	</div>
+</ng-template>

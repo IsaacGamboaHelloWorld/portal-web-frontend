@@ -1,0 +1,55 @@
+<app-template-system [sectionHome]="true" [backUrl]="navigate.paymentsv2obligations" [sectionContent]="content" [fullContent]="true" [navigatorActive]="true">
+</app-template-system>
+
+
+<ng-template #content>
+
+    <div class="container-registered">
+        <div *ngIf="paymentSelected" class="container-ticket-registered">
+            <app-ticket [imageTicket]="" [pseVersion]="false" [title]="paymentSelected?.loanName" [listTemplate]="list"></app-ticket>
+        </div>
+
+        <div *ngIf="showFavorite" class="card-favorite-payment">
+            <app-favorite-payments [actived]="actived" (stateCheck)="changeStatusClick($event)"></app-favorite-payments>
+        </div>
+
+        <div *ngIf="showFavorite" class="separetor"></div>
+
+        <div *ngIf="showHistoryTable" class="historial">
+            <app-historic
+            *ngIf="(historicPayments$ | async)"
+            [title]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.REGISTERED.PAYMENT_HISTORY' | translate"
+            [dataTable]="(historicPayments$ | async)?.data"
+            [showSearch]="false"
+            [bodyWithCard]="true"
+          ></app-historic>
+        </div>
+
+    </div>
+
+</ng-template>
+
+<ng-template #list>
+    <ul>
+        <li>
+            <span>{{'PAYMENTSV2.SHARED_COPY.BANK' | translate}}</span>
+            <p> {{ paymentSelected?.bankName }} </p>
+        </li>
+        <li>
+            <span>{{'PAYMENTSV2.SHARED_COPY.LBL_PRODUCT_TYPE' | translate}}</span>
+            <p>{{('PRODUCT_TYPES.' + paymentSelected?.accountType.toLocaleUpperCase()) | translate}}</p>
+        </li>
+        <li>
+            <span>{{'PAYMENTSV2.SHARED_COPY.LBL_REF_PROD' | translate}}</span>
+            <p *ngIf="T_CC">{{paymentSelected?.accountId | creditCardMask | creditCardHidden}}</p>
+            <p *ngIf="!T_CC">{{paymentSelected?.accountId}}</p>
+        </li>
+    </ul>
+
+    <div class="button-payment">
+        <app-btn [class]="'btn-primary'" [text]="'PAYMENTSV2.SHARED_COPY.BTN_PAY' | translate" (clickBtn)="paymentSubmit()"></app-btn>
+    </div>
+    <div class="button-delete">
+        <a class="delete-link link" (click)="doDeleteFinancialOp(paymentSelected)"> {{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.BTN_EDIT' | translate}}</a>
+    </div>
+</ng-template>

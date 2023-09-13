@@ -1,0 +1,131 @@
+@import '~sass/mixins'
+@import '~sass/colors'
+@import '~sass/variables'
+
+.account-card-container
+  background-color: $carbon-light-100
+  border-radius: 12px
+  box-shadow: 0 2px 4px 0 $transparent-08
+  overflow: hidden
+  margin: 8px
+  width: 322px
+  height: 140px
+  .header
+    display: flex
+    flex-direction: row
+    padding-top: 16px
+    .bar
+      width: 4px
+      height: 20px
+      border-radius: 3px
+      background-color: $act-600
+    .icon-left
+      width: 24px
+      height: 24px
+      margin-left: 20px
+    .account-number
+      h2
+        font-size: 13px
+        font-weight: 500
+        line-height: 2.15
+        letter-spacing: normal
+        color: $cbn-mid-600
+        margin-left: 5px
+        .id-product
+          color: $hlt-600
+          font-weight: 600
+  .body
+    display: flex
+    flex-direction: row
+    margin: 0px 24px
+    justify-content: space-between
+    .content
+      width: 100%
+      h3
+        font-size: 13px
+        font-weight: 600
+        line-height: 2.15
+        letter-spacing: normal
+        color: $cbn-mid-400
+        margin-top: 14px
+      >p
+        font-size: 21px
+        font-weight: 600
+        line-height: 1.52
+        letter-spacing: normal
+        color: $cbn-900
+        .decimal-numbers
+          font-size: 21px
+          font-weight: 600
+          line-height: 1.52
+          letter-spacing: normal
+    .actions
+      img
+        width: 32px
+        height: 32px
+        margin: 4px
+      >div
+        display: flex
+        flex-direction: column
+        align-items: center
+        span
+          font-size: 12px
+          font-weight: 600
+          line-height: 1.33
+          letter-spacing: normal
+          text-align: center
+          color: $hlt-900
+    .body-loading
+      margin-top: 5px
+      width: 100%
+      overflow: hidden
+      position: relative
+      display: flex
+      flex-direction: column
+      justify-content: space-around
+      .title-card
+        left: 64px
+        height: 22px
+
+  &.loading
+    background: $carbon-light-100
+    border-radius: 12px
+    box-shadow: 0 1px 2px 0 $transparent-08
+    overflow: hidden
+    .title-card
+      left: 64px
+      position: absolute
+      height: 12px
+      top: 29px
+    .card-mask
+      left: 64px
+      position: absolute
+      height: 12px
+      top: 61px
+    .cvv-card
+      position: absolute
+      height: 16px
+      top: 82px
+      left: 64px
+
+  &.locked
+    .header
+      .bar
+        background-color: $cbn-mid-100
+      .account-number
+        h2
+          color: $cbn-mid-100
+          .id-product
+            color: $cbn-mid-100
+    .body
+      .content
+        h3
+          color: $cbn-mid-100
+        >p
+          color: $cbn-mid-100
+          .decimal-numbers
+            color: $cbn-mid-100
+      .actions
+        >div
+          span
+            color: $cbn-mid-100

@@ -1,0 +1,38 @@
+<div class="reset-process">
+  <a (click)="resetActionHandler()"><i class="icon-arrow-back"></i> {{'GO_BACK' | translate}}</a>
+</div>
+<div class="animated fade-in-up cont-validate-code">
+  <fieldset class="cont-bar-enrollment form-group">
+    <app-bar-progress [desc]="userEnrollmentFlowInformation?.progressBar?.description" [valueProgress]="userEnrollmentFlowInformation?.progressBar?.percent"></app-bar-progress>
+  </fieldset>
+  <div class="validate-code">
+    <div class="top-image-container">
+        <img [src]="'/enrollment/otp.png' | imageCdn" alt="">
+    </div>
+    <h4>{{'AUTH.ENROLLMENT.VALIDATE_CODE.TITLE' | translate}}</h4>
+    <p class="description">{{'AUTH.ENROLLMENT.VALIDATE_CODE.DESCRIPTION' | translate}}</p>
+    <form class="form-global" autocomplete="off" [formGroup]="registerForm" (ngSubmit)="submitForm()">
+      <fieldset class="form-group" formGroupName="content">
+        <label>{{'AUTH.ENROLLMENT.VALIDATE_CODE.TEMPORAL_PASSWORD' | translate}}</label>
+        <input [type]="inputType" class="form-control input-bp" formControlName="otpValue" />
+      </fieldset>
+      <fieldset class="form-group" *ngIf="!isRetryOtpGenerationAvailable">
+        <p class="session-time">{{'AUTH.ENROLLMENT.VALIDATE_CODE.DID_YOU_RECIEVE_IT' | translate}}</p>
+        <p class="session-time">{{'AUTH.ENROLLMENT.VALIDATE_CODE.WAIT' | translate}}  <span>{{ minutesDisplay }}:{{ (secondsDisplay) && (secondsDisplay <=59) ? secondsDisplay : '00' }}</span> {{'AUTH.ENROLLMENT.VALIDATE_CODE.THEN_YOU_WILL_GET_THE_CODE' | translate}}</p>
+      </fieldset>
+      <fieldset class="form-group" *ngIf="isRetryOtpGenerationAvailable">
+        <p class="session-time">{{'AUTH.ENROLLMENT.VALIDATE_CODE.DID_YOU_RECIEVE_IT' | translate}}</p>
+        <a (click)="getNewOtpCode()" [class.disabled]="isLoading$ | async">{{'AUTH.ENROLLMENT.VALIDATE_CODE.ASK_NEW_CODE' | translate}}</a>
+      </fieldset>
+      <fieldset>
+          <app-btn
+            [type]="'submit'"
+            [disabled]="registerForm.invalid || (isLoading$ | async)"
+            [text]="'AUTH.ENROLLMENT.VALIDATE_CODE.BTN' | translate"
+            [id]="'btn_login'"
+            [isLoading]="(isLoading$ | async)"
+            [class]="'btn btn-primary'"></app-btn>
+        </fieldset>
+    </form>
+  </div>
+</div>

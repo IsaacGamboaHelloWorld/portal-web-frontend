@@ -1,0 +1,65 @@
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+
+.notification-global
+  position: fixed
+  left: 16px
+  top: 16px
+  right: 16px
+  border-radius: 4px
+  z-index: 3
+  text-align: center
+  padding: 16px 21px
+  background: $carbon-light-100
+  transition: .5s
+  transform: translateY(-150%)
+  &.open
+    transform: translateY(0)
+  &.error
+    background: $error-100
+    color: $error-900
+    border: solid 1px $error-600
+    button
+      color: $error-900
+  &.success
+    background: $success-100
+    color: $success-900
+    button
+      color: $success-900
+  &.warning
+    background: $warning-100
+    color: $warning-900
+    button
+      color: $warning-900
+  &.info
+    background: $info-100
+    color: $info-900
+    button
+      color: $info-900
+  &.error,
+  &.warning
+    p
+      padding-right: 30px
+      font-size: $f-14 - 1
+    button
+      display: block
+      font-size: $f-20 + 2
+  button
+    position: absolute
+    right: 16px
+    background: transparent
+    cursor: pointer
+    top: 50%
+    transform: translateY(-50%)
+    display: none
+
+
+@media only screen and (max-width: $break-mobile)
+  .notification-global
+    text-align: left
+    p
+      line-height: 1.64
+      padding-right: 20px
+    &.error,
+    &.warning
+      font-size: $f-20 - 2

@@ -1,0 +1,41 @@
+<div class="confirmation-recharge cont-step-global animated element-hidden block fade-in-up">
+  <app-ticket
+      [imageTicket]="'/confirmation.png' | imageCdn"
+      [title]="'TRANSFER.CONFIRMATION.TITLE' | translate"
+      [messageTitle]="'Valor de la recarga'"
+      [messageText]="(formOne$ | async)?.amount | currencyFormat : true : 'decimal-vouchers'"
+      [listTemplate]="list"></app-ticket>
+
+  <div class="footer-step" *ngIf="formOne$ | async as one">
+    <app-btn
+        [class]="'btn-primary'"
+        [isLoading]="(recharge$ | async)?.loading"
+        [disabled]="(recharge$ | async)?.loading"
+        [text]="'RECHARGE.BTN' | translate" (clickBtn)="fetchRecharge(one)"></app-btn>
+  </div>
+
+</div>
+
+<ng-template #list>
+  <ul *ngIf="formOne$ | async as one">
+    <li>
+      <span>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+      <p>
+        {{'BANKS.'+one.account_origin?.accountInformation?.bank | translate}} - {{'PRODUCT_TYPES.' + one.account_origin?.typeAccount | translate}} {{one.account_origin?.id | slice: -4}} - {{'PRODUCT.DEPOSIT_ACCOUNT.BALANCE_AVAILABLE' | translate}}
+        <span class="text-bold" [innerHTML]="one?.account_origin?.productAccountBalances?.saldo_disponible?.amount | currencyFormat : true : 'decimal-vouchers-custom'"></span>
+      </p>
+    </li>
+    <li>
+      <span>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+      <p>Telefonía {{one?.operator?.name}}</p>
+    </li>
+    <li>
+      <span>{{'RECHARGE.VOUCHER.NUMBER' | translate}}</span>
+      <p>{{one.phone_number}}</p>
+    </li>
+    <li>
+      <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+      <p [innerHTML]="cost | currencyFormat : true : 'decimal-vouchers-custom'"></p>
+    </li>
+  </ul>
+</ng-template>

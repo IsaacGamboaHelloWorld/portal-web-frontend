@@ -1,0 +1,19 @@
+<app-template-system
+  [title]="'TOTP_AUTHENTICATION.HOME.TITLE' | translate"
+  [subtitle]="'TOTP_AUTHENTICATION.HOME.SUBTITLE' | translate"
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [showClose]="false"
+  [sectionHome]="true"
+  [backUrl]="mainNavigation.security"
+></app-template-system>
+
+<ng-template #content>
+  <div class="totp-main-container pb-col-sp-4">
+    <app-card-notification [typeNotification]="'warning'" [message]="'TOTP_AUTHENTICATION.HOME.NOTIFICATION' | translate"></app-card-notification>
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>
+
+

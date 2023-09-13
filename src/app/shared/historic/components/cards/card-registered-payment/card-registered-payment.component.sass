@@ -1,0 +1,86 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.item-table-payment-history
+  padding: 24px 32px 24px 24px
+  display: flex
+  .orange
+    color: $secondary-900
+    margin-left: 4px
+  .row-voucher
+    display: flex
+  .col-data
+    min-width: 307px
+    max-width: 310px
+    color: $carbon-dark-900
+    font-size: $f-14
+    line-height: 1.71
+    .toggle-container
+      display: none
+  .col-info-payment
+    color: $carbon-dark-900
+    font-size: $f-14
+    line-height: 1.71
+    flex-grow: 1
+    align-self: flex-start
+  .col-status
+    min-width: 80px
+    align-self: center
+    span
+      font-size: $f-14 - 2
+      border-radius: 4px
+      padding: 2px 10px
+      &.pending
+        background: $warning-100
+        color: $warning-900
+      &.success
+        background: $success-100
+        color: $success-900
+      &.error
+        background: $error-100
+        color: $error-900
+
+@media only screen and (max-width: $break-mobile)
+  .item-table-payment-history
+    display: flex
+    flex-direction: column
+    float: left
+    .col-data
+      min-width: 170px
+      max-width: 98%
+      order: 2
+      position: relative
+      .toggle-container
+        position: absolute
+        right: 0
+        top: 0
+        bottom: 0
+        display: flex
+        align-items: center
+        em
+          border: 1px solid $gc-600
+          border-radius: 2px
+          position: absolute
+          background: transparent
+          transform: translateY(-50%)
+          cursor: pointer
+          color: $gc-600
+          padding: 1px
+          font-size: $f-14 + 5
+          border-radius: 100%
+          &::before
+            font-weight: 100
+    .col-info-payment
+      order: 3
+      align-self: flex-start
+      max-height: 0
+      overflow: hidden
+      transition: .5s
+      &.show
+        max-height: 500px
+        transition: .5s
+    .col-status
+      order: 1
+      align-self: flex-start
+      margin-bottom: 8px

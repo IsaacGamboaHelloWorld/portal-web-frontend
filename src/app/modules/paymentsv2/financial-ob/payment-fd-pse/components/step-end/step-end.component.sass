@@ -1,0 +1,52 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.step-end-fd
+  margin-top: 40px
+  .type-product-pay
+    display: flex
+    align-items: center
+    img
+      height: 100%
+      width: 24px
+      margin-right: 8px
+  .footer-step-end
+      text-align: center
+      margin-top: 32px
+      flex-direction: row
+      align-items: center
+      .warning-text
+        color: $error-600
+        margin-bottom: 20px
+      button
+        width: 100%
+  // override styles TicketComponent
+  .space-ticket
+    .cont-img
+      height: 48px
+      min-height: 48px !important
+      width: 48px
+      border-radius: 24px
+      padding: 8px
+      background-color: $scs-100
+      margin-bottom: 12px
+      img
+        width: 32px !important 
+        height: 32px !important
+  // override styles DsStatesCardComponent
+  .container-card-state
+    height: 336px
+    .title
+      margin-bottom: 12px
+    &.error
+      height: 308px
+      .description
+        height: 28px
+
+@media only screen and (min-width: $break-medium-table-landscape-min)
+  .step-end-fd
+    margin-top: 24px
+    .footer-step-end
+        margin-top: 34px
+        button
+          width: 154px

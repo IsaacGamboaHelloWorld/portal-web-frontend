@@ -1,0 +1,55 @@
+@import '../../../../../sass/colors'
+@import '../../../../../sass/variables'
+@import '../../../../../sass/mixins'
+
+.coexistence-component
+    display: none
+    background: $carbon-light-100
+    padding: 25px 32px
+    border-radius: 15px
+    .col-text
+        max-width: 593px
+        display: inline-block
+        h3
+            font-family: Inter
+            font-size: $f-14 + 1
+            font-weight: 600
+            font-style: normal
+            font-stretch: normal
+            line-height: 1.6
+            letter-spacing: normal
+            color: $carbon-dark-900
+            margin-bottom: 8px
+    .col-button
+        width: 250px
+        float: right
+        text-align: right
+        margin-top: 15px
+
+@media only screen and (max-width: 1192px)
+    .coexistence-component
+        .col-text
+            display: block
+            text-align: center
+            max-width: inherit
+        .col-button
+            width: auto
+            float: none
+            margin-top: 0
+            button
+                margin-top: 17px
+                width: 100%
+
+@media only screen and (max-width: $break-mobile)
+    .coexistence-component
+        padding: 25px 27px
+        .col-text
+            display: block
+            text-align: center
+        .col-button
+            width: auto
+            float: none
+            margin-top: 0
+            button
+                margin-top: 17px
+                width: 100%

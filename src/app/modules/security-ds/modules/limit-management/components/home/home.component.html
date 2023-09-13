@@ -1,0 +1,168 @@
+<div class="limit-home">
+
+  <div class="limit-home__list">
+
+    <!-- PB Card -->
+    <div class="limit-home__list__card-pb">
+      <strong class="limit-home__list__card-pb__title"> {{ 'LIMIT_MANAGEMENT.HOME.TITLE' | translate }} </strong>
+      <p class="limit-home__list__card-pb__description"> {{ 'LIMIT_MANAGEMENT.HOME.DESCRIPTION' | translate }} </p>
+      <ng-container [ngTemplateOutlet]="pbAccountTmp"></ng-container>
+    </div>
+
+    <!-- Another Bank Card -->
+    <div class="limit-home__list__card-pb">
+      <ng-container [ngTemplateOutlet]="anotherAccountTmp"></ng-container>
+    </div>
+
+  </div>
+</div>
+
+<ng-template #pbAccountTmp>
+  <div class="pb-account__header">
+    <div class="pb-account__header__image bk-pb">
+      <img [src]="'/isologo.png' | imageCdn" alt="">
+    </div>
+    <div class="pb-account__header__text">
+      <strong class="pb-account__header__text__title">{{ 'LIMIT_MANAGEMENT.HOME.POPULAR_BANK.TITLE' | translate }}</strong>
+      <p class="pb-account__header__text__subtitle">{{ 'LIMIT_MANAGEMENT.HOME.POPULAR_BANK.DESCRIPTION' | translate }} {{ (limitManagementGetData$ | async)?.limitsBank?.maxAmountTransaction | currencyFormat:false:'':false }}</p>
+      <small *ngIf="!!(limitManagementGetData$ | async)?.limits?.lastUpdateDate" class="pb-account__header__text__date"> {{ 'LIMIT_MANAGEMENT.HOME.POPULAR_BANK.LAST_DATE' | translate }} {{ (limitManagementGetData$ | async)?.limitsBank?.lastUpdateDate | date:'dd MMM yyyy' | titlecase | replace : '.' : '' }} </small>
+    </div>
+    <div class="pb-account__header__arrow" [ngClass]="{'open': openPB}" (click)="openAccordion('openPB')">
+      <em class="icon-arrow2-right"></em>
+    </div>
+  </div>
+  <div class="pb-account__body" *ngIf="openPB">
+    <app-card-notification
+      [typeNotification]="'info'"
+      [message]="('LIMIT_MANAGEMENT.HOME.FORM.INFO_CARD' | translate).replace('\{\{amount\}\}', (limitManagementGetData$ | async)?.limitsBank?.maxAmountOperationsByDay | currencyFormat:false:'':false)"
+      >
+    </app-card-notification>
+
+    <div class="pb-account__body__form">
+      <form [formGroup]="formPB" class="pb-account__body__input-1">
+        <app-ds-input
+          [label]="'LIMIT_MANAGEMENT.HOME.FORM.LABEL_1' | translate"
+          [placeholder]="'LIMIT_MANAGEMENT.HOME.FORM.PLACEHOLDER_1' | translate"
+          [caption]="aliasPBMaxAmountByTransaction?.errors?.max ?
+                    ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_ERROR' | translate) + (aliasPBMaxAmountByTransaction?.errors?.max?.max  | currencyFormat:false:'':false)
+                    :
+                    (hasErrorPBAmounts$ | async) ?
+                      ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_ERROR_1' | translate)
+                      :
+                      ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_INFO' | translate).replace('\{\{amount\}\}', (limitManagementGetData$ | async)?.limitsBank?.maxAmountTransaction | currencyFormat:false:'':false)"
+          [typeInput]="aliasPBMaxAmountByTransaction?.errors?.max || (hasErrorPBAmounts$ | async) ? 'error' : 'info'"
+          [form]="formPB"
+          [property]="maxAmountTransactionName"
+          [useCurrency]="true"
+          [typeText]="'tel'"
+          >
+        </app-ds-input>
+      </form>
+
+      <div class="pb-account__body__input-1">
+        <app-ds-input
+          [label]="'LIMIT_MANAGEMENT.HOME.FORM.LABEL_2' | translate"
+          [placeholder]="'LIMIT_MANAGEMENT.HOME.FORM.PLACEHOLDER_2' | translate"
+          [caption]="aliasPBMaxAmountByDay?.errors?.max ?
+                    ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_ERROR' | translate) + (aliasPBMaxAmountByDay?.errors?.max?.max  | currencyFormat:false:'':false)
+                    :
+                    (hasErrorPBAmounts$ | async)  ?
+                      ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_ERROR_1' | translate)
+                      :
+                      ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_INFO' | translate).replace('\{\{amount\}\}', (limitManagementGetData$ | async)?.limitsBank?.maxAmountOperationsByDay | currencyFormat:false:'':false)"
+          [typeInput]="aliasPBMaxAmountByDay?.errors?.max || (hasErrorPBAmounts$ | async) ? 'error' : 'info'"
+          [form]="formPB"
+          [property]="maxAmountTransfersByDayName"
+          [useCurrency]="true"
+          [typeText]="'tel'"
+          >
+        </app-ds-input>
+      </div>
+    </div>
+
+    <div class="pb-account__body__button">
+      <app-btn (clickBtn)="savePB()"
+        [text]="('LIMIT_MANAGEMENT.HOME.FORM.BUTTON' | translate)"
+        [disabled]="formPB.invalid || (hasErrorPBAmounts$ | async)"
+        [isLoading]="(limitManagementCreate$ | async)?.loading"
+        [class]="'btn btn-primary'">
+      </app-btn>
+    </div>
+
+  </div>
+</ng-template>
+
+
+<ng-template #anotherAccountTmp>
+  <div class="pb-account__header mt-0">
+    <div class="pb-account__header__image bk-another">
+      <img [src]="'/another-bank-limit.svg' | imageCdn" alt="">
+    </div>
+    <div class="pb-account__header__text">
+      <strong class="pb-account__header__text__title">{{ 'LIMIT_MANAGEMENT.HOME.ANOTHER_BANK.TITLE' | translate }}</strong>
+      <p class="pb-account__header__text__subtitle">{{ 'LIMIT_MANAGEMENT.HOME.ANOTHER_BANK.DESCRIPTION' | translate }} {{ (limitManagementGetData$ | async)?.limitsBank?.maxAmountTransactionAnotherBank | currencyFormat:false:'':false }}</p>
+    </div>
+    <div class="pb-account__header__arrow" [ngClass]="{'open': openAnother}" (click)="openAccordion('openAnother')">
+      <em class="icon-arrow2-right"></em>
+    </div>
+  </div>
+  <div class="pb-account__body" *ngIf="openAnother">
+    <app-card-notification
+      [typeNotification]="'info'"
+      [message]="('LIMIT_MANAGEMENT.HOME.FORM.INFO_CARD' | translate).replace('\{\{amount\}\}', (limitManagementGetData$ | async)?.limitsBank?.maxAmountOperationsByDayAnotherBank | currencyFormat:false:'':false)"
+      >
+    </app-card-notification>
+
+    <form [formGroup]="formAnother" class="pb-account__body__form">
+      <div class="pb-account__body__input-1">
+        <app-ds-input
+          [label]="'LIMIT_MANAGEMENT.HOME.FORM.LABEL_1' | translate"
+          [placeholder]="'LIMIT_MANAGEMENT.HOME.FORM.PLACEHOLDER_1' | translate"
+          [caption]="aliasAnotherMaxAmountByTransaction?.errors?.max ?
+                    ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_ERROR' | translate) + (aliasAnotherMaxAmountByTransaction?.errors?.max?.max  | currencyFormat:false:'':false)
+                    :
+                    (hasErrorAnotherAmounts$ | async) ?
+                      ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_ERROR_1' | translate)
+                      :
+                      ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_INFO' | translate).replace('\{\{amount\}\}', (limitManagementGetData$ | async)?.limitsBank?.maxAmountTransactionAnotherBank | currencyFormat:false:'':false)"
+          [typeInput]="aliasAnotherMaxAmountByTransaction?.errors?.max || (hasErrorAnotherAmounts$ | async)? 'error' : 'info'"
+          [form]="formAnother"
+          [property]="maxAmountTransactionName"
+          [useCurrency]="true"
+          [typeText]="'tel'"
+          >
+        </app-ds-input>
+      </div>
+
+      <div class="pb-account__body__input-1">
+        <app-ds-input
+          [label]="'LIMIT_MANAGEMENT.HOME.FORM.LABEL_2' | translate"
+          [placeholder]="'LIMIT_MANAGEMENT.HOME.FORM.PLACEHOLDER_2' | translate"
+          [caption]="aliasAnotherMaxAmountByDay?.errors?.max ?
+                    ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_ERROR' | translate) + (aliasAnotherMaxAmountByDay?.errors?.max?.max  | currencyFormat:false:'':false)
+                    :
+                    (hasErrorAnotherAmounts$ | async) ?
+                      ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_ERROR_1' | translate)
+                      :
+                      ('LIMIT_MANAGEMENT.HOME.FORM.INPUT_INFO' | translate).replace('\{\{amount\}\}', (limitManagementGetData$ | async)?.limitsBank?.maxAmountOperationsByDayAnotherBank | currencyFormat:false:'':false)"
+          [typeInput]="aliasAnotherMaxAmountByDay?.errors?.max || (hasErrorAnotherAmounts$ | async) ? 'error' : 'info'"
+          [form]="formAnother"
+          [property]="maxAmountTransfersByDayName"
+          [useCurrency]="true"
+          [typeText]="'tel'"
+          >
+        </app-ds-input>
+      </div>
+    </form>
+
+    <div class="pb-account__body__button">
+      <app-btn (clickBtn)="saveAnother()"
+        [text]="('LIMIT_MANAGEMENT.HOME.FORM.BUTTON' | translate)"
+        [disabled]="formAnother.invalid || (hasErrorAnotherAmounts$ | async)"
+        [isLoading]="(limitManagementCreate$ | async)?.loading"
+        [class]="'btn btn-primary'">
+      </app-btn>
+    </div>
+
+  </div>
+</ng-template>

@@ -1,0 +1,54 @@
+<app-template-system
+  [sectionContent]="content"
+  [fullContent]="false"
+  [navigatorActive]="false"
+></app-template-system>
+
+<ng-template #content>
+    <div class="cont-view-profile">
+        <div class="head-nav not-select">
+            <a (click)="back()"><em class="icon-arrow-back"></em> {{'REGISTER_PRODUCT_AFFILIATION.BACK_BTN' | translate}}</a>
+        </div>
+        <div class="top-view-profile-section">
+            <h2>{{'CUSTOMER_PROFILE.VIEW_PROFILE.TITLE' | translate}}</h2>
+            <p>{{'CUSTOMER_PROFILE.VIEW_PROFILE.DESCRIPTION' | translate}}</p>
+        </div>
+        <div class="align-view-profile">
+            <div class="cont-view-profile-cards">
+                <app-section-card [iconPath]="'/profile/personal-data@3x.png'" [title]="'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.TITLE' | translate" [buttonLabel]="'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.EDIT_BTN' | translate" [content]="personalData"
+                    [navPath]="routes.editPersonalData" [selectedCard]="selectedCard" (selectCard)="selectCard($event)"></app-section-card>
+                <app-section-card [iconPath]="'/profile/contact-data@3x.png'" [title]="'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.CONTACT_DATA.TITLE' | translate" [buttonLabel]="'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.CONTACT_DATA.EDIT_BTN' | translate" [content]="contactData"
+                    [selectedCard]="selectedCard" (selectCard)="selectCard($event)"></app-section-card>
+                <app-section-card [iconPath]="'/profile/education-data@3x.png'" [title]="'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.EDUCATION_DATA.TITLE' | translate" [buttonLabel]="'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.EDUCATION_DATA.EDIT_BTN' | translate" [content]="educationData"
+                    [navPath]="routes.editEducationData" [selectedCard]="selectedCard" (selectCard)="selectCard($event)"></app-section-card>
+                <app-section-card [iconPath]="'/profile/employment-data@3x.png'" [title]="'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.EMPLOYMENT_DATA.TITLE' | translate" [buttonLabel]="'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.EMPLOYMENT_DATA.EDIT_BTN' | translate" [content]="employmentData"
+                    [navPath]="routes.editEmploymentData" [selectedCard]="selectedCard" (selectCard)="selectCard($event)"></app-section-card>
+                <app-section-card [iconPath]="'/profile/financial-data@3x.png'" [title]="'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.FINANCIAL_DATA.TITLE' | translate" [buttonLabel]="'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.FINANCIAL_DATA.EDIT_BTN' | translate" [content]="financialData"
+                    [navPath]="routes.editFinancialData" [selectedCard]="selectedCard" (selectCard)="selectCard($event)"></app-section-card>
+            </div>
+        </div>
+    </div>
+    
+    <ng-template #personalData>
+        <app-personal-data></app-personal-data>
+    </ng-template>
+    
+    <ng-template #contactData>
+        <app-contact-data></app-contact-data>
+    </ng-template>
+    
+    
+    <ng-template #educationData>
+        <app-education-data></app-education-data>
+    </ng-template>
+    
+    
+    <ng-template #employmentData>
+        <app-employment-data></app-employment-data>
+    </ng-template>
+    
+    
+    <ng-template #financialData>
+        <app-financial-data></app-financial-data>
+    </ng-template>
+</ng-template>

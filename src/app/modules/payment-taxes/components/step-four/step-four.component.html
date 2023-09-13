@@ -1,0 +1,65 @@
+
+<div class="animated fade-in-up cont-step-global cont-step-four-payment">
+  <app-ticket
+    [imageTicket]="imgTicket | imageCdn"
+    [title]="textTitle | translate"
+    [messageTitle]="'PAYMENT_TAXES.CONFIRM.AMMOUNT' | translate"
+    [messageText]="(infoPaymentTaxes | async)?.amount | currencyFormat : true : 'decimal-vouchers'"
+    [description]="textDescription | translate"
+    [btnText]="textButton | translate: { value: 'icon-download-bottom' }"
+    [btnLoadingText]="'ADVANCE.LOADING_DOWNLOAD' | translate: { img: ('/loading-text.gif' |imageCdn) } "
+    [disabled]="disabled"
+    (btnAction)="download()"
+    [id]="'payment-taxes'"
+    [listTemplate]="list"
+    [pseVersion]="false"
+    [response]="statePayment | async"
+    [classSucces]="!viewSucces"></app-ticket>
+  <div class="footer-step">
+    <app-btn *ngIf="!viewSucces" [class]="'btn-primary'" [text]="textBtn | translate" (clickBtn)="submitData()" [isLoading]="((statePayment | async) && approvalId)" [disabled]="((statePayment | async) && approvalId)"></app-btn>
+    <a *ngIf="!viewSucces" class="link" (click)="doEdit()">{{'EDIT' | translate}}</a>
+    <app-btn *ngIf="viewSucces" [class]="'btn-primary'" [text]="textBtn | translate" (clickBtn)="end()" ></app-btn>
+    <a *ngIf="viewSucces" class="link" (click)="doNew()">{{'PAYMENTS.SUCCESS.BTN' | translate}}</a>
+  </div>
+</div>
+<ng-template #list>
+  <div class="confirm">
+    <ul >
+      <li>
+        <span>{{'PAYMENTS.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+        <p>
+          {{'PRODUCT_TYPES_SMALL.' + (infoPaymentTaxes | async)?.account_origin?.accountInformation?.productType | translate}}
+          {{(infoPaymentTaxes | async)?.account_origin?.accountInformation?.accountIdentifier | slice: -4}}
+          <span class="success" *ngIf="!viewSucces">
+            - {{'PRODUCT.DEPOSIT_ACCOUNT.BALANCE_AVAILABLE' | translate}}
+            {{((infoPaymentTaxes | async)?.account_origin?.productAccountBalances?.saldo_disponible?.amount ||
+              (infoPaymentTaxes | async)?.account_origin?.productAccountBalances?.cupo_disponible_compras_pesos?.amount ) | currencyFormat}}
+          </span>
+        </p>
+      </li>
+      <li>
+        <span>{{'PAYMENTS.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+        <p>{{(infoPaymentTaxes | async)?.city['name']  | titlecase}}</p>
+        <p>{{(infoPaymentTaxes | async)?.taxe['entityName'] | titlecase}}</p>
+      </li>
+      <li>
+        <div >
+          <span>{{'MOVEMENT.DEPOSIT.DATE' | translate}}</span>
+          <p>{{(datePaymentTaxes | async)?.date | date: 'dd/MMM/yyyy' | replace : '.' : '' }}</p>
+        </div>
+        <div class="voucher" *ngIf="viewSucces">
+          <span>{{'PAYMENT_TAXES.CONFIRM.VOUCHER' | translate}}</span>
+          <p>{{(statePayment | async)?.approvalId}}</p>
+        </div>
+      </li>
+      <li>
+        <span>{{'PAYMENT_TAXES.FORM_ONE.REFERENCE' | translate}}</span>
+        <p>{{(infoPaymentTaxes | async)?.reference}}</p>
+      </li>
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+        <p [innerHTML]=" costTransfer | currencyFormat : true : 'decimal-vouchers fs-14' " ></p>
+      </li>
+    </ul>
+  </div>
+</ng-template>

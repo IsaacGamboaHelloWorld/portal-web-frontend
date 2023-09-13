@@ -1,0 +1,19 @@
+<main class="container" (window:unload)="doUnload()" (window:beforeunload)="doSomething($event)">
+  <router-outlet></router-outlet> 
+</main>
+
+<div class="animation-login" [ngClass]="{'active': showAnimate$ | async}">
+	<img [src]="'/popular_white.svg' | imageCdn" [alt]="'NAME_BANK' | translate">
+</div>
+
+<app-ds-notification
+  [typeNotification]="(infoNotification$ | async)?.typeNotification"
+  [isOpen]="(infoNotification$ | async)?.open"
+  [message]="(infoNotification$ | async)?.message"
+  [subMessage]="(infoNotification$ | async)?.subMessage"
+  [hideClose]="(infoNotification$ | async)?.hideClose"
+  (closeEmit)="notificationClosed()"
+></app-ds-notification>
+
+<app-add-pwa *ngIf="hasPrompt"></app-add-pwa>
+

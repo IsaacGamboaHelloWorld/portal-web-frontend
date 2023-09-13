@@ -1,0 +1,256 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/layout'
+
+.cont-pockets
+  flex: 1
+  .navigation-opts
+    padding: 0
+
+.new-pockets-nav
+  a
+    color: $carbon-mid-400
+    margin-right: 10px
+    transition: .3s
+    em
+      +inline(middle)
+      color: $gc-800
+      font-size: $f-14 + 4
+      margin-right: 5px
+      padding: 1px
+      border: 1px solid $gc-800
+      border-radius: 100%
+.home-pockets
+  max-width: 1436px
+  margin: 32px auto
+  .home-head-pockets
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-left: 16px
+    h2
+      font-weight: bold
+      padding: 0 8px
+  .home-pockets-option
+    width: 344px
+    margin: 16px
+    label
+      margin-bottom: 5px
+      font-size: $f-14 - 2
+      display: block
+  .pockets-content
+    ul
+      li
+        float: left
+        margin-left: 16px
+        margin-bottom: 16px
+
+
+.cardLoading
+  width: 343px
+  height: 248px
+  background: $carbon-light-100
+  border-radius: 15px
+  .cardLoading-header
+    padding: 24px 24px 38px
+    display: flex
+    .icon
+      width: 44px
+      height: 44px
+      border-radius: 100%
+      background: $black-100
+      margin-right: 20px
+    .name
+      margin-top: 20px
+  .cardLoading-body
+    display: flex
+    padding: 0 24px 27px
+    .item
+      width: 50%
+      display: flex
+      flex-direction: column
+    .item
+      &.right
+        justify-items: flex-end
+      .placeholder
+        margin-bottom: 20px
+
+  .cardLoading-footer
+    border-top: 1px $black-100 solid
+    display: flex
+    .item
+      height: 58px
+      padding: 24px 46px
+      width: 50%
+      &.initial
+        border-right: 1px $black-100 solid
+@media only screen and (max-width: 1640px)
+  .home-pockets
+    max-width: 1077px
+
+@media only screen and (max-width: 1288px)
+  .home-pockets
+    max-width: 718px
+
+@media only screen and (max-width: $break-mobile)
+  .home-pockets
+    margin-top: 22px
+    padding: 0 15px
+    .home-head-pockets
+      flex-direction: column
+      justify-content: flex-start
+      align-items: flex-start
+      margin-left: 0
+      h2
+        font-size: $f-20 + 4
+        margin-bottom: 24px
+        padding: 0
+      a
+        width: 100%
+        text-align: center
+    .home-pockets-option
+      width: 100%
+      margin-left: 0
+    .pockets-content
+      ul
+        li
+          width: 100%
+          margin-right: 0
+          margin-left: 0
+
+.onboarding-container
+  max-height: 550px
+  overflow: hidden
+  position: relative
+  .controls
+    position: absolute
+    bottom: 10px
+    left: 0
+    right: 0
+    margin: 0 auto
+    width: 250px
+    display: flex
+    justify-content: center
+    .dots
+      display: flex
+      margin: 10px auto
+    button
+      top: inherit
+      transform: inherit
+      width: 48px
+      height: 48px
+      border-radius: 50%
+      background: $orange-900
+      color: $carbon-light-100
+      transition: .3s
+      display: flex
+      justify-content: center
+      align-items: center
+      cursor: pointer
+      box-shadow: 0 0 0 0 rgba($orange-900, 0.5)
+      &:hover
+        box-shadow: 0 3px 8px 0 rgba($orange-900, 0.5)
+      &::after
+        font-size: $f-14 - 4
+      &:disabled
+        background: $carbon-light-900
+        color: $carbon-mid-100
+        box-shadow: inherit
+        cursor: default
+      em
+        font-size: $f-14 + 6
+
+.step
+  text-align: center
+  max-width: 300px
+  min-height: 400px
+  margin: 100px auto
+  display: none
+  p
+    padding-bottom: 20px
+.step1
+  button
+    margin-bottom: 20px
+
+.step4
+  .last-step-controls
+    margin-top: 20px
+    display: flex
+    justify-content: center
+    button.nav-button
+      top: inherit
+      transform: inherit
+      width: 48px
+      height: 48px
+      border-radius: 50%
+      background: $orange-900
+      color: $carbon-light-100
+      transition: .3s
+      display: flex
+      justify-content: center
+      align-items: center
+      cursor: pointer
+      box-shadow: 0 0 0 0 rgba($orange-900, 0.5)
+      margin-right: 20px
+      &:hover
+        box-shadow: 0 3px 8px 0 rgba($orange-900, 0.5)
+      &::after
+        font-size: $f-14 - 4
+      &:disabled
+        background: $carbon-light-900
+        color: $carbon-mid-100
+        box-shadow: inherit
+        cursor: default
+      em
+        font-size: $f-14 + 6
+
+.active
+  display: flex
+  flex-direction: column
+
+.dot
+  width: 8px
+  height: 8px
+  margin: 7px
+  background: $black-300
+  display: block
+  border-radius: 100%
+
+.active-dot
+  width: 10px
+  height: 10px
+  background: $orange-900
+
+.circle-green
+  width: 188px
+  height: 188px
+  margin: -20px 0 0 -5%
+  transition-delay: 1s
+  display: flex
+  justify-content: center
+  margin: 20px auto
+
+  img
+    display: flex
+    align-self: center
+    width: 90px
+
+.container-steps
+  display: flex
+  overflow: hidden
+  .step
+    min-width: 100%
+    height: 428px
+    text-align: center
+    position: relative
+  p
+    position: absolute
+    bottom: 0
+    text-align: center
+    left: 0
+    right: 0
+    max-width: 375px
+    margin: 0 auto
+    font-size: $f-14 + 1

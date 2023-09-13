@@ -1,0 +1,26 @@
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+
+.loading-spinner
+  position: relative
+  width: 100%
+  top: 0
+  left: 0
+  align-items: center
+  justify-content: center
+  display: grid
+  .rectangle
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 64px
+    height: 64px
+    border-radius: 20px
+    box-shadow: 0 16px 24px 0 rgba(18, 207, 31, 0.29)
+    background-color: $carbon-light-100
+
+  .loading-spinner svg img
+    align-self: center
+  img
+    position: absolute
+    bottom: 20px

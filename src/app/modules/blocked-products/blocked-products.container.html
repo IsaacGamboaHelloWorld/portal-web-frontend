@@ -1,0 +1,15 @@
+<app-template-system
+[showClose]="false"
+[fullContent]="true"
+[navigatorActive]="true"
+[currentStep]="0"
+[maxStep]="1"
+[sectionContent]="content"
+[backUrl]="'/seguridad'"
+></app-template-system>
+
+<ng-template #content>
+	<div class="cont-blocked">
+		<router-outlet></router-outlet>
+	</div>
+</ng-template>

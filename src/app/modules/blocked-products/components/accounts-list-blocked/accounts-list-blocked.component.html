@@ -1,0 +1,42 @@
+<div class="cards">
+  <ng-container *ngIf="(depositAccounts$ | async)?.length > 0 || (currentAccounts$ | async)?.length > 0; else noAccount">
+    <div class="credit-cards-acc" *ngIf="(optionsModule$ | async)?.data?.block_product?.options?.deposit_account && (depositAccounts$ | async)?.length !== 0 && (depositAccounts$ | async); let depositAccounts">
+      <h2 class="subsection-title" [ngClass]="{ 'one': (depositAccounts$ | async)?.length === 1 }">{{ ( (depositAccounts$ | async)?.length > 1 ? 'BLOCK_PRODS.ACCOUNTS_SECTION.DEPOSIT_ACCOUNTS' : 'BLOCK_PRODS.ACCOUNTS_SECTION.DEPOSIT_ACCOUNT') | translate}}
+        <p class="amount">{{ depositAccounts.length }}</p>
+      </h2>
+      <ul>
+        <li *ngFor="let card of depositAccounts">
+          <app-account-base [data]="card"></app-account-base>
+        </li>
+      </ul>
+    </div>
+    <div class="debit-cards-acc" *ngIf="(optionsModule$ | async)?.data?.block_product?.options?.current_account && (currentAccounts$ | async)?.length !== 0 && (currentAccounts$ | async); let currentAccounts">
+      <h2 class="subsection-title" [ngClass]="{ 'one': (currentAccounts$ | async)?.length === 1 }">{{ ( (currentAccounts$ | async)?.length > 1 ?'BLOCK_PRODS.ACCOUNTS_SECTION.CURRENT_ACCOUNTS' : 'BLOCK_PRODS.ACCOUNTS_SECTION.CURRENT_ACCOUNT') | translate}}
+        <p class="amount">{{ currentAccounts.length }}</p>
+      </h2>
+      <ul>
+        <li *ngFor="let card of currentAccounts">
+          <app-account-base [data]="card"></app-account-base>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+
+  <ng-template #noAccount>
+    <div class="container-no-credit-card">
+      <div class="icon">
+        <img [src]="'/24-essential-sticker-14.svg' | imageCdn"
+          [alt]="'BLOCK_PRODS.ACCOUNTS_SECTION.NO_PRODUCTS.TITLE' | translate">
+      </div>
+      <strong class="title"> {{ 'BLOCK_PRODS.ACCOUNTS_SECTION.NO_PRODUCTS.TITLE' | translate }} </strong>
+      <p class="description"> {{ 'BLOCK_PRODS.ACCOUNTS_SECTION.NO_PRODUCTS.DESCRIPTION' | translate }} </p>
+      <app-btn
+        (clickBtn)="retryLoadAccountList()"
+        [text]="'BLOCK_PRODS.ACCOUNTS_SECTION.NO_PRODUCTS.RETRY' | translate"
+        [id]="'btn-step-one'"
+        [isLoading]="loading"
+        [class]="'btn-primary'"
+    ></app-btn>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,94 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+
+.ds-modal-container
+  background: $carbon-light-100
+  border-radius: 15px
+  padding: 24px
+  display: flex
+  flex-direction: column
+  .img-container
+    width: 48px
+    height: 48px
+    border-radius: 24px
+    margin: auto
+    display: flex
+    justify-content: center
+    align-items: center
+    img
+      width: 32px
+      height: 32px
+    &.error
+      background-color: $err-100
+    &.warning
+      background-color: $wrn-100
+    &.success
+      background-color: $scs-100
+    &.info
+      background-color: $inf-100
+
+  .title
+    color: $black-750
+    font-size: 16px
+    font-weight: 600
+    font-stretch: normal
+    line-height: 1.75
+    letter-spacing: normal
+    margin-top: 12px
+  .subtitle
+    color: $carbon-dark-900
+    font-size: 14px
+    font-weight: 600
+    font-stretch: normal
+    line-height: 2
+    letter-spacing: normal
+    margin-top: 16px
+  .desc
+    color: $black-750
+    font-size: 13px
+    font-weight: normal
+    font-stretch: normal
+    line-height: 2.15
+    letter-spacing: normal
+    margin-top: 12px
+    a
+      font-weight: 600
+      color: $act-900
+  .footer-buttons
+    margin-top: 24px
+    width: 100%
+    display: flex
+    flex-direction: row
+    justify-content: center
+    button
+      flex-grow: 1
+      background-color: $hlt-600
+      color: $carbon-light-100
+      border-radius: 8px
+      font-size: 14px
+      font-weight: 600
+      font-stretch: normal
+      line-height: 1.71
+      letter-spacing: normal
+      height: 48px
+    .cancel
+      background-color: $carbon-light-100
+      color: $act-900
+    app-btn
+      flex-grow: 1
+    &.buttons-column
+      flex-direction: column-reverse
+  .wd-100
+    width: 100%
+
+// override ds-modal.component styles for channel locked
+.ac-home-container.ds-modal-container
+  .subtitle
+    font-size: 13px
+    font-weight: normal
+    line-height: 2.15
+    letter-spacing: normal
+    color: $cbn-900
+    margin-top: 8px

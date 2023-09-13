@@ -1,0 +1,30 @@
+<div class="modal-other-products">
+  <div class="header-other-products">
+    <img [src]="'/aval.png' | imageCdn" [alt]="'NAME_GROUP' | translate">
+    <p>{{((isLoading$ | async) ? 'OTHER_PRODUCTS.TITLE_SEARCH' : 'OTHER_PRODUCTS.TITLE_FINISH') | translate}}</p>
+  </div>
+  <div class="content-other-products" *ngIf="(otherProducts$ | async) as banks">
+    <ul>
+      <li *ngFor="let bank of banks; trackBy:identify">
+        <img [src]="'/' + (bank.key | lowercase) + '.png' | imageCdn"
+             [alt]="'BANKS.' + bank.key | translate">
+        <div class="cont-info">
+          <div class="loading-bank" *ngIf="bank.loading"><span></span></div>
+          <p *ngIf="bank.error" class="error">{{'OTHER_PRODUCTS.ERROR' | translate}}</p>
+          <p *ngIf="bank.loaded" class="loading-text">{{lengthProducts(bank.products)}} {{'OTHER_PRODUCTS.RESULT' | translate}}</p>
+          <p [ngClass]="{'loading-text': bank.loading }">
+            <span *ngIf="bank.loading">{{'OTHER_PRODUCTS.SEARCH' | translate}}</span>
+            {{'BANKS.' + bank.key | translate}}
+            <span *ngIf="bank.loading">...</span>
+          </p>
+          <a class="link not-select" *ngIf="bank.error" (click)="loadBank(bank.key)">{{'OTHER_PRODUCTS.RETRY' | translate}}</a>
+        </div>
+      </li>
+    </ul>
+    <div class="cont-actions">
+      <a (click)="cancel()" class="link" *ngIf="isLoading$ | async">{{'CANCEL' |translate}}</a>
+      <button (click)="cancel()" class="btn btn-primary" *ngIf="(!(isLoading$ | async) && !(hasProducts | async))">{{'CLOSE' | translate}}</button>
+      <button class="btn btn-primary" (click)="viewProducts()" *ngIf="!(isLoading$ | async) && (hasProducts | async)">{{'OTHER_PRODUCTS.BTN' | translate}}</button>
+    </div>
+  </div>
+</div>

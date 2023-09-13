@@ -1,0 +1,30 @@
+<div class="smart-card-main-balances">
+    <ng-container [ngSwitch]="typeProduct">
+        <ng-container *ngSwitchCase="T_DA">
+            <h5>{{'DETAIL.DETAIL_DEPOSIT_ACCOUNT.TOTAL_BALANCE' | translate}} </h5>
+            <p class="main-balance" [innerHTML]="info?.productAccountBalances?.saldo_actual?.amount | currencyFormat: true"></p>
+        </ng-container>
+        <ng-container *ngSwitchCase="T_CA">
+            <ng-container *ngIf="hasOverDraftDays; else hasNotOverDraftDays">
+                <h5>{{'DETAIL.DETAIL_CURRENT_ACCOUNT.TOTAL_OVERDRAFT' | translate}} </h5>
+                <p class="main-balance" [innerHTML]="info?.productAccountBalances?.saldo_actual?.amount | currencyFormat: true"></p>
+            </ng-container>
+        </ng-container>
+        <ng-container *ngSwitchCase="T_CC">
+            <ng-container *ngIf="neededToPay; else notNeededToPay">
+                <h5>{{'DETAIL.DETAIL_CREDIT_CARD.NEXT_PAYTMENT' | translate}} </h5>
+                <p class="main-balance" [innerHTML]="info?.productAccountBalances?.valor_pago_minimo?.amount | currencyFormat: true"></p>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</div>
+
+<ng-template #hasNotOverDraftDays>
+    <h5>{{'DETAIL.DETAIL_CURRENT_ACCOUNT.TOTAL_BALANCE' | translate}} </h5>
+    <p class="main-balance" [innerHTML]="info?.productAccountBalances?.saldo_actual?.amount | currencyFormat: true"></p>
+</ng-template>
+
+<ng-template #notNeededToPay>
+    <h5>{{'DETAIL.DETAIL_CREDIT_CARD.QUOTA_AVAILABLE' | translate}} </h5>
+    <p class="main-balance" [innerHTML]="info?.productAccountBalances?.cupo_disponible_compras_pesos?.amount | currencyFormat"></p>
+</ng-template>

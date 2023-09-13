@@ -1,0 +1,76 @@
+<div class="step step2">
+	<div class="tabs">
+		<button [class.active]="stepAisActive" (click)="onChangeType('WITH_CARD')">{{'WITHDRAWAL.WITH_CARD' | translate}}</button>
+		<button [class.active]="!stepAisActive" (click)="onChangeType('THIRD_PARTY')">{{'WITHDRAWAL.THIRD_PARTY' | translate}}</button>
+	</div>
+	<div class="stepInternalContainer">
+		<div class="form-notification">
+			<div class="form-notification-container" >
+				<div class="bar"></div>
+				<div class="img-container">
+					<div class="img"></div>
+				</div>
+				<div class="content">
+					<span class="message"> {{'WITHDRAWAL.NOTIFICATION_TITLE' | translate}} </span>
+					<span class="sub-message"> {{'WITHDRAWAL.NOTIFICATION_SUBTITLE' | translate}} </span>
+				</div>
+
+			</div>
+		</div>
+
+		<div class="step1-container">
+			<form [formGroup]="formNoCard" class="clearfix form-global" (ngSubmit)="setDataForm()">
+				<div class="form-group" *ngIf="!stepAisActive">
+					<label>{{'WITHDRAWAL.DOCUMENT' | translate}}</label>
+					<input appOnlyNumbers type="text" formControlName="document" class="form-control input-bp" autocomplete="nope" />
+				</div>
+				<div class="form-group">
+					<label>{{'WITHDRAWAL.FROM_ACCOUNT' | translate}}</label>
+					<div class="select-bp">
+						<select formControlName="product">
+							<option value="" selected>{{'WITHDRAWAL.FROM_PRODUCT' | translate}}</option>
+							<option *ngFor="let product of productsOrigin$ | async"
+							[ngValue]="product">
+							{{'PRODUCT_TYPES.' + product.typeAccount | translate}}
+							{{product.id}} {{loadAmount(product, 'PAYMENTS.AVAILABLE_BALANCE' | translate, product?.productAccountBalances?.saldo_disponible?.amount | currencyFormat, 'TRANSFER.LOADING_AMOUNT' | translate)}}
+
+						</option>
+
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>{{'WITHDRAWAL.WHERE_ACCOUNT' | translate}}</label>
+				<div class="select-bp">
+					<select class="form-control" formControlName="where">
+						<option value="" disabled selected>{{'WITHDRAWAL.WHERE_DEFAULT' | translate}}</option>
+						<option value="{{'WITHDRAWAL.ATM' | translate}}">{{'WITHDRAWAL.CONFIRM_STEP.ATM' | translate}}</option>
+						<option value="{{'WITHDRAWAL.BANK_CORRESP' | translate}}">{{'WITHDRAWAL.CONFIRM_STEP.CB' | translate}}</option>
+					</select>
+				</div>
+			</div>
+			<div *ngIf="showAmount" class="form-group">
+				<label>{{'WITHDRAWAL.AMMOUNT' | translate}}</label>
+				<div class="select-bp">
+					<select class="form-control" formControlName="amount" (change)="doSetAnotherAmount()">
+						<option value="" disabled selected>{{'WITHDRAWAL.DEFAULT_VALUE' | translate}}</option>
+						<option *ngFor="let amount of valuesWithdrawal" [value]="amount">{{amount | currencyFormat}}</option>
+						<option value="-">{{'WITHDRAWAL.OTHER_VALUE' | translate}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group" *ngIf="anotherAmount">
+				<label>{{'WITHDRAWAL.VALUEIN10' | translate}}</label>
+				<input type="text" formControlName="otheramount" placeholder="$" appCurrency [form]="formNoCard" [property]="'otheramount'"
+					class="form-control input-bp" (ngModelChange)="setState($event)" [ngClass]="{'state-input-pb': !!error}"/>
+				<div *ngIf="!!error" class="error-msg">
+					<p *ngIf="error.minAmountInvalid">{{'WITHDRAWAL.MIN_OTHER_VALUE_ERROR' | translate}}</p>
+					<p *ngIf="error.maxAmountInvalid">{{'WITHDRAWAL.MAX_OTHER_VALUE_ERROR' | translate}}</p>
+					<p *ngIf="error.valueInvalid">{{'WITHDRAWAL.OTHER_VALUE_ERROR' | translate}}</p>
+				</div>
+			</div>
+			<button class="btn btn-primary btn-continuar" type="submit" [disabled]="formNoCard.invalid">Continuar</button>
+		</form>
+	</div>
+</div>
+</div>

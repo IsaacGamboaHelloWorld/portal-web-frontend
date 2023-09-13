@@ -1,0 +1,32 @@
+<div class="main-container-transaction" [ngClass]="{'back-green': backGreen, 'back-green-height': backGreenHeight}">
+    <ng-container *ngIf="navigatorActive">
+        <div class="main-container-transaction_navigator">
+            <div class="navigation-opts not-select">
+                <a (click)="back()" *ngIf="currentStep !== maxStep || navInternal || sectionHome" [ngClass]="{'white-opt': backGreen}" class="back-payment">
+                    <div class="cont-icon-back">
+                        <em class="icon-arrows-diagrams-right-3"></em>
+                    </div>
+                    {{'GO_BACK' | translate}}
+                </a>
+                <ng-container *ngIf="showClose">
+                    <a (click)="openAlert()" class="close-payment" [ngClass]="{'white-opt': backGreen}">
+                        <div class="cont-icon-close">
+                            <em class="icon-close"></em>
+                        </div>
+                        {{'PAYMENTS.CLOSED.BTN' | translate}}
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+    </ng-container>
+    <h2 class="tmp-sys-title" *ngIf="title">{{title}}</h2>
+    <h6 *ngIf="subtitle">{{subtitle}}</h6>
+    <ng-container *ngIf="stepsActive">
+        <div class="main-container-transaction-steps">
+            <app-line-time [step]="currentStep" [items]="lineSteps"></app-line-time>
+        </div>
+    </ng-container>
+    <div class="main-container-transaction-section" [ngClass]="{'full-content': fullContent}">
+        <ng-container *ngTemplateOutlet="sectionContent"></ng-container>
+    </div>
+</div>

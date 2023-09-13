@@ -1,0 +1,46 @@
+<div class="cont-login-ds">
+  <form class="form-global" [formGroup]="formLoginDs" (ngSubmit)="onSubmit('password')">
+    <div formGroupName="content">
+      <div class="form-group">
+        <h4 class="title">{{'AUTH.LOGIN.TITLE' | translate}}</h4>
+      </div>
+      <div class="form-group">
+        <app-ds-dropdown-select
+          [label]="'AUTH.LOGIN.TITLE_DOCUMENT' | translate"
+          [form]="formLoginDs"
+          [property]="'content'"
+          [subProperty]="'idType'"
+          [fixedOptions]="options">
+        </app-ds-dropdown-select>
+      </div>
+      <div class="form-group">
+        <app-ds-input
+          [label]="'AUTH.LOGIN.DOCUMENT_NUMBER' | translate"
+          [form]="formLoginDs"
+          [property]="'content'"
+          [subProperty]="'id'"
+          [typeText]="'number'">
+        </app-ds-input>
+      </div>
+      <div class="form-group">
+        <app-checkbox-slide [text]="'AUTH.LOGIN.REMEMBER' | translate" [check]="formLoginDs.value['remember']" [form]="formLoginDs" [property]="'remember'"></app-checkbox-slide>
+      </div>
+      <div class="form-group">
+        <app-btn
+          [type]="'submit'"
+          [disabled]="formLoginDs.invalid || ((isLoading$ | async) || disabled)"
+          [text]="'AUTH.LOGIN.BTN' | translate"
+          [id]="'btn_login'"
+          [isLoading]="(isLoading$ | async) || disabled"
+          [class]="'btn-primary'"
+        ></app-btn>
+      </div>
+      <div class="form-group">
+        <p class="recaptcha">{{'AUTH.LOGIN.RECAPTCHA' | translate}} |
+          <span class="link-recaptcha" (click)="openPolicies('privacy')">{{'AUTH.LOGIN.RECAPTCHA_LINK1' | translate}} - </span>
+          <span class="link-recaptcha" (click)="openPolicies('terms')">{{'AUTH.LOGIN.RECAPTCHA_LINK2' | translate}}</span>
+        </p>
+      </div>
+    </div>
+  </form>
+ </div>

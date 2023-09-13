@@ -1,0 +1,15 @@
+<div class="animated fade-in-up cont-experian-success">
+    <div class="top-image-container">
+        <img [src]="'/enrollment/idea.png' | imageCdn" alt="">
+    </div>
+    <h4 [innerHTML]="'EXPERIAN.SUCCESS.TEXT' | translate"></h4>
+
+    <app-btn
+        (clickBtn)="experianFlowSuccess()"
+        [type]="'button'"
+        [text]="'EXPERIAN.SUCCESS.BTN' | translate"
+        [id]="'btn-step-two'"
+        [isLoading]="loading"
+        [disabled]="loading"
+        [class]="'btn btn-primary'"></app-btn>
+</div>

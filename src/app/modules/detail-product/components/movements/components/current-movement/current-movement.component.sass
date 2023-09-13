@@ -1,0 +1,131 @@
+@import '../../../../../../../sass/colors'
+@import '../../../../../../../sass/variables'
+@import '../../../../../../../sass/mixins'
+
+.cont-table-movements
+  border-radius: 0 0 15px 15px
+  overflow: hidden
+  .type-product-movement
+    background: $carbon-light-400
+    line-height: 64px
+    padding: 0 24px
+    i
+      color: $g-500
+      margin-right: 5px
+      font-size: $f-20 + 2
+      display: inline-block
+    p
+      color: $carbon-dark-900
+      font-size: $f-20 - 2
+  .scroll-table
+    max-height: 528px
+    overflow-y: auto
+    ul
+      li
+        background: $carbon-light-100
+    .product-loading
+      .lds-css
+          margin-top: 45px
+  table
+    width: 100%
+    background: $carbon-light-100
+    text-align: left
+    border-collapse: collapse
+    font-size: $f-14
+    tr th
+      font-weight: 100
+    tr
+      border-bottom: 1px solid $gray2
+    th, td
+      padding: 12px 24px
+    tr th
+      color: $carbon-mid-400
+    tr td
+      color: $carbon-dark-900
+      p
+        margin-bottom: 5px
+        &.green
+          color: $gc-600
+        small
+          min-width: 120px
+          color: $carbon-mid-400
+          display: inline-block
+        &.green
+          color: $gc-600
+  .movement-cell
+    padding: 0
+  .info-movement
+    display: flex
+    justify-content: space-between
+    align-items: center
+    border-bottom: 1px solid $gray2
+    .amount
+      padding-right: 62px
+      position: relative
+      text-align: right
+      background: transparent
+      p
+        &.green
+          color: $gc-600
+      i
+        border: 1px solid $gc-600
+        border-radius: 2px
+        position: absolute
+        right: 30px
+        background: transparent
+        top: 50%
+        transform: translateY(-50%)
+        cursor: pointer
+        color: $gc-600
+        padding: 2px
+        font-size: $f-14 + 5
+        border-radius: 100%
+        &::before
+          font-weight: 100
+
+  .info-hidden
+    max-height: 0
+    overflow: hidden
+    transition: .5s
+    background: $carbon-light-100
+    color: $carbon-dark-900
+    &.show
+      max-height: 500px
+      transition: .5s
+    div
+      padding: 21px 24px
+      border-bottom: 1px solid $gray2
+      p
+        line-height: 1.71
+        letter-spacing: normal
+        > span
+          min-width: 160px
+          +inline(top)
+
+
+@media only screen and (max-width: $break-tablet)
+  .cont-table-movements
+    .type-product-movement
+      background: $carbon-light-100
+
+@media only screen and (max-width: $break-mobile)
+  .cont-table-movements
+    width: 100%
+    .type-product-movement
+      background: $carbon-light-100
+      border-bottom: 1px solid $gray2
+      i
+        display: none
+    .scroll-table
+      border-top-left-radius: 0
+      border-top-right-radius: 0
+      overflow: inherit
+      max-height: inherit
+    table
+      tr td
+        vertical-align: middle
+        p
+          font-size: $f-14
+          small
+            display: none
+

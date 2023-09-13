@@ -1,0 +1,184 @@
+<!--<div class="create-container">
+    <form class="form-global" [formGroup]="formServiceAlert">
+        <div class="form-two-alerts">
+            <p class="title" *ngIf="!isError">Marca los servicios que deseas seguir</p>
+            <div class="list-options-container">
+                <ng-container *ngIf="!isLoading; else loadingState">
+                    <ng-container *ngIf="!isError; else errorState">
+                        <ng-container *ngFor="let item of itemsList; let i = index">
+                            <div class="radio form-radiobutton-contanier type-{{i}}">
+                                <label for="type-{{i}}">{{item.billerName ? item.billerName: item.loanName}}</label>
+                                <input type="radio" formControlName="product_type" [value]="item" name="product_type" id="type-{{i}}" (click)="setClass(i)">
+                                <span>{{item.billerNickname ? item.billerNickname : item.accountType}}</span>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                </ng-container>
+            </div>
+            <ng-container *ngIf="typeAlert === A_TC">
+                <ng-container *ngIf="!isLoading">
+                    <ng-container *ngIf="!isError">
+                        <div class="alerts-where">
+                            <div class="radio-image opt-search type-target-0">
+                                <div class="items-container">
+                                    <input type="radio" formControlName="target" id="target0" value="O_MAIL" (click)="setClassTarget('0')">
+                                    <div class="img-back">
+                                        <img [src]="'/mail.png' | imageCdn" alt="">
+                                    </div>
+                                    <label for="target0"></label>
+                                    <p class="custom-control-label">En mi correo</p>
+                                </div>
+                            </div>
+                            <div class="radio-image opt-search type-target-1">
+                                <div class="items-container">
+                                    <input type="radio" formControlName="target" id="target1" value="O_CELL" (click)="setClassTarget('1')">
+                                    <div class="img-back">
+                                        <img [src]="'/smartphone.png' | imageCdn" alt="">
+                                    </div>
+                                    <label for="target1"></label>
+                                    <p class="custom-control-label">En mi celular</p>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
+            </ng-container>
+            <div class="button-container" *ngIf="!isError">
+                <button type="submit" class="btn btn-primary" [disabled]="formServiceAlert.invalid" (click)="submitData()">{{'CONTINUE' | translate}}</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<ng-template #loadingState>
+    <div class="radio form-radiobutton-contanier">
+        <div class="loading-global">
+            <div class="icon placeholder width-40"></div>
+        </div>
+        <div class="loading-global">
+            <div class="icon placeholder width-100"></div>
+        </div>
+    </div>
+    <div class="radio form-radiobutton-contanier">
+        <div class="loading-global">
+            <div class="icon placeholder width-40"></div>
+        </div>
+        <div class="loading-global">
+            <div class="icon placeholder width-100"></div>
+        </div>
+    </div>
+    <div class="radio form-radiobutton-contanier">
+        <div class="loading-global">
+            <div class="icon placeholder width-40"></div>
+        </div>
+        <div class="loading-global">
+            <div class="icon placeholder width-100"></div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #errorState>
+    <div class="card-error shadow-1dp">
+        <div class="img-back">
+            <img [src]="'/error-icon.png' | imageCdn" alt="">
+        </div>
+        <p>¡Error en la carga!</p>
+        <span>No hemos podido cargar la información de tu perfil. Regresa más tarde.</span>
+        <button class="btn btn-primary" (click)="retry()">Volver a intentar ({{retryTimes}})</button>
+    </div>
+</ng-template>
+-->
+<div class="create-step-two">
+    <div class="form-group cont-bar-progress">
+        <app-bar-progress [valueProgress]="66.6" [title]="'Nueva alerta y notificación'" [desc]="'1 de 3: Elegir cuentas'"></app-bar-progress>
+    </div>
+    <div class="form-group cont-desc">
+        <p>Marca las cuentas que deseas seguir.</p>
+    </div>
+    <form class="form-global" [formGroup]="formStepTwoAlert">
+        <div class="form-group" *ngIf="viewTypes">
+            <ul class="cont-options-step-two">
+                <li>
+                    <div class="box" (click)="setBorder('1')" [ngClass]="{'box-border': typeActive === '1'}">
+                        <label class="container-radio">
+                            <input type="radio" formControlName="alert_type" value="1">
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="cont-text">
+                            <p>Transferencia programada exitosa</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="box" (click)="setBorder('2')" [ngClass]="{'box-border': typeActive === '2'}">
+                        <label class="container-radio">
+                            <input type="radio" formControlName="alert_type" value="2">
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="cont-text">
+                            <p>Transferencia programada no exitosa y causa</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="box" (click)="setBorder('3')" [ngClass]="{'box-border': typeActive === '3'}">
+                        <label class="container-radio">
+                            <input type="radio" formControlName="alert_type" value="3">
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="cont-text">
+                            <p>Saldo de la cuenta: Frecuencia de la notificación semanal, quincenal o mensual</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="box" (click)="setBorder('4')" [ngClass]="{'box-border': typeActive === '4'}">
+                        <label class="container-radio">
+                            <input type="radio" formControlName="alert_type" value="4">
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="cont-text">
+                            <p>Saldo de la cuenta supera el tope</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="box" (click)="setBorder('5')" [ngClass]="{'box-border': typeActive === '5'}">
+                        <label class="container-radio">
+                            <input type="radio" formControlName="alert_type" value="5">
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="cont-text">
+                            <p>Cuenta corriente en sobregiro</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="box" (click)="setBorder('6')" [ngClass]="{'box-border': typeActive === '6'}">
+                        <label class="container-radio">
+                            <input type="radio" formControlName="alert_type" value="6">
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="cont-text">
+                            <p>Saldo de la cuenta menor al tope</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="box" (click)="setBorder('7')" [ngClass]="{'box-border': typeActive === '7'}">
+                        <label class="container-radio">
+                            <input type="radio" formControlName="alert_type" value="7">
+                            <span class="checkmark"></span>
+                        </label>
+                        <div class="cont-text">
+                            <p>Inscripción de cuenta: Para transferencias por internet</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="form-group button-container">
+            <button type="submit" class="btn btn-primary" [disabled]="formStepTwoAlert.invalid" (click)="submitData()">{{'CONTINUE' | translate}}</button>
+        </div> 
+    </form>
+</div>

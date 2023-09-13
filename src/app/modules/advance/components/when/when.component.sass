@@ -1,0 +1,37 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.cont-step-three-transfer-advance
+  width: 100%
+  max-width: 350px
+  margin: 0 auto
+  display: block
+  .date-today
+    background: $carbon-light-100
+    border: 2px solid $carbon-light-900
+    border-radius: 5px
+    transition: border .3s
+    padding: 22px 23px
+    text-align: left
+    margin-bottom: 32px
+    label
+      margin: 0
+    &.active
+      border-color: $g-500
+      background: var(--gb-500)
+  form > p
+    font-size: $f-14 - 1
+    text-align: center
+    line-height: 1.77
+    margin: 28px 0 8px
+  .submit-cont
+    text-align: center
+
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-three-transfer-advance
+    max-width: 100%
+    .submit-cont
+      button
+        width: 100%

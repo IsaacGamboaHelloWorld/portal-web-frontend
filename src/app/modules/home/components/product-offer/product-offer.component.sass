@@ -1,0 +1,136 @@
+@import '../../../../../sass/variables'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/mixins'
+
+.product-offer
+  border-radius: 15px
+  background: $act-600
+  height: 190px
+  width: 100%
+  margin-right: 8px
+  .img-card-offer
+    position: absolute
+    width: 148px
+    height: 208px
+    object-fit: contain
+    top: -18px
+    left: 0
+  figcaption
+    text-align: left
+    .title-offer
+      width: 182px
+      height: 50px
+      margin: 0 0 3.6px
+      font-size: 21px
+      font-weight: bold
+      font-stretch: normal
+      font-style: normal
+      line-height: 1.2
+      letter-spacing: normal
+      color: $carbon-light-100
+      position: absolute
+      top: 24px
+      right: 1%
+    .desc-offer
+      width: 182px
+      height: 36px
+      margin: 3.6px 0 12px
+      font-family: Inter
+      font-size: 12px
+      font-weight: 500
+      font-stretch: normal
+      font-style: normal
+      line-height: 1.5
+      letter-spacing: normal
+      color: $carbon-light-100
+      position: absolute
+      top: 78px
+      right: 1%
+    .btn-offer
+      width: 161px
+      height: 40px
+      margin: 12px 21px 0 0
+      padding: 8px 24px
+      border-radius: 8px
+      background-color: $carbon-light-100
+      position: absolute
+      color: black
+      line-height: 0
+      padding: 0
+      right: 1%
+      bottom: 20px
+  &:hover
+    border-color: $g-500
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+  .product-offer
+    width: 100%
+    .img-card-offer
+      position: relative
+      top: -18px
+      width: 148px
+    figcaption
+      .title-offer
+        right: 0
+      .desc-offer
+        right: 0
+      .btn-offer
+        right: 0
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+  .product-offer
+    width: 100%
+    .img-card-offer
+      position: relative
+      top: -18px
+      width: 148px
+    figcaption
+      .title-offer
+        right: 0
+      .desc-offer
+        right: 0
+      .btn-offer
+        right: 0
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+  .product-offer
+    width: 296px
+    .img-card-offer
+      top: -18px
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .product-offer
+    width: 100%
+    overflow: unset
+    display: flex
+    justify-content: center
+    flex-direction: row
+    .img-card-offer
+      position: relative
+      top: -18px
+      width: 148px
+    figcaption
+      width: 190px
+      margin-left: 40px
+      position: relative
+      .title-offer
+        right: 0
+      .desc-offer
+        right: 0
+      .btn-offer
+        right: 0
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .product-offer
+    width: 100%
+    .img-card-offer
+      left: -3px
+      top: -18px
+@media only screen and (max-width: $break-small-phone)
+  .product-offer
+    width: 100%
+    .img-card-offer
+      left: -3px
+      top: -18px
+    figcaption
+      .title-offer
+        right: 0
+      .desc-offer
+        right: 0
+      .btn-offer
+        right: 0

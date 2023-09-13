@@ -1,0 +1,51 @@
+<div class="transaction-payment" [ngClass]="{'show': showInfo}" *ngIf="hasData">
+  <div class="column not-space large-4">
+    <button class="btn-info-pending" (click)="toggleInfo()" type="button">
+      <i [ngClass]="{'icon-plus': !showInfo, 'icon-minus': showInfo}"></i>
+    </button>
+    <div class="status-transaction visible-tablet {{transaction?.paymentStatus | lowercase}}">{{'TRANSFER.HISTORIC.STATUS.' + (transaction?.paymentStatus | uppercase) | translate}}</div>
+    <p class="capitalize">{{transaction?.paymentDate | createDate | date:'dd/MMM/yyyy': 'UTC' | replace : '.' : ''}}</p>
+    <p><strong>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}:</strong>
+      {{'PRODUCT_TYPES_SMALL.' + transaction?.originAccountType | uppercase | translate}}
+      {{transaction?.originAccount | slice: -4}}
+    </p>
+    <p><strong>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}</strong>: {{transaction?.nickName? transaction?.nickName : transaction?.destinationEntityName}}</p>
+    <p class="visible-tablet"><strong>{{'VALUE' | translate}}</strong>: {{transaction?.amount | currencyFormat}}</p>
+  </div>
+  <div class="column not-space large-6 info-mobile">
+    <p class="hidden-tablet"><strong>{{'VALUE' | translate}}</strong>: {{transaction?.amount | currencyFormat}}</p>
+    <ng-container [ngSwitch]="transaction?.paymentType">
+      <ng-container *ngSwitchCase="types.LOAN">
+        <p><strong>{{transaction?.destinationEntityName}}</strong>: {{transaction?.loanPaymentData.accountId}}</p>
+        <p *ngIf="isSuccess"><strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}</strong>: {{transaction?.approvalId}}</p>
+      </ng-container>
+      <ng-container *ngSwitchCase="types.CREDIT_CARD">
+        <p><strong>{{transaction?.destinationEntityName}}</strong>: {{transaction?.creditCardPaymentData.accountId | slice: -4}}</p>
+        <p *ngIf="isSuccess"><strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}</strong>: {{transaction?.approvalId}}</p>
+      </ng-container>
+      <ng-container *ngSwitchCase="types.PSE">
+        <p><strong>{{'PAYMENTS.HISTORIC.ID' | translate}}</strong>: {{transaction?.psePaymentData.invoice }}</p>
+        <p *ngIf="isSuccess"><strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}</strong>: {{transaction?.approvalId}}</p>
+      </ng-container>
+      <ng-container *ngSwitchCase="types.PSE_PRIVATE">
+        <p><strong>{{'PAYMENTS.HISTORIC.ID' | translate}}</strong>: {{transaction?.psePaymentData.invoice }}</p>
+        <p *ngIf="isSuccess"><strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}</strong>: {{transaction?.approvalId}}</p>
+      </ng-container>
+      <ng-container *ngSwitchCase="types.BILLER">
+        <p><strong>{{'PAYMENTS.HISTORIC.CONTRACT' | translate}}</strong>: {{transaction?.billerPaymentData.nie }}</p>
+        <p><strong>{{'PAYMENTS.HISTORIC.BILL' | translate}}</strong>: {{transaction?.billerPaymentData.invoice }}</p>
+        <p *ngIf="isSuccess"><strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}</strong>: {{transaction?.approvalId}}</p>
+      </ng-container>
+      <ng-container *ngSwitchCase="types.NON_BILLER">
+        <p><strong>{{'PAYMENTS.HISTORIC.CONTRACT' | translate}}</strong>: {{transaction?.nonBillerPaymentData.nie }}</p>
+        <p *ngIf="isSuccess"><strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}</strong>: {{transaction?.approvalId}}</p>
+      </ng-container>
+    </ng-container>
+    <p *ngIf="hasDescription"><strong>{{'TRANSFER.CONFIRMATION.FORM.DESCRIPTION' | translate}}</strong>: {{transaction?.description}}</p>
+    <p *ngIf="!isSuccess"><strong>{{'PAYMENTS.HISTORIC.STATUS_TRANSACTION' | translate}}</strong>: {{transaction?.paymentStatusMessage}}</p>
+  </div>
+  <div class="column not-space large-2 hidden-tablet column-status">
+    <div class="status-transaction {{transaction?.paymentStatus | lowercase}}">{{'TRANSFER.HISTORIC.STATUS.' + (transaction?.paymentStatus | uppercase) | translate}}</div>
+  </div>
+</div>
+

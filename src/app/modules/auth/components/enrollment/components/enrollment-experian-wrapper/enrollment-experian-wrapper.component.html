@@ -1,0 +1,7 @@
+<app-experian [data]="userEnrollmentFlowInformation?.experian"
+            [isLoadingState]="loading"
+            [errorState]="error"
+            (submitAction)="submitExperianForm($event)"
+            (close)="actionClose()"
+            (submitErrorFlow)="submitOnErrorExperianFlowHandler($event)"
+            [viewBtnClose]="true"></app-experian>

@@ -1,0 +1,43 @@
+<div class="step-two-fd animated fade-in-up">
+  <h3 class="title"> {{ 'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_2.TITTLE' | translate }} </h3>
+
+  <form [formGroup]="form">
+    <div class="card-list">
+      <div class="card-item">
+        <app-card-account-radius [isActive]="personAlias.value === '1'" [index]="'1'" [form]="form" [property]="'type_person'" [text]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_2.NATURE' | translate" [type]="'ONLY_TEXT'" (setCardEmit)="selectCard($event)"></app-card-account-radius>
+      </div>
+      <div class="card-item">
+        <app-card-account-radius [isActive]="personAlias.value === '2'" [index]="'2'" [form]="form" [property]="'type_person'" [text]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_2.LEGAL' | translate" [type]="'ONLY_TEXT'" (setCardEmit)="selectCard($event)"></app-card-account-radius>
+      </div>
+    </div>
+  
+    <div class="select-container">
+      <app-ds-dropdown-select
+        [label]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_2.BANK_SELECT' | translate"
+        [form]="form"
+        [property]="'bank'"
+        [fixedOptions]="options$ | async">
+      </app-ds-dropdown-select>
+    </div>
+
+    <div class="select-container">
+      <app-ds-input
+        [label]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_2.EMAIL' | translate"
+        [typeText]="'email'"
+        [form]="form"
+        [property]="'email'"
+        [value]="(formTwo$ | async)?.email"
+      ></app-ds-input>
+    </div>
+  </form>
+
+  <div class="btn-container">
+    <app-btn
+      (clickBtn)="next()"
+      [disabled]="form.invalid"
+      [text]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_2.BUTTON_OK' | translate"
+      [isLoading]="false"
+      [class]="'btn-primary'"
+    ></app-btn>
+  </div>
+</div>

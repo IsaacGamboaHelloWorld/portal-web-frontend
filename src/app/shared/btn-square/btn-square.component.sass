@@ -1,0 +1,69 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.btn-square-container
+  min-width: 254px
+  max-width: 255px
+  min-height: 196px
+  display: inline-grid
+  border-radius: 15px
+  background: $carbon-light-100
+  margin: 12px
+  padding: 20px
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  color: $carbon-mid-600
+  font-size: $f-14 - 1
+  line-height: 1.85
+  text-align: center
+  img
+    max-width: 78px
+    max-height: 72px
+    margin-bottom: 10px
+  span.title
+    width: 100%
+    font-size: $f-14 + 2
+    font-weight: 500
+    font-stretch: normal
+    font-style: normal
+    line-height: 1.5
+    letter-spacing: normal
+    color: $carbon-dark-900
+    text-align: center
+  span.subtitle
+    width: 100%
+    font-size: $f-14 - 1
+    letter-spacing: normal
+    color: $carbon-mid-600
+    text-align: center
+  &:hover
+    background: $g-50
+    border: 1px $g-500 solid
+
+  &.disable
+    color: $carbon-mid-100
+    span
+      color: $carbon-mid-100
+    &:hover
+      background: $carbon-light-100
+      border: 1px $carbon-light-100 solid
+      transition: none
+      cursor: initial
+
+@media only screen and (max-width: 1360px)
+  .btn-square-container
+    max-width: 163px
+    min-width: 163px
+    margin: 5px
+    padding: 21px
+    span.subtitle
+      display: none
+
+@media only screen and (max-width: $break-mobile)
+  .btn-square-container
+    max-width: 343px
+    min-width: 340px
+

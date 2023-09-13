@@ -1,0 +1,70 @@
+<div class="main-new-transfer width-height-auto">
+  <form class="form-global" [formGroup]="formNewTransfer" (ngSubmit)="submitForm()">
+    <!-- Cuenta origen -->
+    <div class="padding-top-16px padding-bottom-0px">
+      <div class="card-change-data">
+        <app-card-change-data [form]="formNewTransfer" [property]="'account_origin'"
+          [options]="(productsOrigin$ | async)" [append]="modal" [dataCard]="(productDefault$ | async)"
+          [label]="'PAYMENTS.CONFIRMATION.FORM.ORIGIN'" (event)="changeOrigin()"></app-card-change-data>
+      </div>
+    </div>
+
+    <label class="padding-top-bottom-16px display-block">{{'TRANSFER.FAST_TRANSFER.SUBTITLE' | translate}}</label>
+    <div class="body bg-color-white border-radius-12 padding-left-right-16px">
+      <div class="padding-top-16px">
+        <!-- Cuenta destino -->
+        <label class="padding-top-0px">{{'TRANSFER.FAST_TRANSFER.ACCOUNT_DESTINATION.TITLE' | translate}}</label>
+        <div class="select-bp">
+          <select formControlName="account_destination" [compareWith]="compareFnDestination" (change)="onChange()">
+            <option value="" disabled selected class="default-option">{{'TRANSFER.SELECT_DESTINATION_DEFAULT' |
+              translate}}</option>
+            <option value="FAST_TRANSFER" class="default-option">
+              {{'TRANSFER.FAST_TRANSFER.ACCOUNT_DESTINATION.OTHER_ACCOUNT' |
+              translate}}</option>
+            <option *ngFor="let product of (destination$ | async).products" [ngValue]="product">
+              {{product.customerName | splitFirst}} {{'SHORT_PRODUCT_NAMES.' + product.destinationAccountType |
+              translate}}
+              {{product.destinationAccountId | slice: -4}} {{product.bankName}}
+            </option>
+          </select>
+          <div class="messages-select">
+            <i class="icon-refresh warning" (click)="fetchDestination()" *ngIf="(destination$ | async)?.error"
+              [title]="'PRODUCT.ERROR.BTN' | translate"></i>
+            <i class="icon-check success" *ngIf="(destination$ | async)?.loaded"></i>
+            <img [src]="'/loading.gif' | imageCdn" [alt]="'LOADING' | translate"
+              *ngIf="(destination$ | async)?.loading">
+          </div>
+        </div>
+      </div>
+      <!-- Valor a transferir -->
+      <div class="padding-top-16px">
+        <app-ds-input [label]="VALUE_TO_TRANSFER | translate" [placeholder]="'$00.0' | translate"
+          [caption]=" getAmount?.errors?.max ? (MAX | translate) : getAmount?.errors?.min  ? (MIN | translate): ''"
+          [typeInput]="getAmount.valid || getAmount.value == '$' || getAmount.value == ''  ? 'default' : 'error'"
+          [form]="formNewTransfer" [property]="'amount'" [useCurrency]="true" [typeText]="'number'">
+        </app-ds-input>
+      </div>
+      <!-- Descripcion -->
+      <div class="padding-top-16px">
+        <app-ds-input [label]="'TRANSFER.FAST_TRANSFER.VALUE.DESCRIPTION' | translate" [form]="formNewTransfer"
+          [property]="'description'" [typeText]="'text'" [typeInput]="getDescription.valid ? 'default': 'error'"
+          [placeholder]="'' | translate">
+        </app-ds-input>
+      </div>
+      <!-- Factura -->
+      <div class="padding-top-bottom-16px">
+        <app-ds-input [label]="'TRANSFER.FAST_TRANSFER.VALUE.INVOICE_NUMBER' | translate" [form]="formNewTransfer"
+          [property]="'voucher'" [typeText]="'text'" [typeInput]="getVoucher.valid ? 'default': 'error'"
+          [placeholder]="'' | translate">
+        </app-ds-input>
+      </div>
+
+    </div>
+    <div class="btn-continue display-flex justify-content-center padding-top-bottom-16px">
+      <button type="submit" class="btn btn-primary" [disabled]="formNewTransfer.invalid">{{'CONTINUE' |
+        translate}}</button>
+    </div>
+  </form>
+</div>
+
+<div #modal></div>

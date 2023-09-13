@@ -1,0 +1,13 @@
+<div class="product-warning">
+	<div>
+		<div class="warning-product">
+			<img [src]="'/error-de-carga-new.png' | imageCdn" alt="">
+			<span *ngIf="!(hasTextError$ | async)">{{'PRODUCT.ERROR.TITLE' | translate}}</span>
+			<span *ngIf="hasTextError$ | async">{{(infoProducts$ | async)?.errorMessage}}</span>
+		</div>
+		<button
+				type="button"
+				class="btn btn-primary"
+				(click)="loadProducts()">{{'PRODUCT.ERROR.BTN' | translate}}</button>
+	</div>
+</div>

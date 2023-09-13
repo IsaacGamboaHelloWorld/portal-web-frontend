@@ -1,0 +1,44 @@
+<p-dialog [(visible)]="display" [modal]="true" [appendTo]="append" [autoZIndex]="true">
+  <div class="cont-modal-news">
+    <div class="bg-copy">
+      <img #imgSlide class="img-slide animated" [src]="slideImg | imageCdn" alt="">
+    </div>
+    <div class="controls">
+      <form *ngIf="mapData.length > 1">
+        <ng-container *ngFor="let item of mapData; let i = index">
+          <input type="radio" name="page" value="{{i}}" [checked]="(numberSlide === i)" (click)="toggle(i)">
+          <label for="page"></label>
+        </ng-container>
+      </form>
+    </div>
+    <div #infoSlide class="cont-text animated">
+      <p class="title">{{dataSlide['label']}}</p>
+      <p class="text" [innerHTML]="dataSlide['text']"></p>
+    </div>
+    <div class="cont-btn" *ngIf="mapData.length > 1">
+      <a class="link" (click)="skip()" *ngIf="viewSkip">{{'MODAL_NEWS.BUTTONS.SKIP' | translate}}</a>
+      <app-btn
+        [type]="'button'"
+        (clickBtn)="toggle('next')"
+        [text]="textButton | translate"
+        [id]="'btn-step-two'"
+        [isLoading]="false"
+        [class]="'btn-primary btn-send'"
+      ></app-btn>
+      <button class="left" type="button" (click)="toggle('prev')" *ngIf="numberSlide >= 1">
+        <img [src]="'/arrow-left.png' | imageCdn" [alt]="'NAME_BANK' | translate">
+      </button>
+    </div>
+    <div class="cont-btn-ok" *ngIf="mapData.length === 1">
+      <app-btn
+        [type]="'button'"
+        (clickBtn)="toggle('next')"
+        [text]="textButton | translate"
+        [id]="'btn-step-two'"
+        [isLoading]="false"
+        [class]="'btn-primary btn-send'"
+      ></app-btn>
+    </div>
+  </div>
+</p-dialog>
+

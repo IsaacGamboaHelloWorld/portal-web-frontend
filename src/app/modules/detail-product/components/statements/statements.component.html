@@ -1,0 +1,57 @@
+<div class="cont-statements">
+
+  <!-- div container error desingn -->
+  <div class="cont-error" *ngIf="periodsError$ | async">
+    <img [src]="'/enrollment/service-error.png' | imageCdn" alt="{{'STATEMENT.ERROR_PDF' | translate}}">
+    <h4>{{'STATEMENT.NO_EXTRACTS' | translate}}</h4>
+
+    <app-btn [class]="'btn-secondary-green'" [text]="'STATEMENT.CANCEL_BTN' | translate"  (clickBtn)="actionCancel.emit()"></app-btn>
+    <app-btn [class]="'btn-primary'" [text]="'STATEMENT.RETRY_BTN' | translate"  (clickBtn)="doRetry()"></app-btn>
+  </div>
+
+  <!-- div container loading get periods -->
+  <div class="cont-loading" *ngIf="!(periodsLoaded$ | async) && !(periodsError$ | async)">
+    <h4>{{'STATEMENT.TITLE' | translate}}</h4>
+
+    <section>
+      <div class="lds-css ng-scope">
+        <div class="lds-flickr">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <p class="paragraph-small">{{'STATEMENT.SEARCHING' | translate}}</p>
+    </section>
+  </div>
+
+  <!-- div container form download pdf  -->
+  <div class="cont-loaded" *ngIf="(periodsLoaded$ | async) && !(periodsError$ | async)">
+    <img [src]="'/logo-isologo-bp.svg' | imageCdn" alt="{{'NAME_BANK' | translate}}">
+    <h4>{{'STATEMENT.NAME_ACCOUNT_PREFIX' | translate}} {{ currentProduct?.accountInformation?.productName | lowercase }} </h4>
+    <p>{{'STATEMENT.ACCOUNT_PREFIX' | translate}} {{currentProduct?.accountInformation?.accountIdentifier}}</p>
+    <section>
+      <form [formGroup]="statementGenForm" class="form-global">
+        <div class="form-group">
+          <div class="select-bp">
+            <select class="form-control" formControlName="period" required name="period" (change)="doChange()" [compareWith]="compareFnPeriods" [ngClass]="{'error': (pdfError$ | async)}">
+              <ng-container *ngIf="!(pdfError$ | async)">
+                <option value="">{{'STATEMENT.PERIODS_LIST' | translate}}</option>
+                <option *ngFor="let period of (periodsData$ | async)" [ngValue]="period">{{period.periodName}}</option>
+              </ng-container>
+              <ng-container *ngIf="pdfError$ | async">
+                <option value="">{{'STATEMENT.ERROR_PDF' | translate}}</option>
+              </ng-container>
+            </select>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <app-btn [class]="'btn-primary'" [disabled]="statementGenForm.invalid || (pdfLoading$ | async)" [text]=" ( (pdfError$ | async) ? 'STATEMENT.RETRY_DOWNLOAD_BTN' : 'STATEMENT.DOWNLOAD_BTN') | translate" [isLoading]="inProcess && (pdfLoading$ | async)" (clickBtn)="doGenerate()" *ngIf="!isReadyToDownload"></app-btn>
+          <a id="btnDownload" [href]="fileBase64$ | async" [download]="filename$ | async" class="btn btn-primary btn-green btn-download" *ngIf="isReadyToDownload && pdfData$ | async">{{'STATEMENT.DOWNLOAD_BTN' | translate}}</a>
+        </div>
+      </form>
+    </section>
+  </div>
+
+</div>

@@ -1,0 +1,88 @@
+@import '../../../../../sass/mixins'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/variables'
+
+.step2
+  padding: 66px 0
+  max-width: 350px
+  margin: 0 auto
+  .tabs
+    border-radius: 4px
+    overflow: hidden
+    border: 1px solid $carbon-light-900
+    margin-bottom: 19px
+    button
+      padding: 13px 20px
+      width: 50%
+      background: $carbon-light-900
+      &.active
+        background: $carbon-light-100
+        font-weight: 600
+  .step1-container
+    label
+      font-size: $f-12
+      margin-bottom: 5px
+    .btn-continuar
+      margin-top: 32px
+      width: 100%
+    .set-state-error-bg
+      border: 1.2px solid $error-600
+      background-color: rgba(255, 199, 184, 0.5)
+    .state-input-pb
+      border: 1.2px solid $err-600
+      background-color: rgba($err-100, 0.32)
+
+  .form-notification
+    background-color: rgba($inf-100, 0.24)
+    border: solid 1px $inf-100
+    width: 100%
+    min-height: 104px
+    border-radius: 6px
+    .form-notification-container
+      display: flex
+      padding: 16px 0px
+      border-radius: 6px
+      width: 100%
+      .bar
+        width: 4px
+        height: 24px
+        margin-left: 4px
+        border-radius: 2px
+        background-color: $inf-400
+      .img-container
+        height: 24px
+        width: 24px
+        border-radius: 12px
+        padding: 4px
+        margin-left: 12px
+        background-color: $inf-100
+        .img
+          width: 15px
+          height: 15px
+          background-repeat: no-repeat
+          background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE2IDE3Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0wIDBMMTYgMCAxNiAxNiAwIDE2eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0OCAtNTIwKSB0cmFuc2xhdGUoNTI0IDUwMC41KSB0cmFuc2xhdGUoMjQgMjApIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiMxMDY4RDkiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTcuMjE4IDIuNjIybC4wNC4xMDYuMDc2LjIxN2MxLjQyNS0uMDEyIDIuNzcuODM2IDMuMzIzIDIuMjE2bC4wNi4xNi42MSAxLjc2MmMuMDczLjIxLjIyNi4zOC40MjYuNDc3bC41NDcuMjY1Yy4zOS4xOS43LjUwOS44ODYuOTIybC4wNS4xMjljLjMyLjkxOS0uMTczIDEuOTItMS4wOTkgMi4yMzdsLTIuNTcuODhjLjIwOC45ODYtLjM1IDEuOTk0LTEuMzM1IDIuMzMtLjk4NS4zMzctMi4wNS0uMTE3LTIuNDk3LTEuMDIxbC0uNDAyLjEzOGMtLjg3NC4zLTEuODMyLS4xMi0yLjIwOC0uOTc2bC0uMDQ1LS4xMTVjLS4xNi0uNDYtLjEyOS0uOTYzLjA4Ni0xLjRsLjI2Ni0uNTQ0Yy4wOTgtLjE5OS4xMTItLjQyNy4wNC0uNjM3TDIuODYgOC4wMDdjLS41MS0xLjQ3LjAxNi0zLjA0NCAxLjE5My0zLjk0bC0uMDc2LS4yMThjLS4zMTEtLjg5OS4xNy0xLjg3OCAxLjA3NS0yLjE4OC44Ny0uMjk4IDEuODE0LjEzIDIuMTY1Ljk2MXptMS4zODEgOS43MDJsLTEuODk2LjY0OGMuMjU0LjM4My43NDUuNTYyIDEuMjAxLjQwNi40NTctLjE1Ni43MzMtLjU5OC42OTUtMS4wNTR6TTkuNzIyIDUuNTNjLS41LTEuMjQ2LTEuOTAyLTEuODg2LTMuMTg1LTEuNDQ4bC0xLjE1LjM5NEM0LjA2IDQuOTMgMy4zNTcgNi4zNjUgMy44MTMgNy42OGwuNjEgMS43NjFjLjE2LjQ2LjEzLjk2NC0uMDg2IDEuNDAxbC0uMjY2LjU0M2MtLjA5OC4yLS4xMTIuNDI4LS4wNDYuNjE4bC4wMy4wNzhjLjE1OS4zNi41NzMuNTQyLjk1LjQxM2w2LjgwNC0yLjMyN2MuNC0uMTM3LjYxMy0uNTcuNDgzLS45NDZsLS4wMzUtLjA4OWMtLjA4LS4xNzgtLjIyLS4zMjMtLjM5OC0uNDA5bC0uNTQ3LS4yNjVjLS40NC0uMjEyLS43NzctLjU5LS45MzctMS4wNUw5Ljc3IDUuNjU3em0tNC4zNC0yLjkyNWMtLjM1NS4xMjEtLjU1NS40ODgtLjQ3NC44NDJsLjAyMi4wNzYuMDE3LjA0OC4xMTItLjA0IDEuMTUtLjM5NC4xMTQtLjAzNy0uMDE3LS4wNDdjLS4xMy0uMzc4LS41NDUtLjU3OC0uOTI0LS40NDh6IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQ4IC01MjApIHRyYW5zbGF0ZSg1MjQgNTAwLjUpIHRyYW5zbGF0ZSgyNCAyMCkiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=")
+      .content
+        width: 100%
+        display: flex
+        flex-direction: column
+        margin: 0px 8px
+        span
+          font-family: Inter
+          font-size: 12px
+          font-weight: 500
+          line-height: 2
+        .message
+          color: $black-750
+          font-weight: 600
+          font-size: 13px
+          line-height: 2.15
+          width: 100%
+        .sub-message
+          color: $cbn-mid-400
+
+@media only screen and (max-width: $break-tablet)
+  .step1
+    padding: 24px 5px
+    .tabs
+      button
+        padding: 10px

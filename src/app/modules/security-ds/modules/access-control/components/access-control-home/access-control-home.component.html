@@ -1,0 +1,23 @@
+<div class="ac-home-container">
+  <h3> {{ 'SECURITY.ACCESS_CONTROL.HOME.TITLE' | translate }} </h3>
+  <div class="ac-list-cards">
+    <div class="ac-card-container">
+      <app-card-home-options 
+        [lastSession]="lastSession$ | async" 
+        [typeChannel]="getTypeChannel.PB" 
+        [state]="(statusChannel$ | async)?.data?.PB"
+        [loading]="(statusChannel$ | async)?.loading"
+        (stateEmit)="changeStatus($event, getTypeChannel.PB)"
+        ></app-card-home-options>
+    </div>
+    <div class="ac-card-container">
+      <app-card-home-options 
+        [lastSession]="lastSession$ | async" 
+        [typeChannel]="getTypeChannel.MB" 
+        [state]="(statusChannel$ | async)?.data?.MB"
+        [loading]="(statusChannel$ | async)?.loading"
+        (stateEmit)="changeStatus($event, getTypeChannel.MB)"
+        ></app-card-home-options>
+    </div>
+  </div>
+</div>

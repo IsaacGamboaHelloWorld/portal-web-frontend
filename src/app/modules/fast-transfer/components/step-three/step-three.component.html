@@ -1,0 +1,91 @@
+<div *ngIf="(formNewTransfer$|async)?.data?.origin_transfer === 'NEW_TRANSFER'">
+  <div class="cont-success-transfer cont-step-global animated element-hidden block fade-in-up">
+    <app-ticket [imageTicket]="'/like_success.svg' | imageCdn" [title]="'TRANSFER.SUCCESS.TITLE' | translate"
+      [description]="'TRANSFER.SUCCESS.TEXT' | translate" [messageTitle]="'TRANSFER.SUCCESS.AMOUNT' | translate"
+      [messageText]="(!!(newTransfer$ | async)?.data?.request?.transferInformation?.amount ? (newTransfer$ | async)?.data?.request?.transferInformation?.amount : (newTransfer$ | async)?.data?.response?.transferInformation?.amount  ) | currencyFormat : true : 'decimal-vouchers'"
+      [btnText]="'TRANSFER.SUCCESS.DOWNLOAD' | translate: { value: 'icon-download-bottom' }"
+      [btnLoadingText]="'TRANSFER.SUCCESS.LOADING_DOWNLOAD' | translate: { img: ('/loading-text.gif' |imageCdn) } "
+      [disabled]="disabled" (btnAction)="download()" [id]="'voucher-transfer'" [response]="(newTransfer$ | async)?.data"
+      [listTemplate]="list" [classSucces]="true"></app-ticket>
+    <div class="footer-step">
+      <div class="box-green">
+        <a class="link" (click)="goStep(1)">{{'TRANSFER.SUCCESS.BTN' | translate}}</a>
+      </div>
+      <button class="btn btn-primary" (click)="goStep(0)">{{'TRANSFER.PENDING.BTN' | translate}}</button>
+    </div>
+  </div>
+  <ng-template #list>
+    <ng-container *ngIf="(newTransferData$ | async) as transfer">
+      <ul>
+        <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+          <p>{{'BANKS.'+transfer?.companyId | translate}} - {{'PRODUCT_TYPES.' +
+            transfer?.accountFromInformation?.productType | uppercase | translate}}
+            {{transfer?.accountFromInformation?.accountIdentifier | slice: -4}}</p>
+        </li>
+        <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+          <p>{{transfer?.accountToInformation?.bankName}} - {{transfer?.accountToInformation?.name | titlecase}} -
+            {{'PRODUCT_TYPES.' + transfer?.accountToInformation?.productType | uppercase | translate}} -
+            {{transfer?.accountToInformation?.accountIdentifier | slice: -4}}</p>
+        </li>
+        <li>
+          <div>
+            <span>{{'TRANSFER.SUCCESS.APPROVAL' | translate}}</span>
+            <p>{{ (newTransfer$ | async)?.data?.approvalId}}</p>
+          </div>
+        </li>
+        <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+          <p>{{transfer?.transactionCost}}</p>
+        </li>
+      </ul>
+    </ng-container>
+  </ng-template>
+
+</div>
+<div *ngIf="(formNewTransfer$|async)?.data?.origin_transfer === 'FAST_TRANSFER'">
+  <div class="cont-success-transfer cont-step-global animated element-hidden block fade-in-up">
+    <app-ticket [imageTicket]="'/like_success.svg' | imageCdn" [title]="'TRANSFER.SUCCESS.TITLE' | translate"
+      [description]="'TRANSFER.SUCCESS.TEXT' | translate" [messageTitle]="'TRANSFER.SUCCESS.AMOUNT' | translate"
+      [messageText]="(!!(fastTransfer$ | async)?.data?.request?.transferInformation?.amount ? (fastTransfer$ | async)?.data?.request?.transferInformation?.amount : (fastTransfer$ | async)?.data?.response?.transferInformation?.amount  ) | currencyFormat : true : 'decimal-vouchers'"
+      [btnText]="'TRANSFER.SUCCESS.DOWNLOAD' | translate: { value: 'icon-download-bottom' }"
+      [btnLoadingText]="'TRANSFER.SUCCESS.LOADING_DOWNLOAD' | translate: { img: ('/loading-text.gif' |imageCdn) } "
+      [disabled]="disabled" (btnAction)="download()" [id]="'voucher-transfer'"
+      [response]="(fastTransfer$ | async)?.data" [listTemplate]="list" [classSucces]="true"></app-ticket>
+    <div class="footer-step">
+      <div class="box-green">
+        <a class="link" (click)="goStep(1)">{{'TRANSFER.SUCCESS.BTN' | translate}}</a>
+      </div>
+      <button class="btn btn-primary" (click)="goStep(0)">{{'TRANSFER.PENDING.BTN' | translate}}</button>
+    </div>
+  </div>
+  <ng-template #list>
+    <ng-container *ngIf="(fastTransferData$ | async) as transfer">
+      <ul>
+        <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+          <p>{{'BANKS.'+transfer?.companyId | translate}} - {{'PRODUCT_TYPES.' +
+            transfer?.accountFromInformation?.productType | uppercase | translate}}
+            {{transfer?.accountFromInformation?.accountIdentifier | slice: -4}}</p>
+        </li>
+        <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+          <p>{{transfer?.accountToInformation?.bankName}} - {{transfer?.accountToInformation?.name | titlecase}} -
+            {{'PRODUCT_TYPES.' + transfer?.accountToInformation?.productType | uppercase | translate}} -
+            {{transfer?.accountToInformation?.accountIdentifier | slice: -4}}</p>
+        </li>
+        <li>
+          <div>
+            <span>{{'TRANSFER.SUCCESS.APPROVAL' | translate}}</span>
+            <p>{{ (fastTransfer$ | async)?.data?.approvalId}}</p>
+          </div>
+        </li>
+        <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+          <p>{{transfer?.transactionCost}}</p>
+        </li>
+      </ul>
+    </ng-container>
+  </ng-template>
+</div>

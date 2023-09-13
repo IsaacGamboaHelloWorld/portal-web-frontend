@@ -1,0 +1,131 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+.cont-modal-calendar
+  background: $carbon-light-100
+  border-radius: 15px
+  padding: 24px
+  text-align: center
+  .cont-calendar
+    width: 100%
+    label
+      font-size: 11px
+    .ui-calendar
+      width: 100%
+      margin-top: 0
+      display: flex
+      input
+        font-size: $f-14
+        font-weight: 600
+        padding: 0 10px
+      select
+        font-weight: 600
+        height: 20px
+        border: none
+        padding: 0
+        width: auto
+        background: transparent
+      button
+        position: absolute
+        background: transparent
+        right: 10px
+        span
+          top: 40%
+          width: auto
+          height: auto
+        span::before
+          color: $gc-850
+          font-size: $f-14 + 10
+          width: 24px
+          height: 24px
+          background-color: $gc-850
+          mask: url('#{$base-url}/images/24-essential-calendar-2.svg') no-repeat center / contain
+          -webkit-mask: url('#{$base-url}/images/24-essential-calendar-2.svg') no-repeat center / contain
+  .cont-btn
+    button
+      width: 100%
+  .cont-options-repeat
+    display: flex
+    flex-direction: row
+    .box-repeat
+      width: 99px
+      height: 80px
+      border-radius: 8px
+      border: solid 1px #e4e4e4
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+    .name
+      font-size: 13px
+      font-weight: 600
+      font-stretch: normal
+      font-style: normal
+      line-height: 2.15
+      letter-spacing: normal
+      text-align: center
+      color: #0d0d0d
+    .box-selected
+      border: solid 1.5px #11b719
+      background-color: rgba(196, 233, 192, 0.16)
+    .box-defined
+      margin: 0 10px 0px 0px
+    .box-undefined
+      margin: 0 10px 0px 0px
+  .desc-repeat
+    width: 287px
+    height: 48px
+    font-size: 12px
+    font-weight: 500
+    font-stretch: normal
+    font-style: normal
+    line-height: 2
+    letter-spacing: normal
+    color: #555555
+  .input-repeat
+    height: 40px
+  .container-radio
+    display: block
+    position: relative
+    cursor: pointer
+    font-size: 22px
+    -webkit-user-select: none
+    -moz-user-select: none
+    -ms-user-select: none
+    user-select: none
+  .container-radio input
+    position: relative
+    opacity: 0
+    cursor: pointer
+  .checkmark
+    position: absolute
+    height: 16px
+    width: 16px
+    background-color: $carbon-light-100
+    border: solid 1.3px $carbon-light-900
+    border-radius: 50%
+    left: 0
+    bottom: 0
+  .container-radio:hover input ~ .checkmark
+    background-color: $carbon-light-900
+  input:checked ~ .checkmark
+      background-color: $g-500
+      border: none
+  .checkmark::after
+    content: ""
+    position: absolute
+    display: none
+  .container-radio
+    input:checked ~ .checkmark::after
+      display: block
+  .container-radio
+    .checkmark::after
+      top: 5px
+      left: 5px
+      width: 6px
+      height: 6px
+      border-radius: 50%
+      background: white

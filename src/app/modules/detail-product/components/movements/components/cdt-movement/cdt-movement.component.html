@@ -1,0 +1,32 @@
+<div class="cont-table-movements" *ngIf="hasMovements">
+    <div class="scroll-table">
+        <table>
+            <tr>
+                <td>
+                    <p>{{'MOVEMENT.CDT.RATE' | translate}}</p>
+                    <p>{{movements?.productAccountBalances?.tasa_nominal?.rate}} %</p>
+                </td>
+                <td>
+                    <p>{{'MOVEMENT.CDT.OPEN_DATE' | translate}}</p>
+                    <p class="date">{{movements?.openedDate | date:'dd/MMM/yyyy' | replace : '.' : ''}}</p>
+                </td>
+                <td>
+                    <p>{{'MOVEMENT.CDT.PAYMENT_WAY' | translate}}</p>
+                    <p>{{'Vencido' | translate}}</p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p><!--{{'MOVEMENT.CDT.TERM' | translate}}--></p>
+                    <p><!--{{movements?.term?.count}} {{movements?.term?.units | replace : 'Days' : 'Días'}}--></p>
+                </td>
+                <td>
+                    <p>{{'MOVEMENT.CDT.LAST_DATE' | translate}}</p>
+                    <p class="date">{{movements?.closedDate | date:'dd/MMM/yyyy' | replace : '.' : ''}}</p>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

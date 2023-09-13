@@ -1,0 +1,45 @@
+<div class="step-one-recharge animated element-hidden block fade-in-up">
+  <h2>{{'RECHARGE.STEP_ONE.TITLE' | translate}}</h2>
+  <div class="info-step-recharge">
+    <form class="form-global" [formGroup]="formRecharge" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label>¿{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}?</label>
+        <div class="select-bp">
+          <select formControlName="account_origin" [compareWith]="compareFnOrigin">
+            <option value="" disabled selected>{{'RECHARGE.STEP_ONE.ORIGIN_DEFAULT' | translate}}</option>
+            <option *ngFor="let product of productsOrigin$ | async; trackBy: trackByFn"
+                    [ngValue]="product">
+              {{'PRODUCT_TYPES.' + product.typeAccount | translate}}
+              {{product.id}} {{loadAmount(product, 'PAYMENTS.AVAILABLE_BALANCE' | translate, product?.productAccountBalances?.saldo_disponible?.amount | currencyFormat, 'TRANSFER.LOADING_AMOUNT' | translate)}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>¿{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}?</label>
+        <div class="select-bp">
+          <select formControlName="operator">
+            <option value="" disabled selected>{{'RECHARGE.STEP_ONE.OPERATOR_DEFAULT' | translate}}</option>
+            <option *ngFor="let operator of (operators$ | async)?.data" [ngValue]="operator">{{operator?.name}}</option>
+          </select>
+          <div class="messages-select">
+            <em class="icon-refresh warning" *ngIf="(operators$ | async)?.error" [title]="'PRODUCT.ERROR.BTN' | translate" (click)="retry()"></em>
+            <em class="icon-check success" *ngIf="(operators$ | async)?.loaded"></em>
+            <img [src]="'/loading.gif' | imageCdn" [alt]="'LOADING' | translate" *ngIf="(operators$ | async)?.loading">
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>{{'RECHARGE.STEP_ONE.OPERATOR' | translate}}</label>
+        <input type="tel" class="input-bp" formControlName="phone_number" appOnlyNumbers pattern="^(?!\s.*$).*">
+      </div>
+      <div class="form-group">
+        <label [translate]="'RECHARGE.STEP_ONE.AMOUNT'" [translateParams]="{min: '$1000', max: '$100.000'}"></label>
+        <input type="text" class="input-bp" formControlName="amount" appCurrency [form]="formRecharge" [property]="'amount'" pattern="^(?!\s.*$).*">
+      </div>
+      <div class="cont-btn-submit-recharge">
+        <button type="submit" class="btn btn-primary" [disabled]="formRecharge.invalid">{{'CONTINUE' | translate}}</button>
+      </div>
+    </form>
+  </div>
+</div>

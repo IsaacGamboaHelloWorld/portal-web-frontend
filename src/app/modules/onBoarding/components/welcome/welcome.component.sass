@@ -1,0 +1,96 @@
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+
+.cont-welcome
+  width: 100%
+  max-width: 344px
+  padding: 30px 20px
+  border-radius: 15px
+  box-shadow: 0 1px 3px 0 rgba(63, 63, 68, 0.15), 0 0 0 1px rgba(63, 63, 68, 0.05)
+  background: $carbon-light-100
+  text-align: center
+  position: relative
+  img
+    height: 74px
+    min-height: 74px
+    margin-bottom: 11px
+  h1
+    font-size: $f-30 + 28
+    font-weight: bold
+    margin-bottom: 16px
+    font-family: $text-font
+  small
+    display: block
+    font-weight: 600
+    font-size: $f-14 + 2
+    line-height: 1.5
+    margin-bottom: 16px
+  p
+    font-size: $f-14 + 1
+    line-height: 1.6
+  button
+    margin-top: 24px
+    width: 100%
+  &::after
+    content: ''
+    position: absolute
+    bottom: -6px
+    background: $carbon-light-100
+    left: 12px
+    right: 12px
+    height: 32px
+    border-radius: 15px
+    box-shadow: 0 1px 3px 0 rgba(63, 63, 68, 0.15), 0 0 0 1px rgba(63, 63, 68, 0.05)
+    z-index: -1
+
+
+.cont-animation-down
+  position: absolute
+  top: 0
+  right: 0
+  left: 0
+
+.cont-animation-up
+  position: absolute
+  bottom: 0
+  z-index: -1
+  right: 0
+  left: 0
+
+.box-welcome
+  position: absolute
+  border-radius: 20px
+  .small-box
+    width: 58px
+    height: 112px
+    top: -56px
+    right: 50px
+    transform: rotate(-31deg)
+  .big
+    width: 100px
+    height: 178px
+    right: -37px
+    bottom: 100px
+    z-index: -1
+    transform: rotate(-24deg)
+
+.box-green
+  background: $g-100
+  box-shadow: 0 4px 24px 0 rgba($g-100, 0.4)
+
+.box-yellow
+  background: $orange-400
+  box-shadow: 0 4px 24px 0 rgba($orange-400, 0.4)
+
+.box-green
+  width: 80px
+  height: 136px
+  top: 56px
+  left: -62px
+  transform: rotate(-31deg)
+
+
+
+@media only screen and (max-width: $break-mobile)
+  .box-welcome
+    display: none

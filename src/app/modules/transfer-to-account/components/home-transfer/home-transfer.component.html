@@ -1,0 +1,40 @@
+<div class="home-transfer">
+	<div class="home-head-transfer">
+		<h2>{{'TRANSFER.TITLE' | translate}}</h2>
+    <div>
+      <a *ngIf="(optionsModule$ | async)?.data?.transfers?.options?.management" class="link" (click)="accountRegistration()">{{'REGISTERED_ACCOUNTS.VIEW_ACCOUNTS' | translate}}</a>
+      <button *ngIf="(optionsModule$ | async)?.data?.transfers?.options?.create" [routerLink]="navigate.new_transfer" class="btn btn-primary">{{'TRANSFER.NEW_TRANSFER' | translate}}</button>
+    </div>
+	</div>
+  <div class="new-transfer">
+    <app-new-transfer></app-new-transfer>
+  </div>
+	<div class="cont-history-transfer">
+    <app-favorite-transfers
+        *ngIf="(hasFavorites$ | async) && (optionsModule$ | async)?.data?.transfers?.options?.favorite"
+        [favorites]="(favorites$ | async)?.data"></app-favorite-transfers>
+    <app-scheduled-transfer
+        *ngIf="(hasScheduled$ | async) && (optionsModule$ | async)?.data?.transfers?.options?.programmed"
+        [scheduleds]="(scheduled$ | async)?.transfers" [ip]="(scheduled$ | async)?.ip"></app-scheduled-transfer>
+		<ng-container *ngIf="(hasPending$ | async) && (optionsModule$ | async)?.data?.transfers?.options?.programmed">
+      <app-pending-transfer [pending]="pending$ | async"></app-pending-transfer>
+		</ng-container>
+	</div>
+
+  <ng-container *ngIf="(optionsModule$ | async)?.data?.transfers?.options?.history">
+    <div class="cont-history-transfer" *ngIf="(hasHistoric$ | async) else errorOrLoading">
+      <app-historic
+        *ngIf="(hasHistoric$ | async)"
+        [title]="'TRANSFER.HISTORIC.TITLE' | translate"
+        [numberColumns]="3"
+        [nameColumns]="['PENDING_TRANSFER.TRANSFER' | translate,'MOVEMENT.DEPOSIT.VALUE' | translate,'PENDING_TRANSFER.STATUS' | translate]"
+        [dataTable]="(historic$ | async)?.data"
+      ></app-historic>
+    </div>
+  </ng-container>
+</div>
+
+
+<ng-template #errorOrLoading>
+	<app-historic-error [historic]="historic$ | async" (clickBtn)="fetchHistoric()"></app-historic-error>
+</ng-template>

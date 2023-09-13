@@ -1,0 +1,22 @@
+<div class="main-step-one" id="main-step-one">
+  <div class="cont-ponits">
+    <ng-container *ngIf="(configuration$ | async)?.loaded && (toPlus$ | async)?.data; else LOADING_POINTS">
+      <app-home-points [dataTuPlus]="(toPlus$ | async)" [dataConfiguration]="(configuration$ | async)">
+      </app-home-points>
+    </ng-container>
+  </div>
+  <ng-container *ngIf="!(historicMovement$ | async).error">
+    <ng-container *ngIf="(historicMovement$ | async).success; else LOADING_TABLE">
+      <app-table [isFilter]="isFilter" [movements]="(historicMovement$ | async)" [option]="'historicMovement'"
+        [showFilterDate]="true" [maxRange]="maxRange" [optionFilter]="'BranchName'"
+        (actionEvent)="loadHistoricMovements($event, true)">
+      </app-table>
+    </ng-container>
+  </ng-container>
+</div>
+<ng-template #LOADING_POINTS>
+  <app-home-points [loading]="true"></app-home-points>
+</ng-template>
+<ng-template #LOADING_TABLE>
+  <app-table [loading]="true"></app-table>
+</ng-template>

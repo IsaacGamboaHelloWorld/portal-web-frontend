@@ -1,0 +1,52 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.card-admin
+  width: 100%
+  background: $carbon-light-100
+  border-radius: 10px
+  margin: 4px
+  padding: 16px 20px
+  display: flex
+  border: 1.3px transparent solid
+  .info-card
+    text-align: left
+    flex-grow: 1
+    p
+      font-size: $f-14
+      font-weight: 500
+      color: $carbon-dark-900
+      line-height: 2.29
+    span
+      font-size: $f-14 - 3
+      font-weight: normal
+      color: $black-750
+      display: block
+      line-height: 1.82
+      &.ref
+        font-weight: 500
+        color: $carbon-mid-600
+    .placeholder
+      margin-bottom: 9px
+  .icon-card
+    align-self: center
+    font-size: 18px
+    color: $carbon-mid-100
+    button
+      background: $g-500
+      line-height: 28px
+      border-radius: 100%
+      color: $carbon-light-100
+      z-index: 1
+      width: 32px
+      height: 32px
+      padding-top: 3px
+  &:hover
+    border: 1.5px $g-500 solid
+  &.selected
+    border: 1.5px $g-500 solid
+
+
+
+

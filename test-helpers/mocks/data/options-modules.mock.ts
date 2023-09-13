@@ -1,0 +1,122 @@
+// /api/administration-api/get-frontend-permissions
+export const responseOptionsModuleMock = {
+  success: true,
+  error: false,
+  errorMessage: null,
+  errorStatusCode: null,
+  specificErrorMessage: null,
+  data: {
+    products: {
+      show: true,
+      options: {
+        coexistence: true,
+        current_account: true,
+        deposit_account: true,
+        credit_card: true,
+        credit: true,
+        cdt: true,
+        free_destination: true,
+        to_plus: true,
+        product_actions: true,
+        order_of_payment: true,
+        btn_saving: true,
+        btn_cdt: true,
+        btn_credit_card: true,
+      },
+    },
+    organizer: {
+      show: true,
+    },
+    payments: {
+      show: true,
+      options: {
+        bank_obligation: true,
+        public_service: true,
+        payment_taxes: true,
+        payment_stack: true,
+        payment_history: true,
+        payment_pse_free_destiny: true,
+        payment_pse_credit_card: true,
+      },
+    },
+    transfers: {
+      show: true,
+      options: {
+        create: true,
+        management: true,
+        favorite: true,
+        edit: true,
+        programmed: true,
+        history: true,
+        indefinite_transfers: true,
+      },
+    },
+    documents: {
+      show: true,
+      options: {
+        extracts: true,
+        certificate_product: true,
+        certificate_taxes: true,
+      },
+    },
+    certificate_taxes: {
+      show: true,
+      options: {
+        tax_document_ret_source: true,
+        tax_document_rac: false,
+        tax_document_gmf: true,
+        tax_document_tc: false,
+      },
+    },
+    contact: {
+      show: true,
+    },
+    profile: {
+      show: true,
+    },
+    security: {
+      show: true,
+      options: {
+        card_activate: true,
+        alert_notifications: true,
+        two_auth_factor: true,
+        block_product: true,
+        change_password: true,
+        access_control: true,
+        security_data: true,
+        verification_methods: true,
+        biometric_authentication: true,
+        totp: true,
+        unusual_operations: true,
+        limit_management: true,
+      },
+    },
+    product_detail: {
+      show: true,
+      options: {
+        orders_withdrawals: true,
+        payment_obligation: true,
+        transfer_money: true,
+        recharge_cellphone: true,
+        generate_statements: true,
+        generate_certificates: true,
+        pockets: true,
+        pay_credit_card: true,
+        advance: true,
+        pfm: true,
+        last_movements: true,
+      },
+    },
+    block_product: {
+      show: true,
+      options: {
+        option_card: false,
+        credit_card: false,
+        deposit_account: true,
+        current_account: true,
+        option_account: true,
+        debit_card: true,
+      },
+    },
+  },
+};

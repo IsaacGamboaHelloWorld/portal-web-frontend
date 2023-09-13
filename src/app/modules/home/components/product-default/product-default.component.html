@@ -1,0 +1,22 @@
+<article class="product-global shadow-4dp hover-16dp {{nameBank}}">
+  <div class="product-global-content">
+    <div class="product-global-account-type">
+      <div class="cont-img">
+        <img [src]="'/default.png' | imageCdn" [alt]="'PRODUCT_TYPES.' + (hasNameBank ? product?.accountInformation?.productType : product?.typeAccount) | translate">
+      </div>
+      <div class="product-global-account-type-info">
+        <p>{{product?.accountInformation?.productName}}</p>
+        <small>{{'PRODUCT.NUMBER' | translate}}. {{ hasNameBank ? product?.accountInformation?.accountIdentifier : product?.id }}</small>
+      </div>
+    </div>
+    <ng-container>
+      <div class="product-global-account-amount" *ngIf="validateProperty">
+        <p>{{'PRODUCT.DEPOSIT_ACCOUNT.TOTAL_BALANCE' | translate}}</p>
+        <strong>{{valueFirstPosition() | currencyFormat}}</strong>
+      </div>
+      <div class="product-global-account-view-detail">
+        <a class="link" (click)="redirect(product.typeAccount, product.id)" *ngIf="!hasNameBank">{{'PRODUCT.VIEW_DETAIL' | translate}} <em class="icon-arrow-right-circle"></em></a>
+      </div>
+    </ng-container>
+  </div>
+</article>

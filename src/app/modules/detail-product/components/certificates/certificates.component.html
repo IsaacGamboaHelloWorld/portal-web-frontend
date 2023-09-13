@@ -1,0 +1,30 @@
+<div class="cont-certificates">
+
+    <img [src]="'/logo-isologo-bp.svg' | imageCdn" alt="{{'NAME_BANK' | translate}}">
+    <h4>{{'CERTIFICATES.NAME_ACCOUNT_PREFIX' | translate}} {{ currentProduct?.accountInformation?.productName | lowercase }} </h4>
+    <p>{{'CERTIFICATES.ACCOUNT_PREFIX' | translate}} {{currentProduct?.accountInformation?.accountIdentifier}}</p>
+
+    <section>
+        <form [formGroup]="certificatesGenForm" class="form-global">
+            <div class="form-group">
+                <div class="select-bp">
+                  <select class="form-control" formControlName="includeBalance" required name="includeBalance"
+                        (change)="doChange()" [(ngModel)]="defaultValue" [ngClass]="{'error': (pdfError$ | async)}">
+                    <ng-container *ngIf="!(pdfError$ | async)">
+                        <option [ngValue]="false">{{'CERTIFICATES.WITHOUT_BALANCE' | translate}}</option>
+                        <option [ngValue]="true">{{'CERTIFICATES.WITH_BALANCE' | translate}}</option>
+                    </ng-container>
+                    <ng-container *ngIf="pdfError$ | async">
+                      <option value="">{{'CERTIFICATES.ERROR_PDF_NEW' | translate}}</option>
+                    </ng-container>
+                  </select>
+                </div>
+              </div>
+
+            <div class="form-group">
+                <app-btn [class]="'btn-primary'" [disabled]="certificatesGenForm.invalid || (pdfLoading$ | async)" [text]=" ( (pdfError$ | async) ? 'CERTIFICATES.RETRY_DOWNLOAD_BTN' : 'CERTIFICATES.DOWNLOAD_BTN') | translate" [isLoading]="inProcess && (pdfLoading$ | async)" (clickBtn)="doGenerate()" *ngIf="!isReadyToDownload"></app-btn>
+                <a id="btnDownload" [href]="fileBase64$ | async" [download]="filename$ | async" class="btn btn-primary btn-green btn-download" *ngIf="isReadyToDownload && pdfData$ | async">{{'CERTIFICATES.DOWNLOAD_BTN' | translate}}</a>
+              </div>
+        </form>
+    </section>
+</div>

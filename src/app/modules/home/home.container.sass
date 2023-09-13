@@ -1,0 +1,507 @@
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+@import '../../../sass/mixins'
+
+.wrapper-home,
+.wrapper-products
+  width: 100%
+  margin: 0 auto
+  padding-left: 108px
+  padding-right: 108px
+
+.wrapper-home
+  // max-width: 1336px
+
+.wrapper-products
+  // max-width: 1352px
+
+.home-container
+  .home-all-amount
+    margin: 30px 0
+  .home-products-title
+    position: relative
+    top: 30px
+    text-align: left
+    margin-bottom: 24px
+    color: $carbon-light-100
+    p
+      font-size: $f-20
+    a
+      color: $carbon-dark-900
+      display: inline-block
+      font-size: $f-14 - 2
+      .checkbox-slide
+        margin-left: 10px
+  .home-products
+    margin-top: 11px
+    h5
+      color: color(gray)
+    .quantity-products
+      background-color: $inf-100
+      color: $inf-600
+      border-radius: 50%
+      height: 16px
+      width: 16px
+      display: inline-block
+      font-weight: 600
+      font-size: 10px
+      line-height: 14px
+      text-align: center
+      vertical-align: middle
+      margin-left: 2px
+      padding-right: 1px
+  .space-cont-products
+    margin-top: 20px
+  .home-product-offers
+    margin-top: 20px
+    h3
+      font-size: 14px
+      font-weight: 500
+  .home-offers
+    margin: 27px 0
+    display: flex
+    flex-direction: row
+    li
+      height: 190px
+      width: 296px
+      margin-bottom: 16px
+      margin-right: 24px
+    div:nth-child(2)
+      order: 3
+
+.container-products
+  +inline(top)
+  max-width: 100%
+
+.home-welcome
+  p
+    font-size: $f-14 + 4
+    display: block
+
+.space-loading
+  margin: 56px auto 40px
+
+.loading-products
+  padding: 0 0 20px 8px
+  li
+    +inline(top)
+    width: 322px
+    padding-right: 16px
+
+
+.home-products
+  ul
+    margin-top: 14px
+    padding: 0 0 30px
+  li
+    +inline(top)
+    width: 296px
+    margin-right: 24px
+    margin-bottom: 24px
+  h6
+    margin-bottom: 14px
+    font-weight: 500
+
+
+.product-global
+  height: 320px
+  border-radius: 15px
+  position: relative
+  background: $carbon-light-100
+  overflow: hidden
+  &-content
+    height: 220px
+    padding: 24px 24px 0
+  &-account-type
+    margin-bottom: 26px
+    display: flex
+    justify-content: flex-start
+    align-items: center
+    .cont-img
+      width: 32px
+      height: 32px
+      background-color: rgba($hlt-100, 0.48)
+      border-radius: 50%
+      display: flex
+      justify-content: center
+      align-items: center
+      position: relative
+      top: 0
+      i
+        font-size: $f-20
+      img
+        width: 24px
+        height: 24px
+    &.p-tuplus
+      .cont-img
+        background-color: $cbn-lgt-400
+        img
+          width: 15px
+          height: 20px
+    &.p-tc
+      .cont-img
+        background-color: $cbn-lgt-400
+        img
+          object-fit: contain
+
+  &-account-type-info
+    margin-left: 8px
+    p
+      font-style: normal
+      font-weight: 500
+      font-size: 16px
+      line-height: 24px
+      color: $cbn-600
+    small
+      display: block
+      color: $cbn-mid-400
+      font-style: normal
+      font-weight: 500
+      font-size: 12px
+      line-height: 20px
+  &-account-amount
+    min-height: 86px
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+    p
+      color: $gray3
+      font-size: $f-14
+      margin-bottom: 5px
+    strong
+      font-weight: 500
+      font-size: 32px
+      line-height: 40px
+      color: $cbn-600
+      p
+        font-weight: 500
+        font-size: 32px
+        line-height: 28px
+        color: $cbn-mid-100
+    small
+      display: block
+      font-size: $f-14 - 1
+      color: $gray3
+    .to-plus-info
+      display: flex
+      align-items: flex-start
+      &-img
+        margin-top: 3px
+        margin-right: 3px
+      &-text
+        font-size: 11px
+        font-weight: 500
+        line-height: 1.82
+        letter-spacing: normal
+        color: $inf-600
+        .href-plus
+          color: $inf-600
+          text-decoration: underline
+  &-account-view-detail
+    margin-bottom: 9px
+    a
+      display: flex
+      align-items: center
+      font-size: $f-14
+  &-footer
+    height: 88px
+    padding: 20px 4px
+    &-line
+      border: 1px solid $cbn-lgt-600
+      width: calc(100% - 48px)
+      margin-left: 24px
+      display: block
+      text-align: center
+      opacity: 0.7
+    &.not-border
+      border: none
+    &.full
+      div
+        width: 100%
+      .btn
+        display: inline-block
+        width: 100%
+        text-align: center
+    div
+      padding: 0 20px
+      +inline(middle)
+      width: 50%
+      &:nth-child(2)
+        padding-left: 0
+      > span
+        display: block
+        color: $gray3
+        margin-bottom: 4px
+        font-size: $f-14
+      strong
+        font-weight: normal
+        font-size: $f-14 + 2
+        text-transform: capitalize
+      button
+        padding: 0 35px
+        display: block
+        margin: 0 auto
+        float: right
+        line-height: 44px
+    .payment-button-container
+      z-index: 1000
+  &::before
+    content: ''
+    position: absolute
+    height: 3px
+    background: $g-500
+    width: 100%
+    left: 50%
+    margin-left: -50%
+    z-index: 1
+    border-radius: 10px
+  &.banco_de_bogota
+    &::before
+      background: $bogota
+  &.banco_occidente
+    &::before
+      background: $occidente
+  &.banco_av_villas
+    &::before
+      background: $villas
+  &.porvenir
+    &::before
+      background: $porvenir
+  &.facil_pass
+    &::before
+      background: $facil
+  &.to-plus
+    .product-global-account-type-info
+      p
+        margin: 6px 0
+
+
+  progress
+    background: $secondary-100
+  progress[value]
+    appearance: none
+    border: none
+    width: 97px
+    height: 3px
+    overflow: hidden
+    background-image: linear-gradient(to top, $orange-900, $orange-700)
+    border-radius: 3px
+    display: block
+    margin: 4px
+  progress::-webkit-progress-value
+    background-image: linear-gradient(to top, $orange-900, $orange-700)
+  progress::-webkit-progress-bar
+    background: $secondary-100
+  .cont-loading-error
+    text-align: center
+    min-height: 196px
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+  .error-product
+    width: 100%
+    text-align: center
+    margin-top: 40px
+    white-space: normal
+    strong
+      font-size: $f-14 + 2
+      display: block
+      margin-bottom: 8px
+      font-weight: 500
+    p
+      max-width: 222px
+      margin: 0 auto
+    button
+      width: 100%
+      margin-top: 40px
+
+@media only screen and (max-width: $break-small-phone)
+  .wrapper-home,
+  .wrapper-products
+    padding-left: 10px
+    padding-right: 10px
+  .home-container
+    .title-home
+      background-color: $g-500
+      height: 110px
+      width: 100%
+      z-index: -1
+      position: relative
+    .cont-finance-total
+      position: relative
+      margin-top: -40px
+    .home-products-title
+      padding-left: 20px
+      .visible-mobile
+        font-size: 14px
+      .capitalize
+        font-size: 14px
+        font-weight: bold
+    .home-products
+      ul
+        padding-left: 20px
+      h6
+        padding-left: 20px
+    .container-products
+      overflow-x: auto
+      white-space: nowrap
+    .cont-offers
+      padding-left: 20px
+      padding-right: 20px
+    .home-offers
+      display: block
+      li
+        width: 100%
+        margin-right: 24px
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .wrapper-home,
+  .wrapper-products
+    padding-left: 0
+    padding-right: 0
+  .home-container
+    .title-home
+      background-color: $g-500
+      height: 110px
+      width: 100%
+      z-index: -1
+      position: relative
+    .home-products-title
+      padding-left: 20px
+      .visible-mobile
+        font-size: 14px
+      .capitalize
+        font-size: 14px
+        font-weight: bold
+    .cont-finance-total
+      position: relative
+      margin-top: -40px
+    .cont-total-finance
+      padding-left: 20px
+    .home-products
+      ul
+        padding-left: 20px
+      h6
+        padding-left: 20px
+    .container-products
+      overflow-x: auto
+      white-space: nowrap
+    .cont-offers
+      padding-left: 10px
+      padding-right: 20px
+    .home-offers
+      display: block
+      li
+        width: 100%
+        margin-right: 24px
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .wrapper-home,
+  .wrapper-products
+    padding-left: 10px
+    padding-right: 10px
+  .home-container
+    .title-home
+      background-color: $g-500
+      height: 110px
+      width: 100%
+      z-index: -1
+      position: relative
+    .home-products-title
+      padding-left: 20px
+      .visible-mobile
+        font-size: 14px
+      .capitalize
+        font-size: 14px
+        font-weight: bold
+    .cont-finance-total
+      position: relative
+      margin-top: -40px
+    .cont-total-finance
+      padding-left: 20px
+    .home-products
+      ul
+        padding-left: 20px
+      h6
+        padding-left: 20px
+    .container-products
+      overflow-x: auto
+      white-space: nowrap
+    .cont-offers
+      padding-left: 10px
+      padding-right: 20px
+    .home-offers
+      display: block
+      li
+        width: 100%
+        margin-right: 24px
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+  .wrapper-home,
+  .wrapper-products
+    padding-left: 0
+    padding-right: 0
+  .home-container
+    .title-home
+      background-color: $g-500
+      height: 110px
+      width: 100%
+      z-index: -1
+      position: relative
+      .home-products-title
+        p
+          padding-left: 76px
+        .visible-mobile
+          font-size: 14px
+        .capitalize
+          font-size: 14px
+          font-weight: bold
+    .cont-wrapper-products
+      bottom: 24px
+      position: relative
+    .cont-finance-total
+      position: relative
+      margin-top: -40px
+    .home-products
+      ul
+        padding-left: 76px
+      h6
+        padding-left: 76px
+    .container-products
+      overflow-x: auto
+      white-space: nowrap
+    .home-offers
+      flex-wrap: wrap
+    .cont-offers
+      h3
+        padding-left: 76px
+      ul
+        padding-left: 76px
+    .home-product-offers
+      overflow-x: scroll
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+  .wrapper-home,
+  .wrapper-products
+    padding-left: 28px
+    padding-right: 28px
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+  .wrapper-home,
+  .wrapper-products
+    padding-left: 96px
+    padding-right: 96px
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+  .wrapper-home,
+  .wrapper-products
+    padding-left: 92px
+    padding-right: 92px
+@media only screen and (min-width: $break-desktop-xlg-min)
+  .wrapper-home,
+  .wrapper-products
+    padding-left: 15%
+    padding-right: 15%
+  .home-container
+    .home-products
+      li
+        width: 360px
+        height: 320px
+    .home-offers
+      li
+        width: 360px

@@ -1,0 +1,20 @@
+<app-template-system
+  [title]="'PAY_STACK.TITLE' | translate"
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [currentStep]="viewBack ? (step$ | async)?.step : maxStep"
+  [maxStep]="maxStep"
+  [showClose]="true"
+  [backUrl]="backUrl"
+  (eventModal)="backHome($event)"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-pay-stack ng-star-inserted">
+    <app-line-time *ngIf="(step$ | async)?.step < numberSteps" [step]="(step$ | async)?.step" [items]="items$ | async"></app-line-time>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ng-template>

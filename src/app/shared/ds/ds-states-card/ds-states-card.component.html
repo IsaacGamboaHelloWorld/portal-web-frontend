@@ -1,0 +1,18 @@
+<div class="container-card-state" [ngClass]="state">
+    <div *ngIf="state !== getStates.loading" class="icon">
+      <img [src]="( state === getStates.error ? '/24-essential-sticker-14.svg' : '/essential-warning-6@3x.png' ) | imageCdn" [alt]="">
+    </div>
+
+    <ng-container *ngIf="state !== getStates.loading">
+      <strong class="title" [innerHTML]="title"></strong>
+      <p class="description" [innerHTML]="description"></p>
+    </ng-container>
+    <div *ngIf="state === getStates.loading"> <app-ds-loading></app-ds-loading> </div>
+    
+    <app-btn
+      *ngIf="state !== getStates.loading"
+      (clickBtn)="eventClick.emit(state)"
+      [text]="btnTextPrimary"
+      [class]="'btn-primary'"
+  ></app-btn>
+  </div>

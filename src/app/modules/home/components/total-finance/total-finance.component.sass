@@ -1,0 +1,324 @@
+@import '../../../../../sass/colors'
+@import '../../../../../sass/variables'
+@import '../../../../../sass/mixins'
+
+.title-finances
+  font-family: Inter
+  font-size: 18px
+  font-weight: 500
+  font-stretch: normal
+  font-style: normal
+  line-height: 1.33
+  letter-spacing: normal
+.cont-total-finance
+  color: $carbon-dark-900
+  .cont-box
+    margin-top: 15px
+    display: inline-block
+    justify-content: center
+    align-items: center
+    .box
+      height: 100px
+      margin-right: 24px
+      width: 296px
+      border-radius: 10px
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+      background-color: $carbon-light-100
+      display: flex
+      flex-direction: column
+      .other-credits-checkbox
+        .numbers
+          font-size: $f-20 - 4
+          font-weight: 500
+          .decimal-vouchers
+            font-size: $f-20 - 4
+        .subtitle
+          width: 100%
+      .bg-icon-finance
+        height: 40px
+        width: 40px
+        background-color: $secondary-100
+        border-radius: 50%
+        position: relative
+        left: 24px
+        top: 30px
+        display: flex
+        justify-content: center
+        align-items: center
+        img
+          height: 24px
+          width: 24px
+          object-fit: cover
+      .numbers
+        font-size: $f-20 + 1
+        font-weight: 500
+        width: 235px
+        height: 34px
+        position: relative
+        left: 80px
+        bottom: 18px
+        line-height: 1.62
+        .decimal-vouchers
+          font-size: $f-20 + 1
+      .subtitle
+        font-size: $f-20 - 7
+        color: $gray3
+        position: relative
+        left: 80px
+        bottom: 22px
+        width: 85px
+        line-height: 1.77
+      .cont-column
+        display: flex
+        flex-direction: column
+        height: 100%
+        .logo-show-aval
+          width: 80px
+          height: 24px
+          margin-top: 26px
+          margin-left: 24px
+        .text-show-aval
+          font-size: $f-20 - 7
+          color: $gray3
+          position: relative
+          left: 24px
+          top: 10px
+      .btn-slide
+        width: 40px
+        height: 24px
+        position: relative
+        top: 30px
+        right: 20px
+      .title-text
+        left: 24px
+        position: relative
+        width: 161px
+        height: 24px
+        font-size: $f-20 - 4
+        font-weight: 500
+        line-height: 1.5
+        top: 29px
+      .subt-text
+        left: 24px
+        position: relative
+        top: 30px
+        width: 180px
+        height: 23px
+        font-size: $f-20 - 7
+        line-height: 1.77
+      .logo-hasFinance
+        position: relative
+        left: 225px
+        width: 82px
+        height: 80px
+        bottom: 32px
+      .btn-refresh
+        position: relative
+        background-color: $orange-900
+        width: 44px
+        height: 44px
+        left: 254px
+        bottom: 22px
+        border-radius: 20px
+        img
+          padding: 12px
+    .cont-box-width-slide
+      display: flex
+      flex-direction: row
+  .cont-box .box
+    display: inline-block
+    vertical-align: top
+    zoom: 1
+    margin-bottom: 20px
+  .itemLoading
+    height: 100%
+    border-radius: 12px
+    .placeholder
+      animation: color-me-in 1s ease-out 0s alternate infinite none running
+    @keyframes color-me-in
+      0%
+        background: $carbon-light-100
+      100%
+        background: $carbon-light-900
+    .bg-icon-loading
+      top: 29px
+      left: 24px
+      position: relative
+      width: 40px
+      height: 40px
+      border-radius: 50%
+      background-color: $black-100
+    .title-loading
+      left: 80px
+      position: relative
+      height: 12px
+      bottom: 5px
+    .text-loading
+      top: 5px
+      left: 80px
+      position: relative
+
+@media only screen and (max-width: $break-small-phone)
+  .title-finances
+    display: none
+  .cont-total-finance
+    white-space: nowrap
+    overflow-x: auto
+    -webkit-overflow-scrolling: touch
+    padding-left: 20px
+    .cont-box
+      margin-top: 15px
+      display: inline-block
+      justify-content: center
+      align-items: center
+      .box
+        height: 100px
+        margin-right: 8px
+        width: 257px
+        .other-credits-checkbox
+          .numbers
+            font-size: $f-20 - 7
+            font-weight: 500
+        .numbers
+          font-size: 18px
+          width: 153px
+          .decimal-vouchers
+            font-size: 18px
+        .subtitle
+          font-size: 12px
+          font-weight: 500
+          line-height: 2
+          letter-spacing: normal
+          color: $cbn-mid-400
+        .cont-column
+          width: auto
+        .cont-column-slide
+          width: auto
+          .btn-slide
+            position: relative
+            top: 30px
+            right: 10px
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .fil-bg-green
+    background-color: $g-500
+    height: 110px
+    width: 100%
+    z-index: -1
+    position: absolute
+    top: 70px
+  .title-finances
+    display: none
+  .cont-total-finance
+    white-space: nowrap
+    overflow-x: auto
+    -webkit-overflow-scrolling: touch
+    padding-left: 20px
+    .cont-box
+      margin-top: 15px
+      display: inline-block
+      justify-content: center
+      align-items: center
+      .box
+        height: 100px
+        margin-right: 16px
+        width: 245px
+        .other-credits-checkbox
+          .numbers
+            font-size: $f-20 - 7
+            font-weight: 500
+        .numbers
+          font-size: $f-20 - 4
+          width: 153px
+          .decimal-vouchers
+            font-size: $f-20 - 4
+        .cont-column
+          width: auto
+        .cont-column-slide
+          width: auto
+          .btn-slide
+            position: relative
+            top: 30px
+            right: 10px
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .fil-bg-green
+    background-color: $g-500
+    height: 110px
+    width: 100%
+    z-index: -1
+    position: absolute
+    top: 70px
+  .title-finances
+    display: none
+  .cont-total-finance
+    white-space: nowrap
+    overflow-x: auto
+    -webkit-overflow-scrolling: touch
+    padding-left: 76px
+    .cont-box
+      margin-top: 15px
+      display: inline-block
+      justify-content: center
+      align-items: center
+      .box
+        height: 100px
+        margin-right: 16px
+        width: 245px
+        .other-credits-checkbox
+          .numbers
+            font-size: $f-20 - 7
+            font-weight: 500
+        .numbers
+          font-size: $f-20 - 4
+          width: 153px
+          .decimal-vouchers
+            font-size: $f-20 - 4
+        .cont-column
+          width: auto
+        .cont-column-slide
+          width: auto
+          .btn-slide
+            position: relative
+            top: 30px
+            right: 10px
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+  .title-finances
+    display: none
+  .cont-total-finance
+    white-space: nowrap
+    overflow-x: auto
+    -webkit-overflow-scrolling: touch
+    padding-left: 76px
+    .cont-box
+      margin-top: 15px
+      display: inline-block
+      justify-content: center
+      align-items: center
+      .box
+        height: 100px
+        margin-right: 16px
+        width: 245px
+        .other-credits-checkbox
+          .numbers
+            font-size: $f-20 - 7
+            font-weight: 500
+        .numbers
+          font-size: $f-20 - 4
+          width: 153px
+          .decimal-vouchers
+            font-size: $f-20 - 4
+        .cont-column
+          width: auto
+        .cont-column-slide
+          width: auto
+          .btn-slide
+            position: relative
+            top: 30px
+            right: 10px
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+@media only screen and (min-width: $break-desktop-xlg-min)
+  .cont-total-finance
+    .cont-box
+      .box
+        width: 360px

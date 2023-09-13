@@ -1,0 +1,20 @@
+  <div class="ds-modal-container">
+    <div class="img-container {{typeModal}}">
+      <img [src]="img | imageCdn" alt="" *ngIf="hasImg">
+    </div>
+    <h2 class="title" *ngIf="hasTitle" [innerHTML]="title | translate"></h2>
+    <h3 class="subtitle" *ngIf="hasSubtitle" [innerHTML]="subtitle | translate"></h3>
+    <p class="desc" *ngIf="hasDesc" [innerHTML]="description | translate"></p>
+
+    <div class="footer-buttons" [ngClass]="{ 'buttons-column': buttonsInColumn}">
+        <button class="cancel" (click)="actionCancel.emit()" *ngIf="hasBtnCancel">
+            {{ btnCancel | translate }}
+        </button>
+        <app-btn (clickBtn)="emitClick()"
+            [text]="btnAgree | translate"
+            [isLoading]="loading"
+            [disabled]="loading"
+            [class]="classBtn">
+        </app-btn>
+    </div>
+  </div>

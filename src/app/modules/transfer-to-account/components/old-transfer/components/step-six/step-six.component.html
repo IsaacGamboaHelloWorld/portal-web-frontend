@@ -1,0 +1,47 @@
+<div class="animated fade-in-up cont-step-global cont-step-scheduled">
+
+  <app-ticket
+      [imageTicket]="'/calendar.png' | imageCdn"
+      [title]="'TRANSFER.SCHEDULED.TITLE' | translate"
+      [description]="'TRANSFER.SCHEDULED.TEXT' | translate"
+      [messageTitle]="'TRANSFER.CONFIRMATION.FORM.AMOUNT' | translate"
+      [messageText]="info['amount'] | currencyFormat : true : 'decimal-vouchers'"
+      [listTemplate]="listPending"
+      [response]="(scheduled$ | async)"></app-ticket>
+
+  <div class="footer-step">
+    <div class="box-green">
+      <a class="link" (click)="goStep(1)">{{'TRANSFER.SUCCESS.BTN' | translate}}</a>
+    </div>
+    <button class="btn btn-primary"  (click)="goStep(0)">{{'TRANSFER.PENDING.BTN' | translate}}</button>
+  </div>
+</div>
+
+<ng-template #listPending>
+  <ng-container >
+    <ul>
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+        <p>{{'BANKS.'+info['bankNameOrigin'] | translate}} - {{'PRODUCT_TYPES.' + info['originAccountType'] | translate}} {{info['originAccount'] | slice: -4}}</p>
+      </li>
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+        <p>{{info['bankNameDestination'] | translate}} - {{info['customerName'] | titlecase}} - {{'PRODUCT_TYPES.' + info['destinationAccountType'] | translate}} {{info['destinationAccount'] | slice: -4}}</p>
+      </li>
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.DATE_SCHEDULED' | translate}}</span>
+        <p class="capitalize">
+          {{(formThree$ | async)?.numberRepeat ? ('TRANSFER.FORM_THREE.REPEAT.NUMBER_REPEAT' | translate: { number: (formThree$ | async)?.numberRepeat }) + ' - ' : ''}}
+          {{info['date'] | date:'dd/MMM/yyyy' | replace : '.' : ''}}
+        </p>
+      </li>
+      <li>
+        <span>{{'TRANSFER.SCHEDULED.COSTSCHEDULED' | translate}}</span>
+        <p> {{info['transactionCost']}}</p>
+      </li>
+      <li>
+        <span class="footer-scheduled">{{'TRANSFER.SCHEDULED.FOOTER_SCHEDULED' | translate}}</span>
+      </li>
+    </ul>
+  </ng-container>
+</ng-template>

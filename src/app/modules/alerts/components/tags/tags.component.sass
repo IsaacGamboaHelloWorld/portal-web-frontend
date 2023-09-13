@@ -1,0 +1,80 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+button
+  cursor: pointer
+
+.cont-alerts-tags
+  display: flex
+  align-items: center
+  height: 32px
+  gap: 16px
+  button
+    border-radius: 32px
+    height: 100%
+  .bg-btn-tags-alert-white
+    background: $carbon-light-100
+    color: $secondary-900
+    border: 1px solid $secondary-900
+  .bg-btn-tags-alert-orange
+    background: $secondary-900
+    color: $carbon-light-100
+  .cont-btn-all-alerts
+    height: 100%
+    button
+      width: 65px
+  .cont-btn-credit-alerts
+    height: 100%
+    button
+      display: flex
+      justify-content: center
+      align-items: center
+      gap: 4px
+      padding: 0 16px
+      .icon-credit-alerts
+        cursor: pointer
+        position: relative
+        width: 14px
+        height: 14px
+        background-color: $secondary-900
+        mask: url('#{$base-url}/images/icon-free-destination-credit.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/icon-free-destination-credit.svg') no-repeat center / contain 
+    .bg-btn-tags-alert-orange
+      .icon-credit-alerts
+        background-color: $carbon-light-100
+  .cont-btn-account-alerts
+    height: 100%
+    button
+      gap: 4px
+      padding: 0 16px
+      display: flex
+      justify-content: center
+      align-items: center
+      .icon-account-alerts
+        cursor: pointer
+        position: relative
+        width: 14px
+        height: 14px
+        background-color: $secondary-900
+        mask: url('#{$base-url}/images/24-payments-finance-piggy-bank-1.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-payments-finance-piggy-bank-1.svg') no-repeat center / contain  
+    .bg-btn-tags-alert-orange
+      .icon-account-alerts
+        background-color: $carbon-light-100
+  .cont-btn-services-alerts   
+    height: 100%
+    button
+      gap: 4px
+      padding: 0 16px
+      display: flex
+      justify-content: center
+      align-items: center
+      .icon-services-alerts
+        cursor: pointer
+        position: relative
+        width: 14px
+        height: 14px

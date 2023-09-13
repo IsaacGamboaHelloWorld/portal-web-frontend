@@ -1,0 +1,28 @@
+<article class="product-global shadow-4dp hover-16dp to-plus" *ngIf="hasProduct">
+  <div class="product-global-content">
+    <div class="product-global-account-type p-tuplus">
+      <div class="cont-img">
+        <img [src]="'/logo-tu-plus.png' | imageCdn" [alt]="'TO_PLUS.NAME' | translate">
+      </div>
+      <div class="product-global-account-type-info">
+        <p>{{'TO_PLUS.NAME' | translate}}</p>
+      </div>
+    </div>
+    <div class="product-global-account-amount">
+      <p>{{'TO_PLUS.TOTAL_POINTS' | translate}}</p>
+      <strong>{{(product.totalPoints | number)| replace : ',' : '.' }}</strong>
+      <div class="to-plus-info">
+        <img class="to-plus-info-img" [src]="'/24-essential-info-1.svg' | imageCdn" alt=""> <p class="to-plus-info-text" [innerHTML]="'TO_PLUS.MESSAGE_INFO' | translate"></p>
+      </div>
+    </div>
+    <div class="product-global-account-view-detail">
+      <a class="link fs-14" (click)="goToTuPlus()">{{'PRODUCT.VIEW_DETAIL' | translate}} <em class="icon-arrow-right-circle"></em></a>
+    </div>
+  </div>
+  <div class="product-global-footer full">
+    <div>
+      <a (click)="redeem()" class="btn btn-primary">{{'TO_PLUS.REDEEM' | translate}}</a>
+    </div>
+  </div>
+</article>
+

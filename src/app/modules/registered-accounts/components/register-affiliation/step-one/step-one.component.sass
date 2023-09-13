@@ -1,0 +1,36 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.cont-step-register-affiliation
+  .group-radio
+    margin-top: 28px
+    div
+      +inline(top)
+      margin-left: 24px
+      label
+        &::after
+          left: -25px
+          top: -3px
+  .submit-step
+    text-align: center
+    margin: 32px 0
+    button
+      width: 100%
+      max-width: 184px
+      display: block
+      margin: 0 auto
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-register-affiliation
+    padding: 0 15px
+    .form-global .form-group
+      padding: 0
+    .messages
+      right: 15px
+      z-index: 2
+      background: $carbon-light-100
+    .submit-step
+      button
+        max-width: 100%
+

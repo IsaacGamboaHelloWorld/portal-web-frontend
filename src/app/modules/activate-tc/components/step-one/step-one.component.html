@@ -1,0 +1,43 @@
+<div class="animated fade-in-up container-tc">
+  <div class="cont-step-one">
+    <div *ngIf="imageBase" class="credit-card">
+      <div class="card-container" [ngStyle]="{ 'background-image': 'url(' + imageBase + ')'}">
+        <img [hidden]="!image" #maskImgCard class="mask" alt=""/>
+      </div>
+
+      <div class="card-info">
+        <div class="card-number">
+          <p #textMask>{{formStepOne.controls['numberCreditCard'].value | creditCardMask | creditCardHidden:'mask'}}</p>
+        </div>
+        <img [hidden]="!showFranchise" class="franchise" #maskImgFranchise alt="">
+    </div>
+    </div>
+
+    <form class="form-global" [formGroup]="formStepOne" (ngSubmit)="submitForm()">
+      <div class="form-group">
+        <label>{{'ACTIVATE_TC.FORM.LABEL' | translate}}</label>
+        <input type="text" class="input-bp" formControlName="numberCreditCard"
+          placeholder="{{'ACTIVATE_TC.FORM.PLACEHOLDER' | translate}}" appCurrency appOnlyNumbers
+          [form]="formStepOne" [property]="'numberCreditCard'"
+          [type]="'input_credit_card'" (typeSelect)="typeCreditCard = $event" (ngModelChange)="eventNumber($event)">
+
+        <div *ngIf="formStepOne.controls['numberCreditCard'].errors &&
+				(!formStepOne.controls['numberCreditCard'].pristine ||
+					(formStepOne.controls['numberCreditCard'].dirty &&
+						formStepOne.controls['numberCreditCard'].touched))" class="error-msg">
+          <p>{{'ACTIVATE_TC.FORM.INVALID' | translate}}</p>
+        </div>
+      </div>
+      <div class="form-group submit-step-one">
+        <app-btn
+          [type]="'submit'"
+          [disabled]="formStepOne.invalid || ((stateActivate | async) && approvalId)"
+          [text]="'ACTIVATE_TC.BTN' | translate"
+          [id]="'btn-step-one'"
+          [isLoading]="((stateActivate | async) && approvalId)"
+          [class]="'btn-primary'"
+        ></app-btn>
+      </div>
+    </form>
+  </div>
+</div>

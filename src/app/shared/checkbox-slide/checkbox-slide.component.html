@@ -1,0 +1,4 @@
+<div class="checkbox-slide-new not-select" [ngClass]="{'active': check}" [class.inline]="inline">
+    <input type="checkbox" id="checkbox-slide-{{id}}" (click)="toggleCheck()" [checked]="check" [disabled]="disabled">
+    <span *ngIf="!hidelabel" class="text-label checkbox-slide-{{id}}" >{{text}}</span>
+</div>

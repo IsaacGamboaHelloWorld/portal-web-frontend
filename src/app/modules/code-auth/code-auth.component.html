@@ -1,0 +1,17 @@
+<app-template-system
+  [title]="'CODE_AUTH.ONBOARDING.TITLE' | translate"
+  [showClose]="!viewBack"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [currentStep]="viewBack ? (step$ | async)?.step : maxStep"
+  [maxStep]="maxStep"
+  [sectionContent]="content"
+  [backUrl]="backUrl"
+  (eventModal)="backHome($event)"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-code-auth">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

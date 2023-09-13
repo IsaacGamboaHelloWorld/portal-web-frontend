@@ -1,0 +1,10 @@
+<fieldset class="cont-bar-enrollment form-group">
+  <app-bar-progress [desc]="userEnrollmentFlowInformation?.progressBar?.description" [valueProgress]="userEnrollmentFlowInformation?.progressBar?.percent"></app-bar-progress>
+</fieldset>
+<app-experian [data]="userEnrollmentFlowInformation?.experian"
+            [isLoadingState]="loading"
+            [errorState]="error"
+            (submitAction)="submitExperianForm($event)"
+            (close)="actionClose()"
+            (submitErrorFlow)="submitOnErrorExperianFlowHandler($event)"
+            [viewBtnClose]="true"></app-experian>

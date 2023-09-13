@@ -1,0 +1,10 @@
+<a class="btn-square-container shadow-1dp" (click)="redirect()" [ngClass]="{'disable': !isActive}" [id]="id">
+    <ng-container *ngIf="renderer!=='canvas' else lottie">
+        <img [src]="imageUrl" alt="">
+    </ng-container>
+    <span class="title">{{title}}</span><span class="subtitle">{{subtitle}}</span>
+</a>
+
+<ng-template #lottie>
+    <app-lottie-animation [width]="widthImg+'px'" [height]="heightImg+'px'" [path]="imageUrl" [renderer]="renderer"></app-lottie-animation>
+</ng-template>

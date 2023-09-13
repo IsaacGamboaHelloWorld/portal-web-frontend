@@ -1,0 +1,359 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.main-step-three
+  width: 100%
+  display: block
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  .txt-title
+    .txt-container
+      padding-left: 50px
+      display: block
+      width: 80%
+  .cont-form
+    margin-top: 10px
+    width: auto
+    vertical-align: middle
+    p
+      padding-bottom: 16px
+    .form-global
+      .auto-complete
+        .ui-autocomplete
+          border-radius: 8px
+          box-shadow: 0 1px 3px 0 rgba(63, 63, 68, 0.15), 0 0 0 1px rgba(63, 63, 68, 0.05)
+          width: 100%
+          .ui-autocomplete-panel
+            background: $carbon-light-100
+            border-radius: 8px
+            margin-top: 4px
+            ul
+              padding: 0
+              .ui-state-highlight
+                background: $black-100
+                border-left: solid 3px $gc-850
+              li
+                height: 48px
+                white-space: nowrap
+                padding: 5px 10px
+                line-height: 45px
+                &:hover
+                  width: 100%
+                  background: $black-100
+                  border-left: solid 3px $gc-850
+      .submit-step-one
+        text-align: center
+        margin: 32px 0
+        .btn-disabled
+          border-radius: 8px
+          background-color: $carbon-mid-100
+          color: $carbon-light-100
+          position: relative
+        button
+          width: 183px
+    .form-group
+      padding-bottom: 16px
+      .card-account
+        width: 100%
+        height: 129px
+        border-radius: 12px
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+        background-color: white
+        border-left: 4px solid $gc-850
+        display: block
+        .itemLoading
+          height: 100%
+          border-radius: 12px
+          .placeholder
+            animation: color-me-in 1s ease-out 0s alternate infinite none running
+          @keyframes color-me-in
+            0%
+              background: $carbon-light-100
+            100%
+              background: $carbon-light-900
+          .title-loading
+            margin-left: 24px
+            margin-top: 24px
+            position: absolute
+            width: 200px
+          .txt-loading
+            margin-left: 24px
+            margin-top: 60px
+            position: absolute
+            width: 100px
+          .value-loading
+            position: absolute
+            margin-top: 80px
+            margin-left: 24px
+            width: 200px
+    .cont-card-your-plus-down
+      display: block
+      margin: 0
+      padding: 24px
+      border-radius: 0 0 12px 12px
+      p
+        padding: 0
+    .cont-card-your-plus-up
+      display: block
+      margin: 0
+      padding: 24px
+      border-radius: 12px 12px 0 0
+      p
+        padding: 0
+    .cards-redeem
+      display: flex
+      justify-content: center
+      padding-bottom: 16px
+      .cont-card-check-border
+        border: solid 1.3px $g-500
+      .cont-card-check
+        cursor: pointer
+        width: 160px
+        height: 116px
+        border-radius: 12px
+        box-shadow: 0 1px 2px 0 #00000024
+        background-color: $carbon-light-100
+        margin: 8px
+        display: block
+        .cont-img
+          width: 42px
+          height: 42px
+          margin: auto
+          margin-top: 10px
+          img
+            width: 42px
+            height: 42px
+        .txt-container
+          padding-top: 10px
+          text-align: center
+        .item-loading
+          width: 100%
+          border-radius: 12px
+          .placeholder
+            animation: color-me-in 1s ease-out 0s alternate infinite none running
+          @keyframes color-me-in
+            0%
+              background: $carbon-light-100
+            100%
+              background: $carbon-light-900
+          .title-loading
+            left: 10px
+            top: 10px
+            position: relative
+            height: 7px
+            width: 80%
+          .txt-loading
+            left: 10px
+            top: 40px
+            position: relative
+            width: 40%
+            height: 7px
+          .value-loading
+            position: relative
+            top: 50px
+            left: 10px
+            width: 50%
+            height: 7px
+        .container-radio
+          display: block
+          position: relative
+          cursor: pointer
+          font-size: 22px
+          -webkit-user-select: none
+          -moz-user-select: none
+          -ms-user-select: none
+          user-select: none
+          height: 20px
+        .container-radio input
+          position: absolute
+          opacity: 0
+          cursor: pointer
+        .checkmark
+          position: absolute
+          height: 20px
+          width: 20px
+          background-color: $carbon-light-100
+          border: solid 1.3px $cbn-lgt-900
+          border-radius: 50%
+          right: 12px
+          top: 8px
+        .container-radio:hover input ~ .checkmark
+          background-color: $carbon-mid-100
+        input:checked ~ .checkmark
+          background-color: $g-500
+          border: none
+        .checkmark::after
+          content: ""
+          position: absolute
+          display: none
+        .container-radio
+          input:checked ~ .checkmark::after
+            display: block
+        .container-radio
+          .checkmark::after
+            top: 6px
+            left: 6px
+            width: 8px
+            height: 8px
+            border-radius: 50%
+            background: white
+    .cont-select-credit-card
+      display: inline-flex
+      overflow-x: auto
+      width: 100%
+      padding-bottom: 16px
+    .button-container
+      padding-top: 16px
+      text-align: center
+    .cont-txt-info
+      padding-top: 16px
+    .select-item
+      margin: auto
+      display: block
+      border-radius: 12px
+      border: 2px solid green
+      width: 40%
+      display: flex
+      .container-radio
+        display: block
+        position: relative
+        cursor: pointer
+        font-size: 22px
+        -webkit-user-select: none
+        -moz-user-select: none
+        -ms-user-select: none
+        user-select: none
+      .container-radio input
+        position: absolute
+        opacity: 0
+        cursor: pointer
+      .checkmark
+        position: absolute
+        height: 20px
+        width: 20px
+        background-color: $carbon-light-100
+        border: solid 1.3px $carbon-light-900
+        border-radius: 50%
+        left: 75px
+        bottom: 10px
+      .container-radio:hover input ~ .checkmark
+        background-color: $carbon-light-900
+        input:checked ~ .checkmark
+          background-color: $g-500
+          border: none
+      .checkmark::after
+        content: ""
+        position: absolute
+        display: none
+      .container-radio
+        input:checked ~ .checkmark::after
+          display: block
+      .checkmark::after
+        top: 6px
+        left: 6px
+        width: 8px
+        height: 8px
+        border-radius: 50%
+        background: white
+  .txt-total-points
+    font-weight: 600
+    font-size: 14px
+    line-height: 20px
+  .txt-points-to-redeem
+    font-weight: 500
+    font-size: 14px
+    line-height: 24px
+  .txt-amount
+    font-weight: 600
+    font-size: 21px
+    line-height: 28px
+  .txt-money
+    font-weight: 400
+    font-size: 12px
+    line-height: 20px
+    color: $cbn-mid-400
+  .txt-info
+    font-weight: 400
+    font-size: 12px
+    line-height: 17px
+  .txt-account-credit-card
+    font-weight: 600
+    font-size: 13px
+    line-height: 22px
+  .input-points
+    border: none
+    border-radius: none
+    width: 100%
+    color: $black-750
+    font-weight: 600
+    font-size: 21px
+    line-height: 28px
+    padding: 24px 0
+  .text-align
+    text-align: left
+  .cont-img
+    width: 36px
+    height: 36px
+    margin: 20px
+    border-radius: 22px
+    background-color: $g-100
+    img
+      width: 36px
+      height: 36px
+  .cont-img-arrows
+    left: 48%
+    top: 255px
+    width: 24px
+    height: 24px
+    margin: 5px
+    border-radius: 22px
+    background-color: #F5F5F5
+    position: absolute
+  .margin-bottom-16px
+    margin-bottom: 16px
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .main-step-three
+    .cont-form
+      .button-container
+        .btn
+          min-width: 132px
+@media only screen and (min-width: $break-medium-table-landscape-min)
+  .main-step-three
+    .cont-form
+      .cards-redeem
+        .cont-card-check
+          margin: 0
+          width: 50%
+        .right
+          margin-right: 8px
+        .left
+          margin-left: 8px
+    .txt-total-points
+      font-weight: 600
+      font-size: 18px
+      line-height: 24px
+    .txt-points-to-redeem
+      font-weight: 500
+      font-size: 13px
+      line-height: 22px
+    .txt-amount
+      font-weight: 600
+      font-size: 21px
+      line-height: 28px
+    .txt-money
+      font-weight: 400
+      font-size: 12px
+      line-height: 20px
+      color: $cbn-mid-400
+    .txt-info
+      font-weight: 400
+      font-size: 12px
+      line-height: 17px
+    .txt-account-credit-card
+      font-weight: 600
+      font-size: 13px
+      line-height: 22px
+    .text-align
+      text-align: center

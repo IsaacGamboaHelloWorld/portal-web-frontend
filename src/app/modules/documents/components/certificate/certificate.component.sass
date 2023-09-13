@@ -1,0 +1,213 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.container-certificate
+  width: 100%
+  .form-global
+    width: 420px
+    margin: 54px auto
+    .cont-section
+      position: relative
+      display: flex
+      flex-direction: row
+      .left
+        cursor: pointer
+        position: absolute
+        left: -50px
+        top: 50px
+        color: white
+        width: 32px
+        height: 32px
+        background-color: $carbon-light-900
+        border-radius: 200px
+        -moz-border-radius: 200px
+        -webkit-border-radius: 200px
+        .arrow-left
+          width: 32px
+          height: 32px
+          background-color: $carbon-light-100
+          mask: url('#{$base-url}/images/arrow-left.svg') no-repeat center / contain
+          -webkit-mask: url('#{$base-url}/images/arrow-left.svg') no-repeat center / contain
+      .left-invested
+        background-color: $g-100
+        .arrow-left
+          background-color: $g-500
+      .right
+        cursor: pointer
+        position: absolute
+        right: -50px
+        top: 50px
+        color: white
+        width: 32px
+        height: 32px
+        background-color: $g-100
+        border-radius: 200px
+        -moz-border-radius: 200px
+        -webkit-border-radius: 200px
+        .arrow-right
+          width: 32px
+          height: 32px
+          background-color: $g-500
+          mask: url('#{$base-url}/images/arrow-right.svg') no-repeat center / contain
+          -webkit-mask: url('#{$base-url}/images/arrow-right.svg') no-repeat center / contain
+      .right-invested
+        background-color: $carbon-light-900
+        .arrow-right
+          background-color: $carbon-light-100
+      .cont-options
+        width: 420px
+        display: flex
+        flex-direction: row
+        height: 141px
+        li
+          padding-right: 8px
+        .box-border
+          border: solid 1.3px $g-500
+        .box
+          display: flex
+          justify-content: center
+          align-items: center
+          flex-direction: column
+          cursor: pointer
+          width: 206px
+          height: 131px
+          border-radius: 12px
+          box-shadow: 0 1px 2px 0 #00000024
+          background-color: $carbon-light-100
+          .itemLoading
+            width: 100%
+            border-radius: 12px
+            .placeholder
+              animation: color-me-in 1s ease-out 0s alternate infinite none running
+            @keyframes color-me-in
+              0%
+                background: $carbon-light-100
+              100%
+                background: $carbon-light-900
+            .title-loading
+              left: 10px
+              bottom: 5px
+              position: relative
+              height: 7px
+              width: 50%
+            .text-loading
+              left: 10px
+              top: 15px
+              position: relative
+              width: 40%
+              height: 7px
+            .value-loading
+              position: relative
+              top: 35px
+              left: 10px
+              width: 50%
+              height: 7px
+          .container-radio
+            display: block
+            position: relative
+            cursor: pointer
+            font-size: 22px
+            -webkit-user-select: none
+            -moz-user-select: none
+            -ms-user-select: none
+            user-select: none
+          .container-radio input
+            position: absolute
+            opacity: 0
+            cursor: pointer
+          .checkmark
+            position: absolute
+            height: 20px
+            width: 20px
+            background-color: $carbon-light-100
+            border: solid 1.3px $carbon-light-900
+            border-radius: 50%
+            left: 75px
+            bottom: 10px
+          .container-radio:hover input ~ .checkmark
+            background-color: $carbon-light-900
+          input:checked ~ .checkmark
+              background-color: $g-500
+              border: none
+          .checkmark::after
+            content: ""
+            position: absolute
+            display: none
+          .container-radio
+            input:checked ~ .checkmark::after
+              display: block
+          .container-radio
+            .checkmark::after
+              top: 6px
+              left: 6px
+              width: 8px
+              height: 8px
+              border-radius: 50%
+              background: white
+          .cont-text
+            position: relative
+            right: 24px
+            bottom: 5px
+            .name
+              width: 125px
+              height: 17px
+              font-size: 14px
+              font-weight: 500
+              color: #0d0d0d
+            .number
+              width: 79px
+              height: 14px
+              font-size: 11px
+              font-weight: 500
+              color: $carbon-mid-600
+              padding-top: 10px
+            .amount
+              width: 82px
+              height: 24px
+              font-size: 10px
+              line-height: 2.4
+              letter-spacing: normal
+              color: $carbon-mid-600
+              position: relative
+              top: 25px
+    .cont-form
+      width: auto
+    .cont-download
+      text-align: center
+      button
+        border-radius: 8px
+@media only screen and (max-width: $break-mobile)
+  .container-certificate
+    width: 100%
+    .form-global
+      margin: 0 auto
+      width: 100%
+      .title
+        margin-left: 16px
+      .cont-section
+        .left
+          display: none
+        .right
+          display: none
+        .cont-options
+          display: flex
+          flex-direction: row
+      .cont-form
+        margin: 0 16px
+        height: 100%
+        border-radius: 12px
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+        background-color: $carbon-light-100
+        .form-group
+          padding: 24px 16px
+      .cont-download
+        width: 100%
+        padding: 0 16px
+        button
+          width: 100%
+  .navigation-opts
+    a
+      position: relative
+      padding: 10px 20px

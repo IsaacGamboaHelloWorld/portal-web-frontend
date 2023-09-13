@@ -1,0 +1,35 @@
+<app-template-system
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="false"
+></app-template-system>
+
+<ng-template #content>
+  <div class="cont-pockets">
+    <div class="new-pockets-nav not-select" *ngIf="!(step === 6 || step === 5)">
+      <a *ngIf="step !== 4" (click)="back()"><em class="icon-arrow-left"></em> {{'GO_BACK' | translate}}</a>
+      <a *ngIf="step !== 4" (click)="openAlert()" class="close-payment">{{'PAYMENTS.CLOSED.BTN' | translate}} <em class="icon-x-circle no-border"></em></a>
+    </div>
+    <div class="new-pocket">
+      <div class="new-head-pocket">
+        <h2 *ngIf="!editMode">{{'POCKETS.HOME.NEW.TITLE' | translate}} </h2>
+        <h2 *ngIf="editMode">{{'POCKETS.HOME.NEW.TITLE' | translate}} </h2>
+      </div>
+      <app-line-time [step]="step" [items]="items$ | async" *ngIf="step <= 3"></app-line-time>
+      <div class="info-steps">
+        <div class="animated element-hidden" [ngClass]="{'block fade-in-up': step === 1 }" *ngIf="step === 1">
+          <app-step-one-pocket (setStep)="setStep($event)"></app-step-one-pocket>
+        </div>
+        <div class="animated element-hidden" [ngClass]="{'block fade-in-up': step === 2 }" *ngIf="step === 2">
+          <app-step-two-pocket (setStep)="setStep($event)"></app-step-two-pocket>
+        </div>
+        <div class="animated element-hidden" [ngClass]="{'block fade-in-up': step === 3 }" *ngIf="step === 3">
+          <app-step-three-pocket (setStep)="setStep($event)"></app-step-three-pocket>
+        </div>
+        <div class="animated element-hidden" [ngClass]="{'block fade-in-up': step === 4 }" *ngIf="step === 4">
+          <app-step-four-pocket (setStep)="setStep($event)"></app-step-four-pocket>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

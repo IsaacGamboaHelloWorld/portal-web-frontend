@@ -1,0 +1,28 @@
+@import '../../../../../sass/colors'
+@import '../../../../../sass/variables'
+
+.product-warning
+  display: flex
+  justify-content: center
+  align-items: center
+  text-align: center
+  min-height: 400px
+  > div
+    max-width: 500px
+  .warning-product
+    span
+      line-height: 25px
+  img
+    height: 120px
+    width: auto
+    display: block
+    margin: 0 auto 15px
+  button
+    margin-top: 27px
+
+
+@media only screen and (max-width: $break-mobile)
+  .product-warning
+    min-height: 300px
+    position: relative
+    padding: 0 10px

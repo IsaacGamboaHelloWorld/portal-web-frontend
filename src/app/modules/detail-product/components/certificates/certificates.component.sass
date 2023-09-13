@@ -1,0 +1,66 @@
+@import '../../../../../sass/forms'
+@import '../../../../../sass/variables'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/icons'
+
+.form-global .select-bp select
+  background: url('#{$base-url}/images/arrow-down.png') calc( 100% - 0.75rem ) center no-repeat $carbon-light-100
+  background-size: 20px
+  padding-left: 0.75rem
+
+@mixin background-modal($height, $padding-y, $color)
+  background: $carbon-light-100
+  border-radius: 15px
+  color: $color
+  height: $height
+  padding: $padding-y 16px
+  
+@mixin v-h4($text-align, $font-size, $font-weight, $line-height)
+    text-align: $text-align
+    letter-spacing: normal
+    font-size: $font-size
+    font-weight: $font-weight
+    line-height: $line-height
+
+.cont-certificates
+  @include background-modal(319px, 56px, $black-750)
+  h4
+    margin-top: 0.75rem
+    @include v-h4(center, 1rem, 600, 1.5)
+  p
+    font-family: Inter
+    font-size: 13px
+    font-weight: normal
+    line-height: 2.15
+    letter-spacing: normal
+  section
+    margin-top: 1.5rem
+    .error
+      background: url('#{$base-url}/images/arrow-down-red.svg') calc( 100% - 0.75rem ) center no-repeat $error-100-050
+      background-size: 1.5rem
+      box-shadow: 0 1px 3px 0 $error-600-015, 0 0 0 1px $error-600-015
+      border-radius: 0.5rem
+      border: 1.2px solid $transparent
+      padding: 0.75rem
+      color: $error-600
+  button, .btn-download
+    width: 100%
+    display: block
+    text-align: center
+  .select-bp
+      width: 100%
+  .messages
+    display: inline-block
+  img
+    width: 43px
+    height: 33px
+  .form-global .form-group
+    margin-top: 1.5rem
+
+.modal-box
+  max-width: 343px !important
+  .cancel_btn
+    height: 1.5rem
+    width: 1.5rem
+    top: 1.5rem
+    right: 1.5rem

@@ -1,0 +1,36 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.step-default
+  h2
+    font-weight: 700
+    font-size: 28px
+  > p
+    padding: 8px 0
+    font-size: $f-14
+    line-height: 1.5
+    letter-spacing: -0.3px
+  .line-time
+    margin: 29px auto 80px
+    min-width: 315px
+    max-width: 550px
+    .line
+      max-width: 480px
+  .info-steps
+    min-height: 30vh
+    width: 100%
+    max-width: 715px
+    display: block
+    margin: 0 auto
+
+
+@media only screen and (max-width: $break-mobile)
+  .step-default
+    h2
+      font-size: $f-20 + 4
+      padding: 0 14px
+    > p
+      padding: 8px 14px
+    .line-time
+      margin: 29px auto 33px

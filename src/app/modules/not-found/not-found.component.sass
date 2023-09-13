@@ -1,0 +1,127 @@
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+@import '../../../sass/mixins'
+
+.container-notfound
+  display: flex
+  justify-content: center
+  flex-direction: column
+  align-items: center
+  min-height: 100vh
+  .logo
+    position: absolute
+    top: 42px
+    left: 79px
+    img
+       width: 167px
+  .cont-footer
+    width: 100%
+    position: absolute
+    bottom: 42px
+    padding: 0 79px
+    left: 0
+
+.image-container
+  min-height: 230px
+  .circle-green
+    img
+      position: absolute
+      top: 50%
+      left: 50%
+      margin: -70px
+      width: 75%
+
+.text-container
+  width: 300px
+  text-align: center
+  margin: 0 auto
+  font-weight: 500
+
+  h2
+    font-weight: 600
+    margin-top: 60px
+
+  p
+    margin-top: 17px
+
+  button
+    margin-top: 29px
+
+.cont-circles
+  position: absolute
+  z-index: -1
+  width: 100%
+  height: 100%
+  overflow: hidden
+
+.circle-big,
+.circle-medium,
+.circle-small,
+.circle-green,
+.cont-signs
+  position: absolute
+  left: 50%
+  top: 40%
+  border-radius: 50%
+
+.circle-big
+  width: 482px
+  height: 482px
+  border: 1px solid #eeeeee
+  margin: -241px 0 0 -241px
+  transition-delay: 2s
+
+.circle-medium,
+.cont-signs
+  width: 374px
+  height: 374px
+  border: 1px solid $black-100
+  margin: -187px 0 0 -187px
+  transition-delay: 1.5s
+
+.circle-small
+  width: 280px
+  height: 280px
+  border: 1px solid $carbon-light-900
+  margin: -140px 0 0 -140px
+  transition-delay: 1s
+
+.circle-green
+  width: 188px
+  height: 188px
+  margin: -94px 0 0 -94px
+  background: #d7f4d4
+  transition-delay: 1s
+
+
+@media only screen and (max-width: $break-mobile)
+  .circle-big,
+  .circle-medium,
+  .circle-small,
+  .circle-green,
+  .cont-signs
+    top: 28%
+  .container-notfound
+    min-height: 607px
+    .logo
+      position: absolute
+      top: 27px
+      left: 50%
+      margin: 0 -93px
+      img
+        width: 167px
+  .image-container
+      min-height: 90px
+
+  .text-container
+    max-width: 85%
+    margin-top: 150px
+    h2
+      margin-top: 0
+    button
+      width: 100%
+
+  .cont-footer
+    position: relative
+    bottom: -44px
+    padding: 0 69px

@@ -1,0 +1,51 @@
+@import '../../../../../sass/mixins'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/variables'
+
+
+.cards
+  >div
+    margin-top: 24px
+    .subsection-title
+      font-size: $f-14 + 2
+      font-weight: 600
+      margin-bottom: 20px
+      text-align: justify
+      width: 100%
+      &.one
+        width: 322px
+        padding-left: 0
+    .amount
+      width: 16px
+      height: 16px
+      border-radius: 8px
+      background-color: $info-100
+      color: $info-600
+      font-size: 10px
+      font-weight: 600
+      letter-spacing: normal
+      text-align: center
+      padding: 2px
+      display: inline-block
+      margin-left: 2px
+  .debit-cards-acc, .credit-cards-acc
+    display: flex
+    flex-direction: column
+    align-items: center
+  .credit-cards-acc
+    .subsection-title
+      padding-left: 8px
+  ul
+    li
+      display: inline-block
+
+@media only screen and (max-width: $break-mobile)
+  .head-blocked-prods
+    h2
+      font-size: $f-14 + 2
+      font-weight: 600
+  .list-blocked-cards
+    margin-top: 40px
+    ul
+      li
+        display: inline-block

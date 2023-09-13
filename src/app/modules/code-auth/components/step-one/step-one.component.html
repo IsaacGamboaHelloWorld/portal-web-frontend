@@ -1,0 +1,42 @@
+<div class="animated fade-in-up cont-step-one-2fa">
+  <div class="form-group column small-12 medium-12 large-12" *ngIf="(stateActivate | async)?.success">
+    <div class="cont-images">
+      <div class="border-box box-one"></div>
+      <div class="border-box box-two"></div>
+      <div class="bg-box box-three"></div>
+      <img class="box-image" [ngClass]="{'img-operator': count === 2,'img-phone': count === 1}" [src]="imgStep | imageCdn" alt="">
+    </div>
+    <div class="cont-text">
+      <div class="copys">
+        <p class="title">{{titleStep | translate}}</p>
+        <p #step class="text animated" [innerHTML]="textStep | translate"></p>
+      </div>
+    </div>
+    <div class="cont-slides">
+      <form class="controls">
+        <button class="left" type="button" (click)="toggle('prev')" [ngClass]="{'back-left': count >= 1}">
+          <i [ngClass]="{'icon-arrow3-left': true}"></i>
+        </button>
+        <div class="points" [ngClass]="{'display-point': count === (listPoints.length - 1)}">
+          <div *ngFor="let point of listPoints; let i=index">
+            <input class="page-point" type="radio" name="page" [value]="point.value">
+            <label for="page"></label>
+          </div>
+        </div>
+        <div class="cont-btn-end">
+          <button class="right" type="button" (click)="toggle('next')" *ngIf="count < (listPoints.length - 1)">
+            <i [ngClass]="{'icon-arrow3-right': true}"></i>
+          </button>
+          <app-btn *ngIf="count === (listPoints.length - 1)"
+            [type]="'button'"
+            (clickBtn)="submitData()"
+            [text]="'CODE_AUTH.ONBOARDING.BTN' | translate"
+            [id]="'btn-step-two'"
+            [isLoading]="false"
+            [class]="'btn-primary btn-send'"
+          ></app-btn>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

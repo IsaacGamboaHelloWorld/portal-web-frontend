@@ -1,0 +1,218 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.card-home-opt-sec-container
+  background-color: $carbon-light-100
+  max-width: 456px
+  min-height: 84px
+  border-radius: 12px
+  box-shadow: 0 1px 2px 0 $transparent-08
+  margin-bottom: 16px
+  &:hover
+    cursor: pointer
+  .card-header-os
+    display: flex
+    flex-direction: row
+    align-items: center
+    padding: 16px 8px 16px 16px
+    &.isNew
+      padding: 8px 8px 8px 16px
+    .img-container
+      height: 40px
+      width: 40px
+      padding: 8px
+      background-color: rgba($act-100, 0.72)
+      img
+        width: 24px
+        height: 24px
+        background-repeat: no-repeat
+    .header-body-os
+      flex: 1 1
+      margin-left: 16px
+      .new-text
+        color: $hlt-600
+        font-weight: 600
+        font-size: 12px
+        line-height: 20px
+        display: flex
+        flex-direction: row
+        align-items: center
+        .point
+          width: 6px
+          height: 6px
+          border-radius: 50%
+          background-color: $hlt-600
+          display: inline-block
+          margin-right: 6px
+      h4
+        font-size: 14px
+        font-weight: 600
+        line-height: 2
+        letter-spacing: normal
+        color: $black-750
+      p
+        font-size: 12px
+        font-weight: normal
+        line-height: 2
+        letter-spacing: normal
+        color: $cbn-mid-600
+    em
+      color: $act-900
+      font-size: 16px
+  .card-body-os
+    position: relative
+    min-height: 100px
+    border-top: solid 1px $cbn-lgt-400
+    border-bottom: solid 1px $cbn-lgt-400
+    padding: 8px 24px
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    .body-text
+      .body-title
+        font-size: 12px
+        font-weight: 500
+        line-height: 2
+        letter-spacing: normal
+        color: $cbn-900
+        img
+          margin-right: 8px
+      .body-subtitle
+        font-size: 11px
+        font-weight: normal
+        line-height: 1.82
+        letter-spacing: normal
+        color: $cbn-mid-600
+    .body-opt-os
+      position: absolute
+      width: 100%
+      margin-top: -7px
+      margin-left: -24px
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      .opt
+        height: 49px
+        font-size: 12px
+        font-weight: 500
+        line-height: 2
+        letter-spacing: normal
+        color: $cbn-900
+        border-bottom: solid 1px $cbn-lgt-400
+        display: flex
+        justify-content: flex-start
+        align-items: center
+        padding: 0px 24px
+        img
+          margin-right: 8px
+  .card-footer-os
+    height: 52px
+    display: flex
+    justify-content: center
+    align-items: center
+    .bottom-label
+      font-size: 12px
+      font-weight: 600
+      line-height: 2
+      letter-spacing: normal
+      color: $inf-600
+
+  .item-loading
+    min-height: 100px
+    border-radius: 12px
+    overflow: hidden
+    .placeholder
+      animation: color-me-in 1s ease-out 0s alternate infinite none running
+    @keyframes color-me-in
+      0%
+        background: $carbon-light-100
+      100%
+        background: $carbon-light-900
+    .bg-icon-loading
+      top: 29px
+      left: 24px
+      position: relative
+      width: 44px
+      height: 44px
+      border-radius: 20px
+      background-color: $black-100
+    .title-loading
+      left: 80px
+      position: relative
+      height: 12px
+      bottom: 5px
+    .text-loading
+      top: 5px
+      left: 80px
+      position: relative
+    .body-loading
+      padding: 12px 24px
+      min-height: 76px
+      margin-top: 15px
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      .option-loading
+        position: relative
+        margin: 10px 0
+    .footer-loading
+      min-height: 40px
+      padding: 0px 24px
+      display: flex
+      justify-content: center
+      .button-loading
+        position: relative
+        margin: 10px 0
+        height: 12px
+
+@media only screen and (min-width: $break-small-table-min)
+  .card-home-opt-sec-container
+    min-height: 100px
+    .card-header-os
+      padding: 24px 24px 24px 32px
+    .card-body-os
+      min-height: 96px
+      padding: 16px 40px
+      .body-opt-os
+        margin-top: -19px
+        margin-left: -40px
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .card-home-opt-sec-container
+    min-height: 84px
+    .card-header-os
+      padding: 16px 8px 16px 16px
+    .card-body-os
+      min-height: 100px
+      padding: 8px 24px
+      .body-opt-os
+        margin-top: -7px
+        margin-left: -24px
+
+@media only screen and (min-width: $break-medium-table-landscape-min)
+  .card-home-opt-sec-container
+    min-height: 100px
+    .card-header-os
+      padding: 30px 16px 30px 24px
+      &.isNew
+        padding: 20px 16px 20px 24px
+    .card-body-os
+      min-height: 96px
+      padding: 16px 32px
+      .body-opt-os
+        margin-top: -19px
+        margin-left: -32px
+        .opt
+          padding: 0px 32px
+
+@media only screen and (min-width: $break-desktop-lg-min)
+  .card-home-opt-sec-container
+    .card-header-os
+      padding: 30px 24px 30px 32px
+    .card-body-os
+      padding: 16px 40px
+      .body-opt-os
+        margin-top: -19px
+        margin-left: -40px
+        .opt
+          padding: 0px 40px

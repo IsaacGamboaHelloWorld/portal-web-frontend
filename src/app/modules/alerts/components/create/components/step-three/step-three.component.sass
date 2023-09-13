@@ -1,0 +1,110 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+
+.form-three-alerts
+  max-width: 343px
+  margin: 0 auto
+
+  .list-options-container
+    .form-radiobutton-contanier
+      margin-bottom: 8px
+      background: $carbon-light-100
+      padding: 16px 24px
+      border-radius: 12px
+      box-shadow: 0 1px 3px 0 rgba($carbon-dark-900, 0.14)
+      overflow: hidden
+      label
+        padding-bottom: 12px
+        font-size: $f-14 - 2
+        font-weight: 500
+        display: block
+        color: $carbon-dark-900
+        max-width: 260px
+      span
+        display: block
+        font-size: $f-14
+        font-weight: 600
+      &.active
+          border: solid 1.5px $g-500
+          background: $gb-500
+      &.other-value
+        label
+          padding-bottom: 0
+        input[type=tel]
+          margin-top: 0
+          border: none
+          background: transparent
+  .alerts-where-container
+    .alerts-where-list
+      display: flex
+      max-width: 343px
+      .radio-image
+        min-width: 162px
+        max-width: 215px
+        height: 116px
+        border-radius: 12px
+        background: $carbon-light-100
+        margin: 4px
+        padding: 8px
+        position: relative
+        box-shadow: 0 1px 3px 0 rgba($carbon-dark-900, 0.14)
+        display: flex
+        &.active
+          border: solid 1.5px $g-500
+          background: $gb-500
+        input[type='radio']
+          display: none
+        label
+          font-size: $f-14 + 2
+          cursor: pointer
+          top: 10px
+          position: absolute
+          bottom: 0
+          right: 30px
+          content: ''
+          &::after
+            width: 20px
+            height: 20px
+            content: ''
+            border-radius: 10px
+            border: 1.3px solid $carbon-light-900
+            transition: .3s
+            background-position: center center
+            background-repeat: no-repeat
+            +inline(middle)
+            position: absolute
+            background-size: 20px
+        input[type='radio']:checked + label
+          margin-bottom: 0
+          background: yellow
+          &::after
+            background: red
+            background-image: url('#{$base-url}/images/radio.png')
+            border-color: $g-500
+
+      .items-container
+        margin: 0 auto
+        align-self: center
+        font-size: $f-14 - 1
+        font-weight: 600
+        .img-back
+          padding: 11px
+          background: $orange-100
+          border-radius: 100%
+          max-width: 44px
+          margin: 0 auto 12px
+          img
+            width: 22px
+    .desc
+      font-size: 11px
+  .button-container
+    margin-top: 20px
+    text-align: center
+
+.active
+  label
+    &::after
+      background-image: url('#{$base-url}/images/radio.png')
+      border-color: $g-500

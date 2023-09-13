@@ -1,0 +1,25 @@
+<ng-container *ngIf="!loading else loadingState">
+    <div class="card-admin shadow-1dp card{{tagnumber}}">
+        <div class="info-card">
+            <p>{{nameService}}</p>
+            <span>Nro. {{ref | creditCardMask | creditCardHidden}}</span>
+            <span class="ref">{{enterprise}}</span>
+        </div>
+        <div class="icon-card">
+            <em class="icon-arrow2-right" *ngIf="!editMode"></em>
+            <button class="animated bounceIn" *ngIf="editMode" (click)="delete()">
+        <em class="icon-delete">
+        </em>
+      </button>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #loadingState>
+    <div class="card-admin itemLoading loading-global shadow-1dp" *ngFor="let i of [].constructor(loadingItems)">
+        <div class="info-card">
+            <p class="placeholder width-40 "></p>
+            <p class="placeholder width-100 "></p>
+        </div>
+    </div>
+</ng-template>

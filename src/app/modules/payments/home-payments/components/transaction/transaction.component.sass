@@ -1,0 +1,93 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.transaction-payment
+  padding: 24px
+  display: flex
+  align-items: flex-start
+  position: relative
+  .column-status
+    text-align: right
+    align-self: center
+  .info-mobile
+    margin-top: 18px
+  p
+    line-height: 1.71
+  .status-transaction
+    border-radius: 4px
+    line-height: 1.92
+    padding: 0 12px
+    display: inline-block
+    text-align: center
+    font-size: $f-14 - 2
+    font-weight: 500
+    &.visible-tablet
+      display: none
+    &.pending
+      background: $warning-100
+      color: $warning-900
+    &.success
+      background: $success-100
+      color: $success-900
+    &.error
+      background: $error-100
+      color: $error-900
+
+  .approval-id
+    color: $orange-900
+    span
+      color: $carbon-dark-900
+
+  .btn-info-pending
+    width: 24px
+    height: 24px
+    border: 2px solid $g-500
+    border-radius: 50%
+    position: absolute
+    right: 24px
+    background: transparent
+    top: 36px
+    cursor: pointer
+    color: $g-500
+    z-index: 1
+    display: none
+    justify-content: center
+    align-items: center
+    i
+      font-weight: bold
+
+@media only screen and (max-width: $break-tablet)
+  .transaction-payment
+    padding: 22px 0
+    display: block
+    &.show
+      .info-mobile
+        max-height: 1000px
+        transition: .5s
+    > div.column
+      float: none
+      width: 100%
+      padding: 0 14px
+    .status-transaction
+      line-height: 1.92
+      font-size: $f-14 - 2
+      width: auto
+      padding: 0 12px
+      display: inline-block
+      margin-top: 8px
+      &.visible-tablet
+        display: inline-block
+        margin-bottom: 8px
+    .approval-id
+      span
+        display: inline-block
+    .info-mobile
+      transition: .5s
+      max-height: 0
+      overflow: hidden
+      margin: 0
+      p:first-child
+        padding-top: 15px
+
+    .btn-info-pending
+      display: flex

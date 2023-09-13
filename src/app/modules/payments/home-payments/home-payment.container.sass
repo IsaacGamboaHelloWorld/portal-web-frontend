@@ -1,0 +1,36 @@
+@import '~sass/mixins'
+@import '~sass/colors'
+@import '~sass/variables'
+
+.home-payment
+  margin-top: 32px
+  .home-head-payment
+    display: flex
+    justify-content: space-between
+    align-items: center
+    h2
+      font-weight: bold
+      padding: 0 8px
+    .payments-list
+      flex-grow: 3
+      text-align: right
+
+@media only screen and (max-width: $break-mobile)
+  .home-payment
+    margin-top: 22px
+    padding: 0 15px
+    .home-head-payment
+      flex-direction: column
+      justify-content: flex-start
+      align-items: flex-start
+      h2
+        font-size: $f-20 + 4
+        margin-bottom: 24px
+        padding: 0
+      .payments-list
+        order: 1
+        text-align: center
+        flex-grow: 1
+      a
+        width: 100%
+        text-align: center

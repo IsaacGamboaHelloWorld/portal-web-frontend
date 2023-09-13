@@ -1,0 +1,88 @@
+<div class="cont-modal-detail">
+  <div class="cont-options animation" *ngIf="viewOptions">
+    <ul class="list-options">
+      <li (click)="edit()">
+        <span>{{'AUTH.ENROLLMENT.BIOMETRIC.EDIT' | translate}}</span>
+      </li>
+      <li (click)="cancel()">
+        <span>{{'AUTH.ENROLLMENT.BIOMETRIC.DELETE' | translate}}</span>
+      </li>
+    </ul>
+    <div class="footer-btn">
+      <button type="button" (click)="close()">{{'TRANSFER.SCHEDULED.MODAL.BTN' | translate}}</button>
+    </div>
+  </div>
+
+  <div class="cont-success" *ngIf="viewCancel">
+
+  </div>
+
+  <div class="cont-cancel animation" *ngIf="viewCancel">
+    <div class="cont-icon">      
+      <img [src]="'/24-essential-warning-6.svg' | imageCdn" alt="">
+    </div>
+    <span class="title">{{'AUTH.ENROLLMENT.BIOMETRIC.MODAL.TITLE' | translate}}</span>
+    <span class="desc">{{'AUTH.ENROLLMENT.BIOMETRIC.MODAL.DESC' | translate}}</span>
+    <div class="cont-btn-cancel">
+      <app-btn (clickBtn)="close()"
+      [text]="('AUTH.ENROLLMENT.BIOMETRIC.MODAL.BTN_CANCEL' | translate)"
+      [class]="'btn btn-primary cancel'"></app-btn>
+
+      <app-btn (clickBtn)="delete()"
+      [text]="('AUTH.ENROLLMENT.BIOMETRIC.MODAL.BTN_OK' | translate)"
+      [class]="'btn btn-primary ok'"
+      [isLoading]="loading"
+      [disabled]="loading"></app-btn>
+    </div>
+  </div>
+  <div class="cont-question animation" *ngIf="viewQuestion">
+    <div class="cont-icon">      
+      <img [src]="'/24-essential-warning-6.svg' | imageCdn" alt="essential">
+    </div>
+    <span class="title">{{'AUTH.ENROLLMENT.BIOMETRIC.QUESTION.TITLE' | translate}}</span>
+    <span class="desc">{{'AUTH.ENROLLMENT.BIOMETRIC.QUESTION.DESC' | translate}}</span>
+    <div class="cont-step">
+      <ul>
+        <li>
+          <span class="point">1. </span> <p innerHTML="{{'AUTH.ENROLLMENT.BIOMETRIC.QUESTION.STEP1' | translate}}" class="list-bold"></p>
+        </li>
+        <li>
+          <span class="point">2. </span> <p innerHTML="{{'AUTH.ENROLLMENT.BIOMETRIC.QUESTION.STEP2' | translate: { value: 'orange-bold', bold: 'desc-bold' } }}" class="list-bold"></p>
+        </li>
+        <li>
+          <span class="point">3. </span> <p innerHTML="{{'AUTH.ENROLLMENT.BIOMETRIC.QUESTION.STEP3' | translate}}" class="list-bold"></p>
+        </li>
+        <li>
+          <span class="point">4. </span> <p innerHTML="{{'AUTH.ENROLLMENT.BIOMETRIC.QUESTION.STEP4' | translate}}" class="list-bold"></p>
+        </li>
+        <li>
+          <span class="point">5. </span> <p innerHTML="{{'AUTH.ENROLLMENT.BIOMETRIC.QUESTION.STEP5' | translate}}" class="list-bold"></p>
+        </li>
+      </ul>
+    </div>
+    <div class="cont-btn-question">
+      <app-btn (clickBtn)="validQuestion()"
+      [text]="('AUTH.ENROLLMENT.BIOMETRIC.QUESTION.BTN' | translate)"
+      [class]="'btn btn-primary ok'"
+      [isLoading]="loading"
+      [disabled]="loading"></app-btn>
+    </div>
+  </div>
+  <div class="cont-valid animation" *ngIf="viewValid">
+    <div class="cont-icon">      
+      <img [src]="'/24-essential-warning-6.svg' | imageCdn" alt="">
+    </div>
+    <span class="title">{{'AUTH.ENROLLMENT.BIOMETRIC.MODAL.VALID' | translate}}</span>
+    <span class="desc" innerHTML="{{'AUTH.ENROLLMENT.BIOMETRIC.MODAL.DESC_VALID' | translate: { value: 'desc-bold' } }}"></span>
+    <div class="cont-btn-valid">
+      <app-btn (clickBtn)="valid()"
+      [text]="('AUTH.ENROLLMENT.BIOMETRIC.MODAL.BTN_VALID' | translate)"
+      [class]="'btn btn-primary ok'"
+      [isLoading]="loading"
+      [disabled]="loading"></app-btn>
+    </div>
+    <div class="footer-btn">
+      <a class="link" (click)="close()">{{'AUTH.ENROLLMENT.BIOMETRIC.MODAL.BTN_CANCEL' | translate}}</a>
+    </div>
+  </div>
+</div>

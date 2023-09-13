@@ -1,0 +1,63 @@
+<div class="cont-2fa-global" [ngClass]="{'small': addSmall}">
+  <adl-twofactorauth
+      *ngIf="hasData"
+      [icon]="iconName | imageCdn"
+      [animation]="isAllowed"
+      [heading]="headText | translate"
+      [allowedDescription]="'TWO_FA.SUCCESS' | translate"
+      [allowedIcon]="(isAllowed ? allowedIcon : (allowedIcon | imageCdn))"
+      [description]="descriptionText | translate"
+      [deniedIcon]="deniedIcon | imageCdn"
+      [deniedAssign]="deniedBtn"
+      [deniedDescription]="deniedDes | translate"
+      [deniedHeading]="deniedHead | translate"
+      [selectChallengeIcon]="'/welcome.png' | imageCdn"
+      [selectChallengeDescription]="'TWO_FA.SELECT_CHALLENGE' | translate"
+      [challengeResponse]="dialogConfig?.data"
+      [totpDescription]="'TWO_FA.TOTP.NAME' | translate"
+      [webAuthnDescription]="'TWO_FA.WEB_AUTHN.NAME' | translate"
+      [hardDescription]="'TWO_FA.HARD.NAME' | translate"
+      [enhancedDescription]="'TWO_FA.ENHANCED.NAME' | translate"
+      [timerText]="'TWO_FA.TIMER' | translate"
+      [descPseOne]="'' | translate"
+      [descPseTwo]="'' | translate"
+      (eventBtn)="disabled = $event">
+    <button
+        twofa-btn-continue
+        type="button"
+        class="btn btn-primary" [disabled]="disabled">
+      {{'TWO_FA.BTN_CONTINUE' |  translate}}
+      <small class="loading-dots">
+        <span class="dot-btn"></span>
+        <span class="dot-btn"></span>
+        <span class="dot-btn"></span>
+      </small>
+    </button>
+    <button
+        twofa-btn-select
+        type="button"
+        class="btn btn-primary">
+      {{'TWO_FA.SELECT' |  translate}}
+      <small class="loading-dots">
+        <span class="dot-btn"></span>
+        <span class="dot-btn"></span>
+        <span class="dot-btn"></span>
+      </small>
+    </button>
+    <div twofa-btn-denied-assign>
+      <app-btn
+      (clickBtn)="assign()"
+      [disabled]="loading"
+      [text]="'TWO_FA.BTN_DENIED' | translate"
+      [id]="'btn-step-one'"
+      [isLoading]="loading"
+      [class]="'btn-primary'"
+    ></app-btn>
+    </div>
+    <button
+        twofa-btn-denied-continue
+        type="button"
+        [ngClass]="{'link': deniedBtn, 'btn btn-primary' : !deniedBtn}"
+        (click)="home()">{{'TWO_FA.HOME' |  translate}}</button>
+  </adl-twofactorauth>
+</div>

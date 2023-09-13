@@ -1,0 +1,26 @@
+
+<app-template-system
+  [title]="'HOME.OFFER_PRODUCTS.TITLE' | translate"
+  [subtitle]="'HOME.OFFER_PRODUCTS.DESC' | translate"
+  [sectionHome]="false" 
+  [sectionContent]="content"
+  [fullContent]="true" 
+  [navigatorActive]="true" 
+  [currentStep]="0"
+  [maxStep]="1"
+  [backUrl]="'/'" 
+  [showClose]="false">
+</app-template-system>
+
+<ng-template #content>
+  <div class="cont-home-offers">
+    <div class="card-offer-product" *ngFor="let item of optionsOffers$ | async; let i = index;" (click)="open(item)">
+      <div class="cont-icon">
+        <img [src]="item['IMG'] | imageCdn" alt="'icon'">
+      </div>
+      <div class="cont-name-card">
+        <p>{{item['NAME']}}</p>
+      </div>
+    </div>
+  </div>
+</ng-template>

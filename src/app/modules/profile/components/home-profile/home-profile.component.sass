@@ -1,0 +1,62 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+@import '~sass/layout'
+
+.cont-home-profile
+  margin-top: 133px
+  .align-home-profile
+    display: flex
+    &::before
+      content: ''
+      top: 0
+      position: absolute
+      left: 0
+      right: 0
+      height: 317px
+      z-index: -1
+    .cont-home-profile-smart-card
+      text-align: center
+      width: 100%
+      max-width: 365px
+      padding: 20px 15px
+      margin: 0 auto
+      display: block
+
+@media only screen and (max-width: $break-tablet)
+  .cont-home-profile
+    margin-top: 30px
+    .align-home-profile
+      display: flex
+      flex-direction: row
+      margin-top: 0
+      &::before
+        height: 373px
+      .cont-home-profile-smart-card
+        max-width: 100%
+        margin-right: 58px
+
+@media only screen and (max-width: 1023px)
+  .cont-home-profile
+    .align-home-profile
+      display: flex
+      flex-direction: column
+      margin-top: 0
+      &::before
+        height: 217px
+      .cont-home-profile-smart-card
+        max-width: 100%
+        margin-right: 0
+
+@media only screen and (max-width: $break-mobile)
+  .cont-home-profile
+    margin-top: 0
+    .align-home-profile
+      display: flex
+      flex-direction: column
+      margin-top: 0
+      &::before
+        height: 160px
+      .cont-home-profile-smart-card
+        max-width: 100%
+        margin-right: 0

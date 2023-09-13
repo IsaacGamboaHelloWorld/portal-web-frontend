@@ -1,0 +1,39 @@
+<div class="card-info-loan shadow-1dp" *ngIf="!loading else loadingState">
+    <h3>{{serviceName}}</h3>
+    <div class="card-info-payment">
+        <div class="card-info-payment-col">
+            <p class="label">Banco</p>
+            <h4>{{enterprise}}</h4>
+            <p class="label">Tipo de producto</p>
+            <strong>{{('PRODUCT_TYPES.' + productType.toLocaleUpperCase()) | translate}}</strong>
+        </div>
+        <div class="card-info-payment-col">
+            <p class="label">Número de producto</p>
+            <strong *ngIf="T_CC">{{ref | creditCardMask | creditCardHidden}}</strong>
+            <strong *ngIf="!T_CC">{{ref}}</strong>
+        </div>
+    </div>
+    <button class="btn btn-primary" (click)="pay()">Pagar</button>
+</div>
+
+<ng-template #loadingState>
+    <div class="card-info-loan itemLoading loading-global shadow-1dp">
+        <div class="card-info-payment-loader">
+            <p class="placeholder width-40 title"></p>
+        </div>
+        <div class="columns-container">
+            <div class="card-info-payment-loader">
+                <p class="placeholder width-40 "></p>
+                <p class="placeholder width-60 "></p>
+            </div>
+            <div class="card-info-payment-loader">
+                <p class="placeholder width-40 "></p>
+                <p class="placeholder width-60 "></p>
+            </div>
+            <div class="card-info-payment-loader">
+                <p class="placeholder width-40 "></p>
+                <p class="placeholder width-60 "></p>
+            </div>
+        </div>
+    </div>
+</ng-template>

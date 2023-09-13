@@ -1,0 +1,167 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.main-total-points
+  text-align: center
+  display: flex
+  flex-direction: column
+  width: auto
+  height: auto
+  border-radius: 12px
+  background-color: $carbon-light-100
+  .cont-header-total-points
+    border-radius: 12px 12px 0 0
+    display: block
+    width: 100%
+    height: auto
+    align-items: center
+    .cont-logo
+      padding: 16px
+      width: 100%
+      height: auto
+      background-color: $carbon-light-100
+      display: flex
+      align-items: center
+      border-radius: 12px
+      .txt-logo
+        padding-left: 8px
+        font-weight: 600
+        font-size: 18px
+        line-height: 24px
+    .display-flex
+      .cont-total-points
+        width: 40%
+        height: auto
+        padding-left: 16px
+      .cont-total-points-error
+        width: 100%
+        height: auto
+        margin: 5px
+        display: flex
+        flex-direction: column
+        align-items: center
+      .cont-img-total-points
+        height: auto
+        width: 20%
+        img
+          width: auto
+          height: auto
+      .cont-total-money
+        height: auto
+        width: 40%
+        padding-right: 16px
+  .cont-body-list-bank
+    display: block
+    width: 100%
+    margin: auto
+    height: auto
+    align-items: center
+    .cont-bank-items
+      display: flex
+      width: 100%
+      height: auto
+      align-items: center
+      padding: 8px 16px
+      .cont-bank-img
+        width: auto
+        border-radius: 50%
+      .cont-bank-name
+        width: inherit
+        display: flex
+        padding-left: 16px
+      .cont-bank-points
+        width: auto
+        display: flex
+  .cont-footer-redeem
+    padding: 16px 24px
+    width: 100%
+    align-self: center
+  &.loading
+    overflow: hidden
+    align-self: center
+    justify-content: center
+    .cont-header-total-points
+      padding: 20px
+      display: block
+      justify-content: center
+      .placeholder
+        min-height: 20px
+        margin: 5px
+    .cont-body-list-bank
+      padding: 20px
+      display: flex
+      .placeholder
+        min-height: 20px
+        margin: 5px
+    .cont-footer-redeem
+      padding: 20px
+      overflow: hidden
+      width: 100%
+      text-align: -webkit-center
+      .placeholder
+        min-height: 20px
+  .txt-total-points
+    font-weight: 600
+    font-size: 12px
+    line-height: 17px
+    color: $cbn-mid-400
+    text-align: left
+    padding-right: 20px
+  .txt-bank-name
+    font-weight: 600
+    font-size: 14px
+    line-height: 20px
+    color: $cbn-mid-400
+  .txt-amount
+    font-weight: 600
+    font-size: 12px
+    line-height: 24px
+    margin: auto
+    padding-top: 8px
+    text-align: left
+    padding-left: 0
+  .txt-bank-points
+    font-weight: 600
+    font-size: 14px
+    line-height: 20px
+    margin: auto
+  .padding-0
+    padding-left: 0
+    padding-right: 0
+    padding-top: 0
+    padding-bottom: 0
+  .text-align-right
+    text-align: right
+@media only screen and (min-width: $break-mobile-min)
+  .main-total-points
+    .cont-header-total-points
+      background-color: $carbon-light-100
+    .txt-amount
+      font-size: 16px
+    .txt-total-points
+      font-size: 14px
+      padding-right: 24px
+@media only screen and (min-width: $break-small-table-min)
+  .main-total-points
+    .cont-footer-redeem
+      .btn
+        max-width: 132px
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .main-total-points
+    .txt-total-points
+      padding-right: 25px
+    .cont-footer-redeem
+      .btn
+        max-width: 132px
+    .cont-body-list-bank
+      .cont-bank-items
+        padding: 8px 40px
+    .cont-header-total-points
+      .cont-logo
+        padding: 16px 40px
+      .display-flex
+        .cont-total-points
+          padding-left: 40px
+        .cont-total-money
+          padding-right: 40px

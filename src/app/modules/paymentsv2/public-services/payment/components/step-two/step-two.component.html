@@ -1,0 +1,13 @@
+<div class="animated fade-in-up cont-step-two-payment">
+    <ng-container *ngIf="formSecondStep">
+        <form class="form-global" [formGroup]="formSecondStep">
+            <div class="field-container">
+                <label>{{'PAYMENTS.CONFIRMATION.OTHER' | translate}}</label>
+                <input class="input-bp" formControlName="amount" placeholder="$" appCurrency [form]="formSecondStep" [property]="'amount'" pattern="^(?!\s.*$).*" appStateInput>
+            </div>
+            <div class="button-container">
+                <app-btn [class]="'btn-primary'" [disabled]="formSecondStep.invalid" [text]="'CONTINUE' | translate" [isLoading]="false" (clickBtn)="submitData()"></app-btn>
+            </div>
+        </form>
+    </ng-container>
+</div>

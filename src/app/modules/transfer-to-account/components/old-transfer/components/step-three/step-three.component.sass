@@ -1,0 +1,52 @@
+@import '../../../../../../../sass/variables'
+@import '../../../../../../../sass/colors'
+@import '../../../../../../../sass/mixins'
+
+.cont-step-three-transfer
+  width: 100%
+  max-width: 350px
+  margin: 0 auto
+  display: block
+  .date-today
+    background: $carbon-light-100
+    border: 2px solid $carbon-light-900
+    border-radius: 5px
+    transition: border .3s
+    padding: 22px 23px
+    text-align: left
+    margin-bottom: 32px
+    label
+      margin: 0
+    &.active
+      border-color: $g-500
+  .date-today.date-scheduled
+    height: 130px
+  .form-group > button
+    width: 100%
+    margin: 22px auto 0
+    max-width: 183px
+    display: block
+  .center
+    text-align: center
+
+.step-three-message
+  background: $carbon-light-100
+  box-shadow: 0 1px 3px 0 rgba(63, 63, 68, 0.15), 0 0 0 1px rgba(63, 63, 68, 0.05)
+  border-radius: 15px
+  padding: 30px 34px
+  text-align: center
+  img
+    height: 70px
+    width: auto
+    margin-bottom: 20px
+  p
+    line-height: 1.71
+    font-size: $f-14
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-three-transfer
+    max-width: 100%
+    padding: 0 15px
+    .form-group > button
+      max-width: 100%
+

@@ -1,0 +1,69 @@
+<ng-container *ngIf="!loading else loadingState">
+  <ng-container *ngIf="(movements)?.data && (movements)?.data.length > 0 || isFilter">
+    <div class="cont-tbl shadow-1dp" [ngClass]="{'full-width': fullWidth}">
+      <div class="cont-tbl-header">
+        <p class="txt-title">{{'MOVEMENT.TITLE' | translate}}</p>
+        <div class="cont-tbl-header-options">
+          <a class="download-btn" (click)="doDownloadFile()" *ngIf="!isSafari && showDownload">
+            <em class="icon-download"></em>
+          </a>
+          <a class="filter-btn" (click)="openFilter()" *ngIf="showFilterDate">
+            <em class="icon-filter"></em></a>
+          <a class="glass-a" (click)="openSearchBox()" *ngIf="optionFilter">
+            <em class="icon-search" *ngIf="!filterState"></em>
+            <em class="icon-x-close" *ngIf="filterState"></em>
+          </a>
+        </div>
+      </div>
+      <div class="cont-tbl-filter" *ngIf="filterState">
+        <div class="cont-tbl-input form-global">
+          <input type="text" [placeholder]="'MOVEMENT.SEARCH.PLACEHOLDER' | translate" [(ngModel)]="textFilter"
+            (change)="onChange($event)" (keyup)="onKeyUp($event)" class="input-bp input-search-field">
+          <em class="search-input icon-search" *ngIf="emptyState"></em>
+          <a class="clear-input" *ngIf="!emptyState" (click)="doClear($event)">
+            <em class="icon-plus"></em>
+          </a>
+        </div>
+      </div>
+      <div class="cont-tbl-results">
+        <p>{{'MOVEMENT.RESULT' | translate}} {{totalRecords}}</p>
+        <div class="cont-btn-previos-next">
+          <a (click)="prevPage()" [className]="haveLess ? 'inactive' : ''">
+            <em class="left icon-arrow2-right"></em>
+          </a>
+          <span>{{currentPage}} {{'MOVEMENT.OF' | translate}} {{totalPages}}</span>
+          <a (click)="nextPage()" [className]="haveMore ? 'inactive' : ''">
+            <em class="icon-arrow2-right"></em>
+          </a>
+        </div>
+      </div>
+      <div class="cont-tbl-results-list">
+        <p *ngIf="!movements.loading && movements.data.length == 0" class="paragraph-small">{{'MOVEMENT.EMPTY' |
+          translate}}</p>
+        <ng-container class="cont-tbl-row" *ngIf="!movements.loading && option === 'historicPayments'">
+          <app-payment-history-row *ngFor="let info of (_dataMovements$ | async)" [data]="info">
+          </app-payment-history-row>
+        </ng-container>
+        <ng-container class="cont-tbl-row" *ngIf="!movements.loading && option === 'historicMovement'">
+          <app-historic-movements-row *ngFor="let info of (_dataMovements$ | async)" [data]="info">
+          </app-historic-movements-row>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-template #loadingState>
+  <div class="cont-tbl loading shadow-1dp" [ngClass]="{'full-width': fullWidth}">
+    <div class="cont-tbl-header loading-global">
+      <div class="icon placeholder width-40"></div>
+    </div>
+    <div class="cont-tbl-results loading-global">
+      <div class="icon placeholder width-40"></div>
+    </div>
+    <div class="cont-tbl-results-list loading-global">
+      <div class="icon placeholder width-20"></div>
+      <div class="icon placeholder width-20"></div>
+      <div class="icon placeholder width-40"></div>
+    </div>
+  </div>
+</ng-template>

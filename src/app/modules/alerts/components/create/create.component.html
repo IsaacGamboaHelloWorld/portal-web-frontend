@@ -1,0 +1,43 @@
+<div class="create-container" *ngIf="viewHome">
+    <form class="form-global" [formGroup]="formTypeAlert">
+        <ul class="cont-options scroll-horizontal">
+            <li>
+                <div class="box" (click)="setBorder('17')" [ngClass]="{'box-border': typeActive === '17'}">
+                    <label class="container-radio">
+                        <input type="radio" formControlName="alert_type" id="alert0" value="17">
+                        <span class="checkmark"></span>
+                    </label>
+                    <div class="cont-icon">
+                        <img [src]="'/icon-type-alert.svg' | imageCdn" alt="'icon-type-alert'">
+                    </div>
+                    <div class="cont-text">
+                        <p class="name">Cuentas</p>
+                        <p class="desc">Entérate de los movimientos de tu cuenta y configura topes.</p>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="box" (click)="setBorder('18')" [ngClass]="{'box-border': typeActive === '18'}">
+                    <label class="container-radio">
+                        <input type="radio" formControlName="alert_type" id="alert1" value="18">
+                        <span class="checkmark"></span>
+                    </label>
+                    <div class="cont-icon">
+                        <img [src]="'/icon-type-alert.svg' | imageCdn" alt="'icon-type-alert'">
+                    </div>
+                    <div class="cont-text">
+                        <p class="name">Servicios públicos</p>
+                        <p class="desc">Mantente al tanto de tus pagos inscritos y programados.</p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="form-group button-container">
+            <button type="submit" class="btn btn-primary" [disabled]="formTypeAlert.invalid" (click)="submitData()">{{'CONTINUE' | translate}}</button>
+        </div> 
+    </form>
+</div>
+
+<div class="container-steps" *ngIf="!viewHome">
+    <router-outlet></router-outlet>
+</div>

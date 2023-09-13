@@ -1,0 +1,27 @@
+<article class="transaction clearfix" *ngIf="hasData">
+  <div class="column not-space cont-accordion" [ngClass]="{'show': showInfo}">
+    <div class="column large-4 section-one">
+      <button class="btn-info-pending visible-tablet" (click)="toggleInfo()" type="button">
+        <i [ngClass]="{'icon-plus': !showInfo, 'icon-minus': showInfo}"></i>
+      </button>
+      <ng-container *ngTemplateOutlet="dataColumnOne"></ng-container>
+    </div>
+    <div class="column large-8 section-two">
+      <ng-container *ngTemplateOutlet="dataColumnTwo"></ng-container>
+    </div>
+  </div>
+  <div class="cont-btn-tooltip">
+    <div class="column large-6 hidden-tablet">
+      <p>{{amount}}</p>
+    </div>
+    <div class="column large-6 hidden-tablet" [ngClass]="{'cont-tooltip': isPending}">
+      <p class="state {{typeStatus}}">{{status}}</p>
+      <div class="info-state" *ngIf="isPending">
+        <i class="icon-exclamation-circle"></i>
+        <div>
+          <p>{{pending}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>

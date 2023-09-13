@@ -1,0 +1,53 @@
+<div class="container-list-alerts">
+  <div class="cont-actions">
+    <div class="cont-display-flex-row">
+      <div class="type-alert-cont">
+        <div class="cont-type-alert cont-display-flex-row">
+          <img class="type-alert-img" alt="">
+          <span>{{data?.alertGroupName}}</span>
+        </div>
+      </div>
+      <div class="cont-button cont-display-flex-row">
+        <p>{{'ALERTS.LIST.BTN_EDIT' | translate}}</p>
+        <img class="edit-img" alt="">
+      </div>
+    </div>
+    <div class="info-actions cont-display-flex-row">
+      <div class="cont-icon">
+        <img [src]="'/house-energy.png' | imageCdn" alt="">
+      </div>
+      <p>{{data?.alertName}}</p>
+    </div>
+  </div>
+  <div class="cont-info-alert">
+    <div class="cont-display-flex-row gap-row" >
+      <div class="cont-info-1 cont-display-flex-row">
+        <img class="alert-icon-check" alt="">
+        <div class="info-1">
+          <p class="title">
+            {{'ALERTS.LIST.ACCOUNT' | translate}}
+          </p>
+          <p class="desc">
+            {{data?.accountInformation?.accountName ? data?.accountInformation?.accountName : 'Nro'}}: *******{{data?.accountInformation?.accountId | slice: -4}}
+          </p>
+        </div>
+      </div>
+      <div class="cont-info-2 cont-display-flex-row">
+        <img class="alert-icon-check" alt="">
+        <div class="info-2">
+          <p class="title">
+            {{'ALERTS.LIST.TO' | translate}}
+          </p>
+          <ul>
+            <li *ngFor="let dest of data?.destinations">
+              <span> · </span>
+              <span>
+                {{dest?.destinationValue}}
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

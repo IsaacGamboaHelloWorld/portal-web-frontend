@@ -1,0 +1,77 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+@import '~sass/layout'
+
+.cont-detail
+  display: flex
+  width: 100%
+  .cont-detail-product
+    min-width: 401px
+    max-width: 401px
+    margin-right: 58px
+  .cont-movements-products
+    width: 100%
+  .cont-payrollloans
+    max-width: 100%
+    min-width: 100%
+
+@media only screen and (max-width: 1024px)
+  .cont-detail
+    display: flex
+    width: 100%
+    .cont-detail-product
+      min-width: 401px
+      max-width: 401px
+      margin-right: 58px
+    .cont-movements-products
+      width: 100%
+
+@media only screen and (max-width: $break-tablet)
+  .cont-detail
+    display: flex
+    flex-direction: column
+    width: 100%
+    .cont-detail-product
+      min-width: 100%
+      max-width: 100%
+      margin-right: 0
+    .cont-movements-products
+      width: 100%
+
+@media only screen and (max-width: 1023px)
+  .cont-product
+    .align-product-details
+      display: flex
+      flex-direction: column
+      margin-top: 0
+      &::before
+        height: 373px
+      .cont-detail-product
+        max-width: 100%
+        margin-right: 0
+      .cont-movements-products
+        width: 100%
+        .cont-movements
+          .table-header
+            .download-btn
+              visibility: hidden
+
+@media only screen and (max-width: $break-mobile)
+  .cont-product
+    margin-top: 0
+    .align-product-details
+      display: flex
+      flex-direction: column
+      margin-top: 0
+      &::before
+        height: 333px
+      .cont-detail-product
+        max-width: 100%
+        margin-right: 0
+      .cont-movements-products
+        width: 100%
+        .cont-movements
+          .table-header
+            .download-btn
+              visibility: hidden

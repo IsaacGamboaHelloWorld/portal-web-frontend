@@ -1,0 +1,31 @@
+<div class="card-unop">
+  <div class="checkbox checkbox-card">
+    <input type="checkbox" id="card-unop__check-{{index}}" (click)="checkItem(operation)" [checked]="isChectedValue(operation)">
+    <label for="card-unop__check-{{index}}"></label>
+  </div>
+
+  <section class="card-unop__block-left">
+    <div class="card-unop__block-left__title">
+      <div class="card-unop__block-left__title__img-container">
+        <i class="card-unop__block-left__title__img-container__img icon-shopping-ecommerce-shopping-car-1"></i>
+      </div>
+      <p class="card-unop__block-left__title-lbl"> {{ 'UNUSUALES_OPERATIONS.HOME.CARD.BUY_LBL' | translate }} </p>
+    </div>
+    <p class="card-unop__block-left__store"> {{ operation?.CommerceInfo?.Name }}</p>
+    <p class="card-unop__block-left__date">
+      {{ operation?.BankAcctTrnRec?.OrigDt | date:'dd/MMM/yyyy' | titlecase | replace:'.':'' }}
+      <br>
+      {{ operation?.BankAcctTrnRec?.OrigDt | date:'hh:mm a' }}
+    </p>
+  </section>
+
+  <section class="card-unop__block-right">
+    <div class="card-unop__block-right__title">
+      <div class="card-unop__block-right__title__img-container">
+        <i class="card-unop__block-right__title__img-container__img icon-ds-pay"></i>
+      </div>
+      <p class="card-unop__block-right__title-lbl"> {{ 'UNUSUALES_OPERATIONS.HOME.CARD.VALUE_LBL' | translate }} </p>
+    </div>
+    <p class="card-unop__block-right__value" [innerHTML]="operation?.CurAmt?.Amt | currencyFormat : true : 'decimal-value'"></p>
+  </section>
+</div>

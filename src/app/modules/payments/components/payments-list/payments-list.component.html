@@ -1,0 +1,36 @@
+<div *ngIf="(initialData$ | async)">
+    <ul class="items-container" *ngIf="(initialLoadedData$ | async) else loadingTemplate">
+        <li>
+            <a class="btn btn-primary register-payment " (click)="doOpenSearch() ">{{'PAYMENTS.ADD_SERVICE_BTN' | translate}}<em class="icon-plus "></em></a>
+        </li>
+        <li class="item-payment" *ngFor="let item of (initialData$ | async).data?.billers">
+            <div class="payment-registered shadow-1dp">
+                <div class="info">
+                    <p>{{item.billerNickname}}</p><span>{{item.billerName}} {{'PAYMENTS.NEW_PAYMENT_STEP.BILL' | translate}} {{item.contract}}</span></div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<ng-template #loadingTemplate>
+    <div class="loading-list-payments">
+        <ul>
+            <li class="button-container">
+                <a class="btn btn-primary register-payment " (click)="doOpenSearch() ">{{'PAYMENTS.ADD_SERVICE_BTN' | translate}}<em class="icon-plus "></em></a>
+            </li>
+            <li class="itemLoading loading-global shadow-1dp" *ngFor="let i of [].constructor(loadingItems)">
+                <p class="placeholder width-40 "></p>
+                <p class="placeholder width-100 "></p>
+            </li>
+        </ul>
+    </div>
+</ng-template>
+
+<ng-template #errorTemplate>
+    <div class="error-list-payments ">
+        <img [src]=" '/enrollment/service-error.png' | imageCdn " alt=" ">
+        <strong>¡{{'PAYMENTS.POPUP_SEARCH.ERROR.TITLE' | translate}}!</strong>
+        <p>{{'PAYMENTS.POPUP_SEARCH.ERROR.DESCRIPTION' | translate}}</p>
+        <button class="btn btn-primary " (click)="retry() " type="button ">{{'ERROR_TITLE' | translate}}</button>
+    </div>
+</ng-template>

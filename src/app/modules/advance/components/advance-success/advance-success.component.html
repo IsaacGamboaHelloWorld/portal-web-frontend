@@ -1,0 +1,62 @@
+<ng-container *ngIf="advanceTransfer$ | async as advance">
+  <div class="animated fade-in-up cont-step-global cont-step-success-advance">
+
+    <app-ticket [imageTicket]="'/success.png' | imageCdn" [title]="'ADVANCE.SUCCESS' | translate"
+      [description]="'TRANSFER.SUCCESS.TEXT' | translate"
+      [messageTitle]="'TRANSFER.CONFIRMATION.FORM.ADVANCE' | translate"
+      [messageText]="advance?.data?.data?.Details.advanceInformation?.amount | currencyFormat : true : 'decimal-vouchers'"
+      [btnText]="'ADVANCE.DOWNLOAD' | translate: { value: 'icon-download-bottom' }"
+      [btnLoadingText]="'ADVANCE.LOADING_DOWNLOAD' | translate: { img: ('/loading-text.gif' |imageCdn) } "
+      [disabled]="disabled" (btnAction)="download()" [id]="'voucher-advance'" [response]="advance?.data"
+      [listTemplate]="list"></app-ticket>
+
+    <div class="footer-step">
+      <button class="btn btn-primary" (click)="redirect()">{{'TRANSFER.PENDING.BTN' | translate}}</button>
+      <a class="link" (click)="redirect()">{{'TRANSFER.SUCCESS.BTN' | translate}}</a>
+    </div>
+  </div>
+
+
+  <ng-template #list>
+    <ng-container>
+      <ul>
+        <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+          <p>{{'BANKS.' + advance?.data?.data?.Details?.accountFromInformation?.bank | translate}}
+            - {{'PRODUCT_TYPES.' + advance?.data?.data?.Details?.accountFromInformation?.productType | uppercase |
+            translate}}
+            - Nro. {{advance?.data?.data?.Details?.accountFromInformation?.accountIdentifier | slice: -4}}</p>
+        </li>
+        <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+          <p [innerHTML]="('BANKS.' + advance?.data?.data?.Details?.accountToInformation?.bank | translate) +
+          ' - ' +
+          ('PRODUCT_TYPES.' + advance?.data?.data?.Details?.accountToInformation?.productType | uppercase | translate) +
+          ' ' +
+          (advance?.data?.data?.Details?.accountToInformation?.accountIdentifier | slice: -4) +
+          ' - ' +
+          ('PRODUCT.DEPOSIT_ACCOUNT.BALANCE_AVAILABLE' | translate) +
+          ' ' +
+          (advance?.data?.data?.balance | currencyFormat : true : 'decimal-vouchers-custom')
+           "></p>
+        </li>
+        <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.DUES' | translate}}</span>
+          <p>{{advance?.data?.data?.Details?.advanceInformation?.numberFees}}</p>
+        </li>
+        <li>
+          <span>{{'TRANSFER.SUCCESS.APPROVAL' | translate}}</span>
+          <p>{{advance?.data?.data?.approvalId}}</p>
+        </li>
+        <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.DESCRIPTION' | translate}}</span>
+          <p>{{advance?.data?.data?.Details?.advanceInformation?.description}}</p>
+        </li>
+        <li>
+          <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+          <p [innerHTML]=" advance?.data?.data?.amt | currencyFormat : true : 'decimal-vouchers-custom'"></p>
+        </li>
+      </ul>
+    </ng-container>
+  </ng-template>
+</ng-container>

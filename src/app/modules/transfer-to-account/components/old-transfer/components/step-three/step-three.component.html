@@ -1,0 +1,30 @@
+<div class="cont-step-three-transfer">
+  <form class="form-global" [formGroup]="formStepThree" (ngSubmit)="submitForm()">
+    <div class="form-group"  *ngIf="!(isNew$ | async); else message">
+      <app-calendar [form]="formStepThree"
+      [property1]="'scheduledTransfer'"
+      [property2]="'dueDate'"
+      [property3]="'periodicity'"
+      [property4]="'numberRepeat'"
+      [viewCalendar]="(optionsModule$ | async)?.data?.transfers?.options?.programmed"></app-calendar>
+    </div>
+    <div class="form-group center">
+      <div class="checkbox">
+        <input type="checkbox" id="favorite" formControlName="favorite">
+        <label for="favorite">{{'TRANSFER.FORM_THREE.FAVORITE' | translate}}</label>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary"
+        [disabled]="formStepThree.invalid">{{'CONTINUE' | translate}}</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #message>
+  <div class="step-three-message">
+    <img [src]="'/clock.png' | imageCdn" [alt]="'TRANSFER.FORM_THREE.SCHEDULED_DATE' | translate">
+    <p *ngIf="!(isAval | async)" [innerHTML]="'TRANSFER.FORM_THREE.MESSAGE' | translate"></p>
+    <p *ngIf="(isAval | async)" [innerHTML]="'TRANSFER.FORM_THREE.MESSAGE_AVAL' | translate"></p>
+  </div>
+</ng-template>

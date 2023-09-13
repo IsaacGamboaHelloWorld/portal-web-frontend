@@ -1,0 +1,9 @@
+<figure class="product-cdt-btn columns small-12 large-4" *ngIf="hasOffer" id="btn-cdt">
+	<img [src]="offer.img | imageCdn" [alt]="offer.name" class="img-card-offer">
+  <figcaption>
+    <p class="title-offer">{{offer.title}}</p>
+    <p class="desc-offer">{{offer.desc}}</p>
+    <button type="button" class="btn btn-primary btn-offer"
+    (click)="rediRet($event, offer.name)">{{offer.btn | translate}}</button>
+  </figcaption>
+</figure>

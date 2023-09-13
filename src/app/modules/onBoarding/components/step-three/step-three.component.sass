@@ -1,0 +1,97 @@
+@import '../../../sass/variables'
+@import '../../../sass/colors'
+@import '../../../sass/mixins'
+
+.step-three-onboarding
+  background: $carbon-light-100
+  border-radius: 10px
+  box-shadow: 0 2px 4px 0 rgba($carbon-dark-900, .14)
+  position: relative
+  width: 100%
+  max-width: 256px
+  margin: 34px auto 0
+  &::after
+    content: ''
+    width: 236px
+    height: 76px
+    border-radius: 15px
+    background: $carbon-light-100
+    position: absolute
+    bottom: -8px
+    left: 50%
+    transform: translateX(-50%)
+    box-shadow: 0 4px 8px 0 rgba($carbon-dark-900, .14)
+    z-index: -1
+  .info-step-three
+    min-height: 130px
+    text-align: center
+    position: relative
+    .circle-check
+      width: 76px
+      height: 76px
+      border-radius: 50%
+      background: $g-500
+      box-shadow: 0 7px 16px 0 rgba($g-500, .36)
+      position: absolute
+      left: 50%
+      top: -18px
+      margin-left: -38px
+      color: $carbon-light-100
+      display: flex
+      justify-content: center
+      align-items: center
+      font-size: $f-30 - 5
+    small
+      font-size: $f-14 - 3
+      color: $gray3
+    p
+      font-size: $f-14
+      font-weight: 600
+      padding-top: 68px
+  .footer-step-three
+    text-align: center
+    padding: 15px 0
+    border-top: 1px solid $carbon-light-900
+    small
+      display: block
+      color: $gray3
+      font-size: $f-14 - 3
+    p
+      font-size: $f-20 + 1
+      line-height: 1.62
+      font-weight: 600
+
+.circle-small-step-three
+  width: 280px
+  height: 280px
+  div
+    width: 44px
+    height: 44px
+    box-shadow: inherit
+    font-size: $f-30 - 5
+    &.light
+      top: 8%
+      background: #ffedcf
+      color: #ff8c00
+      left: 28px
+    &.gas
+      top: 0
+      background: #ccfad7
+      color: #00bf00
+      left: 50%
+      margin: -22px 0 0 -22px
+    &.water
+      top: 34%
+      background: #d1e8f9
+      color: #0067fc
+      left: -18px
+    &.mobile
+      top: 8%
+      background: #ffd7d7
+      color: #ff4141
+      right: 28px
+    &.tc
+      top: 34%
+      color: #13b3a3
+      background: #91f8ee
+      right: -18px

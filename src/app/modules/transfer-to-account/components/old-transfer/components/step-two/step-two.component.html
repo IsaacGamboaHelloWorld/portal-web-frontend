@@ -1,0 +1,26 @@
+<div class="cont-step-two-transfer">
+	<form class="form-global" [formGroup]="formStepTwo" (ngSubmit)="submitForm()">
+		<div class="form-group no-margin-top">
+			<label>{{'TRANSFER.FORM_TWO.MAX_AMOUNT' | translate}}</label>
+			<input type="text" formControlName="amount" class="input-bp" placeholder="$" appCurrency
+				[form]="formStepTwo" [property]="'amount'">
+		</div>
+		<div class="form-group">
+			<label>{{'TRANSFER.CONFIRMATION.FORM.DESCRIPTION' | translate}}</label>
+			<input type="text" formControlName="description" class="input-bp" placeholder="Descripción"
+				appRemoveDiacritics>
+		</div>
+		<div class="form-group">
+			<label>{{'TRANSFER.CONFIRMATION.FORM.VOUCHER' | translate}} ({{'OPTIONAL' | translate}})</label>
+			<input type="text" [placeholder]="'TRANSFER.FORM_TWO.EXAMPLE_TWO' | translate" class="input-bp"
+				formControlName="voucher" pattern="^(?!\s.*$).*" maxlength="80">
+		</div>
+		<div class="form-group">
+			<p class="cost">{{'TRANSFER.FORM_TWO.COST' | translate}} {{cost | async}}</p>
+		</div>
+		<div class="form-group">
+			<button type="submit" class="btn btn-primary"
+				[disabled]="formStepTwo.invalid">{{'CONTINUE' | translate}}</button>
+		</div>
+	</form>
+</div>

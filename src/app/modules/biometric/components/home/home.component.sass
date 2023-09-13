@@ -1,0 +1,289 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import 'globalVars'
+
+.box
+  position: relative
+  width: 440px
+  height: 164px
+  border-radius: 12px
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08)
+  background-color: $carbon-light-100
+  .cont-dots
+    position: relative
+    width: 100%
+    text-align: right
+    top: 16px
+    img
+      cursor: pointer
+      position: relative
+      right: 24px
+      width: 25px
+      height: 25px
+  .cont-icon
+    position: absolute
+    top: 46px
+    left: 24px
+    display: flex
+    justify-content: center
+    align-items: center
+    width: 56px
+    height: 56px
+    background-color: $secondary-100
+    border-radius: 200px
+    -moz-border-radius: 200px
+    -webkit-border-radius: 200px
+    img
+      width: 32px
+.cont-home-biometric
+  .cont-title
+    .desc
+      margin: 8px 0 24px
+      font-size: 14px
+      font-weight: normal
+      font-stretch: normal
+      font-style: normal
+      line-height: 2
+      letter-spacing: normal
+      color: $cbn-mid-400
+  .label-action
+    margin-bottom: 12px
+    font-size: 14px
+    font-weight: 500
+    font-stretch: normal
+    font-style: normal
+    line-height: 2
+    letter-spacing: normal
+  .cont-cards
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    .space-div
+      width: 24px
+      height: 164px
+    .cont-options
+      .box
+        background-color: $carbon-light-100
+        .text-tributary
+          position: relative
+          left: 104px
+          font-size: 16px
+          font-weight: 600
+          font-stretch: normal
+          font-style: normal
+          line-height: 1.75
+          letter-spacing: normal
+          color: $black-750
+        .status-biometric
+          width: 90px
+          position: relative
+          left: 104px
+          color: $hlt-600
+          font-size: 12px
+          font-weight: normal
+          font-stretch: normal
+          font-style: normal
+          line-height: 2
+          letter-spacing: normal
+        .text-create-biometric
+          cursor: pointer
+          position: relative
+          top: 68px
+          left: 104px
+          font-size: 14px
+          font-weight: 600
+          font-stretch: normal
+          font-style: normal
+          line-height: 1.75
+          letter-spacing: normal
+          color: $cbn-900
+        .footer-text
+          position: relative
+          top: 10px
+          margin-left: 104px
+          .last-label-date
+            font-size: 12px
+            font-weight: normal
+            font-stretch: normal
+            font-style: normal
+            letter-spacing: normal
+            color: $cbn-mid-400
+            width: 82px
+          .last-date
+            font-size: 12px
+            font-weight: 500
+            font-stretch: normal
+            font-style: normal
+            line-height: 2
+            letter-spacing: normal
+            color: $cbn-900
+            width: 129px
+
+.screen
+  height: 252px
+.full-screen
+  height: 100%
+
+.ui-sidebar-bottom
+  transform: translateY(240%)
+.ui-sidebar
+  background: $carbon-light-100
+  width: 375px
+  border-radius: 12px
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+  top: 35%
+  left: 40%
+  ul
+    position: absolute
+    left: 27px
+    right: 27px
+    top: 40px
+    height: 150px
+    overflow: auto
+    li
+      height: 24px
+      font-size: 14px
+      font-weight: 500
+      font-stretch: normal
+      font-style: normal
+      line-height: 1.71
+      letter-spacing: normal
+      margin-bottom: 24px
+      cursor: pointer
+      &:hover
+        color: $g-800
+  hr
+    height: 1px
+    background-color: #d9d9d9
+    position: absolute
+    bottom: 67px
+    left: 27px
+    right: 27px
+    z-index: 999
+  .button-card-footter
+    width: 100%
+    display: flex
+    justify-content: center
+    position: absolute
+    bottom: 24px
+    background: $carbon-light-100
+    z-index: 999
+    left: 0
+    button
+      background: transparent
+      margin-top: 24px
+      color: $orange-900
+      font-size: 15px
+      font-weight: 600
+      cursor: pointer
+  ::-webkit-scrollbar
+    width: 4px
+    border-radius: 8px
+
+  ::-webkit-scrollbar-track
+    background: transparent
+
+  ::-webkit-scrollbar-thumb
+    background: $g-100
+    border-radius: 8px
+    height: 40px
+@media only screen and (max-width: $break-small-phone)
+  .cont-home-biometric
+    padding: 0 16px
+    .cont-title
+      .title
+        padding: 0
+    .cont-cards
+      .space-div
+        width: 100%
+        height: 24px
+      .cont-options
+        width: 100%
+        .box
+          width: 100%
+          margin: 0 auto
+          .text-create-biometric
+            font-size: 11px
+        .box-create
+          height: 104px
+          .cont-icon
+            top: 24px
+          .text-create-biometric
+            top: 34px
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .cont-home-biometric
+    padding: 0 24px
+    .cont-title
+      .title
+        padding: 0
+    .cont-cards
+      .space-div
+        width: 100%
+        height: 24px
+      .cont-options
+        width: 100%
+        .box
+          width: 100%
+          margin: 0 auto
+        .box-create
+          height: 104px
+          .cont-icon
+            top: 24px
+          .text-create-biometric
+            top: 34px
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .cont-home-biometric
+    padding: 0 24px
+    .cont-title
+      .title
+        padding: 0
+    .cont-cards
+      .space-div
+        width: 100%
+        height: 24px
+      .cont-options
+        width: 100%
+        .box
+          width: 100%
+          margin: 0 auto
+        .box-create
+          height: 104px
+          .cont-icon
+            top: 24px
+          .text-create-biometric
+            top: 34px
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+  .cont-home-biometric
+    padding: 0 24px
+    .cont-title
+      .title
+        padding: 0
+    .cont-cards
+      .space-div
+        width: 100%
+        height: 24px
+      .cont-options
+        width: 100%
+        .box
+          margin: 0 auto
+        .box-create
+          height: 104px
+          .cont-icon
+            top: 24px
+          .text-create-biometric
+            top: 34px
+@media only screen and (max-width: $break-medium-table-landscape-min)
+  .cont-home-biometric
+    padding: 0 24px
+    .cont-title
+      .title
+        padding: 0
+    .cont-cards
+      .space-div
+        width: 100%
+        height: 24px
+      .cont-options
+        width: 100%
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+@media only screen and (min-width: $break-desktop-xlg-min)

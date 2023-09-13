@@ -1,0 +1,123 @@
+<div class="cont-step-one-payment">
+  <form class="form-global" [formGroup]="formStepOne" (ngSubmit)="submitForm()">
+    <fieldset class="form-group column small-12 medium-6 large-6">
+      <label>{{'PAYMENTS.CONFIRMATION.FORM.ORIGIN' | translate}}</label>
+      <div class="select-bp">
+        <select formControlName="account_origin" [compareWith]="compareFnOrigin">
+          <option value="" disabled>{{'PAYMENTS.SELECT_ORIGIN_DEFAULT' | translate}}</option>
+          <option *ngFor="let product of productsOrigin$ | async; trackBy: trackByFn"
+          [ngValue]="product">
+          {{'PRODUCT_TYPES_SMALL.' + product.typeAccount | translate}}
+          {{product.id | slice: -4}} {{product.loading |
+          loadAmount: (product?.productAccountBalances?.saldo_disponible?.amount | currencyFormat) :
+          product.loaded : ('PAYMENTS.AVAILABLE_BALANCE' | translate) :
+        ('TRANSFER.LOADING_AMOUNT' | translate) }}          </option>
+      </select>
+    </div>
+  </fieldset>
+  <fieldset class="form-group column small-12 medium-6 large-6">
+    <label>{{'PAYMENTS.CONFIRMATION.FORM.DESTINATION' | translate}}</label>
+    <div class="select-bp">
+      <ng-container *ngIf="paymentType !== servicepublic; else contPublic">
+        <select formControlName="account_destination" [compareWith]="compareFnDestination">
+          <option value="" disabled selected>{{'PAYMENTS.SELECT_DESTINATION_DEFAULT' | translate}}</option>
+
+          <option *ngFor="let product of destinationProducts$ | async"
+          [ngValue]="product">{{product.accountId}} - {{product.loanName}}</option>
+          <option *ngFor="let other of otherOptions" [ngValue]="other">{{other.accountType}}</option>
+
+        </select>
+        <div class="messages">
+          <i class="icon-refresh warning" (click)="fetchDestination()" *ngIf="isErrorDestination$ | async" title="{{'PAYMENTS.ERROR_TITLE' | translate}"></i>
+          <i class="icon-check success" *ngIf="isLodedDestination$ | async"></i>
+          <img [src]="'/loading.gif' | imageCdn" [alt]="'LOADING' | translate" *ngIf="isLoadingDestination$ | async">
+        </div>
+      </ng-container>
+    </div>
+
+    <div *ngIf="showNewAccount">
+      <fieldset class="form-group group-radio">
+        <label>{{'PAYMENTS.NEW_PAYMENT_STEP.OWNER_QUESTION' | translate}}</label>
+        <div class="radio">
+          <input type="radio" formControlName="productType" value="OWNER" name="productType" id="type-1">
+          <label for="type-1">{{'PAYMENTS.NEW_PAYMENT_STEP.ANWERS_YES' | translate}}</label>
+        </div>
+        <div class="radio">
+          <input type="radio" formControlName="productType" value="NO_OWNER" name="productType" id="type-2">
+          <label for="type-2">{{'PAYMENTS.NEW_PAYMENT_STEP.ANWERS_NO' | translate}}</label>
+        </div>
+      </fieldset>
+      <ng-container *ngIf="showFormOwner">
+        <ng-container *ngIf="!isOwner">
+          <fieldset class="form-group">
+            <label>{{'PAYMENTS.NEW_PAYMENT_STEP.FULL_NAME' | translate}}</label>
+            <input type="text" class="input-bp" formControlName="ownership">
+          </fieldset>
+          <fieldset class="form-group">
+            <label>{{'AUTH.LOGIN.TITLE_DOCUMENT' | translate}}</label>
+            <div class="select-bp">
+              <select name="" id="" formControlName="ownershipIdType">
+                <option value="" disabled
+                selected>{{'PAYMENTS.NEW_PAYMENT_STEP.SELECT_TYPE_ACCOUNT' | translate}}</option>
+                <option *ngFor="let document of documentTypes" [value]="document.type">{{document.name}}</option>
+              </select>
+            </div>
+          </fieldset>
+          <fieldset class="form-group">
+            <label for="">{{'AUTH.LOGIN.DOCUMENT_NUMBER' | translate}}</label>
+            <input type="tel" class="input-bp" formControlName="ownershipIdNumber" appOnlyNumbers pattern="\d*">
+          </fieldset>
+        </ng-container>
+        <fieldset class="form-group">
+          <label for="">{{'PAYMENTS.NEW_PAYMENT_STEP.BANK' | translate}}</label>
+          <div class="select-bp">
+            <select formControlName="bank" [compareWith]="compareFnBanks" (change)="changeBank()">
+              <option value="" disabled selected>{{'PAYMENTS.NEW_PAYMENT_STEP.SELECT_BANK' | translate}}</option>
+              <option *ngFor="let bank of (loans_banks$ | async)?.data" [ngValue]="bank">{{bank.name}}</option>
+            </select>
+            <div class="messages-select">
+              <i class="icon-refresh warning" *ngIf="!(loans_banks$ | async)?.loaded" (click)="fetchBanks()" [title]="'PRODUCT.ERROR.BTN' | translate"></i>
+              <i class="icon-check success" *ngIf="(loans_banks$ | async)?.loaded"></i>
+              <img [src]="'/loading.gif' | imageCdn" [alt]="'LOADING' | translate" *ngIf="(loans_banks$ | async)?.loading">
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <label for="">{{'PAYMENTS.NEW_PAYMENT_STEP.TYPE_LOAN_NAME' | translate}}</label>
+          <div class="select-bp">
+            <select formControlName="loanType">
+              <option value="" disabled>{{'PAYMENTS.NEW_PAYMENT_STEP.ACCOUNT_TYPE' | translate}}</option>
+              <option *ngFor="let bank_loan of (bank_loans$ | async)" [selected]="bank_loan.value === loanActive"
+              [ngValue]="bank_loan.value">{{bank_loan?.name}}</option>
+            </select>
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <label>{{'PAYMENTS.NEW_PAYMENT_STEP.PRODUCT_NUMBER' | translate}}</label>
+          <input type="text" class="input-bp" formControlName="accountIdentifier">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>{{'PAYMENTS.NEW_PAYMENT_STEP.PRODUCT_NAME' | translate}}</label>
+          <input type="text" class="input-bp" formControlName="name">
+        </fieldset>
+      </ng-container>
+    </div>
+  </fieldset>
+  <div class="clear"></div>
+  <fieldset class="submit-step-one">
+    <button type="submit" class="btn btn-primary" [disabled]="formStepOne.invalid">{{'CONTINUE' | translate}}</button>
+  </fieldset>
+  <ng-template #contPublic>
+    <select formControlName="account_destination" [compareWith]="compareFnDestination">
+      <option value="" disabled selected>{{'PAYMENTS.SELECT_DESTINATION_DEFAULT' | translate}}</option>
+      <option *ngFor="let product of destinationProductsBills$ | async"
+      [ngValue]="product">{{product.billerName}} - {{product.billerNickName}}</option>
+    </select>
+    <div class="messages">
+      <i class="icon-refresh warning" (click)="fetchDestinationBills()" *ngIf="isErrorDestinationBills$ | async" title="{{'PAYMENTS.ERROR_TITLE' | translate}"></i>
+      <i class="icon-check success" *ngIf="isLodedDestinationBills$ | async"></i>
+      <img [src]="'/loading.gif' | imageCdn" [alt]="'LOADING' | translate" *ngIf="isLoadingDestinationBills$ | async">
+    </div>
+  </ng-template>
+</form>
+</div>

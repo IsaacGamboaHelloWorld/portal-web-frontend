@@ -1,0 +1,13 @@
+<div class="ds-notification" [ngClass]="{ 'open': isOpen, 'ds-complex': isComplex }">
+  <div class="ds-notification-container {{ typeNotification }}" >
+    <div class="bar"></div>
+    <div class="img-container">
+      <div class="img"></div>
+    </div>
+    <div class="content">
+      <span class="message" [innerHTML]="message"></span>
+      <span *ngIf="!!subMessage" class="sub-message" [innerHTML]="subMessage"></span>
+    </div>
+    <button [ngClass]="{ 'hide-close': isMobile }" (click)="closeEmit.emit()"><i class="icon-x-close"></i></button>
+  </div>
+</div>

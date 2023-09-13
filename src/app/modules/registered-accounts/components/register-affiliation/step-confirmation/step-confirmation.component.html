@@ -1,0 +1,54 @@
+<div class="animated fade-in-up cont-step-global cont-step-confirmation">
+    <form  [formGroup]="formData" (ngSubmit)="submitData()">
+        <app-ticket
+        [imageTicket]="'/clock.png' | imageCdn"
+        [title]="'REGISTER_PRODUCT_AFFILIATION.CONFIRMATION_TITLE' | translate"
+        [messageTitle]="'REGISTER_PRODUCT_AFFILIATION.CONFIRMATION_DESCRIPTION' | translate"
+        [listTemplate]="list"
+        (clickBtn)="submitData()"></app-ticket>
+
+        <div class="footer-step">
+            <app-btn
+                [type]="'submit'"
+                [disabled]="(transactionState | async)?.loading"
+                [text]="'REGISTER_PRODUCT_AFFILIATION.CONFIRMATION_BTN' | translate"
+                [id]="'btn_login'"
+                [isLoading]="(transactionState | async)?.loading"
+                [class]="'btn btn-primary'"></app-btn>
+            <a class="link" (click)="goToFirstStep()">{{'EDIT' | translate}}</a>
+        </div>
+    </form>
+</div>
+
+
+<ng-template #list>
+    <ul>
+        <li>
+            <span>{{'REGISTER_PRODUCT_AFFILIATION.ORIGIN_ACCOUNT_LBL' | translate}}</span>
+            <p class="capitalize"> 
+                {{'PRODUCT_TYPES.' + registerAffiliationProductData.data.originAccountType | translate}} - {{registerAffiliationProductData.data.originAccountId}}
+            </p>
+        </li>
+        <li>
+            <span>{{'REGISTER_PRODUCT_AFFILIATION.DESTINATION_USER_INFO_LBL' | translate}}</span>
+            <p class="min-height">
+                {{registerAffiliationProductData.data.customerName}}
+            </p>
+            <p class="min-height">
+                {{registerAffiliationProductData.data.customerIdType}} - {{registerAffiliationProductData.data.customerId}}
+            </p>
+        </li>
+        <li>
+            <span>{{'REGISTER_PRODUCT_AFFILIATION.DESTINATION_BANK_INFO' | translate}}</span>
+            <p class="min-height">
+                {{destinationBankName}}
+            </p>
+            <p class="min-height">
+                {{'PRODUCT_TYPES.' + registerAffiliationProductData.data.destinationAccountType | translate}} - {{registerAffiliationProductData.data.destinationAccountId}}
+            </p>
+        </li>
+    </ul>
+</ng-template>
+      
+      
+      

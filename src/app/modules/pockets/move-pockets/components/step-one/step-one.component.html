@@ -1,0 +1,84 @@
+<div class="animated fade-in-up cont-step-one-move-pockets">
+    <div class="cont-step-one">
+        <form class="form-global" [formGroup]="formStepOne" (ngSubmit)="submitForm()">
+            <div class="form-group cont-input">
+                <label>{{'POCKETS.MOVE.STEP_ONE.HOW_MUCH' | translate}}</label>
+                <input type="tel" class="input-bp" placeholder="$" formControlName="how_much" appCurrency
+                [form]="formStepOne" [property]="'how_much'" (ngModelChange)="validateGoal($event)" #inputHowmuch>
+                <div *ngIf="error" class="error-msg">
+                    <p>{{error | translate}}</p>
+                </div>
+            </div>
+            <div class="form-group">
+                <p class="title">{{'POCKETS.MOVE.STEP_ONE.WHERE' | translate}}</p>
+                <div class="cont-section">
+                    <ul class="cont-options scroll-horizontal">
+                        <li>
+                            <div class="box" (click)="setBorder('THIS')" [ngClass]="{'box-border': typeActive === 'THIS'}">
+                                <label class="container-radio">
+                                    <input type="radio" name="optionBox" [value]="THIS" [checked]="typeActive === 'THIS'">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <div class="cont-icon">
+                                    <img class="this-pocket" alt="">
+                                </div>
+                                <p class="text-tributary">
+                                    {{'POCKETS.MOVE.STEP_ONE.THIS_BTN' | translate}}
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box" (click)="setBorder('POCKET')" [ngClass]="{'box-border': typeActive === 'POCKET'}">
+                                <label class="container-radio">
+                                    <input type="radio" name="optionBox" [value]="POCKET" [checked]="typeActive === 'POCKET'">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <div class="cont-icon">
+                                    <img class="other-pocket" alt="">
+                                </div>
+                                <p class="text-tributary">
+                                    {{'POCKETS.MOVE.STEP_ONE.OTHER_POCKET_BTN' | translate}}
+                                </p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="box" (click)="setBorder('ACCOUNT')" [ngClass]="{'box-border': typeActive === 'ACCOUNT'}">
+                                <label class="container-radio">
+                                    <input type="radio" name="optionBox" [value]="ACCOUNT" [checked]="typeActive === 'ACCOUNT'">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <div class="cont-icon">
+                                    <img class="back-pocket" alt="">
+                                </div>
+                                <p class="text-tributary">
+                                    {{'POCKETS.MOVE.STEP_ONE.GO_BACK_BTN' | translate}}
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group cont-dropdwon" *ngIf="isPocket">
+                <app-dropdown-select
+                  [label]="'POCKETS.MOVE.STEP_ONE.OTHER_POCKET'"
+                  [form]="formStepOne"
+                  [property]="'pocket_to'"
+                  [fixedOptions]="options"
+                  (event)="setError()"></app-dropdown-select>
+            </div>
+            <div class="form-group cont-card" *ngIf="typeActive && !isPocket">
+                <p class="title title-card">{{(typeActive === 'THIS' ? 'PAYMENTS.CONFIRMATION.FORM.ORIGIN' : 'POCKETS.TICKET.DESTINATION') | translate}}</p>
+                <app-card-change-data [form]="formStepOne" [property]="'account_origin'"
+                [dataCard]="(productDefault$ | async)" [append]="modal"
+                [btn]="false"></app-card-change-data>
+            </div>
+            <div class="form-group btn-footer">
+                <app-btn [class]="'btn-primary'" [disabled]="formStepOne.invalid"
+                [isLoading]="(moveMoneyPocket$ | async)?.loading" [text]="'POCKETS.MOVE.STEP_ONE.MOVE_BTN'  | translate"
+                (clickBtn)="submitForm()"></app-btn>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div #modal></div>

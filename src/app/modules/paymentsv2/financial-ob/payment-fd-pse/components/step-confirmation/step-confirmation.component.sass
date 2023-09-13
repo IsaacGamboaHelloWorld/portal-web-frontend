@@ -1,0 +1,36 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.step-confirmation-fd
+  margin-top: 40px
+  .type-product-pay
+    display: flex
+    align-items: center
+    img
+      height: 100%
+      width: 24px
+      margin-right: 8px
+  .footer-step-confirmation
+      text-align: center
+      margin-top: 32px
+      flex-direction: row
+      align-items: center
+      .warning-text
+        color: $error-600
+        margin-bottom: 20px
+      button
+        width: 100%
+  // override styles TicketComponent
+  .space-ticket
+    width: 343px
+
+@media only screen and (min-width: $break-medium-table-landscape-min)
+  .step-confirmation-fd
+    margin-top: 24px
+    .footer-step-confirmation
+        margin-top: 34px
+        button
+          width: 154px
+    // override styles TicketComponent
+    .space-ticket
+      width: 703px

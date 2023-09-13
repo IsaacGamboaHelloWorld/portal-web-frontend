@@ -1,0 +1,69 @@
+<div class="animated fade-in-up cont-step-global cont-step-confirmation">
+  <div *ngIf="formOne$ | async as one">
+    <ng-container *ngIf="paymentType !== servicepublic">
+      <app-ticket [imageTicket]="'/confirmation.png' | imageCdn" [title]="'PAYMENTS.CONFIRMATION.TITLE' | translate" [messageTitle]="'PAYMENTS.CONFIRMATION.FORM.AMOUNT' | translate" [messageText]="(formTwo$ | async).amount | currencyFormat : true : 'decimal-vouchers'" [listTemplate]="list"></app-ticket>
+    </ng-container>
+    <ng-container *ngIf="paymentType === servicepublic">
+      <ng-container *ngIf="one?.account_destination?.biller">
+        <app-ticket [imageTicket]="'/confirmation.png' | imageCdn" [title]="'PAYMENTS.CONFIRMATION.TITLE' | translate" [messageTitle]="'PAYMENTS.CONFIRMATION.FORM.AMOUNT' | translate" [messageText]="(formTwo$ | async).amount | currencyFormat : true : 'decimal-vouchers'" [listTemplate]="list"></app-ticket>
+      </ng-container>
+      <ng-container *ngIf="!one?.account_destination?.biller">
+        <app-ticket [imageTicket]="'/confirmation.png' | imageCdn" [title]="'PAYMENTS.CONFIRMATION.TITLE' | translate" [messageTitle]="'PAYMENTS.CONFIRMATION.FORM.AMOUNT' | translate" [messageText]="(formTwo$ | async).amounttext | currencyFormat : true : 'decimal-vouchers'" [listTemplate]="list"></app-ticket>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div class="footer-step-confirmation">
+    <app-btn *ngIf="paymentType == servicepublic" [class]="'btn-primary'" [disabled]="(paymentBill | async)?.loading" [text]="'PAYMENTS.CONFIRMATION.BTN' | translate" [isLoading]="(paymentBill | async)?.loading" (clickBtn)="submitData()"></app-btn>
+    <app-btn *ngIf="paymentType !== servicepublic" [class]="'btn-primary'" [disabled]="(payment | async)?.loading" [text]="'PAYMENTS.CONFIRMATION.BTN' | translate" [isLoading]="(payment | async)?.loading" (clickBtn)="submitData()"></app-btn>
+    <a class="link" (click)="setStep(1)">{{'EDIT' | translate}}</a>
+  </div>
+</div>
+
+<ng-template #list>
+  <ul>
+    <li>
+      <span>{{'PAYMENTS.CONFIRMATION.FORM.DATE' | translate}}</span>
+      <p class="capitalize">{{date | date:'dd/MMM/yyyy' | replace : '.' : ''}}</p>
+    </li>
+    <li *ngIf="formOne$ | async as one">
+      <span>{{'PAYMENTS.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+      <p>{{'PRODUCT_TYPES.' + one.account_origin?.accountInformation?.productType | translate}} - {{one.account_origin?.accountInformation?.accountIdentifier}} {{'PRODUCT.DEPOSIT_ACCOUNT.BALANCE_AVAILABLE' | translate}} {{one.account_origin?.productAccountBalances?.saldo_disponible?.amount
+      | currencyFormat}}</p>
+    </li>
+    <li *ngIf="formOne$ | async as one">
+      <span>{{'PAYMENTS.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+      <ng-container *ngIf="!one?.isNew && paymentType !== servicepublic">
+        <p>{{'PRODUCT_TYPES.' + one.account_destination?.accountType | translate}} - {{one.account_destination?.accountId}}</p>
+      </ng-container>
+      <ng-container *ngIf="one?.isNew">
+        <p>{{'PRODUCT_TYPES.' + one.loanType | translate}} - {{one.accountIdentifier}}</p>
+      </ng-container>
+      <ng-container *ngIf="paymentType === servicepublic">
+        <p>{{isBillPaymentName$ | async }} - {{isBillPaymentNickName$ | async}}</p>
+      </ng-container>
+    </li>
+    <ng-container *ngIf="(formOne$ | async)  as one">
+      <li *ngIf="one?.isNew">
+        <span>{{'PAYMENTS.CONFIRMATION.FORM.OWNER' | translate}}:</span>
+        <ng-container *ngIf="!one?.isNew">
+          <p>{{name$ | async}}</p>
+        </ng-container>
+        <ng-container *ngIf="one?.isNew">
+          <ng-container *ngIf="isAnotherOwner$ | async">
+            <p>{{one.ownership | lowercase}}</p>
+          </ng-container>
+          <ng-container *ngIf="!(isAnotherOwner$ | async)">
+            <p class="capitalize" *ngIf="!(name$ | async)">{{name$ | async | lowercase}}</p>
+            <p class="capitalize" *ngIf="!(name$ | async)">{{'PAYMENTS.CONFIRMATION.FORM.OWN_PROD' | translate}}</p>
+          </ng-container>
+        </ng-container>
+      </li>
+    </ng-container>
+    <ng-container *ngIf="formTwo$ | async as two">
+      <li *ngIf="two?.comments">
+        <span>{{'PAYMENTS.CONFIRMATION.FORM.DESCRIPTION' | translate}}</span>
+        <p>{{two.comments}}</p>
+      </li>
+    </ng-container>
+  </ul>
+</ng-template>

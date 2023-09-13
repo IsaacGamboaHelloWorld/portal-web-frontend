@@ -1,0 +1,90 @@
+<div class="cont-step-one-transfer">
+  <form class="form-global" [formGroup]="formStepOne" (ngSubmit)="submitForm()">
+    <fieldset class="form-group column small-12 medium-6 large-6">
+      <label>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}</label>
+      <div class="select-bp">
+        <select formControlName="account_origin" (change)="changeOrigin()" [compareWith]="compareFnOrigin">
+          <option value="" disabled>{{'TRANSFER.SELECT_ORIGIN_DEFAULT' | translate}}</option>
+          <option *ngFor="let product of productsOrigin$ | async; trackBy: trackByFn"
+                  [ngValue]="product">
+            {{'PRODUCT_TYPES.' + product.typeAccount | translate}}
+            {{product.id}} {{loadAmount(product, 'PAYMENTS.AVAILABLE_BALANCE' | translate, product?.productAccountBalances?.saldo_disponible?.amount | currencyFormat, 'TRANSFER.LOADING_AMOUNT' | translate)}}
+          </option>
+        </select>
+      </div>
+    </fieldset>
+    <fieldset class="form-group column small-12 medium-6 large-6">
+      <label>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}</label>
+      <div class="select-bp">
+        <select formControlName="account_destination" [compareWith]="compareFnDestination">
+          <option value="" disabled selected
+                  class="default-option">{{'TRANSFER.SELECT_DESTINATION_DEFAULT' | translate}}</option>
+          <option *ngFor="let product of (destination$ | async).products"
+                  [ngValue]="product">
+            {{product.customerName | splitFirst}} {{'SHORT_PRODUCT_NAMES.' + product.destinationAccountType | translate}}
+            {{product.destinationAccountId | slice: -4}} {{product.bankName}}
+          </option>
+        </select>
+        <div class="messages-select">
+          <i class="icon-refresh warning" (click)="fetchDestination()" *ngIf="(destination$ | async)?.error"
+             [title]="'PRODUCT.ERROR.BTN' | translate"></i>
+          <i class="icon-check success" *ngIf="(destination$ | async)?.loaded"></i>
+          <img [src]="'/loading.gif' | imageCdn" [alt]="'LOADING' | translate" *ngIf="(destination$ | async)?.loading">
+        </div>
+      </div>
+
+      <div *ngIf="showNewAccount">
+        <fieldset class="form-group">
+          <label for="">{{'TRANSFER.NEW_ACCOUNT.BANK' | translate}}</label>
+          <div class="select-bp">
+            <select formControlName="bank" [compareWith]="compareFnBanks">
+              <option value="" disabled selected>{{'TRANSFER.NEW_ACCOUNT.SELECT_BANK' | translate}}</option>
+              <option *ngFor="let bank of (banks$ | async)?.data" [ngValue]="bank">{{bank.name}}</option>
+            </select>
+            <div class="messages-select">
+              <i class="icon-refresh warning" (click)="fetchBanks()" *ngIf="(banks$ | async)?.error"
+                 [title]="'PRODUCT.ERROR.BTN' | translate"></i>
+              <i class="icon-check success" *ngIf="(banks$ | async)?.loaded"></i>
+              <img [src]="'/loading.gif' | imageCdn" [alt]="'LOADING' | translate" *ngIf="(banks$ | async)?.loading">
+            </div>
+          </div>
+        </fieldset>
+        <fieldset class="form-group group-radio">
+          <div class="radio">
+            <input type="radio" formControlName="productType" value="DEPOSIT_ACCOUNT" name="productType" id="type-1">
+            <label for="type-1">{{'PRODUCT_TYPES.DEPOSIT_ACCOUNT' | translate}}</label>
+          </div>
+          <div class="radio">
+            <input type="radio" formControlName="productType" value="CURRENT_ACCOUNT" name="productType" id="type-2">
+            <label for="type-2">{{'PRODUCT_TYPES.CURRENT_ACCOUNT' | translate}}</label>
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <label>{{'TRANSFER.NEW_ACCOUNT.NUMBER_ACCOUNT' | translate}}</label>
+          <input type="text" class="input-bp" formControlName="accountIdentifier" appOnlyNumbers pattern="\d*">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>{{'TRANSFER.NEW_ACCOUNT.FULL_NAME' | translate}}</label>
+          <input type="text" class="input-bp" formControlName="name">
+        </fieldset>
+        <fieldset class="form-group">
+          <label>{{'AUTH.LOGIN.TITLE_DOCUMENT' | translate}}</label>
+          <div class="select-bp">
+            <select name="" id="" formControlName="identificationType">
+              <option value="" disabled selected>{{'TRANSFER.NEW_ACCOUNT.SELECT_TYPE_ACCOUNT' | translate}}</option>
+              <option *ngFor="let document of documentTypes" [value]="document.type">{{document.name}}</option>
+            </select>
+          </div>
+        </fieldset>
+        <fieldset class="form-group">
+          <label for="">{{'AUTH.LOGIN.DOCUMENT_NUMBER' | translate}}</label>
+          <input type="text" class="input-bp" formControlName="identificationNumber" appOnlyNumbers pattern="\d*">
+        </fieldset>
+      </div>
+    </fieldset>
+    <div class="clear"></div>
+    <fieldset class="submit-step-one">
+      <button type="submit" class="btn btn-primary" [disabled]="formStepOne.invalid">{{'CONTINUE' | translate}}</button>
+    </fieldset>
+  </form>
+</div>

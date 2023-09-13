@@ -1,0 +1,135 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.cont-table-historic
+  width: 100%
+  border-collapse: collapse
+  height: 100%
+  .cont-head-table
+    height: 50px
+    border-bottom: 1px solid $carbon-light-900
+    .head-title-0
+      padding: 17px 24px
+      width: 70%
+      text-align: left
+    .head-title-1
+      width: 15%
+      text-align: right
+    .head-title-2
+      width: 15%
+  .cont-body-table
+    border-top: 1px solid $carbon-light-900
+    .cont-column-1
+      text-align: right
+    .cont-column-2
+      text-align: center
+    .column
+      padding: 0
+      .state
+        padding: 0 14px
+        letter-spacing: -0.3px
+        border-radius: 4px
+        font-size: $f-14 - 2
+        height: 32px
+        font-weight: 500
+        line-height: 32px
+        display: inline-block
+        min-width: 86px
+        text-align: center
+        &.visible-tablet
+          display: none
+        &.pending
+          background: $warning-100
+          color: $warning-900
+        &.success
+          background: $success-100
+          color: $success-900
+        &.fail
+          background: $error-100
+          color: $error-900
+    .cont-column-table
+      height: 120px
+    .column-table
+      padding: 20px 0 20px 24px
+    .section-one,
+    .section-two
+      p
+        margin-bottom: 8px
+    .column-value
+      position: relative
+      top: 30px
+    .column-status
+      position: relative
+      top: 20px
+.btn-info-pending
+  width: 20px
+  height: 20px
+  border: 2px solid $gc-800
+  border-radius: 2px
+  position: absolute
+  right: 40px
+  background: transparent
+  top: 50%
+  cursor: pointer
+  color: $gc-800
+  z-index: 1
+  margin-top: -10px
+  i
+    font-weight: bold
+
+.cont-tooltip
+  > p,
+  .info-state
+    +inline(middle)
+
+@media only screen and (max-width: $break-tablet)
+  .cont-table-historic
+    padding: 24px 0 0 0
+    width: 100%
+    .cont-body-table
+      border-top: 1px solid $carbon-light-900
+      > div.hidden-tablet
+        display: none
+      .column
+        padding: 0
+        .state
+          height: 24px
+          line-height: 24px
+          padding: 0 10px
+          margin-bottom: 20px
+          &.visible-tablet
+            +inline(top)
+    .section-one,
+    .section-two
+      padding: 0 24px
+    .section-one
+      padding-bottom: 20px
+    .section-one
+      padding-bottom: 20px
+    .section-two
+      border-top: 1px solid transparent
+      transition: .5s
+      max-height: 0
+      overflow: hidden
+      > p:first-child
+        padding-top: 20px
+      > p:last-child
+        padding-bottom: 20px
+    .cont-accordion
+      &.show
+        .section-two
+          max-height: 1000px
+          transition: .5s
+          border-top: 1px solid $carbon-light-400
+
+@media only screen and (max-width: $break-mobile)
+  .cont-table-historic
+    .section-one,
+    .section-two
+      padding: 0 18px
+    .section-one
+      padding-bottom: 20px
+      padding-right: 70px
+      position: relative

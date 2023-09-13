@@ -1,0 +1,25 @@
+<div class="cont-alerts-tags">
+  <div class="cont-btn-all-alerts">
+    <button (click)="tagEvent(1)" [ngClass]="{'bg-btn-tags-alert-orange': tagType === 1, 'bg-btn-tags-alert-white': tagType !== 1}"  type="button">
+      <p>{{'ALERTS.TAGS.ALL' | translate}}</p>
+    </button>
+  </div>
+  <div class="cont-btn-credit-alerts">
+    <button (click)="tagEvent(2)" [ngClass]="{'bg-btn-tags-alert-orange': tagType === 2, 'bg-btn-tags-alert-white': tagType !== 2}"  type="button">
+      <img class="icon-credit-alerts" alt="">
+      <p>{{'ALERTS.TAGS.CREDIT' | translate}}</p>
+    </button>
+  </div>
+  <div class="cont-btn-account-alerts">
+    <button (click)="tagEvent(3)" [ngClass]="{'bg-btn-tags-alert-orange': tagType === 3, 'bg-btn-tags-alert-white': tagType !== 3}"  type="button">
+      <img class="icon-account-alerts" alt="">
+      <p>{{'ALERTS.TAGS.ACCOUNT' | translate}}</p>
+    </button>
+  </div>
+  <div class="cont-btn-services-alerts">
+    <button (click)="tagEvent(4)" [ngClass]="{'bg-btn-tags-alert-orange': tagType === 4, 'bg-btn-tags-alert-white': tagType !== 4}"  type="button">
+      <img class="icon-services-alerts" [src]="'/house-energy.png' | imageCdn" alt="">
+      <p>{{'ALERTS.TAGS.PUBLIC_SERVICES' | translate}}</p>
+    </button>
+  </div>
+</div>

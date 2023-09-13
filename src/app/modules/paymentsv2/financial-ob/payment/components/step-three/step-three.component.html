@@ -1,0 +1,18 @@
+<div class="animated fade-in-up cont-step-three">
+    <div class="box-step-three">
+        <div class="box-image">
+            <img [src]="'/calendar.png' | imageCdn" alt="">
+        </div>
+        <div class="confirm">
+            <ul>
+                <li>
+                    <span>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP3.DATE_LBL' | translate}}</span>
+                    <p class="date">{{'PAYMENTS.FORM_THREE.TODAY' | translate}} - {{today | date: 'dd/MMM/yyyy' | replace : '.' : '' | titlecase}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-step">
+        <button class="btn btn-primary" (click)="submitData()">{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP3.CONTINUE_BTN'| translate}}</button>
+    </div>
+</div>

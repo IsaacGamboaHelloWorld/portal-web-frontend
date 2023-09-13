@@ -1,0 +1,58 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.card-programed
+  background: $carbon-light-100
+  border-radius: 10px
+  border-bottom: 1px solid $carbon-light-900
+  margin-bottom: 16px
+  &.disabled
+    p
+      color: $cbn-mid-400 !important
+    .checkbox-slide-new input[type=checkbox]
+      background: $cbn-lgt-600
+      opacity: 0.48
+  .header-component
+    font-size: $f-14
+    font-weight: 500
+    font-stretch: normal
+    font-style: normal
+    line-height: 1.71
+    letter-spacing: normal
+    color: $carbon-dark-900
+    display: flex
+    padding: 16px 24px 0
+    p
+      align-self: center
+      font-size: $f-14
+      font-weight: 500
+      flex-grow: 1
+      margin-right: 20px
+  .body-component
+    display: flex
+    border-top: 1px solid $carbon-light-900
+    padding: 16px 24px
+    margin-top: 16px
+    .col-body
+      flex-grow: 1
+      p
+        line-height: 1.71
+        &.title
+          font-size: $f-14
+          font-weight: 600
+  .footer-component
+    padding: 0 24px 16px
+    button
+      width: 160px
+      padding: 6px 27px
+
+@media only screen and (max-width: $break-mobile)
+  .card-programed 
+    .body-component
+      flex-direction: column
+      .col-body
+        margin: 4px 0px
+    .footer-component
+        button
+          width: 100%

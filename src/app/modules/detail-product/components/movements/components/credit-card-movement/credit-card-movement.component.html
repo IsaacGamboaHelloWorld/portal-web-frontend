@@ -1,0 +1,46 @@
+<div class="cont-table-movements" *ngIf="hasMovements">
+  <div class="scroll-table-header">
+    <p class="datecell">{{'MOVEMENT.DEPOSIT.DATE' | translate}}</p>
+    <p class="titlecell">{{'MOVEMENT.DEPOSIT.DESCRIPTION' | translate}}</p>
+    <p class="valuecell">{{'MOVEMENT.DEPOSIT.VALUE' | translate}}</p>
+  </div>
+  <div class="scroll-table">
+    <ul class="table-movements-desktop">
+      <li *ngFor="let movement of movementsCC | ccMovement: filterText; let i = index">
+        <div class="info-movement info-movement-cc">
+          <div class="pending-info" *ngIf="movement.pending"><span>{{'MOVEMENT.CREDIT_CARD.PENDING_TITLE' | translate}}</span></div>
+          <div class="item">
+            <p class="datecell">{{movement.transactionDate | date:'dd/MMM/yyyy' | replace : '.' : ''}}</p>
+            <p class="titlecell">{{movement.description}}</p>
+            <div class="valuecell">
+              <p *ngIf="showIncome(movement.credits, movement.debits)" class="green" [innerHTML]="movement.credits | currencyFormat: true"></p>
+              <p *ngIf="!showIncome(movement.credits, movement.debits)" [innerHTML]="'-' + (movement.debits | currencyFormat: true)"></p>
+              <em [ngClass]="toggle[i] ? 'icon-minus': 'icon-plus'" (click)="toggle[i] = !toggle[i];" *ngIf="movement.pending"></em>
+            </div>
+          </div>
+        </div>
+        <div class="info-hidden" [class.show]="toggle[i]">
+          <div [innerHTML]="'MOVEMENT.CREDIT_CARD.EXTRA_COPY' | translate"></div>
+        </div>
+      </li>
+    </ul>
+    <ul class="table-movements-mobile">
+      <li *ngFor="let movement of movementsCC | ccMovement: filterText; let i = index">
+        <div class="info-movement info-movement-cc">
+          <div class="pending-info" *ngIf="movement.pending"><span>{{'MOVEMENT.CREDIT_CARD.PENDING_TITLE' | translate}}</span></div>
+          <div class="item">
+            <p class="datecell"><span class="capitalize">{{movement.transactionDate | date:'dd/MMM/yyyy' | replace : '.' : ''}}</span><br>{{movement.description}}</p>
+            <div class="valuecell">
+              <p *ngIf="showIncome(movement.credits, movement.debits)" class="green" [innerHTML]="movement.credits | currencyFormat: true"></p>
+              <p *ngIf="!showIncome(movement.credits, movement.debits)" [innerHTML]="'-' + (movement.debits | currencyFormat: true)"></p>
+              <i [ngClass]="toggle[i] ? 'icon-minus': 'icon-plus'" (click)="toggle[i] = !toggle[i];" *ngIf="movement.pending"></i>
+            </div>
+          </div>
+          <div class="info-hidden" [class.show]="toggle[i]">
+            <div [innerHTML]="'MOVEMENT.CREDIT_CARD.EXTRA_COPY' | translate"></div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

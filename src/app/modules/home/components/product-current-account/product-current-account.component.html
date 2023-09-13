@@ -1,0 +1,35 @@
+<article class="product-global shadow-4dp hover-16dp {{nameBank}}">
+  <div class="product-global-content">
+    <div class="product-global-account-type">
+      <div class="cont-img">
+        <img [src]="'/24-money-money-2-green.svg' | imageCdn" [alt]="'PRODUCT_TYPES.CURRENT_ACCOUNT' | translate">
+      </div>
+      <div class="product-global-account-type-info">
+        <p>{{product?.accountInformation?.productName}}</p>
+        <app-obfuscate-number [text]="'PRODUCT.NUMBER'" [accountNumber]="hasNameBank ? product?.accountInformation?.accountIdentifier : product.id"></app-obfuscate-number>
+      </div>
+    </div>
+    <ng-container *ngIf="hasProduct; else loadingOrError">
+      <div class="product-global-account-amount">
+        <p *ngIf="!showFooter(product?.overDraftDays)">{{'PRODUCT.DEPOSIT_ACCOUNT.TOTAL_BALANCE' | translate}}</p>
+        <p *ngIf="showFooter(product?.overDraftDays)">{{'PRODUCT.CURRENT_ACCOUNT.OVERDRAFT' | translate}}</p>
+        <strong [innerHTML]="product?.productAccountBalances?.saldo_actual?.amount | currencyFormat: true"></strong>
+      </div>
+      <div class="product-global-account-view-detail">
+        <a class="link" (click)="redirect(product.typeAccount, product.id)" *ngIf="!hasNameBank && (optionsModule$ | async).data.product_detail.show">{{'PRODUCT.VIEW_DETAIL' | translate}} <em class="icon-arrow-right-circle"></em></a>
+      </div>
+    </ng-container>
+  </div>
+  <span *ngIf="hasProduct" class="product-global-footer-line"></span>
+  <div class="product-global-footer full" *ngIf="showFooter(product?.overDraftDays)">
+    <div>
+      <span>{{'DETAIL.DETAIL_CURRENT_ACCOUNT.DAYS_OVERDRAFT' | translate}}</span>
+      <strong>{{product?.overDraftDays}}</strong>
+    </div>
+  </div>
+</article>
+
+
+<ng-template #loadingOrError>
+  <app-product-loading-error [product]="product"></app-product-loading-error>
+</ng-template>

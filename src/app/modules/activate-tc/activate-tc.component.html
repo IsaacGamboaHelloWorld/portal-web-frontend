@@ -1,0 +1,11 @@
+<app-template-system
+  [title]="'ACTIVATE_TC.TITLE' | translate"
+  [sectionHome]="false" [sectionContent]="content"
+  [fullContent]="false" [navigatorActive]="true" [backUrl]="'/seguridad'" [showClose]="true">
+</app-template-system>
+
+<ng-template #content>
+  <div class="container-activate-tc">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

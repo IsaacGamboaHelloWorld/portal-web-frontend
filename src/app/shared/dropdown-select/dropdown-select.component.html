@@ -1,0 +1,18 @@
+<label>{{label | translate}}</label>
+
+<div [formGroup]="form" class="cont-dropdown-select" tabindex="0" *ngIf="form">
+  <p-dropdown #dd [options]="options" (onChange)="setValueForm(dd)" tabindex="1"
+    formControlName="{{(subProperty ? property+subProperty: property)}}" placeholder="{{placeHolder | translate}}">
+    <ng-template let-item pTemplate="selectedItem">
+      <span>
+        {{(advancedLabel ? item.label : item.label | translate) | titlecase}}
+      </span>
+    </ng-template>
+    <ng-template let-option pTemplate="item">
+      <p class="bar"></p>
+      <span>
+        {{(advancedLabel ? option.label : option.label | translate) | titlecase}}
+      </span>
+    </ng-template>
+  </p-dropdown>
+</div>

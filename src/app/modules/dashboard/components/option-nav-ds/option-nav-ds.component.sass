@@ -1,0 +1,176 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.color-request-products
+  color: $act-900
+
+@media only screen and (max-width: $break-medium-table-portrait-max)
+  .option-nav-ds
+    width: 100%
+    height: calc( 100vh - 72px )
+    display: flex
+    flex-direction: column
+    padding: 0
+    .option-list-ds
+      display: flex
+      height: 100%
+      flex-direction: column
+      align-items: flex-start
+      counter-reset: submenu-sec
+      counter-reset: submenu-doc
+      counter-set: submenu-sec 100
+      li
+        width: 100%
+        display: flex
+        margin: 0
+        flex-direction: column
+        align-items: flex-start
+        justify-content: center
+        a
+          display: flex
+          align-items: center
+          height: 68px
+          padding: 20px 32px
+          font-size: 18px
+          font-weight: 600
+          line-height: 1.56
+          letter-spacing: normal
+          color: $cbn-900
+          content: ''
+          &.selected
+            background-color: $cbn-lgt-400
+            .icon-arrows-diagrams-right-3
+              transform: rotate(-90deg)
+          i
+            font-size: 24px
+            color: $act-900
+            margin-right: 12px
+            &.icon-essential-log-out-6
+              color: $hlt-600
+            &.icon-arrows-diagrams-right-3
+              transform: rotate(90deg)
+              color: $cbn-900
+        .bar-bottom
+          display: none
+        ul
+          display: flex
+          flex-direction: column
+          padding-left: 68px
+          width: 100%
+          overflow-y: hidden
+          li
+            min-height: 24px
+            font-size: 14px
+            font-weight: 500
+            line-height: 3.14
+            letter-spacing: normal
+            color: $cbn-mid-600
+            cursor: pointer
+
+        &.contact-container
+          display: none
+        &.security-container
+          &.hidden-mobile
+            display: none
+        &.offers-container
+          &.hidden-mobile
+            display: none
+
+    .footer-menu-ds
+      height: 80px
+      width: 100%
+      margin: 24px 32px
+      display: flex
+      flex-direction: column
+      align-items: flex-start
+      &__logo
+        width: 72px
+        height: 24px
+        margin-bottom: 16px
+      &__last-entry, &__company
+        font-size: 11px
+        font-weight: 600
+        line-height: 1.82
+        letter-spacing: normal
+        color: $cbn-mid-400
+
+
+
+@media only screen and (min-width: $break-medium-table-landscape-min)
+  .option-nav-ds
+    display: flex
+    height: 100%
+    justify-content: flex-end
+    align-items: center
+    .option-list-ds
+      display: flex
+      height: 100%
+      justify-content: flex-end
+      align-items: center
+      li
+        display: flex
+        align-items: center
+        flex-direction: column
+        height: 100%
+        a
+          display: flex
+          align-items: center
+          font-size: 11px
+          font-weight: 600
+          line-height: 1.82
+          letter-spacing: normal
+          color: $black-750
+          height: 100%
+          padding: 0px 16px
+          margin: 6px 0px
+          &.a-active
+            i
+              color: $hlt-600
+          &:hover
+            border-radius: 8px
+            background-color: rgba($hlt-100, 0.24)
+            color: $hlt-600
+            i 
+              color: $hlt-600
+          &#opt_safe_logout:hover
+            background-color: rgba($act-100, 0.24)
+            color: $act-900
+            i
+              color: $act-900 !important
+          i
+            font-size: 24px
+            color: $black-750
+            padding: 2px
+            &.icon-essential-log-out-6
+              color: $act-900
+            &.icon-request-products
+              padding-right: 5px
+        &.documents-container
+          display: none
+        &.security-container
+          &.visible-mobile
+            display: none
+        &.offers-container
+          &.visible-mobile
+            display: none
+        &.disabled
+          cursor: not-allowed
+          a
+            color: $cbn-mid-400
+            pointer-events: none
+            &:hover
+              background-color: $carbon-light-100
+            i
+              color: $cbn-mid-400
+        .bar-bottom
+          height: 4px
+          background-color: $hlt-600
+          width: calc( 100% -  32px)
+          border-top-left-radius: 100px
+          border-top-right-radius: 100px
+          display: none
+      .active
+        display: block !important
+
+    .footer-menu-ds
+      display: none

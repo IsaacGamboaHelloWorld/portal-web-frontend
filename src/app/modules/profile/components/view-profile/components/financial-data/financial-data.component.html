@@ -1,0 +1,45 @@
+<div class="content" *ngIf="(user$ | async)?.data as user">
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.FINANCIAL_DATA.ECONOMIC_ACTIVITY_FIELD' | translate}}
+        </span>
+        <p>
+            {{setupValue((extractCatalogItemDetailByCodeFromCatalogSet('economicActivityCode', 'shortName', user?.financialInformation?.economicActivityCode, '') | async)?.longName | titlecase, 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate)}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.FINANCIAL_DATA.INCOME_FIELD' | translate}}
+        </span>
+        <p [innerHTML]="user?.financialInformation?.income | currencyFormat: true">
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.FINANCIAL_DATA.OTHER_INCOME_FIELD' | translate}}
+        </span>
+        <p [innerHTML]="user?.financialInformation?.otherIncome | currencyFormat: true">
+        </p>
+    </div>
+    <div> 
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.FINANCIAL_DATA.OTHER_OUTCOME_FIELD' | translate}}
+        </span>
+        <p [innerHTML]="user?.financialInformation?.otherOutcome | currencyFormat: true">
+        </p>
+    </div>  
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.FINANCIAL_DATA.ASSETS_FIELD' | translate}}
+        </span>
+        <p [innerHTML]="user?.financialInformation?.assets | currencyFormat: true">
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.FINANCIAL_DATA.LIABILIES_FIELD' | translate}}
+        </span>
+        <p [innerHTML]="user?.financialInformation?.liabilities | currencyFormat: true">
+        </p>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="cont-circles">
+    <div class="circle-big animated-fast zoomIn"></div>
+    <div class="circle-medium animated-fast zoomIn"></div>
+    <div class="circle-small animated-fast zoomIn"></div>
+    <div class="cont-signs">
+        <div class="c-small circle-one"></div>
+        <div class="c-small circle-two"></div>
+        <div class="c-small circle-three"></div>
+    </div>
+</div>
+
+<div class="container-notfound not-select">
+    <a class="logo" [routerLink]="navigate.home">
+        <img [src]="'/logotipo-horizontalx3.png' | imageCdn" alt="No se encuentra">
+    </a>
+    <div class="image-container">
+        <div class="circle-green">
+            <img [src]="'/icon-403@2x.png' | imageCdn" alt="">
+        </div>
+    </div>
+    <div class="text-container">
+        <h2>{{'NOTFOUND.TITLE' | translate}}</h2>
+        <p class="paragraph-default" [innerHTML]="'NOTFOUND.DESC' | translate"></p>
+        <button class="btn btn-primary" [routerLink]="navigate.login">{{'NOTFOUND.BUTTON' | translate}}</button>
+    </div>
+
+    <app-global-footer [showDate]="false"></app-global-footer>
+</div>

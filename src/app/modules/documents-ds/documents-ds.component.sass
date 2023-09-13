@@ -1,0 +1,41 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.main-container-transaction.changes-styles-in-documents-ds
+  h2, h6
+    margin-left: auto
+    margin-right: auto
+    padding: 0
+  h2 
+    color: $cbn-900
+    font-weight: bold
+    line-height: 1.52
+    letter-spacing: normal
+    margin-bottom: 12px
+    font-size: 21px
+  h6
+    line-height: 2
+    color: $cbn-mid-600
+  .main-container-transaction_navigator
+    .navigation-opts
+      padding: 21px 0 !important
+  .main-container-transaction-section.full-content
+    align-items: flex-start
+
+@media only screen and (min-width: $break-small-table-min)
+  .main-container-transaction.changes-styles-in-documents-ds
+    h2, h6
+      flex: 0 0 auto
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .main-container-transaction.changes-styles-in-documents-ds
+    h2, h6
+      width: 100%
+    h2 
+      margin-bottom: 8px
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .main-container-transaction.changes-styles-in-documents-ds
+    h2 
+      font-size: 28px
+

@@ -1,0 +1,129 @@
+@import '../../../../../sass/mixins'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/variables'
+
+.cards
+  display: flex
+  justify-content: center
+  flex-direction: column
+  >div
+    margin-top: 24px
+    >.card-base
+      height: 200px
+    .subsection-title
+      font-size: $f-14 + 2
+      font-weight: 600
+      margin-bottom: 20px
+      text-align: justify
+      width: 100%
+      padding-left: 6px
+      &.one
+        width: 322px
+        padding-left: 6px
+    .amount
+      width: 16px
+      height: 16px
+      border-radius: 8px
+      background-color: $info-100
+      color: $info-600
+      font-size: 10px
+      font-weight: 600
+      letter-spacing: normal
+      text-align: center
+      padding: 2px
+      display: inline-block
+      margin-left: 2px
+  .debit-cards, .credit-cards
+    display: flex
+    justify-content: center
+    width: 650px
+    .error
+      text-align: center
+      >div
+        width: 100%
+        display: block
+      .image-container
+        margin-top: 20px
+        img
+          width: 80px
+          height: 80px
+      .title-container
+        margin-top: 28px
+        h3
+          font-size: $f-14 + 2
+          font-weight: 600
+          line-height: 1.5
+      .description-container
+        margin-top: 12px
+        p
+          font-size: $f-14 - 1
+          line-height: 2.15
+          margin-bottom: 16px
+    .card-base
+      &.loading
+        background: $carbon-light-100
+        border-radius: 12px
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08)
+        overflow: hidden
+        height: 200px
+        width: 330px
+        .title-card
+          left: 24px
+          position: absolute
+          height: 12px
+          top: 27px
+        .card-mask
+          left: 24px
+          position: absolute
+          height: 16px
+          top: 112px
+        .cvv-card
+          position: absolute
+          height: 12px
+          bottom: 29px
+          left: 133px
+
+  .error
+    width: 100%
+    height: 284px
+    background-color: $carbon-light-100
+    margin: 24px auto
+    border-radius: 12px
+    display: flex
+    flex-direction: column
+    align-items: center
+    .subsection-title
+      width: 100%
+      text-align: left
+    .title
+      font-size: 16px
+      font-weight: 600
+      line-height: 1.75
+      letter-spacing: normal
+      margin:  12px auto 8px
+      color: $black-750
+    .description
+      font-size: 13px
+      font-weight: normal
+      line-height: 2.15
+      letter-spacing: normal
+      text-align: center
+      color: $cbn-900
+      margin: 0px 8px
+    .btn-primary
+      width: 295px
+      height: 48px
+      margin-top: 24px
+
+  ul
+    li
+      display: inline-block
+
+@media only screen and (max-width: $break-tablet)
+  .list-blocked-cards
+    margin-top: 40px
+
+@media only screen and (max-width: $break-mobile)
+  .cards
+    .error
+      width: 343px

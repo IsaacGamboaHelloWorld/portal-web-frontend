@@ -1,0 +1,83 @@
+<app-template-system [title]="'PAYMENTSV2.PUBLIC_SERVICES.MAIN_TITLE' | translate" [sectionHome]="true" [sectionContent]="content" [fullContent]="true" [navigatorActive]="true" [backUrl]="navigate.paymentsv2">
+</app-template-system>
+
+<ng-template #content>
+    <div class="public-services-container" [ngClass]="{'zero-records': (allPayments$ | async)?.error}">
+        <ng-container *ngIf="!(allPayments$ | async)?.error || loadedProducts; else noRecords">
+            <div class="public-services-container-next-items">
+                <div class="title-arrows">
+                    <h5>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.TITLE' | translate}}</h5>
+                    <div *ngIf="showArrow && !isMobile" class="cont-arrows">
+                        <img class="left" [src]="iconArrowRight | imageCdn" alt="" (click)="onLeft()" [ngClass]="{'left-invested': iconColor}">
+                        <img class="right" [src]="iconArrowLeft | imageCdn" alt="" (click)="onRight()" [ngClass]="{'left-invested': iconColor}">
+                    </div>
+                </div>
+                <div class="next-payments-list" #scroll (scroll)="scrollHandler($event)">
+                    <ng-container *ngIf="hasNextBills$ | async; else loadingNextPayments">
+                        <ng-container *ngIf="nextbillers.length > 0; else noData">
+                            <app-service-to-pay *ngFor="let info of nextbillers" [programmed]="!info?.isScheduledPayment" [enterprise]="info?.billerName" [nameService]="info?.billerNickName" [amount]="info?.amount" [date]="info?.dueDate" (payAction)="doPayServiceTop($event)" [data]="info"></app-service-to-pay>
+                        </ng-container>
+                    </ng-container>
+                </div>
+                <div class="public-services-container-manager">
+                    <div class="public-services-container-manager-content">
+                        <div class="public-services-listed">
+                            <div class="manager-header">
+                                <h5>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.SUBTITLE1' | translate}}</h5><a class="delete-link link" (click)="activeEdit()" *ngIf="(allPayments$ | async)?.bills?.length > 0">{{(editModeStatus ? 'Cancelar' : 'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.BTN_EDIT') | translate}}</a>
+                            </div>
+                            <button class="btn btn-primary btn-register-service" (click)="addNewService()">{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.BTN_ADD' | translate}}<em class="icon-plus"></em></button>
+                            <div class="list-payments">
+                                <ng-container *ngIf="hasAllBills$ | async; else loadingAllPayments">
+                                    <app-service-to-admin *ngFor="let info of (allPayments$ | async).bills; let i = index" [selected]="isSelected" [data]="info" [tagnumber]="i" [nameService]="info?.billerNickName" [enterprise]="info?.billerName" [ref]="info?.contract" (click)="selectBillClick(info, i)"
+                                        [editMode]="editModeStatus" (deleteAction)="onDeletePublicService($event)"></app-service-to-admin>
+                                </ng-container>
+                            </div>
+                        </div>
+                        <div class="shadow-bottom-ps"></div>
+                        <ng-container *ngIf="!isMobile">
+                            <div class="public-services-admin" *ngIf="(infoPayment$ | async); else loadingInfo">
+                                <app-service-payment-info [serviceName]="(infoPayment$ | async)?.billerNickname ? (infoPayment$ | async)?.billerNickname : (infoPayment$ | async)?.billerNickName" [enterprise]="(infoPayment$ | async)?.billerName" [data]="(infoPayment$ | async)" [ref]="(infoPayment$ | async)?.contract"
+                                    [amount]="(infoPayment$ | async)?.debtWithMainBiller" (payAction)="doPayService($event)" [billWithError]="billWithError" [biller]="isBill" [billWithErrorMessage]="billWithErrorMessage"></app-service-payment-info>
+                                <app-programmed-payment *ngIf="isBill" [data]="(infoPayment$ | async)" [actived]="(infoPayment$ | async)?.paymentType === 'X_DAYS_BEFORE_DUE_DATE'" (stateCheck)="setProgramed($event)" (editAction)="doEdit($event)"></app-programmed-payment>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>
+
+<ng-template #loadingInfo>
+    <app-service-payment-info [loading]="true"></app-service-payment-info>
+</ng-template>
+
+<ng-template #noRecords>
+    <div class="zero-background">
+        <div class="circle-green">
+            <img [src]="'/pagos.png' | imageCdn" alt="">
+        </div>
+        <div class="circle-big animated-fast zoomIn"></div>
+        <div class="circle-medium animated-fast zoomIn"></div>
+        <div class="circle-small animated-fast zoomIn"></div>
+        <p class="title">{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.ZERO.TITLE' | translate}}</p>
+        <p>
+            {{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.ZERO.SUB_TITLE' | translate}}
+        </p>
+        <button class="btn btn-primary" (click)="addNewService()">{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.BTN_ADD' | translate}}</button>
+    </div>
+</ng-template>
+
+<ng-template #loadingNextPayments>
+    <app-service-to-pay [loading]="true"></app-service-to-pay>
+    <app-service-to-pay [loading]="true"></app-service-to-pay>
+    <app-service-to-pay [loading]="true"></app-service-to-pay>
+</ng-template>
+
+<ng-template #loadingAllPayments>
+    <app-service-to-admin [loading]="true"></app-service-to-admin>
+</ng-template>
+
+<ng-template #noData>
+    <app-service-to-pay [nodata]="true"></app-service-to-pay>
+</ng-template>

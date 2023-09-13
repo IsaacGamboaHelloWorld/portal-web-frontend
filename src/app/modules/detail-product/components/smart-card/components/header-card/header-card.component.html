@@ -1,0 +1,35 @@
+<div class="smart-card-header" *ngIf="hasData">
+    <div class="icon" *ngIf="isTC">
+        <img [src]="(info.accountInformation.accountIdentifier | typeCreditCard)?.img | imageCdn" alt="">
+    </div>
+    <div class="header-data">
+        <div class="cont-head-edit" *ngIf="!viewEdit else ifEdit">
+            <h4 class="title">{{(newNameProduct ? newNameProduct : info?.accountInformation?.productName)}}</h4>
+            <div (click)="edit()">
+                <img class="edit-img" alt="">
+                <span class="edit">{{'DETAIL.DETAIL_DEPOSIT_ACCOUNT.EDIT' | translate}}</span>
+            </div>
+        </div>
+        <div class="information-under-name">
+            <span class="status paragraph-small">{{info?.status | statusProduct}}</span>
+            <app-obfuscate-number [text]="'DETAIL.DETAIL_DEPOSIT_ACCOUNT.TEXT_PRE_NUMBER'" *ngIf="!isTC" [accountNumber]="info?.id"></app-obfuscate-number>
+            <p class="paragraph-default" *ngIf="isTC">{{'DETAIL.DETAIL_DEPOSIT_ACCOUNT.TEXT_PRE_NUMBER' | translate}} . {{info?.id | creditCardMask | creditCardHidden}}</p>
+        </div>
+    </div>
+</div>
+
+<ng-template #ifEdit>
+    <div class="cont-head-edit">
+        <form class="form-global" [formGroup]="form" [ngClass]="{'form-edit': viewEdit}">
+            <div class="form-group">
+                <input type="text" class="input-bp" formControlName="name" maxlength="18" (input)="validText($event.target.value)">
+                <button class="check" (click)="check()">
+                    <img class="check-img" alt="">
+                </button>
+                <button class="close" (click)="viewEdit = false">
+                    <img class="close-img" alt="">
+                </button>
+            </div>
+        </form>
+    </div>
+</ng-template>

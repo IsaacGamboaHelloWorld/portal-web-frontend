@@ -1,0 +1,34 @@
+<div class="cont-detail-fd">
+  <h2> {{ 'DETAIL.FREE_DESTINATION.TITLE_SUBDETAIL' | translate }} </h2>
+  <div class="container">
+    
+    <div class="secondary-item">
+      <p>
+          {{'DETAIL.FREE_DESTINATION.CREDIT_AMOUNT' | translate}}
+      </p>
+      <h4 [innerHTML]="data?.approvalAmount | currencyFormat: false"></h4>
+    </div>  
+  
+    <div class="secondary-item">
+      <p>
+          {{'DETAIL.FREE_DESTINATION.INTEREST_RATE' | translate}}
+      </p>
+      <h4>{{ data?.currentRate }} {{ 'DETAIL.FREE_DESTINATION.INTEREST_RATE_UNIT' | translate }} </h4>
+    </div>
+
+    <div class="secondary-item">
+      <p>
+          {{'DETAIL.FREE_DESTINATION.TERM' | translate}}
+      </p>
+      <h4>{{ data?.term }} {{'DETAIL.FREE_DESTINATION.MONTHS' | translate}}
+      </h4>
+    </div>
+
+    <div class="secondary-item">
+        <p>
+            {{'DETAIL.FREE_DESTINATION.OPENING_DATE' | translate}}
+        </p>
+        <h4>{{ data?.startDate | date:'dd/MMM/yyyy' | replace : '.' : '' }}</h4>
+    </div>
+  </div>
+</div>

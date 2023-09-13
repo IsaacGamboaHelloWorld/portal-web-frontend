@@ -1,0 +1,18 @@
+<div class="cont-modal-success">
+    <div class="img-modal">
+        <div class="circle-icon-error">
+            <img class="icon-card-error" alt="">
+        </div>
+    </div>
+    <div class="textModal">
+        <p class="title">{{((enrollmentData$ | async)?.data?.experian?.errorMessage ? 'AUTH.ENROLLMENT.ALERT.BURO.TITLE' : 'AUTH.ENROLLMENT.ALERT.OTP.TITLE') | translate}}</p>
+        <p class="subTitle">{{((enrollmentData$ | async)?.data?.experian?.errorMessage  ? 'AUTH.ENROLLMENT.ALERT.BURO.DESCRIPTION' : 'AUTH.ENROLLMENT.ALERT.OTP.DESCRIPTION') | translate}}</p>
+    </div>
+    <div class="btnModal">
+        <app-btn (clickBtn)="emitClick()"
+        [text]="('AUTH.ENROLLMENT.ALERT.BURO.BTN' | translate)"
+        [isLoading]="loading"
+        [disabled]="loading"
+        [class]="'btn btn-primary'"></app-btn>
+    </div>
+</div>

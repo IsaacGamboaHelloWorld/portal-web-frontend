@@ -1,0 +1,43 @@
+<app-template-system
+  [title]="'DOCUMENTS.TITLE' | translate"
+  [subtitle]="'DOCUMENTS.SUBTITLE' | translate"
+  [sectionContent]="content" 
+  [fullContent]="true"
+  [backUrl]="navigateMain.home"
+  [sectionHome]="true"
+  [navigatorActive]="true"
+></app-template-system>
+
+<ng-template #content>
+  <div class="documents-home-ds">
+    <div class="documents-home-ds__item">
+      <app-btn-square-ds
+        *ngIf="(optionsModule$ | async)?.data?.documents?.options?.extracts"
+        [url]="navigateDocuments.extracts"
+        [classIcon]="'icon-ds-documents-extracts'"
+        [title]="'DOCUMENTS.EXTRACTS.TITLE' | translate"
+        [subtitle]="'DOCUMENTS.EXTRACTS.TEXT' | translate"
+      ></app-btn-square-ds>
+    </div>
+
+    <div class="documents-home-ds__item">
+      <app-btn-square-ds
+        *ngIf="(optionsModule$ | async)?.data?.documents?.options?.certificate_product"
+        [url]="navigateDocuments.certificate"
+        [classIcon]="'icon-ds-documents-products'"
+        [title]="'DOCUMENTS.CERTIFICATE.TITLE' | translate"
+        [subtitle]="'DOCUMENTS.CERTIFICATE.TEXT' | translate"
+        ></app-btn-square-ds>
+    </div>
+    <div class="documents-home-ds__item">
+      <app-btn-square-ds
+        *ngIf="(optionsModule$ | async)?.data?.documents?.options?.certificate_taxes"
+        [url]="navigate.tributary"
+        [classIcon]="'icon-ds-documents-taxes'"
+        [title]="'DOCUMENTS.TRIBUTARY.TITLE' | translate"
+        [subtitle]="'DOCUMENTS.TRIBUTARY.TEXT' | translate"
+    ></app-btn-square-ds>
+    </div>
+  </div>
+
+</ng-template>

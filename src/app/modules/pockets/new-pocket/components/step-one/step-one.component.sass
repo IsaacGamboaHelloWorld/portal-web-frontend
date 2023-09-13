@@ -1,0 +1,52 @@
+@import '~sass/variables'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.cont-step-one-pocket
+  max-width: 344px
+  margin: 0 auto
+  .form-group
+    padding: 0
+    .form-radiobutton-contanier
+      background: $carbon-light-100
+      &.active
+        border: solid 1.5px $g-500
+        background: $gb-500
+  .radio
+    width: 30%
+    float: left
+  .messages
+    position: absolute
+    right: -30px
+    top: 50%
+    transform: translateY(-50%)
+    img
+      width: 30px
+      height: auto
+    i
+      width: 20px
+      height: 20px
+      line-height: 20px
+      text-align: center
+      color: $carbon-light-100
+      font-size: $f-14 - 4
+      border-radius: 50%
+      +inline(top)
+      &.success
+        background: $success-100
+        color: $success-900
+      &.warning
+        background: $error-600
+        cursor: pointer
+  .submit-step-one
+    text-align: center
+    margin: 0
+    display: flex
+    button
+      width: 100%
+      display: block
+      margin: 0 auto
+    a
+      padding: 20px
+

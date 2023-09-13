@@ -1,0 +1,61 @@
+<div class="animated fade-in-up cont-step-global cont-step-end">
+    <app-ticket
+      [imageTicket]="'/success.png' | imageCdn"
+      [btnText]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.DESC_BTN' | translate: { value: 'icon-download-bottom' }"
+      [title]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.TITLE_LBL' | translate"
+      [description]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.SUBTITLE_LBL' | translate"
+      [messageTitle]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.AMOUNT_LBL' | translate"
+      [messageText]="(paymentBill$ | async)?.data?.billerPayment?.amount | currencyFormat : true : 'decimal-vouchers'"
+      [listTemplate]="list"
+      [id]="'voucher-payment'"
+      [disabled]="disabled"
+      (btnAction)="download()"
+      [btnLoadingText]="'TRANSFER.SUCCESS.LOADING_DOWNLOAD' | translate: { img: ('/loading-text.gif' |imageCdn) } "
+      [response]="(paymentBill$ | async)?.data">
+    </app-ticket>
+
+    <div class="card-programmed-payment">
+        <app-programmed-payment *ngIf="(infoPayment$ | async) && isBill"
+            [showInEnd]="true" 
+            [actived]="(infoPayment$ | async)?.paymentType === 'X_DAYS_BEFORE_DUE_DATE'" 
+            [disabled]="(getRecurringPaymentState$ | async)?.error" 
+            (stateCheck)="setProgramed($event)"
+        ></app-programmed-payment>
+    </div>
+
+    <div class="footer-step-end">
+        <button class="btn btn-primary" [routerLink]="navigate.paymentsv2services">{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.FINAL_BTN' | translate}}</button>
+    </div>
+</div>
+
+<ng-template #list>
+    <ul *ngIf="paymentBill$ | async as payment">
+        <li>
+            <span>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.FROM_LBL' | translate}}</span>
+            
+            <p [innerHTML]="
+                ('BANKS.'+ payment?.data?.billerPayment?.originAccountBank | translate) + 
+                ' - ' +
+                ('PRODUCT_TYPES.' + payment?.data?.billerPayment?.originAccountType?.toUpperCase() | translate) +
+                ' - ' +
+                ( payment?.data?.billerPayment?.originAccountId | slice: -4 )
+            ">
+        </p>
+        </li>
+        <li>
+            <span>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.TO_LBL' | translate}}</span>
+            <p> {{ payment?.data?.billerPayment?.billerName | translate}} - 
+                {{ payment?.data?.billerPayment?.billerNickName || payment?.data?.billerPayment?.billerNickname }}
+                {{ 'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.REF_PAYMENT' | translate}} {{payment?.data?.billerPayment?.contract}}
+            </p>
+        </li>
+        <li>
+            <span>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.APPROVAL_LBL' | translate}}</span>
+            <p>{{payment?.data?.approvalId}}</p>
+        </li>
+        <li>
+            <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+            <p [innerHTML]=" costTransfer | currencyFormat : true : 'decimal-vouchers fs-14' " ></p>
+        </li>
+    </ul>
+</ng-template>

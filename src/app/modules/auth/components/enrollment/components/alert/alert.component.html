@@ -1,0 +1,117 @@
+<div class="cont-alert-enrollment">
+    <form class="form-global" autocomplete="off">
+        <div [ngSwitch]="userEnrollmentFlowInformation.step">
+            <!-- Version 1 -->
+            <div class="animated fade-in-up" *ngSwitchCase="steps.DOES_NOT_EXISTS">
+                <div class="top-image-container">
+                    <img [src]="'/enrollment/password.png' | imageCdn" alt="">
+                </div>
+                <img [src]="'/enrollment/office.png' | imageCdn" alt="">
+                <h4>{{'AUTH.ENROLLMENT.ALERT.DOES_NOT_EXISTS.TITLE' | translate}}</h4>
+                <p>{{'AUTH.ENROLLMENT.ALERT.DOES_NOT_EXISTS.DESCRIPTION' | translate}}</p>
+                <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.DOES_NOT_EXISTS.BTN' | translate}}</button>
+            </div>
+            <div class="animated fade-in-up" *ngSwitchCase="steps.USER_DOES_NOT_EXISTS">
+                <img [src]="'/enrollment/office.png' | imageCdn" alt="">
+                <h4>{{'AUTH.ENROLLMENT.ALERT.DOES_NOT_EXISTS.TITLE' | translate}}</h4>
+                <p>{{'AUTH.ENROLLMENT.ALERT.DOES_NOT_EXISTS.DESCRIPTION' | translate}}</p>
+                <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.DOES_NOT_EXISTS.BTN' | translate}}</button>
+            </div>
+            <div class="animated fade-in-up" *ngSwitchCase="steps.LIMIT_EXCEED_ON_SECURE_DATA_GENERATION">
+                <div class="top-image-container">
+                    <img [src]="'/enrollment/retries-number-exceed.png' | imageCdn" alt="">
+                </div>
+                <h4>{{'AUTH.ENROLLMENT.ALERT.LIMIT_EXCEED_ON_SECURE_DATA_GENERATION.TITLE' | translate}}</h4>
+                <p>{{'AUTH.ENROLLMENT.ALERT.LIMIT_EXCEED_ON_SECURE_DATA_GENERATION.DESCRIPTION' | translate}}</p>
+                <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.LIMIT_EXCEED_ON_SECURE_DATA_GENERATION.BTN' | translate}}</button>
+            </div>
+            <div class="animated fade-in-up" *ngSwitchCase="steps.LIMIT_EXCEED_ON_OTP_GENERATION">
+                <div class="top-image-container">
+                    <img [src]="'/enrollment/retries-number-exceed.png' | imageCdn" alt="">
+                </div>
+                <h4>{{'AUTH.ENROLLMENT.ALERT.LIMIT_EXCEED_ON_OTP_GENERATION.TITLE' | translate}}</h4>
+                <p>{{'AUTH.ENROLLMENT.ALERT.LIMIT_EXCEED_ON_OTP_GENERATION.DESCRIPTION' | translate}}</p>
+                <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.LIMIT_EXCEED_ON_OTP_GENERATION.BTN' | translate}}</button>
+            </div>
+            <div class="animated fade-in-up" *ngSwitchCase="steps.SERVICE_ERROR">
+                <div class="top-image-container">
+                    <img [src]="'/80-technical-problems.svg' | imageCdn" alt="">
+                </div>
+                <h4 [innerHTML]="'AUTH.ENROLLMENT.ALERT.SERVICE_ERROR.TITLE' | translate"></h4>
+                <p>{{'AUTH.ENROLLMENT.ALERT.SERVICE_ERROR.DESCRIPTION' | translate}}</p>
+                <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.SERVICE_ERROR.BTN' | translate}}</button>
+            </div>
+            <!-- End Version 1 -->
+            <!-- Version 2 -->
+                <div class="animated fade-in-up" *ngSwitchCase="steps.RETRIES_LIMIT_EXCEED_ON_FILL_SECURITY_QUESTION">
+                    <div class="top-image-container">
+                        <img [src]="'/enrollment/retries-number-exceed.png' | imageCdn" alt="">
+                    </div>
+                    <h4>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_FILL_SECURITY_QUESTION.TITLE' | translate}}</h4>
+                    <p>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_FILL_SECURITY_QUESTION.DESCRIPTION' | translate}}</p>
+                    <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_FILL_SECURITY_QUESTION.BTN' | translate}}</button>
+                </div>
+                <div class="animated fade-in-up" *ngSwitchCase="steps.RETRIES_LIMIT_EXCEED_ON_LOAD_ENROLLMENT_OTP">
+                    <div class="top-image-container">
+                        <img [src]="'/enrollment/retries-number-exceed.png' | imageCdn" alt="">
+                    </div>
+                    <h4>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_LOAD_ENROLLMENT_OTP.TITLE' | translate}}</h4>
+                    <p>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_LOAD_ENROLLMENT_OTP.DESCRIPTION' | translate}}</p>
+                    <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_LOAD_ENROLLMENT_OTP.BTN' | translate}}</button>
+                </div>
+                <div class="animated fade-in-up" *ngSwitchCase="steps.RETRIES_LIMIT_EXCEED_ON_FILL_ENROLLMENT_OTP">
+                    <div class="top-image-container">
+                        <img [src]="'/enrollment/retries-number-exceed.png' | imageCdn" alt="">
+                    </div>
+                    <h4>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_FILL_ENROLLMENT_OTP.TITLE' | translate}}</h4>
+                    <p>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_FILL_ENROLLMENT_OTP.DESCRIPTION' | translate}}</p>
+                    <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_FILL_ENROLLMENT_OTP.BTN' | translate}}</button>
+                </div>
+                <div class="animated fade-in-up" *ngSwitchCase="steps.RETRIES_LIMIT_EXCEED_ON_FILL_CREDENTIALS">
+                    <div class="top-image-container">
+                        <img [src]="'/enrollment/retries-number-exceed.png' | imageCdn" alt="">
+                    </div>
+                    <h4>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_FILL_CREDENTIALS.TITLE' | translate}}</h4>
+                    <p>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_FILL_CREDENTIALS.DESCRIPTION' | translate}}</p>
+                    <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_FILL_CREDENTIALS.BTN' | translate}}</button>
+                </div>
+                <div class="animated fade-in-up" *ngSwitchCase="steps.RETRIES_LIMIT_EXCEED_ON_CREATE_OR_MIGRATE_USER_CREDENTIALS">
+                    <div class="top-image-container">
+                        <img [src]="'/enrollment/retries-number-exceed.png' | imageCdn" alt="">
+                    </div>
+                    <h4>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_CREATE_OR_MIGRATE_USER_CREDENTIALS.TITLE' | translate}}</h4>
+                    <p>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_CREATE_OR_MIGRATE_USER_CREDENTIALS.DESCRIPTION' | translate}}</p>
+                    <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_CREATE_OR_MIGRATE_USER_CREDENTIALS.BTN' | translate}}</button>
+                </div>
+                <div class="animated fade-in-up" *ngSwitchCase="steps.RETRIES_LIMIT_EXCEED_ON_USER_TASK">
+                        <div class="top-image-container">
+                            <img [src]="'/enrollment/retries-number-exceed.png' | imageCdn" alt="">
+                        </div>
+                        <h4>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_USER_TASK.TITLE' | translate}}</h4>
+                        <p>{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_USER_TASK.DESCRIPTION' | translate}}</p>
+                        <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.RETRIES_LIMIT_EXCEED_ON_USER_TASK.BTN' | translate}}</button>
+                    </div>
+                <div class="animated fade-in-up" *ngSwitchCase="steps.V2_SERVICE_ERROR">
+                    <div class="top-image-container">
+                        <img [src]="'/80-technical-problems.svg' | imageCdn" alt="">
+                    </div>
+                    <h4 [innerHTML]="'AUTH.ENROLLMENT.ALERT.SERVICE_ERROR.TITLE' | translate"></h4>
+                    <p>{{'AUTH.ENROLLMENT.ALERT.SERVICE_ERROR.DESCRIPTION' | translate}}</p>
+                    <button type="button" class="btn btn-primary" (click)="redirectToHome()"><img class="arrow-right" alt="">{{'AUTH.ENROLLMENT.ALERT.SERVICE_ERROR.BTN' | translate}}</button>
+                </div>
+                <!-- Biometric fail -->
+                <div class="animated fade-in-up" *ngSwitchCase="steps.BIOMETRIC_SERVICE_ERROR">
+                    <div class="top-image-container">
+                        <img [src]="'/80-technical-problems.svg' | imageCdn" alt="">
+                    </div>
+                    <h4 [innerHTML]="'AUTH.ENROLLMENT.ALERT.SERVICE_ERROR.TITLE' | translate"></h4>
+                    <p>{{'AUTH.ENROLLMENT.BIOMETRIC.MODAL_ERROR.TEXT' | translate}}</p>
+                    <button type="button" class="btn btn-primary" (click)="redirectHome()">{{'AUTH.ENROLLMENT.BIOMETRIC.MODAL_ERROR.BTN' | translate}}</button>
+                </div>
+                <!-- End Version 2 -->
+            <div *ngSwitchCase="steps.COMPLETED"></div>
+            <div *ngSwitchDefault></div>
+        </div>
+    </form>
+</div>
+

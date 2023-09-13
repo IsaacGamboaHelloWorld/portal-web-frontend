@@ -1,0 +1,45 @@
+@import '../sass/colors'
+
+.animation-login
+  position: fixed
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 10
+  background: $g-500
+  overflow: hidden
+  height: 100%
+  transition: .5s
+  display: flex
+  justify-content: center
+  align-items: center
+  transform: translateY(110%)
+  img
+    height: 40px
+    width: auto
+    transition: .3s
+    opacity: 0
+  &.active
+    animation: transform-element 2s
+    animation-fill-mode: forwards
+    img
+      animation: img-auth 1s
+      animation-fill-mode: forwards
+
+
+
+@keyframes transform-element
+  0%
+    transform: translateY(110%)
+  50%
+    transform: translateY(0%)
+  100%
+    transform: translateY(-110%)
+
+@keyframes img-auth
+  0%
+    opacity: 0
+  50%
+    opacity: 1
+  100%
+    opacity: 0

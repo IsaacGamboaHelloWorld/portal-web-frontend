@@ -1,0 +1,25 @@
+<div class="cont-recurring" *ngIf="formRecurring">
+    <div class="head-popup">
+        <a (click)="back()" *ngIf="!stepOne"><em class="icon-arrow2-right back-icon no-border"></em></a>
+        <p>{{ 'PAYMENTSV2.PUBLIC_SERVICES.MODAL_TITLE' | translate }}</p>
+        <a (click)="close()"><em class="icon-x-close no-border"></em></a>
+    </div>
+    <div class="body-popup">
+        <form class="form-global" [formGroup]="formRecurring" (ngSubmit)="submitForm()">
+            <div class="step" *ngIf="stepOne">
+                <app-dropdown-select [label]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.RECURRING_ORIGIN'" [form]="formRecurring" [property]="'account_origin'" [fixedOptions]="optionsProds" [advancedLabel]="true" [placeHolder]="'TRANSFER.SELECT_ORIGIN_DEFAULT'"></app-dropdown-select>
+            </div>
+            <div class="step" *ngIf="!stepOne">
+                <app-dropdown-select [label]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.RECURRING_WHEN'" [form]="formRecurring" [property]="'range'" [fixedOptions]="options"></app-dropdown-select>
+                <fieldset class="form-group">
+                    <label>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.RECURRING_HOW_MUCH' | translate}}</label>
+                    <input type="tel" class="input-bp" formControlName="amounttext" [placeholder]="'PAYMENTS.FORM_THREE.MAX_AMOUNT_PROMPT' | translate" appCurrency [form]="formRecurring" [property]="'amounttext'">
+                </fieldset>
+            </div>
+            <fieldset class="form-group">
+                <button type="submit" class="btn btn-primary" [disabled]="!ctaOrigin" (click)="setSecondStep()" *ngIf="stepOne">{{'CONTINUE' | translate}}</button>
+                <app-btn [class]="'btn-primary'" *ngIf="!stepOne" [disabled]="formRecurring.invalid || (recurring$ | async)?.loading" [isLoading]="(recurring$ | async)?.loading" [text]="'ACTIVATE' | translate" (clickBtn)="submitForm()"></app-btn>
+            </fieldset>
+        </form>
+    </div>
+</div>

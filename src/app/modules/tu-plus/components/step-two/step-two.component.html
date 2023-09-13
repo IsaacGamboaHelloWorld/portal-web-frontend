@@ -1,0 +1,37 @@
+<div class="main-step-two" id="main-step-two">
+  <h1> {{ 'TO_PLUS.SUBTITLE' | translate }} </h1>
+  <div class="cont-cards">
+    <div class="cont-card-list">
+      <div class="cont-card-item right" (click)="goToRedeem()" id="btn-to-redeem"
+        *ngIf="actualPoints >= minPoints  && (configuration$ | async)?.success ;else DISABLED">
+        <div class="cont-img">
+          <img [src]="'/money-money-coins-3@3x.png' | imageCdn" alt="TO_PLUS.NAME">
+        </div>
+        <div class="cont-txt-info">
+          <strong> {{ options[0].TITLE }} </strong>
+          <small> {{ options[0].DESCRIPTION }} </small>
+        </div>
+      </div>
+      <div class="cont-card-item left" (click)="openModal()" id="btn-to-tuplus-web">
+        <div class="cont-img">
+          <img [src]="options[1].IMAGE | imageCdn" alt="TO_PLUS.NAME">
+        </div>
+        <div class="cont-txt-info">
+          <strong> {{ options[1].TITLE }} </strong>
+          <small> {{ options[1].DESCRIPTION }} </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #DISABLED>
+  <div class="cont-card-item right disabled-option" (click)="goToRedeem()" id="btn-to-redeem-disabled">
+    <div class="cont-img">
+      <img [src]="'/money-money-coins-gray-3@3x.png' | imageCdn" alt="TO_PLUS.NAME">
+    </div>
+    <div class="cont-txt-info">
+      <strong> {{ options[0].TITLE }} </strong>
+      <small> {{ options[0].DESCRIPTION }} </small>
+    </div>
+  </div>
+</ng-template>

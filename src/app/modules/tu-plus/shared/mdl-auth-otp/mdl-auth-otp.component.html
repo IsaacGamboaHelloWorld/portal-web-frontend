@@ -1,0 +1,33 @@
+<div class="main-mdl-code-auth">
+  <div *ngIf="!isError">
+    <form class="form-global" [formGroup]="formG" autocomplete="off">
+      <img class="icn-close-mdl" [src]="'/close-s@3x.png' | imageCdn" alt="" (click)="close()">
+      <div class="img-modal">
+        <img class="logo-modal" [src]="img | imageCdn" alt="">
+      </div>
+      <div class="txt-mdl">
+        <p class="title">{{txtTitle | translate}}</p>
+        <p class="sub-title">{{txtDescription | translate}}</p>
+      </div>
+      <div class="form-group">
+        <label class="txt-secure">{{txtCode | translate }}</label>
+        <fieldset id="input-otp"
+          [ngClass]="{ 'error-otp':  (redemption$ | async)?.loaded && !(redemption$ | async)?.success}">
+
+          <input [ngClass]="{'invalid-otp-input':  (redemption$ | async)?.loaded && !(redemption$ | async)?.success}"
+            *ngFor="let key of inputs; index as i" (keyup)="goToNextInput(i, $event)" type="text" min="0" max="9"
+            maxlength="1" size="1" formControlName="char{{key}}" id="input-otp-{{key}}" autocomplete="off"
+            appOnlyNumbers placeholder="-" #inputToken>
+        </fieldset>
+      </div>
+      <div class="form-group error-msg" *ngIf=" (redemption$ | async)?.loaded && !(redemption$ | async)?.success">
+        <p>{{ (redemption$ | async)?.errorMessage | translate}}</p>
+      </div>
+      <div class="btn-modal">
+        <app-btn [id]="'btn-modal'" (clickBtn)="emitClick()" [text]="(txtBtn | translate)"
+          [isLoading]="(redemption$ | async)?.loading" [disabled]="formG.invalid || (redemption$| async)?.loading"
+          [class]="'btn btn-primary'"></app-btn>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<section class="sheduled-transfer">
+  <div class="cont-sheduled-transfer">
+    <p class="cont-title">{{'SCHEDULED.TITLE' | translate}}</p>
+    <div class="cont-arrows" *ngIf="scheduleds.length >= 4">
+      <img class="left" [src]="iconArrow | imageCdn" (click)="onLeft()" alt="" [ngClass]="{'left-invested': iconColor}">
+      <img class="right" [src]="'/arrow-right-scheduled.svg' | imageCdn" alt="" (click)="onRight()">
+    </div>
+  </div>
+  <ul #scroll class="scroll-horizontal" (scroll)="scrollHandler($event)">
+    <li *ngFor="let scheduled of scheduleds">
+      <div class="cont-card">
+        <div class="cont-icon">
+          <img [src]="'/calendars.png' | imageCdn" alt="">
+        </div>
+        <div class="cont-scheduled">
+          <span class="style-scheduled">
+            {{ 'SCHEDULED.DATE_TEXT' | translate }}
+            {{ scheduled?.scheduleInfo?.transactionExecutionDate | date: 'dd/MMM/yyyy':'UTC' | replace : '.' : '' | titlecase }}
+            <img class="more-info" [src]="'/kebab.png' | imageCdn" alt="" (click)="moreInfo(scheduled)">
+          </span>
+          <span class="amount-scheduled">
+            {{(scheduled['transferInformation'] ? (scheduled['transferInformation']['amount'] | currencyFormat): '0' | currencyFormat)}}
+          </span>
+          <p>
+            {{'SCHEDULED.SINCE' | translate}}
+            <span>{{'PRODUCT_TYPES_SMALL.' + scheduled?.accountFromInformation?.productType | translate}}
+              {{scheduled?.accountFromInformation?.accountIdentifier | slice: -4}}</span>
+          </p>
+          <p>
+            {{'SCHEDULED.TOWARD' | translate}}
+            <span>
+              {{scheduled?.accountToInformation?.name | translate | titlecase | slice:0:18}}
+            </span>
+          </p>
+        </div>
+      </div>
+    </li>
+  </ul>
+</section>

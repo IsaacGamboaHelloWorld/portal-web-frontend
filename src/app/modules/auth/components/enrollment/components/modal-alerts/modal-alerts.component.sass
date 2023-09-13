@@ -1,0 +1,65 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+.cont-modal-success
+  background: $carbon-light-100
+  border-radius: 15px
+  padding: 24px
+  text-align: center
+  width: 344px
+  .textModal
+    width: 100%
+    color: #0d0d0d
+    .title
+      font-weight: 600
+      font-size: $f-14 + 2
+      padding-top: 16px
+      padding-bottom: 8px
+    .subTitle
+      font-size: $f-14 - 1
+      font-weight: normal
+  .img-modal
+    display: flex
+    justify-content: center
+    align-items: center
+    .circle-icon-error
+      width: 48px
+      height: 48px
+      background-color: $err-100
+      border-radius: 200px
+      -moz-border-radius: 200px
+      -webkit-border-radius: 200px
+      display: flex
+      justify-content: center
+      align-items: center
+      .icon-card-error
+        width: 32px
+        height: 32px
+        background-color: $err-600
+        mask: url('#{$base-url}/images/24-essential-sticker-14.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-essential-sticker-14.svg') no-repeat center / contain
+  .btnModal
+    padding-top: 24px
+  button
+    width: 100%
+  .linkModal
+    padding: 24px
+@media only screen and (max-width: $break-small-phone)
+  .cont-modal-success
+    width: 100%
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .cont-modal-success
+    width: 100%
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .cont-modal-success
+    width: 100%
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+  .cont-modal-success
+    width: 100%
+@media only screen and (max-width: $break-medium-table-landscape-min)
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+@media only screen and (min-width: $break-desktop-xlg-min)

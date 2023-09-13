@@ -1,0 +1,13 @@
+<app-template-system [title]="'DOCUMENTS.TITLE' | translate" [sectionContent]="content" [fullContent]="true"></app-template-system>
+
+<ng-template #content>
+  <div class="container-options">
+    <app-btn-square *ngIf="(optionsModule$ | async)?.data?.documents?.options?.extracts" [url]="navigate.extracts" [imageUrl]="baseAssets + '/assets/images/pay-sheet-search.png'" [title]="'DOCUMENTS.EXTRACTS.TITLE' | translate" [subtitle]="'DOCUMENTS.EXTRACTS.TEXT' | translate"
+      [id]="'OPT_EXTRACTS'" [widthImg]="80" [heightImg]="80" [renderer]="" (clickBtn)="clickRedirect()"></app-btn-square>
+    <app-btn-square *ngIf="(optionsModule$ | async)?.data?.documents?.options?.certificate_product" [url]="navigate.certificate" [imageUrl]="baseAssets + '/assets/images/certificate.png'" [title]="'DOCUMENTS.CERTIFICATE.TITLE' | translate" [subtitle]="'DOCUMENTS.CERTIFICATE.TEXT' | translate"
+      [id]="'OPT_CERTIFICATE'" [widthImg]="80" [heightImg]="80" [renderer]="" (clickBtn)="clickRedirect()"></app-btn-square>
+    <app-btn-square *ngIf="(optionsModule$ | async)?.data?.documents?.options?.certificate_taxes" [url]="navigate.tributary" [imageUrl]="baseAssets + '/assets/images/tribute.png'" [title]="'DOCUMENTS.TRIBUTARY.TITLE' | translate" [subtitle]="'DOCUMENTS.TRIBUTARY.TEXT' | translate"
+      [id]="'OPT_TRIBUTARY'" [widthImg]="80" [heightImg]="80" [renderer]="" (clickBtn)="clickRedirect()"></app-btn-square>
+  </div>
+
+</ng-template>

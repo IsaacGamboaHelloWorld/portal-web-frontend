@@ -1,0 +1,20 @@
+<div class="step-one-fd animated fade-in-up">
+  <h3 class="title"> {{ 'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_1.WHERE_PAY' | translate }} </h3>
+
+  <form [formGroup]="form" class="card-list">
+    <div class="card-item" *ngFor="let item of getDespositeAccountProducts$ | async; let i = index">
+      <app-card-account-radius [form]="form" [isActive]="indexAlias.value === i" [property]="'index'" [index]="i" [data]="item" (setCardEmit)="selectCard($event)"></app-card-account-radius>
+    </div>
+    <app-card-account-radius [form]="form" [isActive]="indexAlias.value === -1" [property]="'index'" [index]="-1" [data]="-1" [type]="'PSE'" (setCardEmit)="selectCard($event)"></app-card-account-radius>
+  </form>
+
+  <div class="btn-container">
+    <app-btn
+      (clickBtn)="next()"
+      [disabled]="form.invalid"
+      [text]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_1.BUTTON_OK' | translate"
+      [isLoading]="false"
+      [class]="'btn-primary'"
+    ></app-btn>
+  </div>
+</div>

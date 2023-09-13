@@ -1,0 +1,11 @@
+<app-template-system
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="false"
+></app-template-system>
+
+<ng-template #content>
+    <div class="content-profile">
+        <router-outlet></router-outlet>
+    </div>
+</ng-template>

@@ -1,0 +1,37 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.main-container-transaction.changes-styles-in-security
+  h2, h6
+    margin-left: auto
+    margin-right: auto
+    padding: 0
+  h2
+    color: $cbn-900
+    font-weight: bold
+    line-height: 1.52
+    letter-spacing: normal
+    margin-bottom: 8px
+    font-size: 21px
+  h6
+    line-height: 2
+    color: $cbn-mid-600
+  .main-container-transaction_navigator
+    .navigation-opts
+      padding: 21px 0 !important
+
+@media only screen and (min-width: $break-small-table-min)
+  .changes-styles-in-security
+    h2, h6
+      flex: 0 0 auto
+      width: 100%
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .changes-styles-in-security
+    h2, h6
+      width: 100%
+
+@media only screen and (min-width: $break-desktop-lg-min)
+  .changes-styles-in-security
+    h2, h6
+      width: 83.3333333333%

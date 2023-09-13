@@ -1,0 +1,101 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+.card
+  width: 216px
+  height: 128px
+  background: $carbon-light-100
+  border-radius: 12px
+.cont-green-arrow
+  background-color: $success-400
+.cont-red-arrow
+  background-color: $error-600
+
+.cont-your-balance
+  width: 100%
+  height: 100%
+  .title
+    margin: 24px 0
+    font-weight: 600
+    font-size: 16px
+    line-height: 24px
+    color: $carbon-dark-600
+  .cont-cards-your-balance
+    margin: 24px 0
+    display: flex
+    flex-direction: row
+    gap: 24px
+    .cont-box-card
+      .cont-header-card
+        padding-top: 20px
+        padding-left: 10px
+        padding-right: 10px
+        display: flex
+        gap: 8px
+        align-items: center
+        .type-icon-img
+          cursor: pointer
+          position: relative
+          width: 14px
+          height: 14px
+          background-color: $secondary-900
+          mask: url('#{$base-url}/images/icon-free-destination-credit.svg') no-repeat center / contain
+          -webkit-mask: url('#{$base-url}/images/icon-free-destination-credit.svg') no-repeat center / contain 
+        .type-icon-pig
+          cursor: pointer
+          position: relative
+          width: 14px
+          height: 14px
+          background-color: $secondary-900
+          mask: url('#{$base-url}/images/24-payments-finance-piggy-bank-1.svg') no-repeat center / contain
+          -webkit-mask: url('#{$base-url}/images/24-payments-finance-piggy-bank-1.svg') no-repeat center / contain 
+        span
+          font-weight: 500
+          font-size: 12px
+          line-height: 20px
+          color: $carbon-mid-400
+      .cont-body-card
+        padding: 14px 10px
+        span
+          font-weight: 500
+          font-size: 20px
+          color: $carbon-dark-600
+          .decimal-vouchers
+            font-size: 20px
+      .cont-footer-card
+        display: flex
+        gap: 8px
+        align-items: center
+        padding-bottom: 20px
+        padding-left: 10px
+        padding-right: 10px
+        .cont-icon
+          position: relative
+          display: flex
+          justify-content: center
+          align-items: center
+          width: 16px
+          height: 16px
+          border-radius: 200px
+          -moz-border-radius: 200px
+          -webkit-border-radius: 200px
+          .icon-arrow-img
+            position: relative
+            width: 12px
+            height: 12px
+            background-color: $carbon-light-100
+            mask: url('#{$base-url}/images/Arrow-up.svg') no-repeat center / contain
+            -webkit-mask: url('#{$base-url}/images/Arrow-up.svg') no-repeat center / contain
+          .down
+            transform: rotate(180deg)
+        .cont-bar-box
+          width: 85px
+          height: 8px
+        span
+          font-weight: 500
+          font-size: 11px
+          line-height: 16px
+          color: $carbon-dark-600

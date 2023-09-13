@@ -1,0 +1,26 @@
+<div class="animated fade-in-up cont-experian">
+
+  <ng-container class="form-group column small-12 medium-12 large-12" [ngSwitch]="true">
+    <div *ngSwitchCase="data?.step === getStates.FILL_OTP">
+      <app-evidente-otp (submitAction)="submitActionHandler($event)" [loading]="isLoadingState" (close)="actionClose()" [btnClose]="viewBtnClose"></app-evidente-otp>
+    </div>
+    <div *ngSwitchCase="data?.step === getStates.FILL_QUESTIONNAIRE">
+      <app-evidente-questionnaire [data]="data" [loading]="isLoadingState" (submitAction)="submitActionHandler($event)" (close)="actionClose()" [btnClose]="viewBtnClose"></app-evidente-questionnaire>
+    </div>
+    <div *ngSwitchCase="data?.step === getStates.ERROR || errorState">
+      <app-experian-error  (submitAction)="submitErrorFlowHandler($event)"></app-experian-error>
+    </div>
+    <div *ngSwitchCase="data?.step === getStates.INIT">
+      <app-experian-error  (submitAction)="submitErrorFlowHandler($event)"></app-experian-error>
+    </div>
+    <div *ngSwitchCase="data?.step === getStates.SUCCESS" [loading]="transactionCommitStep">
+      <app-experian-success (submitAction)="submitCompletedFlowHandler($event)"></app-experian-success>
+    </div>
+    <div *ngSwitchCase="isLoadingAndIsNull === true">
+      <app-experian-loading></app-experian-loading>
+    </div>
+    <div *ngSwitchDefault>
+      <app-experian-loading></app-experian-loading>
+    </div>
+  </ng-container>
+</div>

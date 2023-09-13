@@ -1,0 +1,60 @@
+<div class="create-step-one">
+    <div class="form-group cont-bar-progress">
+        <app-bar-progress [valueProgress]="33.3" [title]="'Nueva alerta y notificación'" [desc]="'1 de 3: Elegir cuentas'"></app-bar-progress>
+    </div>
+    <div class="form-group cont-desc">
+        <p>Marca las cuentas que deseas seguir.</p>
+    </div>
+    <form class="form-global" [formGroup]="formNewAlert">
+        <div class="form-group cont-check-all">
+            <label class="check-all" for="all">Marcar todas</label>
+            <input type="checkbox" id="all" name="all" [checked]="typeActive">
+        </div>
+        <div class="form-group">
+            <ul class="cont-options-step-one">
+                <li>
+                    <div class="box" (click)="setBorder('1')" [ngClass]="{'box-border': typeActive === '1'}">
+                        <div class="cont-icon">
+                            <img [src]="'/icon-type-alert.svg' | imageCdn" alt="'icon-type-alert'">
+                        </div>
+                        <div class="cont-text">
+                            <p>Cuenta de ahorros 2008</p>
+                        </div>
+                        <div class="cont-checkbox">
+                            <input type="checkbox" id="all1" name="all1" (change)="eventCheck('all1')" [checked]="typeActive">
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="box" (click)="setBorder('2')" [ngClass]="{'box-border': typeActive === '2'}">
+                        <div class="cont-icon">
+                            <img [src]="'/icon-type-alert.svg' | imageCdn" alt="'icon-type-alert'">
+                        </div>
+                        <div class="cont-text">
+                            <p>Cuenta de ahorros 2008</p>
+                        </div>
+                        <div class="cont-checkbox">
+                            <input type="checkbox" id="all2" name="all2" (change)="eventCheck('all2')" [checked]="typeActive">
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="box" (click)="setBorder('3')" [ngClass]="{'box-border': typeActive === '3'}">
+                        <div class="cont-icon">
+                            <img [src]="'/icon-type-alert.svg' | imageCdn" alt="'icon-type-alert'">
+                        </div>
+                        <div class="cont-text">
+                            <p>Cuenta de ahorros 2008</p>
+                        </div>
+                        <div class="cont-checkbox">
+                            <input type="checkbox" id="all3" name="all3" (change)="eventCheck('all3')" [checked]="typeActive">
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="form-group button-container">
+            <button type="submit" class="btn btn-primary" [disabled]="formNewAlert.invalid" (click)="submitData()">{{'CONTINUE' | translate}}</button>
+        </div> 
+    </form>
+</div>

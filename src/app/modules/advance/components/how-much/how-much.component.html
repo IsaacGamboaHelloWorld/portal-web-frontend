@@ -1,0 +1,32 @@
+<div class="animated fade-in-up cont-step-two-transfer-advance">
+  <form class="form-global" [formGroup]="formHowMuch" (ngSubmit)="formSubmit()">
+    <div class="form-group">
+      <label>{{'ADVANCE.HOW_MUCH.MAX' | translate: {value: (maxAmount$ | async) | currencyFormat} }}</label>
+      <input type="tel" formControlName="amount" class="input-bp" placeholder="$" appCurrency [form]="formHowMuch" [property]="'amount'">
+    </div>
+    <div class="form-group">
+      <label>{{'ADVANCE.HOW_MUCH.EXPIRATION_DATE' | translate}}</label>
+      <div class="cont-date">
+        <input type="tel" placeholder="MM" class="input-bp" formControlName="month" pattern="\d*" maxlength="2" appOnlyNumbers (keyup)="onKey($event)">
+        <p>/</p>
+        <input type="tel" placeholder="AAAA" class="input-bp" formControlName="year" pattern="\d*" maxlength="4" appOnlyNumbers>
+      </div>
+    </div>
+    <div class="cont-fees" *ngIf="false">
+      <p>{{'ADVANCE.HOW_MUCH.FEES' | translate}}</p>
+      <div class="cont-number-fees">
+        <button type="button" (click)="numberFee(false)" [class.disabled]="disabledMinus"><i class="icon-minus"></i></button>
+        <p>{{fee}}</p>
+        <button type="button" (click)="numberFee()" [class.disabled]="disabledPlus"><i class="icon-plus"></i></button>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>{{'TRANSFER.CONFIRMATION.FORM.DESCRIPTION' | translate}}</label>
+      <input type="text" formControlName="description" class="input-bp" [placeholder]="'MOVEMENT.DEPOSIT.DESCRIPTION' | translate" appRemoveDiacritics>
+    </div>
+    <p [innerHTML]="'ADVANCE.HOW_MUCH.COST' | translate: { value: ('0' | currencyFormat), fees: 36 }"></p>
+    <div class="form-group cont-submit">
+      <button type="submit" class="btn btn-primary" [disabled]="formHowMuch.invalid">{{'CONTINUE' | translate}}</button>
+    </div>
+  </form>
+</div>

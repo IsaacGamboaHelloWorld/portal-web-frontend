@@ -1,0 +1,83 @@
+@import '../../../sass/variables'
+@import '../../../sass/colors'
+@import '../../../sass/mixins'
+
+.step-one-onboarding
+  background: $carbon-light-100
+  border-radius: 15px
+  box-shadow: 0 7px 16px 0 rgba($carbon-dark-900, .14)
+  max-width: 238px
+  width: 100%
+  margin: 18px auto 0
+  position: relative
+  &::after
+    content: ''
+    width: 214px
+    height: 67px
+    border-radius: 15px
+    background: $carbon-light-100
+    position: absolute
+    bottom: -5px
+    left: 50%
+    transform: translateX(-50%)
+    z-index: -1
+  .cont-info-one
+    min-height: 145px
+    padding: 18px 0
+    position: relative
+  .head-one
+    padding: 0 54px
+    p
+      color: $carbon-dark-900
+      font-size: $f-14 - 2
+      font-weight: 500
+    small
+      color: $gray3
+      font-size: $f-14 - 4
+      display: block
+  .available-one
+    background: $g-500
+    border-radius: 10px
+    box-shadow: 0 7px 16px 0 rgba($g-500, .36)
+    padding: 10px 20px
+    color: $carbon-light-100
+    position: absolute
+    bottom: 14px
+    left: -40px
+    small
+      display: block
+      font-size: $f-14 - 3
+    p
+      font-size: $f-20 + 4
+      letter-spacing: -.8px
+      margin: 4px 0
+  .footer-one
+    padding: 12px
+    border-top: 1px solid $carbon-light-900
+    > div
+      width: 50%
+      +inline(middle)
+      padding: 0 12px
+    span
+      font-size: $f-14 - 3
+      display: block
+      color: $gray3
+    p
+      line-height: 2.18
+      font-size: $f-14 - 1
+
+
+.circle-small-step-one
+  width: 280px
+  height: 280px
+  div
+    &.deposit
+      width: 54px
+      height: 54px
+      left: 15px
+      top: 20px
+
+.circle-medium-step-one
+  width: 374px
+  height: 374px
+

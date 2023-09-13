@@ -1,0 +1,16 @@
+<app-template-system
+  [title]="'SECURITY.ACCESS_CONTROL.TITLE' | translate"
+  [subtitle]="'SECURITY.ACCESS_CONTROL.SUBTITLE' | translate"
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [showClose]="false"
+  [sectionHome]="true"
+  [backUrl]="mainNavigation.security"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-home-access-control pb-col-sp-4">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

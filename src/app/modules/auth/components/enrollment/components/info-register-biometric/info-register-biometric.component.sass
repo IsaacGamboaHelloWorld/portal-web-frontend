@@ -1,0 +1,105 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import 'globalVars'
+
+.cont-info-biometric-enroll
+  text-align: center
+  .desc-bold
+    font-weight: 500
+  li
+    display: flex
+    white-space: break-spaces
+    .point
+      color: $hlt-600
+      top: 3px
+      position: relative
+      font-weight: 700
+      padding-right: 8px
+  .list-bold
+    line-height: 22px
+    font-family: Inter
+    font-size: 13px
+    font-weight: normal
+    font-stretch: normal
+    font-style: normal
+    letter-spacing: normal
+    span
+      font-weight: 600
+  .top-image-container
+    margin: 0 auto
+    top: 0
+    display: block
+    width: auto
+    padding: 16px 17px
+    border-radius: 50%
+    img
+      height: 80px
+      width: auto
+  h4
+    margin-top: 16px
+    margin-bottom: 12px
+    font-weight: 600
+  .desc
+    line-height: 22px
+    width: 300px
+    margin-bottom: 32px
+  .desc-register
+    font-size: $f-14 - 1
+    font-family: Inter
+    font-weight: normal
+    font-stretch: normal
+    font-style: normal
+    line-height: 2.15
+    letter-spacing: normal
+    text-align: center
+  form
+    text-align: left
+    position: relative
+    margin-top: 24px
+  button
+    margin-top: 33px
+    width: 100%
+  a
+    color: $orange-900
+    font-size: $f-14 - 2
+    float: right
+    font-weight: 600
+  .disabled
+    pointer-events: none
+    cursor: not-allowed
+  .form-global
+    .form-group
+      label
+        display: inline-block
+        font-weight: 500
+  .cont-btn-recovery
+    text-align: center
+    margin-top: 30px
+    .link
+      float: none
+      line-height: 20px
+      font-weight: 600
+      font-size: 14px
+
+
+
+@media only screen and (max-width: $break-mobile)
+  .cont-info-biometric-enroll
+    margin-top: 0
+    h4
+      margin: 0
+    .desc
+      margin: 0
+    form
+      margin-top: 0
+    button
+      margin-top: 0
+  .cont-btn-recovery
+    text-align: center
+    margin-top: 30px
+    .link
+      float: none
+      line-height: 20px
+      font-weight: 600
+      font-size: 14px
+

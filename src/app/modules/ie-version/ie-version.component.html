@@ -1,0 +1,31 @@
+<div class="cont-circles">
+    <div class="circle-big animated-fast zoomIn"></div>
+    <div class="circle-medium animated-fast zoomIn"></div>
+    <div class="circle-small animated-fast zoomIn"></div>
+    <div class="cont-signs">
+        <div class="c-small circle-one"></div>
+        <div class="c-small circle-two"></div>
+        <div class="c-small circle-three"></div>
+    </div>
+</div>
+
+<div class="container-ieerror not-select">
+    <a class="logo" [routerLink]="navigate.home">
+        <img [src]="'/logotipo-horizontalx3.png' | imageCdn" alt="Internet explorer error">
+    </a>
+    <div class="image-container">
+        <div class="circle-green">
+            <img [src]="'/internet-explorer.svg' | imageCdn" alt="">
+        </div>
+    </div>
+    <div class="text-container">
+        <h2>{{'IEERROR.TITLE' | translate}}</h2>
+        <p class="paragraph-default">{{'IEERROR.DESC' | translate}}</p>
+        <p class="paragraph-default text-suggestion">{{'IEERROR.DESC2' | translate}}</p>
+        <img [src]="'/chrome.jpg' | imageCdn" alt="Chrome"><img [src]="'/safari.jpg' | imageCdn" alt="Safari">
+    </div>
+
+    <footer class="footer-ie">
+        <app-global-footer></app-global-footer>
+    </footer>
+</div>

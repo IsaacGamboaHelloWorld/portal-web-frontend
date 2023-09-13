@@ -1,0 +1,72 @@
+<div class="cont-detail">
+  <div class="detail-smart-card-payrolloans">
+    <div class="header">
+      <h4>{{'PAYROLLLOANS.CARD.TITLE_DETAIL' | translate}}</h4>
+      <div class="information-under-name">
+        <span class="status paragraph-small">{{statusDetail | statusProduct}}</span>
+        <p class="paragraph-default">{{'PAYROLLLOANS.CARD.NUMBER' | translate}} . {{detail?.accountId}}</p>
+      </div>
+    </div>
+    <div class="balances">
+      <h5>{{'PAYROLLLOANS.CARD.FEEAMOUNT' | translate}} </h5>
+      <p class="main-balance" [innerHTML]="detail?.feeAmount | currencyFormat: true"></p>
+    </div>
+    <hr class="line">
+    <div class="secondary-balances">
+      <div class="secondary-item">
+        <p class="paragraph-default">
+          {{'PAYROLLLOANS.CARD.FCH' | translate}}
+        </p>
+        <h4 innerHTML="{{detail?.nextPaymentDate | date:'dd/MMM/yyyy' | replace : '.' : '' | titlecase}}"></h4>
+      </div>
+      <div class="secondary-item">
+        <p class="paragraph-default text-detail">
+          {{'PAYROLLLOANS.CARD.TEXT' | translate}}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="cont-movements">
+    <div class="table-header">
+      <p>{{'PAYROLLLOANS.CARD.DETAIL.TITLE' | translate}}</p>
+    </div>
+    <div class="detail">
+      <div class="secondary-item">
+        <p class="paragraph-default">
+          {{'PAYROLLLOANS.CARD.DETAIL.PAYMENT' | translate}}
+        </p>
+        <h4 [innerHTML]="sliceName | titlecase"></h4>
+      </div>
+      <div class="secondary-item">
+        <p class="paragraph-default">
+          {{'PAYROLLLOANS.CARD.DETAIL.AMOUNT' | translate}}
+        </p>
+        <h4 [innerHTML]="detail?.approvedAmount | currencyFormat: true"></h4>
+      </div>
+      <div class="secondary-item">
+        <p class="paragraph-default">
+          {{'PAYROLLLOANS.CARD.DETAIL.DATE_OPEN' | translate}}
+        </p>
+        <h4 innerHTML="{{detail?.disbursementDate | date:'dd/MMM/yyyy' | replace : '.' : '' | titlecase}}"></h4>
+      </div>
+      <div class="secondary-item">
+        <p class="paragraph-default">
+          {{'PAYROLLLOANS.CARD.DETAIL.TERM' | translate}}
+        </p>
+        <h4 innerHTML="{{detail?.fees}} {{'PAYROLLLOANS.CARD.DETAIL.FEES' | translate}}"></h4>
+      </div>
+      <div class="secondary-item">
+        <p class="paragraph-default">
+          {{'PAYROLLLOANS.CARD.DETAIL.FEES_PAID' | translate}}
+        </p>
+        <h4 innerHTML="{{detail?.payedFees}} de {{detail?.fees}}"></h4>
+      </div>
+      <div class="secondary-item">
+        <p class="paragraph-default">
+          {{'PAYROLLLOANS.CARD.DETAIL.INTEREST_RATE' | translate}}
+        </p>
+        <h4 innerHTML="{{detail?.approvalRate}} {{'PAYROLLLOANS.CARD.DETAIL.NOMINAL_RATE' | translate}}"></h4>
+      </div>
+    </div>
+  </div>
+</div>

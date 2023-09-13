@@ -1,0 +1,91 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.card
+  max-width: 256px
+  min-width: 256px
+  min-height: 128px
+  background: $carbon-light-100
+  border-radius: 15px
+  margin: 4px
+  padding: 16px
+  overflow: hidden
+  .card-enterprise
+    font-size: $f-14 - 3
+    color: $carbon-mid-600
+    line-height: 1.82
+    margin-bottom: 12px
+    font-weight: 500
+    &::before
+      content: ''
+      width: 3px
+      height: 14px
+      background: $orange-700
+      display: inline-block
+      left: -17px
+      position: relative
+      top: 3px
+  .card-info-options
+    display: flex
+    margin-bottom: 8px
+    .card-info-payment
+      font-size: $f-14
+      color: $black-750
+      h4
+        font-weight: 500
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+        max-width: 150px
+        min-width: 156px
+        margin-bottom: 8px
+        font-stretch: normal
+        font-size: $f-14
+      p
+        font-size: 13px
+        line-height: 1.77
+        color: $gray3
+    .card-info-btn
+      button
+        background: $g-100
+        color: $gc-850
+        padding: 8px 14px
+        border-radius: 8px
+        font-size: $f-14 - 1
+        font-weight: 600
+        font-family: Inter
+  .card-info-date
+    font-size: $f-14 - 3
+    color: $gc-850
+    font-weight: 500
+    text-transform: capitalize
+    &.green
+      color: $gc-800
+  .card-info-loading
+    margin-bottom: 12px
+    &.title
+      margin-top: 12px
+      margin-bottom: 24px
+  &.no-data
+    padding: 24px 16px
+    display: flex
+    max-width: 350px
+    min-width: 350px
+    img
+      width: 80px
+      height: 80px
+    .card-info-payment
+      margin-left: 16px
+      padding-top: 20px
+      h4
+        font-size: $f-14 + 2
+        font-weight: normal
+        text-overflow: cli
+        min-width: 100%
+        max-width: 100%
+      p
+        font-size: $f-14 - 1
+        font-weight: normal
+
+

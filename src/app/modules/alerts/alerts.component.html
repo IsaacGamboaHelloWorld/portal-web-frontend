@@ -1,0 +1,18 @@
+<app-template-system
+  [title]="title | translate"
+  [subtitle]="subtitle | translate"
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [currentStep]="viewBack ? (step$ | async)?.step : maxStep"
+  [maxStep]="maxStep"
+  [showClose]="true"
+  [backUrl]="backUrl"
+  (eventModal)="backHome($event)"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-alerts">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

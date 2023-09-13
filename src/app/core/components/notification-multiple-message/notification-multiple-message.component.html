@@ -1,0 +1,4 @@
+<div class="notification-global {{(infoNotificationMM$ | async)?.typeNotification}}" [ngClass]="{'open': (infoNotificationMM$ | async)?.open}">
+    <p>{{message}}</p>
+    <button (click)="notificationClosed()"><i class="icon-x-circle"></i></button>
+</div>

@@ -1,0 +1,10 @@
+<div class="animated fade-in-up cont-step-alert">
+	<div>
+		<img [src]="'/alerta.png' | imageCdn" [alt]="'PAYMENTS.CLOSED.TEXT' | translate">
+		<h5>{{'PAYMENTS.CLOSED.TEXT' | translate}}</h5>
+		<div class="footer-step-alert">
+			<button type="button" class="btn btn-primary" [routerLink]="navigate.paymentsOld" (click)="closed()">{{'YES' | translate}}, {{'CLOSE' | translate}}</button>
+			<a class="link" (click)="play()">{{'NO' | translate}}, {{'GO_BACK' | translate}}</a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+<div class="btn-square-ds" [ngClass]="{ 'sqr-disabled': disabled, 'sqr-loading': loading }" (click)="redirect()">
+  <ng-container *ngIf="!loading; else tmpLoading">
+    <div class="btn-square-ds__icon">
+      <img *ngIf="!!image && !!imageDisabled" [src]="disabled ? imageDisabled : image" alt="" class="btn-square-ds__icon-image">
+      <i *ngIf="!!classIcon" class="btn-square-ds__icon-image {{classIcon}}"></i>
+    </div>
+    <div class="btn-square-ds__body">
+      <strong class="btn-square-ds__body-title">{{ title }}</strong>
+      <small class="btn-square-ds__body-description"> {{subtitle }} </small>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #tmpLoading>
+  <div class="btn-square-ds__icon">
+    <i class="btn-square-ds__icon-image"></i>
+  </div>
+  <div class="btn-square-ds__body">
+    <strong class="btn-square-ds__body-title placeholder width-60"></strong>
+    <small class="btn-square-ds__body-description placeholder width-100"></small>
+    <small class="btn-square-ds__body-description placeholder width-70"></small>
+  </div>
+</ng-template>

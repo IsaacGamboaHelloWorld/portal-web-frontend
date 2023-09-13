@@ -1,0 +1,18 @@
+<app-template-system
+  [title]="'SECURITY.TITLE' | translate"
+  [subtitle]="'SECURITY.SUBTITLE' | translate"
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [showClose]="false"
+  [sectionHome]="true"
+  [backUrl]="mainNavigation.home"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-home-security pb-col-sp-4">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ng-template>

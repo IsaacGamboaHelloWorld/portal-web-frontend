@@ -1,0 +1,133 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.enroll-public-service
+  display: flex
+  width: 100%
+  justify-content: center
+  flex-direction: column
+  .filter-container
+    max-width: 390px
+    min-width: 390px
+    padding: 15px 0
+    margin: 0 auto
+    label
+      font-size: $f-14 - 2
+      padding-bottom: 4px
+      display: block
+      font-weight: 500
+    .filter-input
+      position: relative
+      input
+        &.grayField
+          background: $carbon-light-600
+        &.greenField
+          background: $g-50
+          border: 1px solid $g-500
+          color: $carbon-dark-900
+      .search-input, .clear-input
+        position: absolute
+        right: 10px
+        top: 15px
+        color: $carbon-mid-100
+        z-index: 5
+        font-size: $f-14 + 6
+      .clear-input
+        z-index: 11
+        em.icon-plus
+          transform: rotate(45deg)
+          display: inline-block
+          background: $black-100
+          color: $carbon-mid-400
+          border-radius: 100%
+  .content-companies
+    max-width: 410px
+    min-width: 410px
+    margin: 0 auto
+    padding-left: 10px
+    .search-container
+      .companies-list
+        max-height: 300px
+        min-height: 230px
+        overflow-y: auto
+        .form-radiobutton-container, .card-info-loading
+          padding: 18px 20px
+          border-radius: 10px
+          background: $carbon-light-100
+          border: solid 1.3px $carbon-light-100
+          &.active
+            border: solid 1.3px $g-500
+            background: $gb-500
+          .placeholder
+            margin-bottom: 8px
+        .radio
+          width: 100%
+          margin-bottom: 20px
+          &:last-child
+            margin-bottom: 0
+          label
+            font-size: $f-14
+            font-weight: 500
+            &::after
+              top: 33px
+      .no-companies
+        max-height: 200px
+        height: 190px
+        margin-bottom: 20px
+        text-align: center
+        img
+          width: 79px
+          margin: 0 auto
+          margin: 40px 40px 19px
+        p
+          text-align: center
+          &.title
+            font-size: $f-14 + 2
+            font-weight: 600
+            font-stretch: normal
+            font-style: normal
+            line-height: 1.5
+            margin-bottom: 10px
+    .button-container
+      border-top: 1px solid $carbon-light-900
+      button
+        margin: 20px auto 0
+        display: inherit
+  .form-add-service
+    max-width: 390px
+    min-width: 390px
+    margin: 0 auto
+    .button-container
+      margin-top: 20px
+      width: 100%
+      text-align: center
+    .form-group
+      margin-top: 0
+      margin-bottom: 20px
+
+  ul
+    margin-bottom: 3px
+    li
+      margin: 8px 0
+      width: 390px
+      &:first-child
+        margin-top: 0
+      &:last-child
+        margin-bottom: 0
+    .labels-container
+      display: flex
+      flex-direction: column
+      width: 100%
+      label
+        font-size: $f-14
+        line-height: 1.71
+        font-weight: 500
+      span
+        color: $gray3
+        text-transform: capitalize
+        font-weight: 400
+        line-height: 1.77
+        font-size: $f-14 - 1
+

@@ -1,0 +1,22 @@
+<div class="profile-section-card" [ngClass]="{'collapsed': isCollapsed}">
+    <div class="top-profile-section-card">
+        <div class="icon">
+            <img [src]="iconPath | imageCdn" alt="">
+        </div>
+        <div class="action">
+            <div>
+                <span>{{title}}</span>
+            </div>
+        </div>
+        <a (click)="open()"><em class="icon-arrow2-right" *ngIf="isCollapsed"></em></a>
+        <a (click)="close()"><em class="icon-arrow2-right opened" *ngIf="!isCollapsed"></em></a>
+    </div>
+    <div class="separator"></div>
+    <div class="bottom-profile-section-card">
+        <ng-container class="bottom-profile-section-card-content" *ngTemplateOutlet="content"></ng-container>
+
+        <fieldset class="edit-section-card" *ngIf="navPath">
+            <button class="btn btn-primary" (click)="editPage()">{{buttonLabel}}</button>
+        </fieldset>
+    </div>
+</div>

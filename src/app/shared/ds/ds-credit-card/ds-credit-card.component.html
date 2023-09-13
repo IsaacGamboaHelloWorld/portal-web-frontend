@@ -1,0 +1,48 @@
+<div class="ds-card-base"
+  [ngClass]="className"
+  *ngIf="!loading">
+
+  <div class="top">
+    <div class="card-info-type">
+      <h2>{{ name }}</h2>
+    </div>
+
+    <div class="card-action" *ngIf="isSelected">
+      <label class="container-radio" (click)="actionClick()" id="card-{{cardId}}">
+        <input type="radio" name="cardSelected">
+        <span class="checkmark"></span>
+      </label>
+    </div>
+
+    <div *ngIf="!!actionText || !!actionImage" class="card-action">
+      <a (click)="actionClick()">
+        <img [src]="actionImage" alt="">
+        {{ actionText }}
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="!isClassic" class="chip">
+  </div>
+
+  <div class="card-number" [ngClass]="{ 'is-classic': isClassic }" [innerHTML]="number">
+  </div>
+
+  <div class="bottom">
+    <div *ngIf="!isClassic" class="thru-container">
+      <div *ngIf="!!thruText" class="thru-text" [innerHTML]="thruText"></div>
+      <div *ngIf="!!symbols" class="symbols">{{ symbols }}</div>
+    </div>
+
+    <div class="franchise">
+      <img [src]="logo" alt="">
+    </div>
+
+  </div>
+</div>
+
+<div class="ds-card-base loading loading-global shadow-1dp" *ngIf="loading">
+  <p class="title-card placeholder width-30"></p>
+  <p class="card-mask placeholder width-80"></p>
+  <p class="cvv-card placeholder width-20"></p>
+</div>

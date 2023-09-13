@@ -1,0 +1,94 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+
+.info-account-affiliation
+  a
+    margin-top: 48px
+    display: inline-block
+
+.info-affiliation-product
+  background: $carbon-light-100
+  border-radius: 15px
+  box-shadow: 0 1px 2px 0 rgba($carbon-dark-900, 0.14)
+  padding: 16px 32px
+  margin-top: 35px
+  width: 100%
+  ul
+    margin-top: 16px
+  li
+    margin-bottom: 20px
+    overflow: hidden
+  .column
+    padding: 0
+  span
+    display: block
+    line-height: 1.71
+    color: $gray3
+  p
+    line-height: 1.5
+    font-size: $f-14 + 2
+
+  button
+    margin-top: 10px
+
+.info-account-affiliation-loading
+  padding: 48px 24px
+  display: flex
+  align-items: center
+  border-radius: 15px
+  margin-top: 40px
+  overflow: hidden
+  ul
+    width: 50%
+  li
+    margin-bottom: 24px
+    &:last-child
+      margin: 0
+  p
+    height: 8px
+    margin-bottom: 10px
+    &:last-child
+      margin: 0
+
+@media only screen and (max-width: $break-tablet)
+  .info-affiliation-product
+    .column
+      &:first-child
+        margin-bottom: 20px
+
+
+@media only screen and (max-width: 830px)
+  .info-account-affiliation
+    text-align: center
+    a
+
+      margin: 35px 0
+  .info-affiliation-product
+    text-align: center
+    position: relative
+    padding: 16px
+    button
+      width: 100%
+  .cont-name-affiliation
+    .affiliation-initials
+      position: absolute
+      left: 50%
+      top: 0
+      transform: translate(-50%, -50%)
+      width: 64px
+      height: 64px
+      border-radius: 50%
+      background: $orange-400
+      color: $carbon-light-100
+      font-size: $f-20 + 1
+      line-height: 1.62
+      display: flex
+      justify-content: center
+      align-items: center
+    .name-affiliation
+      margin-top: 40px
+      font-weight: 600
+      font-size: 21px
+      line-height: 1.62

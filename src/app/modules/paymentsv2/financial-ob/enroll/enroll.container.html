@@ -1,0 +1,48 @@
+<app-template-system [title]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.ENROLL.TITLE' | translate" [subtitle]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.ENROLL.SUBTITLE' | translate" [sectionContent]="content" [maxStep]="1" [fullContent]="true" [navigatorActive]="true" [stepsActive]="false"
+    [backUrl]="navigate.paymentsv2obligations" [showClose]="true" [navInternal]="true"></app-template-system>
+
+<ng-template #content>
+    <div class="enroll-financial-obligations">
+        <div class="section-container">
+            <form class="form-global" [formGroup]="formEnroll">
+                <div class="animated fade-in-up">
+                    <fieldset class="form-group">
+                        <label for="">{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.ENROLL.STEPS.STEP1.BANK' | translate}}</label>
+                        <div class="select-bp">
+                            <select formControlName="bank" [compareWith]="compareFnBanks" (change)="changeBank()">
+                                <option value="" disabled selected>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.ENROLL.STEPS.STEP1.PROMP_BANk' | translate}}</option>
+                                <option *ngFor="let bank of (loans_banks$ | async)?.data" [ngValue]="bank">{{bank.name}}</option>
+                            </select>
+                            <div class="messages-select">
+                                <i class="icon-refresh warning" *ngIf="!(loans_banks$ | async)?.loaded" (click)="fetchBanks()" [title]="'PRODUCT.ERROR.BTN' | translate"></i>
+                                <i class="icon-check success" *ngIf="(loans_banks$ | async)?.loaded"></i>
+                                <img [src]="'/loading.gif' | imageCdn" [alt]="'LOADING' | translate" *ngIf="(loans_banks$ | async)?.loading">
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label for="">{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.ENROLL.STEPS.STEP1.PRODUCT' | translate}}</label>
+                        <div class="select-bp">
+                            <select formControlName="loanType">
+                                <option value="" disabled>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.ENROLL.STEPS.STEP1.TYPE_PRODUCT' | translate}}</option>
+                                <option *ngFor="let bank_loan of (bank_loans$ | async)" [selected]="bank_loan.value === loanActive"
+                                [ngValue]="bank_loan?.value">{{bank_loan?.name}}</option>
+                            </select>
+                        </div>
+                    </fieldset>
+                    <fieldset class="form-group ">
+                        <label>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.ENROLL.STEPS.STEP1.NUMBER_RPODUCT' | translate}}</label>
+                        <input type="tel" class="input-bp number-account" formControlName="number_prod" [disabled]="!selectedBank">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.ENROLL.STEPS.STEP1.NAME_PROD' | translate}}</label>
+                        <input type="text" class="input-bp" formControlName="name_prod" [disabled]="!selectedBank" [placeholder]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.ENROLL.STEPS.STEP1.NAME_PROD_PROMP' | translate">
+                    </fieldset>
+                    <fieldset class="form-group button-container">
+                        <app-btn [class]="'btn-primary'" [disabled]="formEnroll.invalid || (payment$ | async)?.loading" [text]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.ENROLL.STEPS.STEP1.BUTTON' | translate" [isLoading]="(payment$ | async)?.loading" (clickBtn)="doSubmit()"></app-btn>
+                    </fieldset>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,36 @@
+<div class="evidente-questionnaire"  *ngIf="data">
+	<img [src]="'/80-identity-validation.svg' | imageCdn" alt="validation">
+	<div class="questionnaire-step">
+		<p #step class="text animated">Pregunta {{questionIndex + 1}} de {{questions.length}}</p>
+	</div>
+	<form class="form-global" autocomplete="off" [formGroup]="form" (ngSubmit)="_next()">
+		<div class="form-group">
+			<p class="desc">
+				{{questions[questionIndex].question}}
+			</p>
+		</div>
+		<div class="form-group">
+			<div class="options" *ngFor="let option of options" [ngClass]="{'options-border': typeActive === option}">
+				<label class="container-radio" (click)="setBorder(option)">
+					<input type="radio" formControlName="answer" [value]="option.idAnswer" >
+					<span class="checkmark"></span>
+				</label>
+				<p class="desc-answer">{{option.description}}</p>
+			</div>
+		</div>
+		<div class="form-group">
+			<app-btn
+			[type]="'submit'"
+			[text]="((questionIndex + 1) === questions.length ? 'EXPERIAN.SUCCESS.BTN_END' : 'EXPERIAN.SUCCESS.BTN') | translate"
+			[id]="'btn-step-two'"
+			[isLoading]="(isLoading$ | async)"
+			[disabled]="form.invalid || (isLoading$ | async)"
+			[class]="'btn btn-primary btn-evidente'"></app-btn>
+		</div>
+		<div class="form-group" *ngIf="btnClose">
+      <app-btn (clickBtn)="closeAction()"
+      [text]="('PAYMENTS.CLOSED.BTN' | translate)"
+      [class]="'btn btn-primary cancel'"></app-btn>
+		</div>
+	</form>
+</div>

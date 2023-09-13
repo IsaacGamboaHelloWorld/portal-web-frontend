@@ -1,0 +1,120 @@
+<div class="animated fade-in-up cont-step-global" *ngIf="paymentType !== servicepublic && hasPaymentData$ | async">
+  <app-ticket
+    [imageTicket]="'/success.png' | imageCdn"
+    [title]="'PAYMENTS.SUCCESS.TITLE' | translate"
+    [description]="'PAYMENTS.SUCCESS.TEXT' | translate"
+    [messageTitle]="'PAYMENTS.CONFIRMATION.FORM.AMOUNT' | translate"
+    [messageText]="(payment$ | async).amount | currencyFormat : true : 'decimal-vouchers'"
+    [btnText]="'TRANSFER.SUCCESS.DOWNLOAD' | translate: { value: 'icon-download-bottom' }"
+    [btnLoadingText]="'TRANSFER.SUCCESS.LOADING_DOWNLOAD' | translate: { img: ('/loading-text.gif' |imageCdn) } "
+    [disabled]="disabled"
+    (btnAction)="download()"
+    [id]="'voucher-payment'"
+    [listTemplate]="list"
+    [response]="payment$ | async"></app-ticket>
+  <div class="footer-step">
+    <button class="btn btn-primary" [routerLink]="navigate.paymentsOld">{{'CLOSE' | translate}}</button>
+    <a class="link" [routerLink]="navigate.type_payment">{{'PAYMENTS.SUCCESS.BTN' | translate}}</a>
+  </div>
+</div>
+
+<div class="animated fade-in-up cont-step-global" *ngIf="paymentType === servicepublic && hasPaymentBillData$ | async">
+  <app-ticket
+    [imageTicket]="'/success.png' | imageCdn"
+    [title]="'PAYMENTS.SUCCESS.TITLE' | translate"
+    [description]="'PAYMENTS.SUCCESS.TEXT' | translate"
+    [messageTitle]="'PAYMENTS.CONFIRMATION.FORM.AMOUNT' | translate"
+    [messageText]="(paymentBill$ | async).billerPayment?.amount | currencyFormat : true : 'decimal-vouchers'"
+    [btnText]="'TRANSFER.SUCCESS.DOWNLOAD' | translate: { value: 'icon-download-bottom' }"
+    [btnLoadingText]="'TRANSFER.SUCCESS.LOADING_DOWNLOAD' | translate: { img: ('/loading-text.gif' |imageCdn) } "
+    [disabled]="disabled"
+    (btnAction)="download()"
+    [id]="'voucher-payment'"
+    [listTemplate]="list"
+    [response]="paymentBill$ | async"></app-ticket>
+
+  <div class="footer-step">
+    <button class="btn btn-primary" [routerLink]="navigate.paymentsOld">{{'CLOSE' | translate}}</button>
+    <a class="link" [routerLink]="navigate.type_payment">{{'PAYMENTS.SUCCESS.BTN' | translate}}</a>
+  </div>
+</div>
+
+<ng-template #list>
+  <ng-container *ngIf="paymentType !== servicepublic && hasPaymentData$ | async">
+    <ul>
+      <li>
+        <span>{{'PAYMENTS.CONFIRMATION.FORM.DATE' | translate}}</span>
+        <p class="capitalize">{{(payment$ | async).date | date:'dd/MMM/yyyy' | replace : '.' : ''}}</p>
+        <div class="apr_code_id">
+          <span>{{'PAYMENTS.SUCCESS.APPROVAL' | translate}}</span>
+          <p class="capitalize">{{(payment$ | async).approvalId}}</p>
+        </div>
+      </li>
+      <li *ngIf="formOne$ | async as one">
+        <span>{{'PAYMENTS.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+        <p>{{'PRODUCT_TYPES.' + one.account_origin?.accountInformation?.productType | translate}} -
+          {{one.account_origin?.accountInformation?.accountIdentifier}}</p>
+      </li>
+      <li *ngIf="(payment$ | async).transactionCost">
+        <span>{{'PAYMENTS.CONFIRMATION.FORM.TCOST' | translate}}</span>
+        <p>{{'PRODUCT_TYPES.' + (payment$ | async).transactionCost | currencyFormat}}</p>
+      </li>
+      <li *ngIf="formOne$ | async as one">
+        <span>{{'PAYMENTS.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+        <ng-container *ngIf="!one?.isNew">
+          <p>{{'PRODUCT_TYPES.' + (payment$ | async).destinationAccountType | translate}} -
+            {{(payment$ | async).destinationAccount}}</p>
+        </ng-container>
+        <ng-container *ngIf="one?.isNew">
+          <p>{{'PRODUCT_TYPES.' + one.loanType | translate}} - {{one.accountIdentifier}}</p>
+        </ng-container>
+      </li>
+      <ng-container *ngIf="(formOne$ | async)  as one">
+        <li *ngIf="one?.isNew">
+          <span>{{'PAYMENTS.CONFIRMATION.FORM.OWNER' | translate}}:</span>
+          <ng-container *ngIf="!one?.isNew">
+            <p>{{name$ | async}}</p>
+          </ng-container>
+          <ng-container *ngIf="one?.isNew">
+            <ng-container *ngIf="isAnotherOwner$ | async">
+              <p>{{one.ownership | lowercase}}</p>
+            </ng-container>
+            <ng-container *ngIf="!(isAnotherOwner$ | async)">
+              <p class="capitalize" *ngIf="!(name$ | async)">{{name$ | async | lowercase}}</p>
+              <p class="capitalize" *ngIf="!(name$ | async)">{{'PAYMENTS.CONFIRMATION.FORM.OWN_PROD' | translate}}</p>
+            </ng-container>
+          </ng-container>
+        </li>
+      </ng-container>
+      <ng-container *ngIf="formTwo$ | async as two">
+        <li *ngIf="two?.comments">
+          <span>{{'PAYMENTS.CONFIRMATION.FORM.DESCRIPTION' | translate}}</span>
+          <p>{{two.comments}}</p>
+        </li>
+      </ng-container>
+    </ul>
+  </ng-container>
+  <ng-container *ngIf="paymentType === servicepublic && hasPaymentBillData$ | async">
+    <ul>
+      <li>
+        <span>{{'PAYMENTS.CONFIRMATION.FORM.DATE' | translate}}</span>
+        <p class="capitalize">{{(paymentBill$ | async).date | date:'dd/MMM/yyyy' | replace : '.' : ''}}</p>
+        <div class="apr_code_id">
+          <span>{{'PAYMENTS.SUCCESS.APPROVAL' | translate}}</span>
+          <p class="capitalize">{{(paymentBill$ | async).approvalId}}</p>
+        </div>
+      </li>
+      <li *ngIf="formOne$ | async as one">
+        <span>{{'PAYMENTS.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+        <p>{{'PRODUCT_TYPES.' + one.account_origin?.accountInformation?.productType | translate}} -
+          {{one.account_origin?.accountInformation?.accountIdentifier}}</p>
+      </li>
+      <li *ngIf="formOne$ | async as one">
+        <span>{{'PAYMENTS.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+        <p>{{(paymentBill$ | async).billerPayment?.billerNickName}} -
+          {{(paymentBill$ | async).billerPayment?.billerName}} - {{'PAYMENTS.HISTORIC.BILL' | translate}}
+          {{(paymentBill$ | async).billerPayment?.contract}}</p>
+      </li>
+    </ul>
+  </ng-container>
+</ng-template>

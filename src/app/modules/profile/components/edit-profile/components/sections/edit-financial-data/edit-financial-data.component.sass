@@ -1,0 +1,134 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+@import '~sass/layout'
+
+.cont-edit-profile
+  .head-nav
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 20px 15px
+    a
+      color: $carbon-mid-400
+      margin-right: 10px
+      transition: .3s
+      em
+        +inline(middle)
+        color: $gc-800
+        font-size: $f-20 + 4
+      &.close-transfer
+        margin: 0
+        em
+          margin-left: 10px
+      &:hover
+        color: $carbon-dark-900
+  .top-edit-profile-section
+    display: block
+    padding: 0px 15px 10px 15px
+    h2
+      font-weight: bold
+      font-family: Inter
+  .align-edit-profile
+    display: flex
+    .edit-card-container
+      padding: 16px 15px
+      width: 100%
+      .edit-profile-section-card
+        background: $carbon-light-100
+        width: 100%
+        max-width: 720px
+        border-radius: 10px
+        color: $carbon-dark-900
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+        padding: 24px
+        margin: 0 auto
+        margin-bottom: 14px
+        text-align: left
+        .bottom-profile-section-card
+          margin-top: 12px 
+          .bottom-profile-section-container
+            width: 100%
+            .item
+              margin-bottom: 12px
+              width: 50%
+              display: inline-block
+              padding: 0px 24px 0px 0px
+              > span
+                height: 28px
+                font-family: Inter
+                font-size: 13px
+                line-height: 2.15   
+                color: $carbon-dark-900
+                display: block
+              .text-input
+                font-family: Inter
+                font-size: 14px
+                font-weight: 500
+                line-height: 1.71 
+                height: 48px
+                border-radius: 8px
+                border: solid 1.2px $carbon-mid-100
+              .text-input
+                padding: 12px
+                width: 100%
+
+          .form-group
+            text-align: center
+            button
+              width: 100%
+              max-width: 265px
+
+
+@media only screen and (max-width: $break-tablet)
+  .cont-edit-profile
+    margin-top: 30px
+    .align-edit-profile
+      display: flex
+      flex-direction: row
+      margin-top: 0
+      .edit-card-container
+        .edit-profile-section-card
+          .bottom-profile-section-card
+            .bottom-profile-section-container
+              .item
+                width: 100%
+                padding: 0px
+              .submit-container
+                button
+                  max-width: 100%
+
+@media only screen and (max-width: 1023px)
+  .cont-edit-profile
+    .align-edit-profile
+      display: flex
+      flex-direction: column
+      margin-top: 0
+      .edit-card-container
+        .edit-profile-section-card
+          .bottom-profile-section-card
+            .bottom-profile-section-container
+              .item
+                width: 100%
+                padding: 0px
+              .submit-container
+                button
+                  max-width: 100%
+
+@media only screen and (max-width: $break-mobile)
+  .cont-edit-profile
+    margin-top: 0
+    .align-edit-profile
+      display: flex
+      flex-direction: column
+      margin-top: 0
+      .edit-card-container
+        .edit-profile-section-card
+          .bottom-profile-section-card
+            .bottom-profile-section-container
+              .item
+                width: 100%
+                padding: 0px
+              .submit-container
+                button
+                  max-width: 100%

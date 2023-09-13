@@ -1,0 +1,87 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+
+.main-mdl-code-auth
+  background: $carbon-light-100
+  border-radius: 15px
+  padding: 24px
+  text-align: center
+  width: 328px
+  .form-global
+    text-align: center
+    .icn-close-mdl
+      width: 24px
+      height: 24px
+      position: absolute
+      right: 10px
+      cursor: pointer
+    .logo-modal
+      width: 80px
+      height: 80px
+    .txt-mdl
+      width: 100%
+      color: #0d0d0d
+      .title
+        font-weight: 600
+        font-size: $f-14 + 2
+        padding-top: 16px
+        padding-bottom: 8px
+      .sub-title
+        width: auto
+        height: auto
+        font-size: 13px
+        font-weight: normal
+        font-stretch: normal
+        font-style: normal
+        line-height: 2.15
+        letter-spacing: normal
+        text-align: center
+    .btn-modal
+      padding-top: 24px
+    button
+      width: 100%
+    .link-modal
+      padding: 24px
+    .txt-secure
+      height: 24px
+      font-size: 12px
+      font-weight: 500
+      font-stretch: normal
+      font-style: normal
+      line-height: 2
+      letter-spacing: normal
+      text-align: left
+      padding-left: 5px
+    fieldset
+      height: 48px
+      border-radius: 8px
+      border: solid 1.2px #d9d9d9
+      background-color: #ffffff
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button
+        -webkit-appearance: none
+        margin: 0
+      input[type=number]
+        -moz-appearance: textfield
+      input
+        border-radius: 3px
+        font-size: 20px
+        height: 40px
+        margin: 0
+        margin-top: 3px
+        outline: none
+        text-align: center
+        transition: all .2s ease-in-out
+        width: 34px
+        background-color: $transparent
+        &:focus
+          border-color: #800080
+          box-shadow: 0 0 5px #800080 inset
+        &::selection
+          background: transparent
+      &.error-otp
+        border: solid 1px $err-600
+        background-color: rgba($err-600, 0.32)
+

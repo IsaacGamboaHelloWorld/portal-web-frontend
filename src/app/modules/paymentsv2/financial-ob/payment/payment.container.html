@@ -1,0 +1,23 @@
+<app-template-system 
+    [title]="title"
+    [subtitle]="subTitle"
+    [sectionContent]="content" 
+    [fullContent]="true" 
+    [navigatorActive]="true"
+    [currentStep]="(step$|async).step"
+    [showClose]="showCloseButton" 
+    [maxStep]="maxStep"
+    [backUrl]="backUrl" 
+    [navInternal]="false" 
+    [stepsActive]="showTimeLine" 
+    [lineSteps]="(items$ | async)"  
+    (eventModal)="backHome($event)"
+    ></app-template-system>
+
+<ng-template #content>
+    <div class="container-payment-ob">
+        <div class="info-steps">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</ng-template>

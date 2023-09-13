@@ -1,0 +1,47 @@
+<div class="home-products">
+  <h6>{{'ACTIONS_AVAL.CARD.TITLE' | translate}}</h6>
+  <ul class="cont-section-products">
+    <li>
+      <article class="product-global product-cdt shadow-4dp hover-16dp">
+        <div class="product-global-content">
+          <div class="product-global-account-type">
+            <div class="cont-img">
+              <i class="icon-accions-aval"></i>
+            </div>
+            <div class="product-global-account-type-info">
+              <p>{{'ACTIONS_AVAL.TITLE' | translate}}</p>
+            </div>
+          </div>
+          <form class="form-global product-action-form" [formGroup]="formActions">
+            <div class="form-group">
+              <label>{{'MONTH' | translate}}</label>
+              <div class="select-bp">
+                <select formControlName="period">
+                  <option value="" disabled selected
+                          class="default-option">{{'ACTIONS_AVAL.CARD.DEFAULT_OPTIONS.MONTH' | translate}}</option>
+                  <option *ngFor="let period of periods" [value]="period.id">{{period.value | date: 'MMMM y' | titlecase}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>{{'ACTIONS_AVAL.CARD.TYPE' | translate}}</label>
+              <div class="select-bp">
+                <select formControlName="stockType">
+                  <option value="" disabled selected
+                          class="default-option">{{'ACTIONS_AVAL.CARD.DEFAULT_OPTIONS.TYPE' | translate}}</option>
+                  <option *ngFor="let type of types" [value]="type.id">{{type.value}}</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="product-global-footer full not-border">
+          <div>
+            <button type="button" class="btn btn-primary"
+                    (click)="actionButton()" [disabled]="formActions.invalid">{{'ACTIONS_AVAL.CARD.BTN' | translate}}</button>
+          </div>
+        </div>
+      </article>
+    </li>
+  </ul>
+</div>

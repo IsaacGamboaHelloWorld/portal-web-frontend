@@ -1,0 +1,45 @@
+<div class="animated fade-in-up cont-step-global cont-step-confirmation-ob">
+    <app-ticket [imageTicket]="'/confirmation.png' | imageCdn"
+        [title]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP_CONFIRMATION.TITLE_LBL' | translate"
+        [messageTitle]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP_CONFIRMATION.AMOUNT_LBL' | translate"
+        [messageText]="(stepTwo$ | async)?.amounttext | currencyFormat : true : 'decimal-vouchers'"
+        [listTemplate]="list"></app-ticket>
+    <div class="footer-step-confirmation">
+        <app-btn [class]="'btn-primary'" [disabled]="(payment$ | async)?.loading"
+            [text]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP_CONFIRMATION.PAY_BTN' | translate"
+            [isLoading]="(payment$ | async)?.loading" (clickBtn)="submitData()"></app-btn>
+    </div>
+</div>
+
+<ng-template #list>
+    <ul *ngIf="stepOne$ | async as one">
+        <li>
+            <span>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP_CONFIRMATION.FROM_LBL' | translate}}</span>
+            <p [innerHTML]="
+                ('BANKS.'+ one.account_origin?.accountInformation?.bank | translate) + 
+                ' - ' +
+                ('PRODUCT_TYPES.' + one.account_origin.accountInformation.productType?.toUpperCase() | translate) +
+                ' - ' +
+                ( one?.account_origin?.accountInformation?.accountIdentifier | slice: -4 ) +
+                ' ' +
+                ( 'PRODUCT.DEPOSIT_ACCOUNT.BALANCE_AVAILABLE' | translate ) +
+                ' ' +
+                ( one?.account_origin?.productAccountBalances?.saldo_actual?.amount | currencyFormat : true : 'decimal-vouchers fs-14' )
+            ">
+            </p>
+        </li>
+        <li>
+            <span>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP_CONFIRMATION.TO_LBL' | translate}}</span>
+            <p>{{'PRODUCT_TYPES.' + one?.loan_destination?.activePayment?.accountType?.toUpperCase() |
+                translate}} - {{one?.loan_destination?.activePayment?.accountId}}</p>
+        </li>
+        <li *ngIf="(stepTwo$ | async).comments">
+            <span>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP_CONFIRMATION.DESC_LBL' | translate}}</span>
+            <p>{{(stepTwo$ | async).comments}}</p>
+        </li>
+        <li>
+            <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+            <p [innerHTML]=" costTransfer | currencyFormat : true : 'decimal-vouchers fs-14' "></p>
+        </li>
+    </ul>
+</ng-template>

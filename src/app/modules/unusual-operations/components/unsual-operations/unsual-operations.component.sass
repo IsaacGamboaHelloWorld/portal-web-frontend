@@ -1,0 +1,56 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.operations-container
+  display: flex
+  flex-direction: column
+  width: 343px
+  margin: auto
+  .btn-first
+    width: 100%
+    display: flex
+    justify-content: center
+    margin-top: 32px
+    .btn-wasnot
+      font-size: 14px
+      font-weight: 600
+      line-height: 1.71
+      letter-spacing: normal
+      text-align: center
+      color: $cbn-lgt-100
+      background-color: $hlt-600
+      height: 48px
+      width: 343px
+      &:disabled
+        background: $cbn-mid-100
+  .btn-second
+    margin-top: 24px
+    width: 100%
+    display: flex
+    justify-content: center
+    .btn-was
+      font-size: 14px
+      font-weight: 600
+      line-height: 1.71
+      letter-spacing: normal
+      text-align: center
+      color: $hlt-600
+      background-color: $hlt-100
+      height: 48px
+      width: 343px
+      &:disabled
+        background: $cbn-mid-100
+        color: $cbn-lgt-100
+
+@media only screen and (min-width: $break-desktop-min)
+  .operations-container
+    width: 456px
+    padding-top: 16px
+    .btn-first
+      .btn-wasnot
+        padding: 0
+        width: 254px
+    .btn-second
+      .btn-was
+        padding: 0
+        width: 254px

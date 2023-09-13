@@ -1,0 +1,15 @@
+<app-template-system
+  [title]="'LIMIT_MANAGEMENT.TITLE' | translate"
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [showClose]="true"
+  [sectionHome]="true"
+  [backUrl]="mainNavigation.security"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-limit-management pb-col-sp-4">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

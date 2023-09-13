@@ -1,0 +1,11 @@
+<div class="profile-card">
+    <div class="names-abreviation">
+        <div>
+            <div>{{user?.personalData?.customerNames?.firstName | uppercase | slice:0:1}}{{user?.personalData?.customerNames?.lastName | uppercase | slice:0:1}}</div>
+        </div>
+    </div>
+    <div class="user-name">
+        {{user?.personalData?.customerNames?.firstName | titlecase}} {{user?.personalData?.customerNames?.middleName | titlecase}} {{user?.personalData?.customerNames?.lastName | titlecase}}
+    </div>
+</div>
+    

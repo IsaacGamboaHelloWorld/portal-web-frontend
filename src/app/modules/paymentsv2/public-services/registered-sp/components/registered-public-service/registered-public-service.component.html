@@ -1,0 +1,60 @@
+<app-template-system
+    [sectionHome]="true"
+    [backUrl]="navigate.paymentsv2services"
+    [sectionContent]="content"
+    [fullContent]="true"
+    [navigatorActive]="true"
+    >
+</app-template-system>
+
+<ng-template #content>
+    <div class="container-registered" *ngIf="(infoPayment$ | async); else loadingInfo">
+        <div *ngIf="selectedBill" class="container-ticket-registered">
+            <app-ticket [imageTicket]="" [pseVersion]="false" [title]="selectedBill?.billerNickname" [listTemplate]="list"></app-ticket>
+        </div>
+
+        <div class="card-programmed-payment">
+            <app-programmed-payment *ngIf="isBill" [data]="(infoPayment$ | async)" [actived]="(infoPayment$ | async)?.paymentType === 'X_DAYS_BEFORE_DUE_DATE'" (stateCheck)="setProgramed($event)" (editAction)="doEdit($event)"></app-programmed-payment>
+        </div>
+
+    </div>
+
+</ng-template>
+
+<ng-template #list>
+    <ul>
+        <li>
+            <span>{{'PAYMENTSV2.SHARED_COPY.LBL_SERVICE' | translate}}</span>
+            <p> {{ selectedBill?.billerName }} </p>
+        </li>
+        <li>
+            <span>{{'PAYMENTSV2.SHARED_COPY.LBL_REF' | translate}}</span>
+            <p>{{( selectedBill?.contract.toLocaleUpperCase()) | translate}}</p>
+        </li>
+        <li *ngIf="!billWithError && selectedBill?.amount > 0">
+            <span>{{'PAYMENTSV2.SHARED_COPY.LBL_TO_PAY' | translate}}</span>
+            <p>{{selectedBill?.amount | currencyFormat}}</p>
+        </li>
+        <li *ngIf="billWithError && selectedBill?.debtWithMainBiller > 0">
+            <span>{{'PAYMENTSV2.SHARED_COPY.LBL_LAST_AMOUNT' | translate}}</span>
+            <p>{{selectedBill?.debtWithMainBiller | currencyFormat}}</p>
+        </li>
+    </ul>
+
+    <div class="button-payment" *ngIf="isBill">
+        <app-btn [disabled]="billWithError" [class]="'btn-primary'" [text]="'PAYMENTSV2.SHARED_COPY.BTN_PAY' | translate" (clickBtn)="paymentSubmit(selectedBill)"></app-btn>
+    </div>
+    <div class="button-payment" *ngIf="!isBill">
+        <app-btn [class]="'btn-primary'" [text]="'PAYMENTSV2.SHARED_COPY.BTN_PAY' | translate" (clickBtn)="paymentSubmit(selectedBill)"></app-btn>
+    </div>
+
+    <div class="button-delete">
+        <a class="delete-link link" (click)="onDeletePublicService(selectedBill)"> {{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.BTN_EDIT' | translate}}</a>
+    </div>
+</ng-template>
+
+<ng-template #loadingInfo>
+    <div class="container-registered">
+        <app-service-payment-info [loading]="true"></app-service-payment-info>
+    </div>
+</ng-template>

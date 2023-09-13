@@ -1,0 +1,44 @@
+<div class="cont-movements">
+    <div class="table-header">
+        <p>{{'MOVEMENT.TITLE' | translate}}</p>
+        <div class="table-header-menu">
+            <a class="download-btn" (click)="doDownloadFile()" *ngIf="!isSafari && !(movementsFileState$ | async)?.success">
+                <em class="icon-download"></em>
+            </a>
+            <a class="download-btn" (click)="doDownloadFileFromStore()" *ngIf="!isSafari && (movementsFileState$ | async)?.success">
+                <em class="icon-download"></em>
+            </a>
+            <a class="filter-btn" (click)="openFilter()">
+                <em class="icon-filter"></em></a>
+            <a class="glass-a" (click)="openSearchBox()">
+                <em class="icon-search" *ngIf="!filterState"></em>
+                <em class="icon-x-close" *ngIf="filterState"></em>
+            </a>
+        </div>
+    </div>
+    <ng-container *ngIf="hasFilter$ | async">
+        <div class="filter-movement">
+            <div class="clearfix cont-filters">
+                <div class="filterActive">
+                    <p *ngIf="!(isDate$ |async)">{{(filterInfo$ | async)?.typeFilter}}</p>
+                    <p *ngIf="isDate$ | async">{{(filterInfo$ | async)?.from | date: 'dd/MMM/yyyy' | replace : '.' : '' }} - {{(filterInfo$ | async)?.to | date: 'dd/MMM/yyyy' | replace : '.' : '' }}</p>
+                    <span (click)="removeFilter()">×</span>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <div class="filter-container" *ngIf="filterState">
+        <div class="filter-input form-global">
+            <input type="text" [placeholder]="'MOVEMENT.SEARCH.PLACEHOLDER' | translate" [(ngModel)]="textFilter" (change)="onChange($event)" (keyup)="onKeyUp($event)" class="input-bp search-field">
+            <em class="search-input icon-search" *ngIf="emptyState"></em>
+            <a class="clear-input" *ngIf="!emptyState" (click)="doClear($event)">
+                <em class="icon-plus"></em>
+            </a>
+        </div>
+    </div>
+    <app-movements *ngIf="(hasMovements$ | async) else loadingOrErrorMovement" [movements]="(movements$ | async)?.account" [typeAccount]="account?.type" [id]="this.account.id" [textFilter]="textFilter" [cdtInfo]="cdtInfo"></app-movements>
+</div>
+
+<ng-template #loadingOrErrorMovement>
+    <app-movements-loading [movements]="movements$ | async" (clickBtn)="fetchMovement()" [accountdata]="account"></app-movements-loading>
+</ng-template>

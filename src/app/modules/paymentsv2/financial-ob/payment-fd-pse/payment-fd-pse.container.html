@@ -1,0 +1,19 @@
+<app-template-system
+  [title]="'PAYMENTSV2.FINANCIAL_OP.MAIN_TITLE' | translate"
+  [sectionHome]="(step$ | async) !== maxStep"
+  [backUrl]="backUrl"
+  [sectionContent]="content"
+  [currentStep]="step$ | async"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [stepsActive]="(step$ | async) !== maxStep" 
+  [lineSteps]="(items$ | async)" 
+  [maxStep]="maxStep"
+>
+</app-template-system>
+
+<ng-template #content>
+  <div class="container-payment-fd">
+    <router-outlet></router-outlet>
+  </div> 
+</ng-template>

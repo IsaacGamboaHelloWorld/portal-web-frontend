@@ -1,0 +1,18 @@
+<app-template-system
+  [title]="'PAYMENT_TAXES.TITLE' | translate"
+  [subtitle]="'PAYMENT_TAXES.NEW_PAYMENT' | translate"
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [currentStep]="viewBack ? (step$ | async)?.step : maxStep"
+  [maxStep]="maxStep"
+  [showClose]="true"
+  [backUrl]="backUrl"
+  (eventModal)="backHome($event)"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-payment-taxes">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

@@ -1,0 +1,36 @@
+<div class="totp-register">
+
+  <!-- {{ registerTotp$ | async | json }} -->
+
+  <form [formGroup]="formRegister" class="totp-form-register">
+    <div class="input-name">
+      <app-ds-input
+        [label]="'TOTP_AUTHENTICATION.REGISTER.DEVICE_NAME' | translate"
+        [placeholder]="''"
+        [form]="formRegister"
+        [property]="'name'"
+        ></app-ds-input>
+    </div>
+
+    <div class="input-code">
+      <app-ds-input
+        [label]="'TOTP_AUTHENTICATION.REGISTER.CODE' | translate"
+        [placeholder]="''"
+        [typeText]="'number'"
+        [form]="formRegister"
+        [property]="'code'"
+        ></app-ds-input>
+    </div>
+  </form>
+
+  <div class="btn-container">
+    <app-btn
+      (clickBtn)="next()"
+      [disabled]="formRegister.invalid"
+      [text]="'TOTP_AUTHENTICATION.REGISTER.BTN_REGISTER' | translate"
+      [isLoading]="false"
+      [class]="'btn-primary'"
+    ></app-btn>
+  </div>
+
+</div>

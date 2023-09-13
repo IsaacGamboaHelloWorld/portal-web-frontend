@@ -1,0 +1,77 @@
+<div class="animated fade-in-up cont-step-one-pay-stack">
+  <form class="form-global" [formGroup]="formStepOne" (ngSubmit)="submitForm()"
+    *ngIf="((productDefault$ | async)?.productAccountBalances?.saldo_disponible) else loadingTemplate">
+
+    <div class="form-group">
+      <app-card-change-data [form]="formStepOne" [property]="'account_origin'"
+        [options]="(productsOrigin$ | async)" [append]="modal"
+        [dataCard]="(productDefault$ | async)" [label]="'PAYMENTS.CONFIRMATION.FORM.ORIGIN'"
+        [ifDefaultData]="(infoPaystack | async)?.account_origin"
+        (event)="selectOption($event)"></app-card-change-data>
+    </div>
+    <div class="form-group">
+      <app-dropdown-select
+        [label]="'PAY_STACK.FORM_ONE.TO'"
+        [form]="formStepOne"
+        [property]="'payroll'"
+        [fixedOptions]="payroll"
+        [advancedLabel]="true"
+        [placeHolder]="'PAY_STACK.FORM_ONE.DESTINATION'"></app-dropdown-select>
+    </div>
+    <div class="form-group">
+      <app-dropdown-select
+        [label]="'PAY_STACK.FORM_ONE.TYPE_PAYMENT_LABEL'"
+        [form]="formStepOne"
+        [property]="'type_payment'"
+        [fixedOptions]="type_payment"
+        [advancedLabel]="false"
+        [placeHolder]="'PAY_STACK.FORM_ONE.TYPE_PAYMENT'"
+        (event)="eventTypePayment($event)"></app-dropdown-select>
+    </div>
+    <div class="form-group" *ngIf="viewPayroll">
+      <label>{{textPayroll | translate}}</label>
+      <input class="input-bp" formControlName="number_payroll" appOnlyNumbers>
+    </div>
+
+    <div class="form-group" *ngIf="viewMonth">
+      <div class="period month">
+        <app-dropdown-select
+          [label]="'PAY_STACK.FORM_ONE.MONTH'"
+          [form]="formStepOne"
+          [property]="'month'"
+          [fixedOptions]="months"
+          [advancedLabel]="false"></app-dropdown-select>
+      </div>
+      <div class="period year">
+        <label>{{'PAY_STACK.FORM_ONE.PERIOD' | translate}} </label>
+        <input type="text" class="input-bp" formControlName="period" appOnlyNumbers maxlength="4">
+      </div>
+    </div>
+
+
+    <div class="submit-step-one" [ngClass]="{'submit-step': viewMonth}">
+      <app-btn
+      [type]="'submit'"
+      [disabled]="formStepOne.invalid"
+      [text]="'CONTINUE' | translate"
+      [id]="'btn-step-one'"
+      [isLoading]="typeOption === 'NP' ? (infoBiller | async)?.loading : (information | async)?.loading"
+      [class]="(formStepOne.invalid ? 'btn-disabled' : 'btn-primary')"
+      ></app-btn>
+    </div>
+  </form>
+</div>
+
+<ng-template #loadingTemplate>
+  <div class="form-group" >
+    <div class="card-account">
+      <div class="itemLoading shadow-1dp" *ngFor="let i of [].constructor(loadingItems)">
+        <p class="title-loading placeholder"></p>
+        <p class="text-loading placeholder"></p>
+        <p class="value-loading placeholder "></p>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div #modal></div>

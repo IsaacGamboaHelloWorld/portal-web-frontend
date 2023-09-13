@@ -1,0 +1,49 @@
+@import '../../../../sass/colors'
+@import '../../../../sass/variables'
+
+.box-login
+  text-align: center
+  padding-top: 20px
+  img
+    width: 220px
+    height: auto
+    display: none
+  h4
+    margin: 43px 0
+    font-weight: 500
+  a
+    color: $orange-900
+    font-size: $f-14 - 2
+  .auth-forgot-link
+    text-align: right
+    bottom: -16px
+    float: right
+    position: relative
+  .auth-register-link
+    text-align: center
+    a
+      font-size: $f-14
+  .cont-float-icon
+    position: relative
+    input
+      padding-right: 40px
+    i
+      position: absolute
+      right: 15px
+      top: 50%
+      transform: translateY(-50%)
+      cursor: pointer
+      color: $carbon-light-900
+      font-size: $f-20 + 2
+  .checkbox-slide label
+    font-size: $f-14 - 1
+  .checkbox-slide-new label
+    font-size: $f-14 - 1
+  button
+    width: 100%
+    margin: 10px 0 32px
+
+@media only screen and (max-width: $break-tablet)
+  .box-login
+    img
+      display: inline-block

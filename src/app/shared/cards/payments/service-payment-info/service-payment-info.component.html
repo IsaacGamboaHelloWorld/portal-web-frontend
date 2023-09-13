@@ -1,0 +1,51 @@
+<div class="card-info-service shadow-1dp" *ngIf="!loading else loadingState">
+    <h3>{{serviceName}}</h3>
+    <p>{{'PAYMENTSV2.SHARED_COPY.LBL_SERVICE' | translate}}</p>
+    <h4>{{enterprise}}</h4>
+    <div class="card-info-payment">
+        <div class="card-info-payment-col">
+            <p class="label">{{'PAYMENTSV2.SHARED_COPY.LBL_REF' | translate}}</p>
+            <strong>{{ref}}</strong>
+        </div>
+        <ng-container *ngIf="!billWithError && data?.amount > 0">
+            <div class="card-info-payment-col">
+                <p class="label">{{'PAYMENTSV2.SHARED_COPY.LBL_TO_PAY' | translate}}</p>
+                <strong>{{data?.amount | currencyFormat}}</strong>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="billWithError && data?.debtWithMainBiller > 0">
+            <div class="card-info-payment-col">
+                <p class="label">{{'PAYMENTSV2.SHARED_COPY.LBL_LAST_AMOUNT' | translate}}</p>
+                <strong>{{data?.debtWithMainBiller | currencyFormat}}</strong>
+            </div>
+        </ng-container>
+    </div>
+    <ng-container *ngIf="biller">
+        <button [disabled]="billWithError" class="btn btn-primary" (click)="pay()">{{'PAYMENTSV2.SHARED_COPY.BTN_PAY' | translate}}</button>
+    </ng-container>
+    <ng-container *ngIf="!biller">
+        <button class="btn btn-primary" (click)="pay()">{{'PAYMENTSV2.SHARED_COPY.BTN_PAY' | translate}}</button>
+    </ng-container>
+</div>
+
+<ng-template #loadingState>
+    <div class="card-info-service itemLoading loading-global shadow-1dp">
+        <div class="card-info-payment-loader">
+            <p class="placeholder width-40 title"></p>
+        </div>
+        <div class="columns-container">
+            <div class="card-info-payment-loader">
+                <p class="placeholder width-40 "></p>
+                <p class="placeholder width-60 "></p>
+            </div>
+            <div class="card-info-payment-loader">
+                <p class="placeholder width-40 "></p>
+                <p class="placeholder width-60 "></p>
+            </div>
+            <div class="card-info-payment-loader">
+                <p class="placeholder width-40 "></p>
+                <p class="placeholder width-60 "></p>
+            </div>
+        </div>
+    </div>
+</ng-template>

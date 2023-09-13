@@ -1,0 +1,16 @@
+<div class="cont-alert-blocked">
+    
+    <div class="img-container">
+        <img [src]="'/24-essential-like.svg' | imageCdn" alt="">
+    </div>
+
+    <h3 class="title" [innerHTML]="title" *ngIf="title"></h3>
+
+    <p class="subtitle" [innerHTML]="subtitle" *ngIf="subtitle"></p>
+
+    <p class="bottom-profile-section-card-content" [ngClass]="{'centered': mustAlignCenterOnMainContent === true}" [innerHTML]="mainContent" *ngIf="mainContent"></p>
+    
+    <p class="bottom-profile-section-card-content" [innerHTML]="secondaryContent" *ngIf="secondaryContent"></p>
+
+    <button class="btn btn-primary" (click)="close()">{{ (!!buttonContent ? buttonContent :  'CLOSE') | translate}}</button>
+</div>

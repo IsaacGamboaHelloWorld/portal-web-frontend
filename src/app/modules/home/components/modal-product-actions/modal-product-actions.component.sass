@@ -1,0 +1,130 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+@mixin text-style($f-size, $f-weight, $l-height) 
+    font-size: $f-size
+    font-weight: $f-weight
+    line-height: $l-height
+
+.modal-product-actions
+  background: $carbon-light-100
+  border-radius: 15px
+  text-align: left
+  overflow: hidden
+  margin: 16px 0
+
+.content-product-actions
+  .head-product-actions,
+  .body-product-actions,
+  .footer-product-actions
+    padding: 24px
+  .head-product-actions
+    border-bottom: 1px solid var(--n-200)
+    > p
+      font-size: $f-14 + 2
+      font-weight: 600
+      line-height: 1.5
+      margin-bottom: 16px
+    .align-product-actions
+      display: flex
+      justify-content: space-between
+      align-items: center
+      p
+        color: var(--gray-3)
+        font-size: $f-14 - 1
+        line-height: 1.77
+      strong
+        color: var(--black-900)
+        line-height: 1.62
+        font-size: $f-20 + 1
+      img
+        height: 28px
+        width: auto
+  .body-product-actions
+    li
+      display: flex
+      align-items: center
+      justify-content: space-between
+      margin-bottom: 16px
+      &:last-child
+        margin: 0
+      p
+        width: 50%
+        line-height: 1.77
+        font-size: $f-14 - 1
+  .footer-product-actions
+    background: var(--n-50)
+    line-height: 1.77
+    font-size: $f-14 - 1
+    text-align: center
+    color: var(--gray-3)
+
+.loading-product-actions
+  .head-loading-actions
+    padding: 24px
+    border-bottom: 1px solid $carbon-light-900
+    .title-actions-loading
+      margin-bottom: 43px
+    .align-head-actions
+      display: flex
+      align-items: center
+      justify-content: center
+      > div
+        width: 50%
+        &:last-child
+          div
+            height: 34px
+      p:last-child
+        margin-top: 10px
+        height: 14px
+  .body-loading-actions
+    padding: 12px 24px
+    li
+      padding: 12px 0
+      p:last-child
+        margin-top: 10px
+
+
+
+.error-product-actions
+  padding: 32px 24px 24px
+  text-align: center
+  img
+    height: 60px
+    width: auto
+    margin-bottom: 16px
+  strong
+    display: block
+    margin-bottom: 16px
+    font-size: $f-14 + 2
+  p
+    line-height: 1.77
+    font-size: 13px
+  button
+    margin-top: 32px
+    width: 100%
+
+.no-product-actions
+  height: 17.5rem
+  padding: 1.5rem
+  text-align: center
+  color: $black-750
+  .img-oval 
+    width: 3rem
+    height: 3rem
+    border-radius: 1.5rem
+    margin: auto
+    padding: 0.5rem
+    background-color: $info-100
+    img
+      width: 2rem
+  strong
+    display: block
+    margin: 0.75rem auto
+    @include text-style(1rem, 600, 1.75)
+  p
+    @include text-style(13px, normal, 2.15)
+  button
+    margin-top: 1.75rem
+    width: 100%

@@ -1,0 +1,44 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.notification-timeout
+  padding: 24px 22px
+  background: $carbon-light-100
+  border-radius: 15px
+  h4
+    text-align: center
+  img
+    height: 66px
+    width: auto
+  section
+    margin-top: 54px
+  button
+    width: 100%
+    display: block
+    text-align: center
+  .cont-text
+    margin-bottom: 33px
+    padding: 0 20px
+    strong
+      font-size: 16px
+      font-weight: 600
+      line-height: 1.5
+      margin-bottom: 15px
+      display: block
+    p
+      line-height: 1.77
+      font-size: $f-14 - 1
+  .image-container
+    margin: 0 auto
+    top: 0
+    display: block
+    width: 120px
+    padding: 24px 22px
+
+
+@media only screen and (max-width: $break-mobile)
+  .notification-timeout
+    .cont-text
+      strong
+        padding: 0 22px
+

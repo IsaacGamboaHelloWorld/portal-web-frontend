@@ -1,0 +1,16 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.buttons-container
+  width: 100%
+  display: flex
+  flex-wrap: wrap
+  align-items: center
+  justify-content: center
+  padding: 73px 0
+
+@media only screen and (max-width: $break-mobile)
+  .buttons-container
+    display: flex
+    flex-direction: column

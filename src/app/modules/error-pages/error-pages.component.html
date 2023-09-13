@@ -1,0 +1,19 @@
+<div class="is-center error-container has-w-100">
+    <div class="container-img has-w-100">
+        <a class="logo" [routerLink]="navigate.home">
+            <img [src]="'/logotipo-horizontalx3.png' | imageCdn" alt="No se encuentra">
+        </a>
+    </div>
+    <div class="is-center">
+        <img [src]="'/enrollment/service-error.png' | imageCdn" alt="Banco popular">
+        <div class="txt-landing has-txt-center" *ngIf="errors"> 
+                <h4> <strong>  {{ getTitle() }} </strong> </h4>
+                <div class="inner-text">
+                    <p> {{ getText() }}   </p>
+                </div>
+        </div>
+    </div>
+    <div class="has-w-100 has-txt-center">
+        <!-- <button class="btn btn-primary" [routerLink]="navigate.login">{{'NOTFOUND.BUTTON' | translate}}</button> -->
+    </div>
+</div>

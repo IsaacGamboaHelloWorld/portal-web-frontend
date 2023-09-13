@@ -1,0 +1,49 @@
+@import '../../../../../sass/mixins'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/variables'
+
+.cont-step-confirmation
+  max-width: 740px
+  width: 100%
+  margin: 0 auto
+  display: block
+  .head-step-confirmation
+    text-align: center
+    padding-bottom: 22px
+    margin-bottom: 27px
+    img
+      width: 120px
+      height: auto
+      margin-bottom: 18px
+    h5
+      font-weight: bold
+
+  .footer-step-confirmation
+    text-align: center
+    margin: 16px auto
+    flex-direction: row
+    align-items: center
+    .warning-text
+      color: $error-600
+      margin-bottom: 20px
+    button
+      width: 100%
+      margin: 0 30px
+      max-width: 183px
+
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-confirmation
+    text-align: center
+    .footer-step-confirmation
+      text-align: center
+      margin: 16px auto
+      flex-direction: row
+      align-items: center
+      .warning-text
+        color: $error-600
+        margin-bottom: 20px
+      button
+        width: 100%
+        max-width: 100%
+        margin: 30px auto

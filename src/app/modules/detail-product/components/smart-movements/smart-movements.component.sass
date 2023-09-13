@@ -1,0 +1,92 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+=buttonHeader
+  position: relative
+  z-index: 1
+  top: 2px
+  left: 1px
+
+.cont-movements
+  background: $carbon-light-100
+  border-radius: 15px
+  overflow: hidden
+  .table-header
+    padding: 20px 24px
+    font-size: $f-14 + 4
+    display: flex
+    border-bottom: 1px solid $gray2
+    .table-header-menu
+      justify-self: flex-end
+      margin-left: auto
+      display: flex
+      a
+        width: 16px
+        height: 16px
+        margin: 0 10px
+        em
+          +buttonHeader
+        &::after
+          width: 1px
+          height: 1px
+          content: ''
+          top: -32px
+          position: relative
+          z-index: -2
+          left: -12px
+          border-radius: 100%
+          z-index: 1
+        &:hover::after
+          display: block
+          width: 44px
+          height: 44px
+          animation-name: hover-back
+          animation-duration: .2s
+          background: $black-100-rgba
+  .filter-movement
+    background: $carbon-light-100
+    padding: 0 20px
+    border-bottom: 1px solid $gray2
+    .filterActive
+      background: $carbon-light-100
+      border-radius: 4px
+      border: 1px solid $g-500
+      font-size: $f-14 - 1
+      padding: 5px 44px 5px 10px
+      color: $g-500
+      cursor: pointer
+      +inline(top)
+      margin: 15px 0
+      position: relative
+      span
+        position: absolute
+        right: 7px
+        top: 50%
+        font-size: 20px
+        font-weight: 100
+        transform: translateY(-50%)
+  .filter-container
+    padding: 16px 15px
+    border-bottom: 1px solid $gray2
+    .filter-input
+      position: relative
+      .search-field
+        &:focus
+          border: 1px solid $carbon-mid-400
+      .search-input, .clear-input
+        position: absolute
+        right: 10px
+        top: 15px
+        color: $carbon-mid-100
+        z-index: 5
+        font-size: $f-14 + 6
+      .clear-input
+        z-index: 11
+        em.icon-plus
+          transform: rotate(45deg)
+          display: inline-block
+          background: $carbon-light-900
+          color: $carbon-mid-400
+          border-radius: 100%
+

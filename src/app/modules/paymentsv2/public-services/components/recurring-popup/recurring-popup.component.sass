@@ -1,0 +1,41 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.cont-recurring
+  background: $carbon-light-100
+  border-radius: 15px
+  .head-popup
+    display: flex
+    border-bottom: 1px $carbon-light-900 solid
+    padding: 20px 24px
+    p
+      flex-grow: 1
+      font-size: $f-14 + 4
+      font-weight: 500
+    a
+      color: $g-500
+      em.back-icon
+        font-size: $f-14 + 4
+        &::before
+          transform: rotate(180deg)
+          position: absolute
+  .body-popup
+    padding: 20px 24px
+    .form-group
+      label
+        margin-top: -0.5rem
+        margin-bottom: 6px
+        display: block
+      input
+        margin-bottom: 0.25rem
+      button
+        width: 100%
+  label
+    font-size: $f-14 - 2
+    font-weight: 500
+
+.modal-container
+  .modal-content
+    .modal-box
+      max-width: 21.5rem

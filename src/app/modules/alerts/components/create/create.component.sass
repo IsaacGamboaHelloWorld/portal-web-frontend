@@ -1,0 +1,110 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+.create-container
+  text-align: center
+  width: 100%
+  margin-top: 30px
+  .cont-options
+    width: 100%
+    display: flex
+    flex-direction: row
+    height: 176px
+    li
+      padding-right: 24px
+    .box-border
+      border: solid 1.3px $g-500
+    .box
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+      cursor: pointer
+      width: 296px
+      height: 176px
+      border-radius: 12px
+      box-shadow: 0 1px 2px 0 #00000024
+      background-color: $carbon-light-100
+      .container-radio
+        display: block
+        position: relative
+        cursor: pointer
+        font-size: 22px
+        -webkit-user-select: none
+        -moz-user-select: none
+        -ms-user-select: none
+        user-select: none
+      .container-radio input
+        position: absolute
+        opacity: 0
+        cursor: pointer
+      .checkmark
+        position: absolute
+        height: 20px
+        width: 20px
+        background-color: $carbon-light-100
+        border: solid 1.3px $carbon-light-900
+        border-radius: 50%
+        left: 120px
+        bottom: 10px
+      .container-radio:hover input ~ .checkmark
+        background-color: $carbon-light-900
+      input:checked ~ .checkmark
+          background-color: $g-500
+          border: none
+      .checkmark::after
+        content: ""
+        position: absolute
+        display: none
+      .container-radio
+        input:checked ~ .checkmark::after
+          display: block
+      .container-radio
+        .checkmark::after
+          top: 6px
+          left: 6px
+          width: 8px
+          height: 8px
+          border-radius: 50%
+          background: white
+      .cont-icon
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 40px
+        height: 40px
+        background-color: $secondary-100
+        border-radius: 200px
+        -moz-border-radius: 200px
+        -webkit-border-radius: 200px
+        img
+          width: 24px
+      .cont-text
+        text-align: center
+        width: 100%
+        white-space: break-spaces
+        font-style: normal
+        .name
+          font-weight: 600
+          font-size: 14px
+          line-height: 24px
+        .desc
+          font-weight: 400
+          font-size: 12px
+          line-height: 20px
+  .button-container
+    margin: 0 auto
+    text-align: center
+    padding-top: 32px
+
+@media only screen and (max-width: $break-small-phone)
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+@media only screen and (min-width: $break-desktop-xlg-min)

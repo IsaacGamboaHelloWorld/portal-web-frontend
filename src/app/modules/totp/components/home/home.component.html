@@ -1,0 +1,40 @@
+<div class="totp-home">
+  <ng-container *ngIf="!(devicesTotp$ | async)?.loading;else loadingTmp">
+    <div class="qr-container" *ngIf="(devicesTotp$ | async)?.data?.devices?.length ==0 ; else loadTotp">
+      <p class="qr-desc">  {{ 'TOTP_AUTHENTICATION.QR_CODE.TITLE' | translate }} </p>
+      <small class="qr-note">{{ 'TOTP_AUTHENTICATION.QR_CODE.DESCRIPTION' | translate }}</small>
+      <div class="img-container">
+        <img class="img-qr" [src]="(generateTotp$ | async)?.data.qr" [alt]=""
+          *ngIf="!(generateTotp$ | async).loading; else loadingTmp">
+      </div>
+      <div class="btn-container">
+        <app-btn [type]="'submit'" [disabled]="false" [text]="'TOTP_AUTHENTICATION.QR_CODE.BTN_CONTINUE' | translate" [isLoading]="false"
+          [class]="'btn btn-primary'" (clickBtn)="register()">
+        </app-btn>
+      </div>
+    </div>
+  </ng-container>
+  <ng-template #loadingTmp>
+    <div class="loading-container">
+      <app-ds-loading></app-ds-loading>
+    </div>
+  </ng-template>
+  <ng-template #loadTotp>
+    <h3 class="title-devices">{{ 'TOTP_AUTHENTICATION.QR_CODE.CONNECTED_DEVICES' | translate }} </h3>
+    <ng-container *ngFor="let item of (devicesTotp$ | async)?.data?.devices">
+      <div class="card-home-opt-sec-container pb-col-sp-4" (click)="openModal( item.name, item.id)">
+        <div class="card-header-os">
+          <div class="img-container pb-rounded-50">
+            <img [src]="'/24-essential-cellphone.svg' | imageCdn" alt="">
+          </div>
+          <div class="header-body-os">
+            <h4> {{ item.name }} </h4>
+          </div>
+          <div class="img-container pb-rounded-50">
+            <img [src]="'/24-essential-delete-32.svg' | imageCdn" alt="">
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-template>
+</div>

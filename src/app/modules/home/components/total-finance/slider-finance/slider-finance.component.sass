@@ -1,0 +1,31 @@
+@import '../../../../../../sass/variables'
+
+.cont-slider-finance-wrapper
+  overflow: hidden
+  height: 60px
+  text-align: center
+  .cont-slider-items
+    position: absolute
+    display: block
+    width: 100%
+    animation: marquee 10s linear infinite
+    height: auto
+    div
+      padding-top: 10px
+      display: block
+      p
+        font-size: $f-14
+      > span
+        font-size: $f-30 - 2
+        letter-spacing: -0.5px
+        display: block
+        margin-top: 5px
+
+@keyframes marquee
+  0%
+    transform: translateY(100%)
+  50%
+    transform: translateY(0%)
+
+  100%
+    transform: translateY(-100%)

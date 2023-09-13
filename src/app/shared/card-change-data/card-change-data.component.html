@@ -1,0 +1,45 @@
+<label>{{label | translate}}</label>
+<div class="card-account" *ngIf="data">
+  <p class="mask"></p>
+  <div class="head">
+    {{'PRODUCT_TYPES.' + (data)['typeAccount'] | translate}}
+    <span class="id-product">{{(data)['id'] | slice: -4}}</span>
+  </div>
+  <div class="body">
+    <label>{{'DETAIL.DETAIL_CURRENT_ACCOUNT.MONEY_AVAILABLE' | translate}}</label>
+    <div class="body-value" [innerHTML]="
+      (data['productAccountBalances'] ?
+        (data['productAccountBalances']['saldo_disponible']['amount'] | currencyFormat : true : 'decimal-vouchers fs-18') :
+        '0' | currencyFormat  : true : 'decimal-vouchers fs-18')">
+    </div>
+  </div>
+  <div class="button-card-account" *ngIf="btn">
+    <button type="button" (click)="visibleModal = true">{{'CHANGE' | translate}}</button>
+  </div>
+</div>
+
+<p-sidebar [(visible)]="visibleModal" position="bottom" [styleClass]="(viewFull ? 'full-screen' : 'screen')"
+  [visible]="false" [autoZIndex]="true" [appendTo]="append" [dismissible]="dismissible">
+  <div *ngIf="options">
+    <div class="button-full">
+      <button type="button" (click)="viewFull = true"></button>
+    </div>
+    <ul>
+      <li *ngFor="let product of options; let i = index" (click)="selectOption(product)">
+        <div *ngIf="product?.typeAccount">
+          {{'PRODUCT_TYPES.' + product?.typeAccount | translate}} {{product?.id | slice: -4}}
+          {{product?.loading |
+            loadAmount: ((product?.productAccountBalances?.saldo_disponible?.amount) | currencyFormat) :
+            product?.loaded }}
+        </div>
+        <div *ngIf="product?.contactName" class="text-contact" [ngClass]="{'bold-text': product?.bold}">
+          {{product?.contactName | translate}}
+        </div>
+      </li>
+    </ul>
+    <hr>
+    <div class="button-card-footter">
+      <button type="button" (click)="visibleModal = false;viewFull = false;emitCancel()">{{'CODE_AUTH.MODAL_ALERT.CANCEL' | translate}}</button>
+    </div>
+  </div>
+</p-sidebar>

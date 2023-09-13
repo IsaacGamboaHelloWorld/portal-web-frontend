@@ -1,0 +1,14 @@
+<div class="home-payment">
+    <div class="home-head-payment">
+        <h2>{{'PAYMENTS.TITLE' | translate}}</h2>
+        <a class="btn link payments-list" [routerLink]="navigate.payment_list">{{'PAYMENTS.PAYMENTS_LIST' | translate}}</a>
+        <a class="btn btn-primary" [routerLink]="navigate.type_payment">{{'PAYMENTS.NEW_PAYMENT' | translate}}</a>
+    </div>
+    <ng-container *ngIf="hasHistoric$ | async; else errorOrLoading">
+        <app-historic [historicData]="(historicPayments$ | async)?.data"></app-historic>
+    </ng-container>
+</div>
+
+<ng-template #errorOrLoading>
+    <app-historic-status [historic]="historicPayments$ | async" (clickBtn)="fetchHistoric()"></app-historic-status>
+</ng-template>

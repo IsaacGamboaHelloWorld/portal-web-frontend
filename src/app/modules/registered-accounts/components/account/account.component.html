@@ -1,0 +1,12 @@
+<div class="cont-affiliation-product" *ngIf="hasProduct" [ngClass]="{'active': isActive}" (click)="action.emit()">
+  <div class="cont-name">
+    {{initials}}
+  </div>
+  <div class="cont-info">
+    <strong>{{product.customerName}}</strong>
+    <p>{{product.bankName}} -
+      {{'PRODUCT_TYPES_SMALL.' + product.destinationAccountType | translate}}
+      {{product.destinationAccountId | slice: -4}}</p>
+  </div>
+  <i class="icon-arrow2-right"></i>
+</div>

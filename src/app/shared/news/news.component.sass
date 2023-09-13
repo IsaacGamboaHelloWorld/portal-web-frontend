@@ -1,0 +1,232 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+.ui-dialog
+  background: $carbon-light-100
+  border-radius: 12px
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+  .ui-dialog-titlebar
+    display: none
+  .ui-dialog-content
+    padding: 0
+  .cont-modal-news
+    background: $carbon-light-100
+    border-radius: 15px
+    width: 512px
+    height: 528px
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(233, 233, 233, 0.6)
+    .bg-copy
+      width: 100%
+      height: 264px
+      border-radius: 15px
+      background-color: $carbon-light-400
+      display: flex
+      justify-content: center
+      .img-slide
+        height: 244px
+        position: relative
+        top: 10px
+      .card-news
+        width: 112px
+        height: 64px
+        border-radius: 16px
+        background-color: $carbon-light-100
+    .controls
+      position: relative
+      display: flex
+      flex-direction: column
+      flex-wrap: wrap
+      form
+        display: flex
+        align-items: center
+        justify-content: center
+        flex: 1
+        input[type="radio"]
+          outline: none
+          margin: 17px 0
+          opacity: 0
+          + label
+            position: relative
+            height: 6px
+            width: 6px
+            border-radius: 100%
+            border: 1px solid #ced7e6
+            transition: border 300ms, background 300ms
+            background-color: #c4c4c4
+          &:checked + label
+            height: 8px
+            width: 8px
+            border: 1px solid $secondary-900
+            background-color: $secondary-900
+            box-shadow: 0 1px 3px 0 rgba(252, 113, 33, 0.38)
+    .cont-text
+      padding: 0 32px
+      .title
+        margin-top: 30px
+        font-size: 16px
+        font-weight: 600
+        font-stretch: normal
+        font-style: normal
+        line-height: 1.5
+        letter-spacing: normal
+        color: #0d0d0d
+      .text
+        margin-top: 16px
+        font-size: 13px
+        font-weight: normal
+        font-stretch: normal
+        font-style: normal
+        line-height: 1.77
+        letter-spacing: normal
+        color: #0d0d0d
+        .bold-text
+          font-weight: 600
+    .cont-btn
+      text-align: right
+      width: 100%
+      padding: 0 32px
+      margin-top: 32px
+      .btn-send
+        padding: inherit
+        width: 127px
+        height: 40px
+        border-radius: 8px
+        line-height: 0
+      .link
+        position: relative
+        right: 32px
+      .left
+        position: absolute
+        left: 32px
+        bottom: 30px
+        background: $carbon-light-100
+    .cont-btn-ok
+      text-align: center
+      width: 100%
+      padding: 0 32px
+      position: absolute
+      bottom: 32px
+      .btn-send
+        padding: inherit
+        width: 127px
+        height: 40px
+        border-radius: 8px
+        line-height: 0
+
+@media only screen and (max-width: 768px)
+  .ui-dialog
+    border-radius: 12px
+    background: transparent
+    .ui-dialog-content
+      padding: 0
+      width: 512px
+    .cont-modal-news
+      overflow: hidden
+      background: $carbon-light-100
+      border-radius: 15px
+      width: 512px
+      height: 528px
+      .bg-copy
+        width: 100%
+        .img-slide
+          height: 200px
+          position: relative
+          top: 30px
+
+@media only screen and (max-width: $break-mobile)
+  .ui-dialog
+    margin: 0 30px
+    background: transparent
+    .cont-modal-news
+      overflow: hidden
+      background: $carbon-light-100
+      border-radius: 15px
+      width: 344px
+      height: 568px
+      .bg-copy
+        width: 100%
+        .img-slide
+          height: 200px
+          position: relative
+          top: 30px
+      .cont-text
+        padding: 0 32px
+        .title
+          margin-top: 24px
+      .cont-btn
+        width: 100%
+        margin-top: 21px
+        display: flex
+        flex-direction: column-reverse
+        justify-content: center
+        align-items: center
+        .btn-send
+          padding: inherit
+          width: 296px
+          height: 40px
+          border-radius: 8px
+          line-height: 0
+        .link
+          position: relative
+          top: 24px
+          right: 0
+        .left
+          display: none
+      .cont-btn-ok
+        width: 100%
+        margin-top: 21px
+        display: flex
+        .btn-send
+          width: 296px
+
+@media only screen and (max-width: 375px)
+  .ui-dialog
+    margin: 0 15px
+    left: 15px
+    background: transparent
+    .ui-dialog-content
+      padding: 0
+    .cont-modal-news
+      overflow: hidden
+      background: $carbon-light-100
+      border-radius: 15px
+      width: 344px
+      height: 568px
+      .bg-copy
+        width: 100%
+        .img-slide
+          height: 200px
+          position: relative
+          top: 30px
+      .cont-text
+        padding: 0 32px
+        .title
+          margin-top: 24px
+      .cont-btn
+        width: 100%
+        margin-top: 21px
+        display: flex
+        flex-direction: column-reverse
+        justify-content: center
+        align-items: center
+        .btn-send
+          padding: inherit
+          width: 296px
+          height: 40px
+          border-radius: 8px
+          line-height: 0
+        .link
+          position: relative
+          top: 24px
+          right: 0
+        .left
+          display: none
+      .cont-btn-ok
+        width: 100%
+        margin-top: 21px
+        display: flex
+        .btn-send
+          width: 296px

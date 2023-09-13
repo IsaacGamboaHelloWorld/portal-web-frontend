@@ -1,0 +1,78 @@
+@import '../../../sass/variables'
+@import '../../../sass/colors'
+@import '../../../sass/mixins'
+
+.cont-2fa-global
+  padding: 45px 15px 25px
+  background: $carbon-light-100
+  border-radius: 15px
+  .description
+    line-height: 28px
+  label
+    font-size: 14px
+  &.small
+    .adl-content-2fa .content-otp fieldset
+      input
+        width: 14px
+        height: 40px
+        margin: 2px 8px
+        font-size: 21px
+  .adl-content-2fa .content-otp fieldset
+    input
+      width: 14px
+      height: 40px
+      margin: 2px 8px
+      font-size: 21px
+      border-radius: 4px
+      box-shadow: inherit
+      &.ng-dirty.ng-invalid
+        border-color: $error-600
+      &.ng-dirty.ng-valid,
+      &.ng-pristine.ng-valid
+        border-color: $black-300
+      &.ng-invalid:not(.ng-untouched),
+      &:focus
+        box-shadow: inherit
+      &.ng-invalid:not(.ng-untouched)
+        border-color: $error-600
+      &:focus
+        border-color: $carbon-mid-400
+  .cancel-two-factor
+    position: absolute
+    top: 27px
+    right: 15px
+    color: $gray3
+    cursor: pointer
+    display: flex
+    align-items: center
+    em
+      font-size: $f-14 - 4
+      display: flex
+      justify-content: center
+      align-items: center
+      color: $gc-600
+      border: 1.4px solid $gc-600
+      margin-left: 10px
+      border-radius: 50%
+      padding: 5px
+      font-weight: bold
+  .btn
+    width: 100%
+  .link
+    background: white
+    margin-top: 25px
+    font-size: $f-14
+  .adl-content-2fa
+    .content-virtual
+      .img-icon
+        width: auto
+        height: 80px
+        margin-bottom: 20px
+
+@media only screen and (max-width: $break-mobile)
+  .cont-2fa-global
+    &.small
+      .adl-content-2fa .content-otp fieldset
+        input
+          margin: 4px 4px
+          width: 9%

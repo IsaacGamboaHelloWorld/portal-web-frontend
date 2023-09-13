@@ -1,0 +1,58 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+.remove-footer-auth
+  display: none
+
+.cont-alert-enrollment
+  text-align: center
+  .animated.fade-in-up
+    text-align: center
+    .top-image-container
+      margin: 0 auto
+      top: 0
+      display: block
+      width: 120px
+      padding: 16px 17px
+      border-radius: 50%
+      img
+        height: 80px
+        width: auto
+    img
+      height: 120px
+      width: auto
+      margin-bottom: 0
+    h4
+      font-weight: bold
+    p
+      font-size: $f-14 - 1
+      line-height: 2.16
+      height: 56px
+      margin-top: 16px
+      color: $cbn-mid-600
+    button
+      width: auto
+      padding: 0 30px
+      margin-top: 32px
+      font-size: 14px
+      .arrow-right
+        width: 24px
+        height: 24px
+        margin: 0 auto
+        position: relative
+        top: 12px
+        background-color: $cbn-lgt-100
+        mask: url('#{$base-url}/images/arrow-left.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/arrow-left.svg') no-repeat center / contain
+    a
+      margin-top: 34px
+      display: inline-block
+  .logotipo-horizontalx3
+    width: 220px
+    height: auto
+    margin-top: 38px
+    margin-bottom: 37px
+@media only screen and (max-width: $break-small-phone)
+  .cont-alert-enrollment
+    margin-bottom: 50px

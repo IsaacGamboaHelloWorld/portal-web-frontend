@@ -1,0 +1,10 @@
+<div class="notification-timeout">
+  <div class="image-container">
+    <img [src]="'/icon-time-out.png'| imageCdn" [alt]="'AUTH.LOGIN.TIMEOUT_TITLE'| translate">
+  </div>
+  <div class="cont-text">
+    <strong>{{'AUTH.LOGIN.TIMEOUT.TITLE'| translate}}</strong>
+    <p>{{'AUTH.LOGIN.TIMEOUT.DESCRIPTION'| translate}}</p>
+  </div>
+  <button type="button" (click)="closeModal()" class="btn btn-primary">{{'GOT_IT'| translate}}</button>
+</div>

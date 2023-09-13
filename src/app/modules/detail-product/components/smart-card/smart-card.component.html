@@ -1,0 +1,5 @@
+<div *ngIf="hasData" class="detail-smart-card detail-products">
+    <app-header-card [info]="data"></app-header-card>
+    <app-main-balances [info]="data"></app-main-balances>
+    <app-secondary-balances [info]="data" [pocketsByProductState]="pocketsByProductState" (callGetPockets)="fetchPockets()"></app-secondary-balances>
+</div>

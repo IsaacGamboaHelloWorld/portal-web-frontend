@@ -1,0 +1,27 @@
+<div class="container-dash">
+  <div class="header">
+    <app-header></app-header>
+  </div>
+  <div class="sidebar">
+    <app-menulat></app-menulat>
+  </div>
+  <div class="body-dash">
+    <div class="content" id="dashboard-content">
+      <router-outlet></router-outlet>
+    </div>
+    <div class="footer">
+      <app-global-footer></app-global-footer>
+    </div>
+    <app-otp-ath-wrapper></app-otp-ath-wrapper>
+  </div>
+  <div class="tab-bar">
+    <app-tabbar-ds
+      [disable1]="!(optionsModule$ | async)?.data?.product_detail?.options?.orders_withdrawals"
+      [disable2]="!(optionsModule$ | async)?.data?.product_detail?.options?.recharge_cellphone"
+      [disable3]="!(optionsModule$ | async)?.data?.products?.show"
+      [disable4]="!(optionsModule$ | async)?.data?.payments?.show"
+      [disable5]="!(optionsModule$ | async)?.data?.transfers?.show">
+    </app-tabbar-ds>
+  </div>
+</div>
+

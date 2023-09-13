@@ -1,0 +1,15 @@
+<div class="choose-type-head-wnocother">
+    <h2>{{'WITHDRAWAL.TITLE_STEP1' | translate}}</h2>
+</div>
+<div class="choose-type-wnocother-option">
+    <a class="btn-graph" (click)="doSelectOption('WITH_CARD')">
+        <img [src]="'/cajero@2x.png' | imageCdn" alt="">
+        <span>{{'WITHDRAWAL.WITH_CARD' | translate}}</span>
+        <p>{{'WITHDRAWAL.VALID_CODE' | translate}} <strong>{{'WITHDRAWAL.TIME_CARD' | translate}}</strong></p>
+    </a>
+    <a class="btn-graph" (click)="doSelectOption('THIRD_PARTY')">
+        <img [src]="'/pago-a-terceros@2x.png' | imageCdn" alt="">
+        <span>{{'WITHDRAWAL.THIRD_PARTY' | translate}}</span>
+        <p>{{'WITHDRAWAL.VALID_CODE' | translate}} <strong>{{'WITHDRAWAL.TIME_USER' | translate}}</strong></p>
+    </a>
+</div>

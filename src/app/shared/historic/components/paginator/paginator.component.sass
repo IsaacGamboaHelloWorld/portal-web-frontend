@@ -1,0 +1,29 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.pager-container-historic
+  padding: 13px 24px
+  background: $carbon-light-100
+  color: $gray3
+  font-size: $f-14
+  display: flex
+  .btns-contaniner
+    margin-left: auto
+    display: flex
+    a
+      i
+        font-size: $f-14 + 2
+        color: $carbon-dark-900
+        &.left
+            transform: rotate(180deg)
+            display: block
+      &.inactive
+        cursor: arrow
+        i
+          color: $gray3
+    span
+      display: inline
+      margin: 0 16px
+      color: $carbon-dark-900

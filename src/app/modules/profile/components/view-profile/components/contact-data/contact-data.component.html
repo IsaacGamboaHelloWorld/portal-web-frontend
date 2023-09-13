@@ -1,0 +1,18 @@
+<div class="content" *ngIf="(user$ | async)?.data as user">
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.CONTACT_DATA.EMAIL_FIELD' | translate}}
+        </span>
+        <p>
+            {{getElementByRefId(user.emails, 'Y')?.emailAddress}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.CONTACT_DATA.PHONE_FIELD' | translate}}
+        </span>
+        <p *ngIf="getElementByRefId(user.phones, 'Y') as phone">
+            {{'12' === phone?.phoneType ? cleanPhoneData(phone?.phone) : 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate}}
+        </p>
+    </div>
+</div>

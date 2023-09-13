@@ -1,0 +1,47 @@
+<div class="item-table-payment-history">
+    <div class="col-data">
+        <p class="capitalize">{{data?.paymentDate | createDate | date:'dd/MMM/yyyy': 'UTC' | replace : '.' : ''}}</p>
+    </div>
+    <div class="col-info-payment show">
+        <p><strong>Valor:</strong> {{data?.amount | currencyFormat}}</p>
+        <ng-container [ngSwitch]="data?.paymentType">
+            <ng-container *ngSwitchCase="types.LOAN">
+                <div class="row-voucher"  *ngIf="isSuccess">
+                    <strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}:</strong>
+                    <p class="orange">{{data?.approvalId}}</p> 
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="types.CREDIT_CARD">
+                <div class="row-voucher"  *ngIf="isSuccess">
+                    <strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}:</strong>
+                    <p class="orange">{{data?.approvalId}}</p> 
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="types.PSE">
+                <div class="row-voucher" *ngIf="isSuccess"> 
+                    <strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}:</strong> 
+                    <p class="orange">{{data?.approvalId}}</p> 
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="types.PSE_PRIVATE">
+                <div class="row-voucher" *ngIf="isSuccess"> 
+                    <strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}:</strong> 
+                    <p class="orange">{{data?.approvalId}}</p> 
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="types.BILLER">
+                <div class="row-voucher"  *ngIf="isSuccess">
+                    <strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}:</strong>
+                    <p class="orange">{{data?.approvalId}}</p> 
+                </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="types.NON_BILLER">
+                <div class="row-voucher"  *ngIf="isSuccess">
+                    <strong>{{'PAYMENTS.HISTORIC.VOUCHER' | translate}}:</strong>
+                    <p class="orange">{{data?.approvalId}}</p> 
+                </div>
+            </ng-container>
+        </ng-container>
+    </div>
+    <div class="col-status"><span class="{{data?.paymentStatus | lowercase}}">{{'TRANSFER.HISTORIC.STATUS.' + (data?.paymentStatus | uppercase) | translate}}</span></div>
+</div>

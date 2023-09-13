@@ -1,0 +1,27 @@
+<div class="cont-step-register-affiliation">
+    <div class="info-steps">
+        <form class="form-global" [formGroup]="formData" (ngSubmit)="submitForm()">
+            <fieldset class="form-group">
+                <label>{{'REGISTER_PRODUCT_AFFILIATION.DESTINATION_USER_NAME_LBL' | translate}}</label>
+                <input type="text" class="input-bp" formControlName="customerName" appRemoveDiacritics [placeholder]="'REGISTER_PRODUCT_AFFILIATION.DESTINATION_USER_NAME_PLACEHOLDER' | translate">
+            </fieldset>
+            <fieldset class="form-group">
+                <label>{{'REGISTER_PRODUCT_AFFILIATION.DESTINATION_DOCUMENT_TYPE_LBL' | translate}}</label>
+                <div class="select-bp">
+                    <select formControlName="customerIdType">
+                        <option value="null" selected disabled>{{'REGISTER_PRODUCT_AFFILIATION.DESTINATION_DOCUMENT_TYPE_PLACEHOLDER' | translate}}</option>
+                        <option *ngFor="let document of documentTypes" [value]="document.type">{{document.name}}</option>
+                    </select>
+                </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <label for="">{{'REGISTER_PRODUCT_AFFILIATION.DESTINATION_DOCUMENT_NUMBER_LBL' | translate}}</label>
+                <input type="text" class="input-bp" formControlName="customerId" appOnlyNumbers pattern="\d*" [placeholder]="'REGISTER_PRODUCT_AFFILIATION.DESTINATION_DOCUMENT_NUMBER_PLACEHOLDER' | translate">
+            </fieldset>
+            <fieldset class="submit-step">
+                <button type="submit" class="btn btn-primary" [disabled]="formData.invalid">{{'REGISTER_PRODUCT_AFFILIATION.CONTINUE_BTN' | translate}}</button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+    

@@ -1,0 +1,8 @@
+<div class="animated fade-in-up cont-experian-error">
+    <div class="top-image-container">
+        <img [src]="'/enrollment/service-error.png' | imageCdn" alt="">
+    </div>
+    <h4 [innerHTML]="'EXPERIAN.ERROR' | translate"></h4>
+
+    <button (click)="experianFlowFailed()" class="btn btn-primary">{{'Regresar' | translate}}</button>
+</div>

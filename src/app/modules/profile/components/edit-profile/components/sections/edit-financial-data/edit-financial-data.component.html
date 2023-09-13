@@ -1,0 +1,78 @@
+<div class="container-edit-profile">
+    <div class="cont-edit-profile">
+        <div class="not-space-mobile">
+            <div class="head-nav not-select">
+                <a (click)="back()"><em class="icon-arrow-back"></em> {{'REGISTER_PRODUCT_AFFILIATION.BACK_BTN' | translate}}</a>
+                <a (click)="openAlert()" class="close-transfer">{{'REGISTER_PRODUCT_AFFILIATION.CLOSE_BTN' | translate}} <em class="icon-x-circle"></em></a>
+            </div> 
+            <div class="top-edit-profile-section">
+                <h2>{{'CUSTOMER_PROFILE.EDIT_PROFILE.TITLE' | translate}}</h2>
+            </div>
+            <div class="align-edit-profile">
+                <div class="edit-card-container">
+                    <div class="edit-profile-section-card">
+                        <app-section-header [iconPath]="'/profile/financial-data@3x.png'" [title]="'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.FINANCIAL_DATA.TITLE' | translate"></app-section-header>
+                        <div class="bottom-profile-section-card" *ngIf="(user$ | async)?.data as user">
+                            <form [formGroup]="formData" *ngIf="(catalogs$ | async)?.data">
+                                <div class="bottom-profile-section-container">
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.FINANCIAL_DATA.ECONOMIC_ACTIVITY_FIELD' | translate}}
+                                        </span>
+                                        <ng-select 
+                                            formControlName="economicActivityCode"
+                                            [items]="(economicActivityElements$ | async)"
+                                            bindLabel="longName"
+                                            [closeOnSelect]="true"
+                                            [multiple]="false"
+                                            [hideSelected]="true"
+                                            placeholder="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.FINANCIAL_DATA.ECONOMIC_ACTIVITY_PLACEHOLDER_FIELD' | translate}}"
+                                            typeToSearchText="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.FINANCIAL_DATA.ECONOMIC_ACTIVITY_TYPEAHEAD_FIELD' | translate}}"
+                                            markFirst="true"
+                                            [typeahead]="subject$">
+                                            </ng-select>
+                                    </div> 
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.FINANCIAL_DATA.INCOME_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" formControlName="income" [property]="'income'" [form]="formData" class="text-input"  placeholder="$" appCurrency>
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.FINANCIAL_DATA.OTHER_INCOME_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" formControlName="otherIncome" [property]="'otherIncome'" [form]="formData" class="text-input"  placeholder="$" appCurrency>
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.FINANCIAL_DATA.OTHER_OUTCOME_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" formControlName="otherOutcome" [property]="'otherOutcome'" [form]="formData" class="text-input"  placeholder="$" appCurrency >
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.FINANCIAL_DATA.ASSETS_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" formControlName="assets" [property]="'assets'" [form]="formData" class="text-input" placeholder="$" appCurrency>
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.FINANCIAL_DATA.LIABILIES_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" formControlName="liabilities" [property]="'liabilities'" [form]="formData" class="text-input"  placeholder="$" appCurrency>
+                                    </div>
+                                </div>
+                                <fieldset class="form-group">
+                                    <app-btn [class]="'btn-primary'" [disabled]="(formData && formData.invalid) || (updateProfileResponse$ | async)?.loading"  [text]="'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.FINANCIAL_DATA.SAVE_BTN' | translate" [isLoading]="(updateProfileResponse$ | async)?.loading" (clickBtn)="submitData()"></app-btn>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    

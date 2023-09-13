@@ -1,0 +1,13 @@
+<div class="line-time not-select">
+  <div class="line"></div>
+  <ul>
+    <ng-container *ngFor="let item of items; let i = index">
+      <li [ngClass]="{'active-step': step === (i + 1), 'success-step': step > (i + 1)}">
+          <div class="cont-li">
+            <span><i [className]="step > (i + 1) ? classIcon : ''"><h6>{{i+1}}</h6></i></span>
+          </div>
+          <p>{{item}}</p>
+        </li>
+    </ng-container>
+  </ul>
+</div>

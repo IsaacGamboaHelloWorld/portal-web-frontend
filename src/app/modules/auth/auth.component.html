@@ -1,0 +1,35 @@
+<div class="cont-auth-ds">
+  <div class="row full-width">
+    <div class="large-8 columns full-height column-1">
+      <ng-container>
+        <div class="green-column"></div>
+        <div class="cont-img-auth-ds">
+          <div class="cont-logos-svg">
+            <img [src]="'/popular_white.svg' | imageCdn" [alt]="'NAME_BANK' | translate" class="logo-bank">
+            <img [src]="'/new-img-login.png' | imageCdn" [alt]="'NAME_BANK' | translate" class="img-bg-login">
+          </div>
+          <div class="logo-guarded">
+            <img [src]="'/logos-01-more-03-vigilado.svg' | imageCdn" [alt]="'NAME_GROUP' | translate">
+          </div>
+          <div class="footer-slider">
+            <img [src]="'/aval-white.png' | imageCdn" [alt]="'NAME_GROUP' | translate">
+            <p>© {{'NAME_BANK' | translate}} | v{{version}}</p>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <div class="large-4 columns full-height column-2">
+      <div class="cont-forms-auth">
+        <div class="top-green-stripe">
+          <img [src]="'/popular_white.svg' | imageCdn" alt="Banco popular">
+        </div>
+        <div class="center-forms-auth">
+          <router-outlet></router-outlet>
+        </div>
+        <div class="footer-auth visible-tablet">
+          <app-global-footer [showDate]="false"></app-global-footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

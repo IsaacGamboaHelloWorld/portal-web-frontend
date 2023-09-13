@@ -1,0 +1,68 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.cont-step-two-transfer-advance
+  width: 100%
+  max-width: 350px
+  margin: 0 auto
+  display: block
+  form
+    p
+      font-size: $f-14 - 1
+      line-height: 1.77
+      margin: 30px 0 14px
+      text-align: center
+  .cont-submit
+    text-align: center
+  .cont-date
+    display: flex
+    align-items: center
+    input
+      width: 64px
+    p
+      margin: 0 8px
+  .cont-fees
+    background: var(--white)
+    border-radius: 10px
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+    margin: 20px 0 24px
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 20px
+    p
+      margin: 0
+      font-weight: 500
+      line-height: 1.71
+    .cont-number-fees
+      display: flex
+      justify-content: center
+      button
+        background: transparent
+        width: 24px
+        height: 24px
+        border-radius: 50%
+        display: flex
+        justify-content: center
+        align-items: center
+        font-size: $f-14 + 2
+        cursor: pointer
+        color: var(--green-corpo-600)
+        border: 1.3px solid  var(--green-corpo-600)
+        &.disabled
+          cursor: default
+          border-color: var(--n-400)
+          color: var(--n-400)
+      p
+        margin: 0 20px
+        font-size: $f-14
+
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-two-transfer-advance
+    max-width: 100%
+    .cont-submit
+      button
+        width: 100%
+

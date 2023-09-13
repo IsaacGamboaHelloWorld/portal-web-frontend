@@ -1,0 +1,112 @@
+<div class="home-pfm-container">
+
+  <form class="form-dropdowns">
+    <div class="select-month">
+      <app-ds-dropdown-select
+        [label]="'PFM_PRODUCT_DETAIL.MONTH' | translate"
+        [form]="form"
+        [property]="dateFormName"
+        [setFirstValue]="false"
+        [fixedOptions]="optionsMonths">
+      </app-ds-dropdown-select>
+    </div>
+
+    <div class="select-account">
+      <app-ds-dropdown-select
+        [label]="'PFM_PRODUCT_DETAIL.PRODUCT' | translate"
+        [form]="form"
+        [property]="productFormName"
+        [disabled]="!fromCard"
+        [fixedOptions]="mapProducts$ | async">
+      </app-ds-dropdown-select>
+    </div>
+  </form>
+
+  <div class="graph-pfm-container" [ngClass]="{ 'no-data': !(mapPfmData$ | async) }">
+    <ng-container *ngIf="!(pfmProductLoading$ | async); else loadingTmp">
+      <ng-container *ngIf="!!(mapPfmData$ | async); else noDataTmp">
+        <strong class="title"> {{ 'PFM_PRODUCT_DETAIL.YOUR_BEHAVIOR' | translate }} {{ monthName | lowercase }} </strong>
+
+        <pzl-tabs [options]="optionTabs" [value]="tabSelected" (tabOptionChange)="tabOptionChange($event)"></pzl-tabs>
+
+        <div class="container-inex" [ngSwitch]="tabSelected.id">
+          <ng-container *ngSwitchCase="getTabs.resumen" [ngTemplateOutlet]="resumenTmp"></ng-container>
+          <ng-container *ngSwitchCase="getTabs.incomens" [ngTemplateOutlet]="incomensTmp"></ng-container>
+          <ng-container *ngSwitchCase="getTabs.expenses" [ngTemplateOutlet]="expensesTmp"></ng-container>
+        </div>
+
+      </ng-container>
+    </ng-container>
+  </div>
+
+  <ng-template #loadingTmp>
+    <app-ds-loading></app-ds-loading>
+  </ng-template>
+
+  <ng-template #noDataTmp>
+    <div class="graph-pfm-no-data">
+      <div class="icon">
+        <img [src]="'/24-essential-bell-5.svg' | imageCdn" [alt]="">
+      </div>
+      <strong class="title"> {{ 'PFM_PRODUCT_DETAIL.NO_DATA.TITLE' | translate }} </strong>
+      <p class="description"> {{ 'PFM_PRODUCT_DETAIL.NO_DATA.DESCRIPTION' | translate }} </p>
+    </div>
+  </ng-template>
+
+  <ng-template #resumenTmp>
+    <pzl-balance-chart
+      [data]="mapPfmData$ | async"
+      [productType]="mapTypeAccount"
+      [decimalSeparator]="'point'"
+      [thousandSeparator]="'comma'">
+    </pzl-balance-chart>
+  </ng-template>
+
+  <ng-template #incomensTmp>
+    <ng-container *ngIf="!(pfmExpenseLoading$ | async); else loadingTmp">
+      <ng-container *ngIf="!!(pfmExpensesData$ | async); else noDataTmp">
+        <hr class="hr-border pt">
+        <p class="total-lbl">{{ 'PFM_PRODUCT_DETAIL.INCOMES.TOTAL_LBL' | translate }} <strong class="total-value">{{ (pfmExpensesData$ | async)?.incomes?.total | currencyFormat : false }}</strong> </p>
+        <hr class="hr-border pb">
+        <pzl-list-incomes
+          [data]="(pfmExpensesData$ | async)?.incomes?.categories"
+          [negative]="false"
+          [interactive]="false"
+          [decimalSeparator]="'point'"
+          [thousandSeparator]="'comma'">
+        </pzl-list-incomes>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #expensesTmp>
+    <ng-container *ngIf="!(pfmExpenseLoading$ | async); else loadingTmp">
+      <ng-container *ngIf="!!(pfmExpensesData$ | async); else noDataTmp">
+        <!-- TODO: se remueve hasta que se implementen todas la categorias -->
+        <!-- <div class="form-notification">
+          <div class="form-notification-container" >
+            <div class="bar"></div>
+            <div class="img-container">
+              <div class="img"></div>
+            </div>
+            <div class="content">
+              <span class="message"> {{ ('PFM_PRODUCT_DETAIL.EXPENSES.INFO_LBL' | translate).replace('\{\{name\}\}', (userInfoData$ | async).firstName) }} </span>
+            </div>
+          </div>
+        </div> -->
+
+        <hr class="hr-border pt">
+        <p class="total-lbl">{{ 'PFM_PRODUCT_DETAIL.EXPENSES.TOTAL_LBL' | translate }} <strong class="total-value">{{ (pfmExpensesData$ | async)?.expenses?.total | currencyFormat : false }}</strong> </p>
+        <hr class="hr-border pb">
+        <pzl-list-expenses
+          (itemSelected)="expensesSelected($event)"
+          [data]="(pfmExpensesData$ | async)?.expenses?.categories"
+          [negative]="true"
+          [interactive]="true"
+          [decimalSeparator]="'point'"
+          [thousandSeparator]="'comma'">
+        </pzl-list-expenses>
+      </ng-container>
+    </ng-container>
+  </ng-template>
+</div>

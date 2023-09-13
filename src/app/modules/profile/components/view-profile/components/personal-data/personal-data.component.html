@@ -1,0 +1,82 @@
+<div class="content" *ngIf="(user$ | async)?.data as user">
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.NAME_FIELD' | translate}}
+        </span>
+        <p>
+            {{user?.personalData?.customerNames?.firstName | titlecase}} {{user?.personalData?.customerNames?.middleName | titlecase}} {{user?.personalData?.customerNames?.lastName | titlecase}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.GENDER_FIELD' | translate}}
+        </span>
+        <p>
+            {{setupValue((extractCatalogItemDetailByCodeFromCatalogSet('gender', 'code', user?.personalData?.gender, 'N') | async)?.longName | titlecase, 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate)}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.MARITAL_STATUS_FIELD' | translate}}
+        </span>
+        <p>
+            {{setupValue((extractCatalogItemDetailByCodeFromCatalogSet('maritalStatus', 'code', user?.personalData?.maritalStatus, 'ND') | async)?.longName | titlecase, 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate)}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.BIRTH_DATE_FIELD' | translate}}
+        </span>
+        <p>
+            {{user?.personalData?.birthDate | date: 'dd / MMM / yyyy' | titlecase | replace : '.' : ''}}
+        </p>
+    </div>    
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.BIRTH_COUNTRY_FIELD' | translate}}
+        </span>
+        <p>
+            {{setupValue((extractCatalogItemDetailByCodeFromCatalogSet('countryCode', 'code', user?.personalData?.countryId, 'N') | async)?.longName | titlecase, 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate)}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.BIRTH_STATE_FIELD' | translate}}
+        </span>
+        <p>
+            {{setupValue((extractCatalogItemDetailByCodeFromCatalogSet('stateId', 'code', user?.personalData?.stateId, '999') | async)?.longName | titlecase, 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate)}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.BIRTH_CITY_FIELD' | translate}}
+        </span>
+        <p>
+            {{setupValue((extractCatalogItemDetailByCodeFromCatalogSet('cityId', 'longName', user?.personalData?.cityId, '') | async)?.shortName | titlecase, 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate)}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.NUMBER_OF_CHILDREN_FIELD' | translate}}
+        </span>
+        <p>
+            {{user?.personalData?.numberOfChildren | number}}
+        </p>
+    </div>   
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.PEOPLE_IN_CHARGE_OF_FIELD' | translate}}
+        </span>
+        <p>
+            {{user?.personalData?.peopleInChargeOf | number}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.PERSONAL_DATA.HOBBY_FIELD' | translate}}
+        </span>
+        <p>
+            {{setupValue((extractCatalogItemDetailByCodeFromCatalogSet('hobby', 'code', user?.personalData?.hobby, 'N') | async)?.longName | titlecase, 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate)}}
+        </p>
+    </div>   
+</div>

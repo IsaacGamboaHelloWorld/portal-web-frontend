@@ -1,0 +1,74 @@
+<div class="account-card-container" *ngIf="data && !data.loading"
+  [ngClass]="{'locked': !!data.status && data.status !== 'ACTIVE'}">
+  <div class="account-base">
+    <div class="header">
+      <div class="bar"></div>
+
+      <div class="icon-left" [ngClass]="data.accountInformation?.productType | lowercase"
+        *ngIf="!!data.status && 'ACTIVE' === data.status || !data.status">
+        <img [src]="'/payments-finance-piggy-bank-2@2x.png' | imageCdn" alt=""
+          *ngIf="'DEPOSIT_ACCOUNT'  === data.accountInformation?.productType">
+        <img [src]="'/money-money-2@2x.png' | imageCdn" alt=""
+          *ngIf="'CURRENT_ACCOUNT'  === data.accountInformation?.productType">
+      </div>
+
+      <div class="icon-left" [ngClass]="data.accountInformation?.productType | lowercase"
+        *ngIf="!!data.status && 'ACTIVE' !== data.status">
+        <img [src]="'/payments-finance-piggy-bank-2@2x-gray.png' | imageCdn" alt=""
+          *ngIf="'DEPOSIT_ACCOUNT'  === data.accountInformation?.productType">
+        <img [src]="'/money-ico.png' | imageCdn" alt=""
+          *ngIf="'CURRENT_ACCOUNT'  === data.accountInformation?.productType">
+      </div>
+
+      <div class="account-number">
+        <div>
+          <h2>
+            {{('BLOCK_PRODS.ACCOUNTS_SECTION.' + data.accountInformation?.productType)| translate}}
+            <span class="id-product">{{(data)['accountInformation']['accountIdentifier'] | slice: -4}}</span>
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="body">
+      <div class="content">
+        <h3>
+          {{'BLOCK_PRODS.ACCOUNTS_SECTION.CARD_CONTENT.AMOUNT_LBL' | translate}}
+        </h3>
+
+        <ng-container *ngIf="!!data?.productAccountBalances; else t2LoadingTmp">
+          <p [innerHTML]="data?.productAccountBalances?.saldo_disponible?.amount | currencyFormat: true"
+          *ngIf="data.accountInformation?.productType === 'DEPOSIT_ACCOUNT'">
+        </p>
+
+        <p [innerHTML]="data?.productAccountBalances?.saldo_actual?.amount | currencyFormat: true"
+          *ngIf="data.accountInformation?.productType === 'CURRENT_ACCOUNT'">
+        </p>
+        </ng-container>
+      </div>
+
+      <div class="actions" *ngIf="!!data.status">
+        <div (click)="openInfo(data.status)" *ngIf="'ACTIVE' === data.status">
+          <img [src]="'/protection-security-lock-15@2x-green.png' | imageCdn" alt="">
+          <span>{{'BLOCK_PRODS.ACCOUNTS_SECTION.CARD_CONTENT.LOCK_BUTTON' | translate}}</span>
+        </div>
+        <div (click)="openInfo(data.status)" *ngIf="'ACTIVE' !== data.status">
+          <img [src]="'/protection-security-lock-15@2x-gray.png' | imageCdn" alt="">
+          <span>{{'BLOCK_PRODS.ACCOUNTS_SECTION.CARD_CONTENT.UNLOCK_BUTTON' | translate}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="account-card-container loading loading-global shadow-1dp" *ngIf="data && data.loading">
+  <p class="title-card placeholder width-50"></p>
+  <p class="card-mask placeholder width-10"></p>
+  <p class="cvv-card placeholder width-60"></p>
+</div>
+
+<ng-template #t2LoadingTmp>
+  <div class="body-loading loading-global">
+    <p class="title-card placeholder width-80"></p>
+  </div>
+</ng-template>

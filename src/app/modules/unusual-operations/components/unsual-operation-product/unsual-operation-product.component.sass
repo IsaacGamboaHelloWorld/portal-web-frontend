@@ -1,0 +1,104 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.operations-product
+  display: flex
+  flex-direction: column
+  width: 343px
+  margin: auto
+  padding-top: 16px
+  .card-account-op
+    width: 343px
+    height: 100px
+    padding: 24px
+    border-radius: 12px
+    box-shadow: 0 1px 2px 0 $transparent-08
+    background-color: $cbn-lgt-100
+    margin-bottom: 24px
+    display: flex
+    align-items: center
+    .card-img-container
+      width: 30px
+      height: 30px
+      border-radius: 50%
+      margin-right: 16px
+      display: flex
+      justify-content: center
+      align-items: center
+      img
+        margin: auto
+        width: 24px
+        height: 24px
+        object-fit: contain
+    .card-product-body
+      display: flex
+      flex-direction: column
+      .name-product
+        font-size: 14px
+        font-weight: 600
+        line-height: 2
+        letter-spacing: normal
+        color: $cbn-900
+      .id-product
+        font-size: 12px
+        font-weight: 500
+        line-height: 2
+        letter-spacing: normal
+        color: $cbn-mid-400
+  .title
+    font-size: 18px
+    font-weight: bold
+    line-height: 1.56
+    letter-spacing: normal
+    color: $cbn-900
+    margin-bottom: 22.5px
+  .checkbox
+    display: flex
+    flex-direction: row-reverse
+    align-items: center
+    .check-all-text
+      font-size: 12px
+      font-weight: 600
+      line-height: 1.33
+      letter-spacing: normal
+      text-align: center
+      color: $hlt-900
+      margin-right: 5.5px
+    label::before
+      border-radius: 6px
+      border: solid 1px $cbn-lgt-900
+  .chk-unop
+    margin-bottom: 18px
+  .card-list
+    display: flex
+    flex-direction: column
+    align-items: center
+    .card-item
+      margin-bottom: 24px
+      &:last-child
+        margin-bottom: 0
+
+
+@media only screen and (min-width: $break-desktop-min)
+  .operations-product
+    width: 456px
+    .card-account-op
+      width: 456px
+      margin-bottom: 31px
+      .card-img-container
+        width: 40px
+        height: 40px
+    .title
+      font-size: 21px
+      font-weight: bold
+      line-height: 1.52
+      letter-spacing: normal
+      color: $cbn-900
+      margin-bottom: 18px
+    .checkbox
+      .check-all-text
+        font-size: 12px
+        margin-right: 5.5px
+    .chk-unop
+      margin-bottom: 18px
+

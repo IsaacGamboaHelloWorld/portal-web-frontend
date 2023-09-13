@@ -1,0 +1,64 @@
+@import '../../../../../sass/variables'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/mixins'
+
+.favorite-transfer
+  margin-bottom: 10px
+  > p
+    font-size: $f-20 + 1
+    line-height: 1.62
+    color: $carbon-dark-900
+    a
+      +inline(middle)
+      margin-left: 20px
+  ul
+    li
+      padding: 18px 0 10px
+      +inline(top)
+      width: 100%
+      max-width: 134px
+      margin-right: 10px
+      position: relative
+      button
+        position: absolute
+        top: 8px
+        right: -10px
+        background: $g-500
+        width: 28px
+        height: 28px
+        line-height: 28px
+        border-radius: 50%
+        color: $carbon-light-100
+        z-index: 1
+        cursor: pointer
+
+.favorite-item
+  background: $carbon-light-100
+  border-radius: 15px
+  box-shadow: 0 0 0 0 rgba($carbon-dark-900, 0.14)
+  padding: 10px
+  white-space: normal
+  text-align: center
+  cursor: pointer
+  transition: .3s
+  position: relative
+  .icon-transfer
+    font-size: $f-20 + 5
+    border-radius: 50%
+    width: 44px
+    height: 44px
+    background: $g-50
+    color: $gc-800
+    display: block
+    margin: 0 auto 12px
+    line-height: 44px
+  p
+    line-height: 1.54
+    font-size: $f-14 - 1
+    min-height: 40px
+    font-weight: 600
+  small
+    line-height: 1.67
+    font-size: $f-14 - 2
+  &:hover
+    box-shadow: 0 4px 8px 0 rgba($carbon-dark-900, 0.14)

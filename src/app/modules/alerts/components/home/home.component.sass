@@ -1,0 +1,53 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.container-home-alerts
+  .cont-tags-alerts
+    width: 100%
+    margin: 24px 0
+  .new-alerts
+    width: 100%
+    .new-alert-message
+      background: $cyan-100
+      padding: 24px
+      border-radius: 8px
+      margin-left: 12px
+      max-width: 268px
+      font-size: $f-14 - 3
+      color: $info-400
+      line-height: 1.82
+  .my-alerts
+    margin-top: 24px
+    .alerts-list
+      margin-bottom: 24px
+    .title
+      font-size: $f-14 + 2
+      font-weight: 600
+      line-height: 1.76
+      color: $g-500
+    .list
+      display: flex
+      flex-wrap: wrap
+
+@media only screen and (max-width: $break-small-phone)
+  .container-home-alerts
+    .cont-tags-alerts
+      white-space: nowrap
+      overflow-x: auto
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .container-home-alerts
+    .cont-tags-alerts
+      white-space: nowrap
+      overflow-x: auto
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .container-home-alerts
+    .cont-tags-alerts
+      white-space: nowrap
+      overflow-x: auto
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+@media only screen and (min-width: $break-desktop-xlg-min)
+     

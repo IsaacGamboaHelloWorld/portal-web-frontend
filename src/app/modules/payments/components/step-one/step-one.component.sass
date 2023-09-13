@@ -1,0 +1,56 @@
+@import '../../../../../sass/variables'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/mixins'
+
+
+.cont-step-one-payment
+  .radio
+    width: 30%
+    float: left
+  .messages
+    position: absolute
+    right: -30px
+    top: 50%
+    transform: translateY(-50%)
+    img
+      width: 30px
+      height: auto
+    i
+      width: 20px
+      height: 20px
+      line-height: 20px
+      text-align: center
+      color: $carbon-light-100
+      font-size: $f-14 - 4
+      border-radius: 50%
+      +inline(top)
+      &.success
+        background: $success-100
+        color: $success-900
+      &.warning
+        background: $error-600
+        cursor: pointer
+  .submit-step-one
+    text-align: center
+    margin: 32px 0
+    button
+      width: 100%
+      display: block
+      margin: 0 auto
+      max-width: 183px
+
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-one-payment
+    padding: 0 14px
+    .form-global .form-group
+      padding: 0
+    .messages
+      right: 15px
+      z-index: 2
+      background: $carbon-light-100
+    .submit-step-one
+      button
+        width: 100%
+        max-width: 100%
+

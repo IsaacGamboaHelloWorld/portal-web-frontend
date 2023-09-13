@@ -1,0 +1,59 @@
+@import '~sass/colors'
+
+.container-card-state
+  width: 343px
+  height: 327px
+  background-color: $carbon-light-100 
+  padding: 56px 24px
+  margin: 24px auto
+  border-radius: 12px
+  display: flex
+  flex-direction: column
+  align-items: center
+  box-shadow: 0 1px 2px 0 $transparent-08
+  .icon
+    width: 48px
+    height: 48px
+    border-radius: 24px
+    padding: 8px
+    margin: 0px auto
+    img
+      width: 32px
+      height: 32px
+  .title
+    font-size: 16px
+    font-weight: 600
+    line-height: 1.55
+    letter-spacing: normal
+    margin:  12px auto 8px
+    color: $black-750
+  .description
+    font-size: 13px
+    font-weight: normal
+    line-height: 2.15
+    letter-spacing: normal
+    text-align: center
+    color: $black-750
+    margin: 0px 8px
+  .btn-primary
+    background: $hlt-600
+    width: 295px
+    height: 48px
+    margin-top: 24px
+    font-size: 14px
+    font-weight: 600
+    line-height: 1.71
+    letter-spacing: normal
+
+  &.error
+    .icon
+      background-color: $err-100
+  &.warning
+    .icon
+      background-color: $wrn-100
+  &.success
+    .icon
+      background-color: $scs-100
+  &.loading
+    justify-content: center
+

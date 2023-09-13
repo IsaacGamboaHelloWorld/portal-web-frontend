@@ -1,0 +1,146 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.pocket_card
+  width: 343px
+  height: 248px
+  border-radius: 15px
+  background: $carbon-light-100
+  display: block
+  box-shadow: 0 2px 4px 0 rgba($carbon-dark-900, 0.14)
+  position: relative
+  &:hover
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.14)
+  .card_header
+    padding: 20px 24px
+    position: relative
+    em
+      width: 44px
+      height: 44px
+      color: $g-500
+      border: 2px $g-100 solid
+      border-radius: 100%
+      position: relative
+      padding: 7px
+      display: inline-block
+      img
+        width: 26px
+        height: 26px
+    p
+      padding-left: 10px
+      font-size: $f-14 + 2
+      display: inline-block
+      position: relative
+      top: 5px
+      text-transform: lowercase
+      &::first-letter
+        text-transform: uppercase
+    span
+      position: absolute
+      right: 24px
+      top: 30px
+      border-radius: 4px
+      font-size: $f-14 - 2
+      padding: 5px
+      font-weight: 500
+      &.Ahorro
+        background: $success-100
+        color: $gc-600
+      &.Gasto
+        background: $info-100
+        color: $info-900
+
+  .card_body
+    padding: 19px 24px 23px
+    span
+      font-size: $f-14
+      color: $gray3
+      display: block
+    .from_txt
+      font-size: $f-14 + 2
+      float: left
+      width: 50%
+      margin-bottom: 8px
+      span
+        margin-bottom: 4px
+    .to_txt
+      font-size: $f-14 + 2
+      width: 50%
+      float: left
+      text-align: right
+    p
+      padding-top: 6px
+      font-size: $f-14 - 2
+      span
+        font-weight: 500
+        font-size: $f-14 - 2
+        color: $carbon-dark-900
+        display: inline
+    progress
+      margin: 10px 0
+      background: $secondary-100
+      width: 100%
+    .goal-complete::-webkit-progress-value
+      background-image: linear-gradient(to top, $g-800, $g-500)
+    progress[value]
+      appearance: none
+      border: none
+      height: 3px
+      overflow: hidden
+      background-image: linear-gradient(to top, $orange-900, $orange-700)
+      border-radius: 3px
+      display: block
+      margin: 4px 0
+    progress::-webkit-progress-value
+      background-image: linear-gradient(to top, $orange-900, $orange-700)
+    progress::-webkit-progress-bar
+      background: $secondary-100
+    .cont-loading-error
+      text-align: center
+      min-height: 196px
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+    .form-group
+      .itemLoading
+        height: 100%
+        border-radius: 12px
+        .placeholder
+          animation: color-me-in 1s ease-out 0s alternate infinite none running
+        @keyframes color-me-in
+          0%
+            background: $carbon-light-100
+          100%
+            background: $carbon-light-900
+        .text-loading
+          margin-top: 0
+          position: absolute
+          width: 100px
+        .value-loading
+          position: absolute
+          margin-top: 30px
+          width: 200px
+  .card_footer
+    .button_container
+      width: 50%
+      display: inline
+      min-height: 58px
+      position: absolute
+      bottom: 0
+      text-align: center
+      border-top: 1px solid $carbon-light-900
+      &.right
+        right: 0
+        border-left: 1px solid $carbon-light-900
+      a
+        color: $secondary-900
+        position: relative
+        font-weight: 500
+        padding-top: 20px
+        width: 100%
+        display: block
+        height: 56px
+@media only screen and (max-width: $break-mobile)
+  .pocket_card
+    width: 100%

@@ -1,0 +1,15 @@
+<label>{{label | translate}}</label>
+<div class="card-loan-selected" *ngIf="data">
+    <p class="mask"></p>
+    <div class="head">
+        <p>{{data?.activePayment?.bankName}}</p>
+        <div class="img-back bg-default" [ngClass]="{
+            'Master Card': 'bg-master',
+            'Visa': 'bg-visa'
+        }[(data?.activePayment?.accountId | typeCreditCard)?.name]">
+            <img [src]="(data?.activePayment?.accountId | typeCreditCard)?.logo | imageCdn" alt="">
+        </div>
+        <p class="nickname">{{data?.activePayment?.loanName}}</p>
+        <span>Nro. {{data?.activePayment?.accountId | creditCardMask | creditCardHidden}}</span>
+    </div>
+</div>

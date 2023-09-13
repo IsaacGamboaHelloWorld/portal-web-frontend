@@ -1,0 +1,43 @@
+@import '~sass/mixins'
+@import '~sass/colors'
+@import '~sass/forms'
+@import '~sass/variables'
+
+.lb-rb
+  position: relative
+  height: 100%
+  label
+    width: 100%
+    cursor: pointer
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    content: ''
+    font-size: 13px
+    font-weight: normal
+    line-height: normal
+    letter-spacing: normal
+    color: $black-750
+    display: flex
+    align-items: center
+    &::after
+      width: 24px
+      height: 24px
+      content: ''
+      border-radius: 50%
+      border: 1.3px solid $carbon-light-900
+      transition: .3s
+      background-position: center center
+      background-repeat: no-repeat
+      +inline(middle)
+      position: absolute
+      right: 0
+      background-size: 24px
+  input[type='radio']
+    display: none
+  .active-lbr
+    &::after
+      background-image: url('#{$base-url}/images/radio.png')
+      border-color: $hlt-600
+

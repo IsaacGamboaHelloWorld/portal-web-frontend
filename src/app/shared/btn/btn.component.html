@@ -1,0 +1,10 @@
+<button [type]="type" class="btn {{ class }}"
+				[ngClass]="{'btn-loading': isLoading }"
+				[disabled]="disabled" [id]="id" (click)="btnClick()">
+	{{ text }}
+	<small class="loading-dots">
+		<span class="dot-btn"></span>
+		<span class="dot-btn"></span>
+		<span class="dot-btn"></span>
+	</small>
+</button>

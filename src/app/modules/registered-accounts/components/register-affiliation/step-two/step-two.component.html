@@ -1,0 +1,39 @@
+
+<div class="cont-step-register-affiliation">
+    <div class="info-steps">
+        <form class="form-global" [formGroup]="formData" (ngSubmit)="submitForm()">
+            <fieldset class="form-group">
+                <label for="">{{'REGISTER_PRODUCT_AFFILIATION.DESTINATION_BANK_LBL' | translate}}</label>
+                <div class="select-bp">
+                    <select formControlName="bankId" [compareWith]="compareFnBanks">
+                        <option value="null" selected disabled>{{'REGISTER_PRODUCT_AFFILIATION.CHOOSE_DESTINATION_BANK_PLACEHOLDER' | translate}}</option>
+                        <option *ngFor="let bank of (banks$ | async)?.data" [ngValue]="bank">{{bank.name}}</option>
+                    </select>
+                    <div class="messages-select">
+                    <i class="icon-refresh warning" (click)="fetchBanks()" *ngIf="(banks$ | async)?.error"
+                        [title]="'PRODUCT.ERROR.BTN' | translate"></i>
+                    <i class="icon-check success" *ngIf="(banks$ | async)?.loaded"></i>
+                    <img [src]="'/loading.gif' | imageCdn" [alt]="'LOADING' | translate" *ngIf="(banks$ | async)?.loading">
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="form-group group-radio">
+            <div class="radio">
+                <input type="radio" formControlName="destinationAccountType" value="DEPOSIT_ACCOUNT" name="destinationAccountType" id="type-1">
+                <label for="type-1">{{'PRODUCT_TYPES.DEPOSIT_ACCOUNT' | translate}}</label>
+            </div>
+            <div class="radio">
+                <input type="radio" formControlName="destinationAccountType" value="CURRENT_ACCOUNT" name="destinationAccountType" id="type-2">
+                <label for="type-2">{{'PRODUCT_TYPES.CURRENT_ACCOUNT' | translate}}</label>
+            </div>
+            </fieldset>
+            <fieldset class="form-group">
+                <label>{{'REGISTER_PRODUCT_AFFILIATION.DESTINATION_ACCOUNT_LBL' | translate}}</label>
+                <input type="text" class="input-bp" formControlName="destinationAccountId" appOnlyNumbers pattern="\d*" [placeholder]="'REGISTER_PRODUCT_AFFILIATION.DESTINATION_ACCOUNT_PLACEHOLDER' | translate">
+            </fieldset>
+            <fieldset class="submit-step">
+                <button type="submit" class="btn btn-primary" [disabled]="formData.invalid">{{'REGISTER_PRODUCT_AFFILIATION.CONTINUE_BTN' | translate}}</button>
+            </fieldset>
+        </form>
+    </div>
+</div>

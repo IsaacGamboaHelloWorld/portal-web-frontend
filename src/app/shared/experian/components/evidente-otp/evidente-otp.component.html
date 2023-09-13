@@ -1,0 +1,35 @@
+<div class="evidente-otp">
+	<img class="icon-code" [src]="'/80-smartphone-code.svg' | imageCdn" alt="icon">
+	<h4 class="title">{{'EXPERIAN.OTP.TITLE_OTHER' | translate}}</h4>
+	<p #step class="text animated" [innerHTML]="('EXPERIAN.OTP.DESC_TITLE_OTHER' | translate: { value: 'desc-bold' })"></p>
+	<div>
+		<form class="form-global" autocomplete="off" [formGroup]="form" (ngSubmit)="_processSubmitAction()">
+			<div class="form-group">
+				<p class="label-code">{{'EXPERIAN.OTP.CODE_TEMPORARY' | translate}}</p>
+				<fieldset>
+					<input *ngFor="let key of inputs; index as i"
+					(keyup)="goToNextInput(i, $event)" type="text" min="0" max="9" appOnlyNumbers
+					maxlength="1" size="1" formControlName="char{{key}}" id="char{{key}}" autocomplete="off"
+					placeholder="-" #inputToken>
+				</fieldset>
+			</div>
+			<div class="form-group">
+				<p id="countdown" class="timer"></p>
+			</div>
+			<div class="form-group">
+				<app-btn
+				[type]="'submit'"
+				[text]="'Validar' | translate"
+				[id]="'btn-step-two'"
+				[isLoading]="(isLoading$ | async)"
+				[disabled]="form.invalid || (isLoading$ | async)"
+				[class]="'btn btn-primary'"></app-btn>
+			</div>
+			<div class="form-group" *ngIf="btnClose">
+				<app-btn (clickBtn)="closeAction()"
+				[text]="('PAYMENTS.CLOSED.BTN' | translate)"
+				[class]="'btn btn-primary cancel'"></app-btn>
+			</div>
+		</form>
+	</div>
+</div>

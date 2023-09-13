@@ -1,0 +1,45 @@
+<li *ngFor="let cardInfo of pocketsList">
+    <div class="pocket_card animated shadow-4dp">
+        <div class="card_header">
+            <em>
+                <img [src]="'/icon-bolsillo-small.png' | imageCdn" [alt]="'ICON POCKET' | translate">
+            </em>
+            <p class="capitalize">{{cardInfo.pocketName}}</p>
+            <span [ngClass]="cardInfo.category">{{cardInfo.category}}</span>
+        </div>
+        <div class="card_body">
+            <ng-container *ngIf="loading else onBoarding">
+                <div class="from_txt" *ngIf="cardInfo.savingGoal !== cardInfo.amountSaved">
+                    <span>{{'POCKETS.HOME.CARD.FROM' | translate}}</span> {{cardInfo.amountSaved | currencyFormat}}
+                </div>
+                <div class="to_txt" *ngIf="cardInfo.savingGoal !== cardInfo.amountSaved">
+                    <span>{{'POCKETS.HOME.CARD.TO' | translate}}</span> {{cardInfo.savingGoal | currencyFormat}}
+                </div>
+                <div class="from_txt" *ngIf="cardInfo.savingGoal === cardInfo.amountSaved">
+                    <span>{{'POCKETS.HOME.CARD.GOAL' | translate}}</span> {{cardInfo.savingGoal | currencyFormat}}
+                </div>
+                <progress [ngClass]="{'goal-complete': cardInfo.savingGoal === cardInfo.amountSaved}" [max]="cardInfo.savingGoal" [value]="cardInfo.amountSaved"></progress>
+                <p *ngIf="cardInfo.savingGoal !== cardInfo.amountSaved"><span>{{'POCKETS.HOME.CARD.PERIODICITY_LABEL' | translate}}</span> {{cardInfo.pocketPeriodDescription}}</p>
+            </ng-container>
+        </div>
+        <div class="card_footer">
+            <div class="button_container">
+                <a (click)="doEditPocket(cardInfo)">{{'POCKETS.HOME.CARD.EDIT' | translate}}</a>
+            </div>
+            <div class="button_container right">
+                <a (click)="doMovePocket(cardInfo)">{{'POCKETS.HOME.CARD.MOVE' | translate}}</a>
+            </div>
+        </div>
+    </div>
+</li>
+
+<ng-template #onBoarding>
+    <div class="card_body">
+        <div class="form-group" >
+            <div class="itemLoading shadow-1dp" *ngFor="let i of [].constructor(loadingItems)">
+                <p class="text-loading placeholder"></p>
+                <p class="value-loading placeholder"></p>
+            </div>
+        </div>
+    </div>
+</ng-template>

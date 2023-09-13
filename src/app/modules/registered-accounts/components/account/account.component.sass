@@ -1,0 +1,49 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.cont-affiliation-product
+  cursor: pointer
+  padding: 18px 14px
+  border-radius: 15px
+  box-shadow: 0 1px 3px 0 rgba(63, 63, 68, 0.15), 0 0 0 1px rgba(63, 63, 68, 0.05)
+  background-color: $carbon-light-100
+  position: relative
+  transition: .3s
+  border: 1px solid transparent
+  .cont-name,
+  .cont-info
+    +inline(middle)
+  .cont-name
+    width: 44px
+    height: 44px
+    border-radius: 50%
+    line-height: 44px
+    text-align: center
+    color: $carbon-light-100
+    font-size: $f-14 + 2
+    background: $orange-400
+  .cont-info
+    width: calc(100% - 44px)
+    padding: 0 20px 0 10px
+    strong
+      line-height: 1.71
+      font-weight: 600
+    p
+      line-height: 2.09
+      font-size: $f-14 - 3
+      color: var(--gray-3)
+  i
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    right: 14px
+    color: $carbon-mid-100
+    font-size: $f-20
+  &:hover,
+  &.active
+    box-shadow: 0 0 0 0 rgba(63, 63, 68, 0), 0 0 0 0 rgba(63, 63, 68, 0)
+    border-color: $g-500
+  &.active
+    background-color: #f5fdf4
+

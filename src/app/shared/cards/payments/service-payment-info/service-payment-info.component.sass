@@ -1,0 +1,74 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.card-info-service
+  width: 100%
+  background: $carbon-light-100
+  border-radius: 12px
+  padding: 24px
+  margin-bottom: 16px
+  margin-top: 50px
+  overflow: hidden
+  h3
+    font-size: $f-14 + 7
+    font-weight: 600
+    font-stretch: normal
+    line-height: 1.52
+    letter-spacing: normal
+    color: $carbon-dark-900
+    margin-bottom: 12px
+  h4
+    font-size: $f-14
+    font-weight: 600
+    font-stretch: normal
+    font-style: normal
+    line-height: 1.71
+    letter-spacing: normal
+    margin-bottom: 12px
+  p
+    font-size: $f-14 - 1
+    font-weight: normal
+    font-stretch: normal
+    font-style: normal
+    line-height: 2
+    letter-spacing: normal
+    color: $carbon-mid-600
+  .card-info-payment
+    display: flex
+    margin-bottom: 24px
+    .card-info-payment-col
+      text-align: left
+      flex-grow: 1
+  .card-info-payment-loader
+    margin-bottom: 30px
+  .columns-container
+    display: flex
+    flex-wrap: wrap
+    min-width: 420px
+
+    .card-info-payment-loader
+      display: flex
+      flex-direction: column
+      max-width: 280px
+      min-width: 240px
+      margin-bottom: 20px
+      overflow: hidden
+      .placeholder
+        margin-bottom: 20px
+  .title
+    height: 20px
+    width: 200px
+  .error-lbl
+    margin-top: 8px
+    font-size: $f-14 - 2
+    font-weight: 500
+    color: $carbon-mid-100
+  button
+    width: 180px
+    font-size: $f-14
+    font-weight: 600
+
+@media only screen and (max-width: $break-mobile)
+  .card-info
+    margin-top: 20px

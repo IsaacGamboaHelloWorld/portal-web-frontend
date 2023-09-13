@@ -1,0 +1,134 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+.create-step-two
+  .cont-bar-progress
+    width: 563px
+    margin: 0 auto 60px
+    text-align: center
+  .cont-desc
+    margin: 50px auto
+    p
+      font-style: normal
+      font-weight: 400
+      font-size: 14px
+      line-height: 24px
+  .cont-options-step-two
+    width: 100%
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+    height: auto
+    li
+      padding-top: 14px
+      padding-right: 14px
+      &:last-child
+        padding-right: 0
+      .box-border
+        border: solid 1.3px $g-500
+      .box
+        display: flex
+        align-items: center
+        flex-direction: row
+        cursor: pointer
+        width: 456px
+        height: 100px
+        border-radius: 12px
+        box-shadow: 0 1px 2px 0 #00000024
+        background-color: $carbon-light-100
+        .container-radio
+          display: block
+          position: relative
+          cursor: pointer
+          font-size: 22px
+          -webkit-user-select: none
+          -moz-user-select: none
+          -ms-user-select: none
+          user-select: none
+        .container-radio input
+          position: absolute
+          opacity: 0
+          cursor: pointer
+        .checkmark
+          position: absolute
+          height: 20px
+          width: 20px
+          background-color: $carbon-light-100
+          border: solid 1.3px $carbon-light-900
+          border-radius: 50%
+          left: 20px
+          bottom: -12px
+        .container-radio:hover input ~ .checkmark
+          background-color: $carbon-light-900
+        input:checked ~ .checkmark
+            background-color: $g-500
+            border: none
+        .checkmark::after
+          content: ""
+          position: absolute
+          display: none
+        .container-radio
+          input:checked ~ .checkmark::after
+            display: block
+        .container-radio
+          .checkmark::after
+            top: 6px
+            left: 6px
+            width: 8px
+            height: 8px
+            border-radius: 50%
+            background: white
+        .cont-text
+          margin-left: 48px
+          p
+            font-style: normal
+            font-weight: 600
+            font-size: 13px
+            line-height: 22px
+        .cont-checkbox
+          margin-right: auto
+  .button-container
+    margin: 0 auto
+    text-align: center
+    padding-top: 32px
+@media only screen and (max-width: $break-small-phone)
+  .create-step-two
+    width: 100%
+    .cont-bar-progress
+      width: 100%
+    .cont-options-step-two
+      li
+        width: 100%
+        padding-right: 0
+        .box
+          width: 100%
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .create-step-two
+    width: 100%
+    .cont-bar-progress
+      width: 100%
+    .cont-options-step-two
+      li
+        width: 100%
+        padding-right: 0
+        .box
+          width: 100%
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .create-step-two
+    width: 100%
+    .cont-bar-progress
+      width: 100%
+    .cont-options-step-two
+      li
+        width: 100%
+        padding-right: 0
+        .box
+          width: 100%
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+@media only screen and (min-width: $break-desktop-xlg-min)

@@ -1,0 +1,15 @@
+version: "1"
+spa:
+  invalidationPaths:
+    - "/index.html"
+  stacks:
+    - stack: 'dev'
+      invalidationPaths:
+        - "/assets/i18n/es.json"
+    - stack: 'stg'
+      invalidationPaths:
+        - "/assets/i18n/es.json"
+    - stack: 'pro'
+      invalidationPaths:
+        - "/assets/i18n/es.json"
+        - "/*.js"

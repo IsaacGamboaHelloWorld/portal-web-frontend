@@ -1,0 +1,180 @@
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+@import '../../../sass/mixins'
+@import 'globalVars'
+
+label
+  line-height: 2
+  font-weight: 500
+  font-size: 0.875rem
+
+.container-dropdown-ds
+  max-width: 100%
+  margin-top: 4px
+  .custom-select-wrapper
+    position: relative
+    user-select: none
+    width: 100%
+  .custom-select
+    height: 100%
+    width: 100%
+    border-radius: 8px
+  .custom-select__trigger
+    position: relative
+    display: flex
+    align-items: center
+    font-size: $f-14
+    background: $cbn-lgt-100
+    color: $cbn-mid-400
+    cursor: pointer
+    border-radius: 8px
+    border: solid 1px $cbn-lgt-900
+    span
+      padding-left: 12px
+  .custom-options
+    position: absolute
+    display: block
+    top: 100%
+    margin-top: 2px
+    left: 0
+    right: 0
+    border-radius: 8px
+    border: solid 1px $cbn-lgt-900
+    background: #fff
+    transition: all 0.5s
+    opacity: 0
+    visibility: hidden
+    pointer-events: none
+    z-index: 2
+    height: 180px
+    overflow-y: scroll
+    .uno
+      padding-left: 5px
+      padding-top: 4px
+      padding-bottom: 1.5px
+  ::-webkit-scrollbar
+    width: 4px
+    height: 10px
+    border-radius: 4px
+
+  ::-webkit-scrollbar-track
+    background: transparent
+
+  ::-webkit-scrollbar-thumb
+    background: $hlt-600
+    height: 10px
+    border-radius: 4px
+  .custom-select.open .custom-options
+    opacity: 1
+    visibility: visible
+    pointer-events: all
+  span[class^="custom-option-"]
+    position: relative
+    display: flex
+    align-items: center
+    font-size: $f-14
+    color: $cbn-900
+    cursor: pointer
+    transition: all 0.5s
+    height: 52px
+    padding-left: 16px
+  span[class^="custom-option-"]:hover
+    cursor: pointer
+    background-color: $cbn-lgt-400
+    border-radius: 8px
+  span[class^="custom-option-"].selected
+    background-color: $cbn-lgt-400
+    font-weight: 600
+    border-radius: 8px
+  .arrow
+    position: absolute
+    height: 8px
+    width: 10px
+    right: 12px
+  .arrow::before,
+  .arrow::after
+    content: ""
+    position: absolute
+    bottom: 0px
+    width: 0.15rem
+    height: 100%
+    transition: all 0.5s
+    border-radius: 200px
+  .arrow::before
+    left: -2.5px
+    transform: rotate(-45deg)
+    background-color: $hlt-600
+  .arrow::after
+    left: 2.5px
+    transform: rotate(45deg)
+    background-color: $hlt-600
+  .open .arrow::before
+    left: -2.5px
+    transform: rotate(45deg)
+  .open .arrow::after
+    left: 2.5px
+    transform: rotate(-45deg)
+  .open
+    .custom-select__trigger
+      border: solid 1px $cbn-lgt-900
+    .selected-label
+      color: $cbn-mid-400
+  .modal-container-ds
+    padding: 0
+  .filled
+    border: solid 1px $cbn-mid-600
+    span
+      color: $cbn-900
+  .disabled
+    cursor: not-allowed
+    background: $cbn-lgt-400
+    border: solid 1px $cbn-lgt-600
+    span
+      color: $cbn-mid-100
+    .arrow::before
+      background-color: $cbn-mid-100
+    .arrow::after
+      background-color: $cbn-mid-100
+  .warning
+    background: $wrn-100
+    border: solid 1px $wrn-600
+    span
+      color: $cbn-900
+    .arrow::before
+      background-color: $wrn-600
+    .arrow::after
+      background-color: $wrn-600
+  .success
+    background: $scs-100
+    border: solid 1px $scs-600
+    span
+      color: $cbn-900
+    .arrow::before
+      background-color: $scs-600
+    .arrow::after
+      background-color: $scs-600
+  .error
+    background: $err-100
+    border: solid 1px $err-600
+    span
+      color: $cbn-900
+    .arrow::before
+      background-color: $err-600
+    .arrow::after
+      background-color: $err-600
+  .cont-loader
+    display: flex
+    align-items: center
+    flex-direction: row
+    text-align: center
+    position: relative
+    top: 5px
+    span
+      margin-left: 5px
+      font-size: 12px
+    .disabled-caption
+      color: $cbn-mid-600
+    .error-caption
+      color: $err-600
+    .warning-caption
+      color: $wrn-600

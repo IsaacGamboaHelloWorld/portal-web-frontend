@@ -1,0 +1,154 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+=buttonHeader
+  position: relative
+  z-index: 2
+  top: 2px
+  left: 1px
+
+.cont-tbl
+  width: 100%
+  background: $carbon-light-100
+  border-radius: 15px
+  margin-top: 20px
+  .cont-tbl-header
+    padding: 20px 35px 20px 24px
+    border-bottom: 1px solid $carbon-light-900
+    display: flex
+    max-height: 64px
+    .txt-title
+      font-size: $f-14 + 4
+      font-weight: 500
+      color: $carbon-dark-900
+      flex-grow: 1
+      justify-content: flex-start
+    .cont-tbl-header-options
+      justify-self: flex-end
+      margin-left: auto
+      display: flex
+      a
+        width: 16px
+        height: 16px
+        margin: 0 10px
+        em
+          +buttonHeader
+        &::after
+          width: 1px
+          height: 1px
+          content: ''
+          top: -27px
+          position: relative
+          z-index: -2
+          left: -12px
+          border-radius: 100%
+          z-index: 1
+        &:hover::after
+          display: block
+          width: 40px
+          height: 40px
+          animation-name: hover-back
+          animation-duration: .2s
+          background: $black-100
+  .cont-tbl-results
+    padding: 11px 42px 11px 24px
+    border-bottom: 1px solid $carbon-light-900
+    display: flex
+    color: $gray3
+    .cont-btn-previos-next
+      margin-left: auto
+      display: flex
+      a
+        display: flex
+        align-self: center
+        em
+          font-size: $f-14 + 2
+          color: $carbon-dark-900
+          &.left
+            transform: rotate(180deg)
+            display: block
+        &.inactive
+          cursor: arrow
+          em
+            color: $gray3
+      span
+        display: inline
+        margin: 0 16px
+        color: $gray3
+  .cont-tbl-results-list
+    text-align: -webkit-center
+    .cont-err-movement
+      max-width: 260px
+      margin-top: 10px
+      text-align: center
+      p
+        margin-top: 20px
+      span
+        padding: 21px
+        border-radius: 100%
+        background: $g-50
+        display: inline-block
+        img
+          width: 70px
+          height: 70px
+          margin-bottom: 0
+      .btn
+        font-size: $f-14
+        margin-top: 10px
+  .cont-tbl-filter
+    padding: 16px 15px
+    border-bottom: 1px solid $gray2
+    .cont-tbl-input
+      position: relative
+      .input-search-field
+        &:focus
+          border: 1px solid $carbon-mid-400
+      .search-input, .clear-input
+        position: absolute
+        right: 10px
+        top: 15px
+        color: $carbon-mid-100
+        z-index: 5
+        font-size: $f-14 + 6
+      .clear-input
+        z-index: 11
+        em.icon-plus
+          transform: rotate(45deg)
+          display: inline-block
+          background: $carbon-light-900
+          color: $carbon-mid-400
+          border-radius: 100%
+  .cont-tbl-row
+    min-height: 388px
+    max-height: 576px
+    overflow-y: auto
+  &.fll-widthu
+    width: 100%
+    margin: 0
+  &.loading
+    .cont-tbl-header
+      overflow: hidden
+      .placeholder
+        min-height: 17px
+    .cont-tbl-results-list
+      display: flex
+      padding: 40px
+      overflow: hidden
+      .placeholder
+        flex-direction: column
+        flex-wrap: wrap
+        margin-right: 20px
+    .cont-tbl-results
+      min-height: 40px
+      display: flex
+      overflow: hidden
+      .placeholder
+        align-self: center
+
+@media only screen and (max-width: $break-mobile)
+  .cont-tbl
+    .cont-tbl-header
+      padding: 20px 24px 20px 24px
+    .cont-tbl-results
+      padding: 11px 24px 11px 24px

@@ -1,0 +1,44 @@
+<div class="animated fade-in-up cont-step-global">
+
+  <app-ticket
+      [imageTicket]="'/progress.png' | imageCdn"
+      [title]="'TRANSFER.PENDING.TITLE' | translate"
+      [description]="'TRANSFER.PENDING.TEXT' | translate"
+      [messageTitle]="'TRANSFER.CONFIRMATION.FORM.AMOUNT' | translate"
+      [messageText]="(transfer$ | async)?.data?.amount | currencyFormat : true : 'decimal-vouchers'"
+      [listTemplate]="listPending"></app-ticket>
+
+  <div class="footer-step">
+    <button class="btn btn-primary" (click)="goStep(1)">{{'TRANSFER.PENDING.BTN' | translate}}</button>
+    <a class="link" (click)="goStep(0)">{{'TRANSFER.SUCCESS.BTN' | translate}}</a>
+  </div>
+</div>
+
+
+<ng-template #listPending>
+  <ng-container *ngIf="(transfer$ | async)?.data as transfer">
+    <ul>
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.DATE' | translate}}</span>
+        <p class="capitalize">{{transfer?.date | date:'dd/MMM/yyyy' | replace : '.' : ''}}</p>
+      </li>
+      <li *ngIf="false">
+        <span>{{'TRANSFER.SUCCESS.APPROVAL' | translate}}:</span>
+        <p>{{transfer?.approvalId}}</p>
+      </li>
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+        <p>{{'PRODUCT_TYPES.' + transfer?.originAccountType | uppercase | translate}} - {{transfer?.originAccount}}</p>
+      </li>
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+        <p>{{'PRODUCT_TYPES.' + transfer?.destinationAccountType | uppercase | translate}} - {{transfer?.destinationAccount}}</p>
+      </li>
+      <li *ngIf="false">
+        <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+        <p> {{transfer?.transactionCost | currencyFormat}}</p>
+      </li>
+    </ul>
+  </ng-container>
+</ng-template>
+

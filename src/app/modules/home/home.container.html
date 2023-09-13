@@ -1,0 +1,78 @@
+<div class="home-container">
+    <div class="not-space-mobile">
+        <div class="wrapper-home title-home">
+            <div class="home-products-title">
+                <p class="visible-mobile">{{greeting}}<span class="capitalize" *ngIf="hasName$ | async">, {{name$ | async | lowercase}}</span></p>
+            </div>
+        </div>
+        <div class="wrapper-products cont-finance-total">
+            <app-total-finance></app-total-finance>
+        </div>
+
+        <div class="wrapper-products cont-wrapper-products">
+            <div class="not-space-right not-space-mobile">
+                <div class="space-cont-products">
+                    <ng-container *ngIf="hasProducts$ | async; else loadingOrError">
+                        <div *ngFor="let account of products$ | async | keys | orderProducts; trackBy:identify" class="container-products" id="{{account.key}}">
+                            <app-products [type_account]="account.key" [products]="account.value"></app-products>
+                        </div>
+                    </ng-container>
+                    <ng-container *ngIf="(optionsModule$ | async)?.data?.products?.options?.free_destination && (freeDestinations$ | async)?.length > 0; else loadingOrError">
+                        <app-free-destination-container [products]="(freeDestinations$ | async)" class="container-products"></app-free-destination-container>
+                    </ng-container>
+                    <div class="container-products" *ngIf="(optionsModule$ | async)?.data?.products?.options?.to_plus && (hasToPlus$ | async)">
+                        <app-cont-to-plus [product]="(toPlus$ | async)?.data"></app-cont-to-plus>
+                    </div>
+                    <div class="container-products" *ngIf="(optionsModule$ | async)?.data?.products?.options?.product_actions && (hasActions$ | async)">
+                        <app-product-actions (openModal)="openActions($event)" [periods]="(stocksPeriod$ | async)?.data" [types]="(stocksTypes$ | async)?.data"></app-product-actions>
+                    </div>
+                    <div class="container-products" id="other-credits" *ngIf="(optionsModule$ | async)?.data?.products?.options?.order_of_payment && (libranza$ | async)?.payrollLoans">
+                        <app-order-of-payment [items]="(libranza$ | async)?.payrollLoans"></app-order-of-payment>
+                    </div>
+                </div>
+            </div>
+            <div id="other-products">
+                <ng-container *ngIf="check$ | async">
+                    <app-other-products *ngFor="let bank of otherProducts$ | async; trackBy:identify" [bank]="bank" (load)="loadOtherBank($event)"></app-other-products>
+                </ng-container>
+            </div>
+        </div>
+        <div class="wrapper-products cont-offers">
+            <div class="not-space-right not-space-mobile">
+                <section class="home-product-offers" *ngIf="hasOffers">
+                    <h3>{{'HOME.PRODUCTS.OFFER_PRODUCTS_TITLE' | translate}}</h3>
+                    <ul class="home-offers clearfix">
+                        <ng-container *ngFor="let offer of offersProducts">
+                            <li *ngIf="((offerProductsContent === offer.name) && (optionsModule$ | async)?.data?.products?.options?.btn_saving)">
+                                <app-product-offer [offer]="offer"></app-product-offer>
+                            </li>
+                            <li *ngIf="(cdtProductsContent === offer.name) && (optionsModule$ | async)?.data?.products?.options?.btn_cdt">
+                                <app-button-redirect-cdt [offer]="offer"></app-button-redirect-cdt>
+                            </li>
+                            <li *ngIf="(openCreditCardContent === offer.name) && (optionsModule$ | async)?.data?.products?.options?.btn_credit_card">
+                                <app-product-offer [offer]="offer"></app-product-offer>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #loadingOrError>
+    <ul *ngIf="(infoProducts$ | async)?.loading" class="loading-products clearfix">
+        <li *ngFor="let item of loadingProducts">
+            <div class="not-space-right space-loading">
+                <app-product-loading></app-product-loading>
+            </div>
+        </li>
+    </ul>
+
+    <div *ngIf="!(infoProducts$ | async)?.loading && (infoProducts$ | async)?.error">
+        <app-product-error></app-product-error>
+    </div>
+</ng-template>
+
+<app-news [append]="modal"></app-news>
+<div #modal></div>

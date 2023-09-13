@@ -1,0 +1,15 @@
+<div class="ds-tabbar-container" [ngClass]="{'absolute': urlActive !== '/'}">
+  <ul class="list-container">
+    <li class="item" [ngClass]="{ 'disable': getValue('disable', i + 1), 'active': urlActive === item.url }"
+        *ngFor="let item of options; let i = index">
+        <section class="li-content" (click)="redirect(item)">
+          <small class="bar"></small>
+          <small class="hide-bar"></small>
+          <i class="{{item.icon}}">
+            <small class="badge" [ngClass]="{ 'show': 'show' | variableValue:(i + 1):this }"></small>
+          </i>
+          <p>{{ item.name | translate }}</p>
+        </section>
+    </li>
+  </ul>
+</div>

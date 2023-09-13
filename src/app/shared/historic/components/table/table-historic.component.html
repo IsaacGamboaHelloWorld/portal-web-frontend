@@ -1,0 +1,86 @@
+<table *ngIf="bodyWithCard" class="cont-table-historic"> <!-- Noncompliant -->
+  <thead>
+    <tr>
+      <th scope=""></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of table" class="cont-body-table">
+      <td>
+        <app-card-registered-payment [data]="item"></app-card-registered-payment>
+      </td>
+    </tr>
+    </tbody>
+</table>
+
+<table *ngIf="!bodyWithCard" class="cont-table-historic">
+  <caption></caption>
+  <thead class="hidden-tablet">
+    <tr class="cont-head-table">
+      <th *ngFor="let column of countColumns(columns);let i = index" class="head-title-{{i}}">
+        {{names[i]}}
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of table" class="cont-body-table">
+      <td *ngFor="let column of countColumns(columns);let i = index">        
+        <div [ngSwitch]="i" class="cont-column-table">
+          <div *ngSwitchCase="0" class="column-table cont-column-{{i}}">
+            <ng-container *ngTemplateOutlet="dataColumnOne;context:{dataTable:item}"></ng-container>            
+          </div>
+          <div *ngSwitchCase="1" class="column-table cont-column-{{i}} hidden-tablet">
+            <ng-container *ngTemplateOutlet="dataColumnTwo;context:{dataTable:item}"></ng-container>
+          </div>
+          <div *ngSwitchCase="2" class="column-table cont-column-{{i}} hidden-tablet">
+            <ng-container *ngTemplateOutlet="dataColumnThree;context:{dataTable:item}"></ng-container>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #dataColumnOne let-data="dataTable">
+  <div class="column not-space cont-accordion" [ngClass]="{'show': showInfo}">
+    <div class="column large-4 section-one">
+      <button class="btn-info-pending visible-tablet" (click)="toggleInfo()" type="button">
+        <i [ngClass]="{'icon-plus': !showInfo, 'icon-minus': showInfo}"></i>
+      </button>
+      <p class="state visible-tablet {{data?.success ? 'success' : 'fail'}}">
+        {{(data?.success ? 'TRANSFER.HISTORIC.STATUS.SUCCESS' : 'TRANSFER.HISTORIC.STATUS.FAIL') | translate}}
+      </p>
+      <p class="capitalize">{{data?.date | createDate | date:'dd/MMM/yyyy': 'UTC' | replace : '.' : ''}}</p>
+      <p><strong>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}
+        :</strong> {{'PRODUCT_TYPES_SMALL.' + data?.accountFromInformation?.productType | uppercase | translate}}
+        {{data?.accountFromInformation?.accountIdentifier | slice: -4}}</p>
+      <p *ngIf="data?.accountToInformation?.name"><strong>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}
+        :</strong> {{data?.accountToInformation?.name}}</p>
+      <p class="visible-tablet"><strong>{{'TRANSFER.CONFIRMATION.FORM.AMOUNT' | translate}}
+        :</strong> {{data?.transferInformation?.amount | currencyFormat}}</p>
+    </div>
+    <div class="column large-8 section-two">
+      <p *ngIf="data?.notes"><strong>{{'TRANSFER.CONFIRMATION.FORM.DESCRIPTION' | translate}}:</strong> {{data?.notes}}</p>
+      <p *ngIf="data?.accountToInformation?.identificationType && data?.accountToInformation?.identificationNumber"><strong>{{'PENDING_TRANSFER.DOCUMENT_TO' | translate}}
+        :</strong> {{data?.accountToInformation?.identificationType}} {{data?.accountToInformation?.identificationNumber}}
+      </p>
+      <p><strong>{{'PENDING_TRANSFER.ACCOUNT_TO' | translate}}:</strong> {{(loadBankName(data?.accountToInformation?.bank) | async)?.name}}
+        - {{'PRODUCT_TYPES_SMALL.' + data?.accountToInformation?.productType | uppercase | translate}}
+        {{data?.accountToInformation?.accountIdentifier}}</p>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #dataColumnTwo let-data="dataTable">
+  <div class="column large-12 hidden-tablet column-value">
+    {{data?.transferInformation?.amount | currencyFormat}}
+  </div>
+</ng-template>
+
+<ng-template #dataColumnThree let-data="dataTable">
+  <div class="column large-12 hidden-tablet column-status">
+    <p class="state {{data?.success ? 'success' : 'fail'}}">
+      {{(data?.success ? 'TRANSFER.HISTORIC.STATUS.SUCCESS' : 'TRANSFER.HISTORIC.STATUS.FAIL') | translate}}
+    </p>
+  </div>
+</ng-template>

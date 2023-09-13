@@ -1,0 +1,34 @@
+<div class="cont-step-one-pocket">
+    <form class="form-global" [formGroup]="formStepOne" (ngSubmit)="submitForm()">
+        <fieldset class="form-group column small-12 medium-12 large-12">
+            <label>{{'POCKETS.NEW.STEP_ONE.FROM' | translate}}</label>
+            <div class="select-bp">
+                <select formControlName="account_origin" [compareWith]="compareFnOrigin">
+         <option value="" disabled>{{'PAYMENTS.SELECT_ORIGIN_DEFAULT' | translate}}</option>
+         <option *ngFor="let product of productsOrigin$ | async; trackBy: trackByFn"
+         [ngValue]="product">
+         {{'PRODUCT_TYPES_SMALL.' + product.typeAccount | translate}}
+         {{product.id | slice: -4}} {{product.loading |
+         loadAmount: (product?.productAccountBalances?.saldo_disponible?.amount | currencyFormat) :
+         product.loaded : ('PAYMENTS.AVAILABLE_BALANCE' | translate) :
+         ('TRANSFER.LOADING_AMOUNT' | translate) }}
+       </option>
+     </select>
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <label>{{'POCKETS.NEW.STEP_ONE.POCKET_NAME' | translate}}</label>
+            <input type="text" class="input-bp" formControlName="name" maxlength="15" (keyup)="removeWrongCharacters($event)">
+        </fieldset>
+        <fieldset class="form-group">
+            <label>{{'POCKETS.NEW.STEP_ONE.POCKET_USE' | translate}}</label>
+            <div class="radio form-radiobutton-contanier type-pocket-{{i}}" *ngFor="let category of (categories$ | async).categories; let i = index">
+                <input type="radio" formControlName="pocketType" value="{{category}}" name="pocketType" id="type-{{i}}" (click)="setClass(i)">
+                <label for="type-{{i}}">{{'POCKETS.NEW.STEP_ONE.'+category.toUpperCase() | translate}}</label>
+            </div>
+        </fieldset>
+        <fieldset class="submit-step-one">
+            <button type="submit" class="btn btn-primary" [disabled]="formStepOne.invalid">{{'CONTINUE' | translate}}</button>
+        </fieldset>
+    </form>
+</div>

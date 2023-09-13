@@ -1,0 +1,29 @@
+<div class="operations-product">
+  <div>
+    <div class="card-account-op">
+      <div class="card-img-container">
+        <img [src]="(product.CardNum | typeCreditCard)?.img | imageCdn" alt="">
+      </div>
+      <div class="card-product-body">
+        <strong class="name-product">
+          {{'PRODUCT_TYPES.CREDIT_CARD'| translate }}
+        </strong>
+        <span class="id-product">No. {{ product.CardNum | creditCardMask | creditCardHidden | slice: -8 }}</span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="title" [innerHTML]="'UNUSUALES_OPERATIONS.HOME.TITLE' | translate "></h3>
+
+  <div class="checkbox chk-unop">
+    <input type="checkbox" id="unop-all-marks-{{indexOp}}" (click)="checkAll(indexOp * page)">
+    <label for="unop-all-marks-{{indexOp}}"></label>
+    <span class="check-all-text">{{'UNUSUALES_OPERATIONS.HOME.CHECK' | translate}}</span>
+  </div>
+
+  <div class="card-list">
+    <div *ngFor="let item of product.DepAcctTrnRec; let i = index"  class="card-item">
+      <app-card-unsual-operations [form]="form" [product]="product" [operation]="item" [index]="(indexOp * page) + i" (eventTrnSelected)="trnSelected($event)"></app-card-unsual-operations>
+    </div>
+  </div>
+</div>

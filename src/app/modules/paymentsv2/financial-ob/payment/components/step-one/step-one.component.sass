@@ -1,0 +1,64 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.container-payment-ob
+  .cont-step-one-payment
+    max-width: 480px
+    min-width: 390px
+    margin-top: 40px
+    .field-container
+      margin-bottom: 20px
+      label
+        padding-bottom: 12px
+        font-size: $f-14 - 2
+        font-weight: 500
+        display: block
+      .card-account
+        button
+          font-size: $f-14 - 1
+          font-weight: 500
+          font-family: Inter
+    .button-container
+      display: flex
+      justify-content: center
+      button
+        margin: 0 auto
+
+@media only screen and (max-width: $break-mobile)
+  .main-container-transaction.main-container-ob
+    color: $black-750
+    >h6
+      margin-left: 16px
+    h2
+      margin-bottom: 4px
+
+  .container-payment-ob
+    .cont-step-one-payment
+      margin: 5px 16px auto 16px
+      min-width: 343px
+      .field-container
+        margin-bottom: 24px
+        .card-loan-selected
+          .head
+            margin-top: 16px
+            p
+              white-space: nowrap
+              overflow: hidden
+              text-overflow: ellipsis
+              max-width: 160px
+              font-size: 11px
+            .nickname
+              font-size: 13px
+              font-weight: 500
+              margin-top: 12px
+              margin-bottom: 2px
+            span
+              line-height: 1.82
+              font-weight: normal
+            .img-back 
+              margin-top: 16px
+    .button-container button
+      width: 100%
+
+

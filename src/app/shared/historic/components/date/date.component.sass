@@ -1,0 +1,47 @@
+@import '../../../sass/colors'
+@import '../../../sass/mixins'
+@import '../../../sass/variables'
+
+.filter-date
+  padding: 24px 22px
+  background: $carbon-light-100
+  border-radius: 15px
+  text-align: left
+  h4
+    margin-bottom: 20px
+    padding-right: 50px
+  .relative
+    position: relative
+  button
+    width: 100%
+    font-size: $f-14 + 1
+    font-weight: 600
+    margin-top: $f-14 - 2
+  .align-radio,
+  .align-inputs
+    +inline(middle)
+  .align-inputs
+    width: calc(100% - 60px)
+    fieldset
+      width: 50%
+      +inline(top)
+      &:first-child
+        padding-right: 10px
+      &:last-child
+        padding-left: 10px
+  .align-radio
+    width: 60px
+    padding-left: 8px
+  .form-global
+    > .form-group
+      label
+        margin-top: 0
+
+.ui-datepicker-title
+  span
+    font-weight: 600
+
+.ui-datepicker-calendar
+  thead
+    span
+      font-weight: 600

@@ -1,0 +1,18 @@
+<div class="content" *ngIf="(user$ | async)?.data as user">
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.EDUCATION_DATA.EDUCATION_LEVEL_FIELD' | translate}}
+        </span>
+        <p>
+            {{setupValue((extractCatalogItemDetailByCodeFromCatalogSet('educationLevelCode', 'code', user?.educationInfo?.educationLevelCode, 'ND') | async)?.longName | titlecase, 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate)}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.EDUCATION_DATA.EDUCATION_DEGREE_FIELD' | translate}}
+        </span>
+        <p>
+            {{setupValue((extractCatalogItemDetailByCodeFromCatalogSet('degreeReceivedCode', 'code', user?.educationInfo?.degreeReceivedCode, '') | async)?.longName | titlecase, 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate)}}
+        </p>
+    </div>
+</div>

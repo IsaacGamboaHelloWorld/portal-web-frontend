@@ -1,0 +1,115 @@
+@import '../../../sass/mixins'
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+
+.line-time
+  max-width: 600px
+  width: 100%
+  margin: 80px auto
+  display: block
+  .line
+    width: 100%
+    max-width: 530px
+    display: block
+    background: $black-300
+    height: 1px
+    border-radius: 10px
+    position: relative
+    margin: 0 auto
+  ul
+    display: flex
+    justify-content: space-between
+    align-items: center
+    position: relative
+    bottom: 12px
+    .cont-li
+      background: $carbon-light-400
+      width: 44px
+    span
+      width: 24px
+      height: 24px
+      border-radius: 50%
+      display: block
+      margin: 0 auto 10px
+      box-shadow: 0 2px 4px 0 rgba(63, 63, 68, 0.15)
+      border: solid 1.3px $black-70
+      position: relative
+      transition: .3s
+      text-align: center
+      line-height: 16px
+      &::before
+        content: ''
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+        border-radius: 50%
+        width: 10px
+        height: 10px
+        opacity: 0
+        transition: .3s
+      i
+        position: relative
+        font-size: $f-14 - 2
+        font-weight: 600
+        font-stretch: normal
+        font-style: normal
+        line-height: normal
+        letter-spacing: normal
+        text-align: center
+        h6
+          font-size: $f-14 - 2
+          margin-top: 2.5px
+    li
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      &.active-step
+        span
+          width: 24px
+          height: 24px
+          box-shadow: 0 2px 4px 0 rgba(255, 160, 37, 0.2)
+          border: solid 1.3px $orange-900
+          color: $orange-900
+          background-color: rgba(255, 193, 43, 0.2)
+          &::before
+            opacity: 1
+          h6
+            color: $orange-900
+        p
+          font-weight: 600
+      &.success-step
+        span
+          background: $g-500
+          box-shadow: 0 0 0 2px $g-500
+          border: none
+          i
+            color: $carbon-light-100
+            top: 5px
+            left: 1px
+            font-size: 15px
+            h6
+              display: none
+
+@media only screen and (max-width: $break-tablet)
+  .line-time
+    .line
+      display: block
+      margin: 0 30px
+      max-width: inherit
+      width: auto
+
+@media only screen and (max-width: $break-mobile)
+  .line-time
+    margin: 36px auto 25px auto
+    padding: 0
+    .line
+      margin: 0 34px
+    ul li
+      &:first-child
+        p
+          margin-left: 14px
+      &:last-child
+        p
+          margin-right: 14px

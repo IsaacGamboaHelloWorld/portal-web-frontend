@@ -1,0 +1,15 @@
+<div class="popup-account-lock-confirmation">
+  <div class="img-container">
+    <img [src]="'/essential-warning-6@3x.png' | imageCdn" [alt]="'BLOCK_PRODS.POPUPS.ACCOUNT_LOCK_CONFIRMATION_OPTIONS.ICON_DESC' | translate">
+  </div>
+  <h3>{{'BLOCK_PRODS.POPUPS.ACCOUNT_LOCK_CONFIRMATION_OPTIONS.TITLE' | translate}}</h3>
+  <fieldset class="form-group">
+    <p class="subtitle" [innerHTML]="'BLOCK_PRODS.POPUPS.ACCOUNT_LOCK_CONFIRMATION_OPTIONS.DESCRIPTION_SFB' | translate"></p>
+  </fieldset>
+  <fieldset class="form-group container_centered">
+    <button type="submit" class="btn btn-cancel"
+      (click)="closeModal()">{{'BLOCK_PRODS.POPUPS.ACCOUNT_LOCK_CONFIRMATION_OPTIONS.CANCEL_BTN' | translate}}</button>
+    <button type="submit" class="btn btn-primary"
+      (click)="submitForm()">{{'BLOCK_PRODS.POPUPS.ACCOUNT_LOCK_CONFIRMATION_OPTIONS.OK_BTN' | translate}}</button>
+  </fieldset>
+</div>

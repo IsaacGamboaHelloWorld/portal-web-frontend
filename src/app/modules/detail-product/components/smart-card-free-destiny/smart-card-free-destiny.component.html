@@ -1,0 +1,77 @@
+<div *ngIf="hasData" class="detail-smart-card-fd detail-products">
+    <app-header-card-free-destiny [data]="freeDestination"></app-header-card-free-destiny>
+
+    <div class="smart-card-main-balances">
+        <ng-container [ngSwitch]="freeDestination?.currentStatus">
+            <ng-container *ngSwitchCase="isInDue">
+                <h5>{{'DETAIL.FREE_DESTINATION.MINIMUM_PAYMENT' | translate}} </h5>
+                <p class="main-balance" [innerHTML]="freeDestination?.minimumAmountToPay | currencyFormat: true"></p>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="isInToday">
+                <h5>{{'DETAIL.FREE_DESTINATION.TOTAL_BALANCE' | translate}} </h5>
+                <p class="main-balance" [innerHTML]="freeDestination?.outstandingBalance | currencyFormat: true"></p>
+            </ng-container>            
+        </ng-container>
+    </div>
+
+    <div class="smart-card-secondary-balances">
+        <ng-container [ngSwitch]="freeDestination?.currentStatus">
+
+            <ng-container *ngSwitchCase="isInDue">
+                <div class="secondary-item">
+                    <p>
+                        {{'DETAIL.FREE_DESTINATION.FULL_PAYMENT' | translate}}
+                    </p>
+                    <h4 [innerHTML]="freeDestination?.outstandingBalance | currencyFormat: true"></h4>
+                </div>
+                <div class="secondary-item">
+                    <p>
+                        {{'DETAIL.FREE_DESTINATION.DATE_NEXT_PAYMENT' | translate}}
+                    </p>
+                    <h4>{{ freeDestination?.dueDate | date:'dd/MMM/yyyy' | replace : '.' : '' }}</h4>
+                </div>
+
+                <div class="secondary-item">
+                    <p>
+                        {{'DETAIL.FREE_DESTINATION.DUE_RATE' | translate}}
+                    </p>
+                    <h4>{{ freeDestination?.dueRate }} {{ 'DETAIL.FREE_DESTINATION.DUE_RATE_UNIT' | translate }} </h4>
+                </div>
+
+                <div class="secondary-item">
+                    <p>
+                        {{'DETAIL.FREE_DESTINATION.DUE_DAYS' | translate}}
+                    </p>
+                    <h4 [innerHTML]="freeDestination?.dueDays"></h4>
+                </div>
+                <div class="secondary-item">
+                    <p>
+                        {{'DETAIL.FREE_DESTINATION.DUE_AMOUNT' | translate}}
+                    </p>
+                    <h4 [innerHTML]="freeDestination?.totalDueAmount | currencyFormat: true"></h4>
+                </div>
+                <div class="secondary-item">
+                    <small> {{ 'DETAIL.FREE_DESTINATION.DUE_AMOUNT_DESC' | translate }} </small>
+                </div>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="isInToday">
+                <div class="secondary-item">
+                    <p>
+                        {{'DETAIL.FREE_DESTINATION.DATE_NEXT_PAYMENT' | translate}}
+                    </p>
+                    <h4>{{ freeDestination?.dueDate | date:'dd/MMM/yyyy' | replace : '.' : '' }}</h4>
+                </div>
+                <div class="secondary-item">
+                    <p>
+                        {{'DETAIL.FREE_DESTINATION.MINIMUM_PAYMENT' | translate}}
+                    </p>
+                    <h4 [innerHTML]="freeDestination?.minimumAmountToPay | currencyFormat: true"></h4>
+                </div>
+            </ng-container>
+            
+        </ng-container>
+    </div>
+        
+</div>

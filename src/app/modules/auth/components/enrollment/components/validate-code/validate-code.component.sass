@@ -1,0 +1,75 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.cont-validate-code
+  text-align: center
+  .validate-code
+    .top-image-container
+      margin: 0 auto
+      top: 0
+      display: block
+      width: 120px
+      padding: 25px 17px
+      background-color: $g-50
+      border-radius: 50%
+      img
+        height: 66px
+        width: auto
+    h4
+      margin-top: 24px
+      margin-bottom: 12px
+      font-weight: 500
+    .description
+      line-height: 1.6
+      margin-bottom: 50px
+      font-size: $f-14 + 1
+    form
+      text-align: left
+    button
+      margin-top: 33px
+      width: 100%
+    .session-time
+      display: block
+      text-align: center
+      color: $gray3
+      &:first-child
+        font-size: $f-14 - 1
+        margin-bottom: 6px
+      span
+        color: $orange-900
+        font-weight: bold
+    a
+      font-weight: bold
+      font-family: $text-font
+      text-align: center
+      display: block
+      font-size: $f-14 + 1
+      color: $orange-900
+    .disabled
+      pointer-events: none
+      cursor: not-allowed
+
+.time-line
+  display: block
+  top: 66px
+  position: absolute
+  width: 100%
+
+@media only screen and (max-width: $break-tablet)
+  .cont-validate-code
+    .validate-code
+      ng-otp-input
+        .wrapper
+          .otp-input
+            margin: 0 4px !important
+  .time-line
+    top: 56px
+
+@media only screen and (max-width: $break-mobile)
+  .cont-validate-code
+    .validate-code
+      ng-otp-input
+        .wrapper
+          .otp-input
+            margin: 0 4px !important

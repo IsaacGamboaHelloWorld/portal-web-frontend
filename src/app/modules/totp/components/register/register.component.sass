@@ -1,0 +1,38 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.totp-register
+  display: flex
+  flex-direction: column
+  align-items: center
+  margin: 40px 24px
+  .totp-form-register
+    max-width: 100%
+    .input-code
+      margin-top: 8px
+  .btn-container
+    margin-top: 24px
+    width: 100%
+    display: flex
+    justify-content: center
+    app-btn
+      width: 100%
+
+@media only screen and (min-width: $break-small-table-min)
+  .totp-register
+    .totp-form-register
+      max-width: 520px
+    .btn-container
+      justify-content: center
+      app-btn
+        width: auto
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .totp-register
+    .totp-form-register
+      max-width: 616px
+
+@media only screen and (min-width: $break-medium-table-landscape-min)
+@media only screen and (min-width: $break-desktop-lg-min)
+@media only screen and (min-width: $break-desktop-min)
+

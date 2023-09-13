@@ -1,0 +1,16 @@
+<div class="cont-modal-success-tp">
+  <div class="imgModal">
+    <img [src]="img | imageCdn" alt="">
+  </div>
+  <div class="textModal">
+    <p class="title">{{'TO_PLUS.BENEFICIARY.REDIRECT_TITLE' | translate}}</p>
+    <p class="subTitle">{{'TO_PLUS.BENEFICIARY.REDIRECT_DESC' | translate}}</p>
+  </div>
+  <div class="btnModal">
+    <div class="linkModal">
+      <a class="link" (click)="actionCancel.emit()">{{'TO_PLUS.SHARED.CANCEL' | translate}}</a>
+    </div>
+    <app-btn (clickBtn)="redirect()" [text]="('TO_PLUS.SHARED.CONTINUE' | translate)" [class]="'btn btn-primary'">
+    </app-btn>
+  </div>
+</div>

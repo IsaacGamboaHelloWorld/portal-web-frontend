@@ -1,0 +1,50 @@
+<div class="cont-your-balance">
+  <h4 class="title">Tu balance</h4>
+  <div class="cont-cards-your-balance">
+    <div class="cont-box-card card">
+      <div class="cont-header-card">
+        <img class="type-icon-img" alt="">
+        <span>{{'ORGANIZER.HAVE_BALANCE' | translate}}</span>
+      </div>
+      <div class="cont-body-card">
+        <span [innerHTML]="(findByProperty('MY_CURRENT_BAG') | async)?.amount | currencyFormat : true : 'decimal-vouchers' "></span>
+      </div>
+      <div class="cont-footer-card">
+        <div class="cont-icon cont-green-arrow">
+          <img class="icon-arrow-img" alt="">
+        </div>
+        <span>{{'ORGANIZER.BALANCE_TODAY' | translate}}</span>
+      </div>
+    </div>
+    <div class="cont-box-card card">
+      <div class="cont-header-card">
+        <img class="type-icon-img" alt="">
+        <span>{{'ORGANIZER.DUTY_BALANCE' | translate}}</span>
+      </div>
+      <div class="cont-body-card">
+        <span [innerHTML]="(findByProperty('MY_TOTAL_DEBTS') | async)?.amount | currencyFormat : true : 'decimal-vouchers' "></span>
+      </div>
+      <div class="cont-footer-card">
+        <div class="cont-icon cont-red-arrow">
+          <img class="icon-arrow-img down" alt="">
+        </div>
+        <span>{{'ORGANIZER.DEBTS_TODAY' | translate}}</span>
+      </div>
+    </div>
+    <div class="cont-box-card card">
+      <div class="cont-header-card">
+        <img class="type-icon-pig" alt="">
+        <span>{{'ORGANIZER.GOALS_BUDGETS' | translate}}</span>
+      </div>
+      <div class="cont-body-card">
+        <span>{{pocketsList.length}} {{'ORGANIZER.GOALS' | translate}}</span>
+      </div>
+      <div class="cont-footer-card">
+        <div class="cont-bar-box">
+          <app-bar-progress [valueProgress]="goalComplete.length" [max]="pocketsList.length" [(customStyle)]="styleBar"></app-bar-progress>
+        </div>
+        <span>{{goalComplete.length}} de {{pocketsList.length}} {{'ORGANIZER.GOALS_COMPLETE' | translate}}</span>
+      </div>
+    </div>
+  </div>
+</div>

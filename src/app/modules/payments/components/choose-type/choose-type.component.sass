@@ -1,0 +1,76 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import '~sass/layout'
+
+.choose-type-payment-component
+  .choose-type-payment-nav
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 0 0 34px
+    a
+      color: $carbon-mid-400
+      margin-right: 10px
+      transition: .3s
+      em
+        +inline(middle)
+        color: $gc-800
+        font-size: $f-14 + 4
+        margin-right: 5px
+        padding: 1px
+        border: 1px solid $gc-800
+        border-radius: 100%
+      &.close-payment
+        margin: 0
+        i
+          margin-left: 10px
+      &:hover
+        color: $carbon-dark-900
+  .choose-type-head-payment
+    display: flex
+    justify-content: space-between
+    align-items: center
+    margin-bottom: 67px
+    h2
+      font-weight: 700
+      padding: 0
+  .empty
+    display: flex
+    justify-content: center
+    align-items: center
+    min-height: 64vh
+    text-align: center
+    img
+      width: 120px
+      height: auto
+      margin-bottom: 13px
+  .choose-type-payment-option
+    text-align: center
+    padding-top: 90px
+    display: flex
+    justify-content: center
+  .payments-list
+    max-width: 343px
+    margin: 24px auto 0
+
+
+@media only screen and (max-width: $break-mobile)
+  .choose-type-payment-component
+    .choose-type-head-payment
+      flex-direction: column
+      justify-content: flex-start
+      align-items: flex-start
+      margin-bottom: 0
+      padding: 0 15px
+      h2
+        font-size: $f-20 + 4
+        margin-bottom: 24px
+        padding: 0
+      a
+        width: 100%
+        text-align: center
+      .empty
+        min-height: 60vh
+    .choose-type-payment-option
+      padding: 0 15px

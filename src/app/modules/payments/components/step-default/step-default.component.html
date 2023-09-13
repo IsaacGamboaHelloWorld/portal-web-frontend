@@ -1,0 +1,23 @@
+<div class="step-default">
+  <ng-container *ngIf="paymentType !== servicepublic else publicServ">
+    <h2>{{'PAYMENTS.NEW_PAYMENT' | translate}}</h2>
+    <p>{{'PAYMENTS.BANK_LOAN' | translate}}</p>
+  </ng-container>
+  <app-line-time [step]="step" [items]="items$ | async"></app-line-time>
+  <div class="info-steps">
+    <div class="animated element-hidden" [ngClass]="{'block fade-in-up': step === 1 }" *ngIf="step === 1">
+      <app-step-one></app-step-one>
+    </div>
+    <div class="animated element-hidden" [ngClass]="{'block fade-in-up': step === 2 }" *ngIf="step === 2">
+      <app-step-two></app-step-two>
+    </div>
+    <div class="animated element-hidden" [ngClass]="{'block fade-in-up': step === 3 }" *ngIf="step === 3">
+      <app-step-three></app-step-three>
+    </div>
+  </div>
+</div>
+
+<ng-template #publicServ>
+  <h2>{{'PAYMENTS.NEW_PAYMENT' | translate}}</h2>
+  <p>{{'PAYMENTS.PUBLIC_BILL' | translate}}</p>
+</ng-template>

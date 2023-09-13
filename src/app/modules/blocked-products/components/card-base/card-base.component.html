@@ -1,0 +1,58 @@
+<div class="card-base" [ngClass]="(data.accountInformation?.accountIdentifier | cardTypeclass).class" *ngIf="data && !data.loading">
+        <div class="card-background" *ngIf="!isDebitCard && data.accountInformation?.accountIdentifier !== (data.accountInformation?.accountIdentifier | cardTypeclass)">
+            <img [src]="(data.accountInformation?.accountIdentifier | cardTypeclass).background | imageCdn" alt="" *ngIf="!isDebitCard"/>
+        </div>
+        <div class="card-background" *ngIf="!isDebitCard && data.accountInformation?.accountIdentifier === (data.accountInformation?.accountIdentifier | cardTypeclass)">
+            <img [src]="debitCardBackground | imageCdn" alt="" *ngIf="!isDebitCard"/>
+        </div>
+        <div class="card-background" *ngIf="isDebitCard">
+            <img [src]="debitCardBackground | imageCdn" alt=""/>            
+        </div>
+    <div class="card-info">
+        <div class="top">
+            <div class="card-info-type">
+                <h2 *ngIf="!isDebitCard && data.accountInformation?.accountIdentifier !== (data.accountInformation?.accountIdentifier | cardTypeclass)">{{('BLOCK_PRODS.CARDS_SECTION.CARD_FRANCHISE.' + (data.accountInformation?.accountIdentifier | cardTypeclass).class) | translate}}</h2>
+                <h2 *ngIf="isDebitCard">{{'BLOCK_PRODS.CARDS_SECTION.CARD_FRANCHISE.debit_card' | translate}}</h2>
+            </div>
+            <div class="card-action" *ngIf="!isDebitCard && data.status">
+                <a (click)="openInfo(data.status)" *ngIf="'ACTIVE' === data.status">
+                    <img [src]="'/lock-product/desbloqueado-blanco.png' | imageCdn" alt="">  {{'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.LOCK_BUTTON' | translate}}
+                </a>
+                <a (click)="openInfo(data.status)" *ngIf="'ACTIVE' !== data.status">
+                    <img [src]="'/lock-product/bloqueado-blanco.png' | imageCdn" alt="">  {{'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.UNLOCK_BUTTON' | translate}}
+                </a>
+            </div>
+
+            <div class="card-action" *ngIf="isDebitCard">
+                <a (click)="openInfo(data.status)">
+                    <img [src]="'/lock-product/desbloqueado-blanco.png' | imageCdn" alt="">  {{'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.LOCK_BUTTON' | translate}}
+                </a>
+            </div>
+        </div>
+        <div class="chip">
+            <img [src]="'/lock-product/chip-gris.png' | imageCdn" alt="">
+        </div>
+        <div class="card-number">
+            <p>{{data.accountInformation?.accountIdentifier | creditCardMask | creditCardHidden}}</p>
+        </div>
+        <div class="bottom">
+            <div class="thru-container">
+                <div class="thru-text" [innerHTML]="'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.VALID_THRU' | translate"></div>
+                <div>{{'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.VALID_THRU_SYMBOLS' | translate}}</div>
+            </div>
+            <div class="franchise" *ngIf="!isDebitCard && data.accountInformation?.accountIdentifier !== (data.accountInformation?.accountIdentifier | cardFranchiseType)">
+                <img [src]="'/lock-product' + (data.accountInformation?.accountIdentifier | cardFranchiseType) | imageCdn" alt="">
+            </div>
+            <div class="franchise" *ngIf="isDebitCard">
+                <img [src]="'/lock-product/logo_visa_blanco.png' | imageCdn" alt="">
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<div class="card-base loading loading-global shadow-1dp" *ngIf="data && data.loading">
+    <p class="title-card placeholder width-30"></p>
+    <p class="card-mask placeholder width-80"></p>
+    <p class="cvv-card placeholder width-20"></p>
+</div>

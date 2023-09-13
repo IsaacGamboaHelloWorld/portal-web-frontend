@@ -1,0 +1,85 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+.main-step-two
+  .title
+    color: $black-750
+    margin-bottom: 16px
+    font-weight: 500
+    font-size: 14px
+    line-height: 24px
+    padding-left: 20px
+  .cont-cards
+    font-family: Inter
+    margin: auto
+    width: min-content
+    .cont-card-list
+      display: block
+      .cont-card-item
+        width: 325px
+        height: 120px
+        margin-bottom: 16px
+        padding: 28px 25px 28px 25px
+        border-radius: 12px
+        box-shadow: 0 2px 4px 0 $transparent-08
+        background-color: $carbon-light-100
+        font-family: Inter
+        display: flex
+        align-items: center
+        &.disabled-option
+          .cont-img
+            background-color: $carbon-light-400
+          .cont-txt-info
+            strong
+              color: $carbon-mid-400
+            small
+              color: $carbon-mid-400
+        &.active
+          border: solid 1.5px $g-500
+        .cont-img
+          width: 44px
+          height: 44px
+          border-radius: 22px
+          padding: 10px
+          background-color: $g-100
+          img
+            width: 24px
+            height: 24px
+        .cont-txt-info
+          padding-left: 24px
+          display: flex
+          flex-direction: column
+          width: calc(100% - 44px)
+          strong
+            font-weight: 500
+            font-size: 14px
+            line-height: 24px
+            color: $black-750
+          small
+            font-weight: 400
+            font-size: 12px
+            line-height: 20px
+            color: $carbon-mid-600
+@media only screen and (min-width: $break-medium-table-landscape-min)
+  .main-step-two
+    .cont-cards
+      width: 100%
+      .cont-card-list
+        display: flex
+        .cont-card-item
+          width: 50%
+          .cont-txt-info
+            strong
+              font-weight: 600
+              font-size: 13px
+              line-height: 22px
+              color: $cbn-900
+            small
+              font-weight: 500
+              font-size: 11px
+              line-height: 16px
+              color: $cbn-mid-600
+        .right
+          margin-right: 8px
+        .left
+          margin-left: 8px

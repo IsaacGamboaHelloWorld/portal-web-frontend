@@ -1,0 +1,142 @@
+<div class="container-edit-profile">
+    <div class="cont-edit-profile">
+        <div class="not-space-mobile">
+            <div class="head-nav not-select">
+                <a (click)="back()"><em class="icon-arrow-back"></em> {{'REGISTER_PRODUCT_AFFILIATION.BACK_BTN' | translate}}</a>
+                <a (click)="openAlert()" class="close-transfer">{{'REGISTER_PRODUCT_AFFILIATION.CLOSE_BTN' | translate}} <em class="icon-x-circle"></em></a>
+            </div>
+            <div class="top-edit-profile-section">
+                <h2>{{'CUSTOMER_PROFILE.EDIT_PROFILE.TITLE' | translate}}</h2>
+            </div>
+            <div class="align-edit-profile">
+                <div class="edit-card-container">
+                    <div class="edit-profile-section-card">
+                        <app-section-header [iconPath]="'/profile/personal-data@3x.png'" [title]="'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.TITLE' | translate"></app-section-header>
+                        <div class="bottom-profile-section-card" *ngIf="(user$ | async)?.data as user">
+                            <form [formGroup]="formData" *ngIf="(catalogs$ | async)?.data" class="form-global">
+                                <div class="bottom-profile-section-container">
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.FIRST_NAME_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" disabled [value]="user?.personalData?.customerNames?.firstName | titlecase" class="text-input disabled">
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.SECOND_NAME_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" disabled [value]="user?.personalData?.customerNames?.middleName | titlecase" class="text-input disabled">
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.LAST_NAME_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" disabled [value]="user?.personalData?.customerNames?.lastName | titlecase" class="text-input disabled">
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.BIRTH_DATE_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" disabled [value]="user?.personalData?.birthDate | date: 'dd / MMM / yyyy' | titlecase | replace : '.' : ''" class="text-input disabled">
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.BIRTH_COUNTRY_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" disabled [value]="setupValue((extractCatalogItemDetailByCodeFromCatalogSet('countryCode', 'code', user?.personalData?.countryId, 'N') | async)?.longName | titlecase, 'No disponible')" class="text-input disabled">
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.BIRTH_STATE_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" disabled [value]="setupValue((extractCatalogItemDetailByCodeFromCatalogSet('stateId', 'code', user?.personalData?.stateId, '999') | async)?.longName | titlecase, 'No disponible')" class="text-input disabled">
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.BIRTH_CITY_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" disabled [value]="setupValue((extractCatalogItemDetailByCodeFromCatalogSet('cityId', 'longName', user?.personalData?.cityId, '') | async)?.shortName | titlecase, 'No disponible')" class="text-input disabled">
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.GENDER_FIELD' | translate}}
+                                        </span>
+                                        <div *ngFor="let genderType of (catalogs$ | async)?.data?.catalogs?.gender, let i = index" class="update-profile-card" [ngClass]="{'selected': genderType.code === genderSelected}">
+
+                                            <input
+                                            formControlName="gender"
+                                            type="radio"
+                                            [value]="genderType.code"
+                                            [(ngModel)]="genderSelected"
+                                            id="genderOption_{{genderType.code}}"
+                                            >
+                                            <label for="genderOption_{{genderType.code}}">
+                                                <div class="card-content-view">
+                                                    <div class="text-input">
+                                                        <span>{{setupValue(genderType.longName | titlecase, 'No disponible')}}</span>
+                                                    </div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.MARITAL_STATUS_FIELD' | translate}}
+                                        </span>
+                                        <ng-select
+                                            formControlName="maritalStatus"
+                                            [items]="(maritalStatusElements$ | async)"
+                                            bindLabel="longName"
+                                            [closeOnSelect]="true"
+                                            [multiple]="false"
+                                            [hideSelected]="true"
+                                            placeholder="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.MARITAL_STATUS_PLACEHOLDER_FIELD' | translate}}"
+                                            typeToSearchText="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.MARITAL_STATUS_TYPEAHEAD_FIELD' | translate}}"
+                                            markFirst="true"
+                                            [typeahead]="subject$">
+                                            </ng-select>
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.NUMBER_OF_CHILDREN_FIELD' | translate}}
+                                        </span>
+
+                                        <input type="text" formControlName="numberOfChildren" class="text-input" appOnlyNumbers pattern="\d*" >
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.PEOPLE_IN_CHARGE_OF_FIELD' | translate}}
+                                        </span>
+                                        <input type="text" formControlName="peopleInChargeOf" class="text-input"  appOnlyNumbers pattern="\d*" >
+                                    </div>
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.HOBBY_FIELD' | translate}}
+                                        </span>
+                                        <ng-select
+                                            formControlName="hobby"
+                                            [items]="(hobbyElements$ | async)"
+                                            bindLabel="longName"
+                                            [closeOnSelect]="true"
+                                            [multiple]="false"
+                                            placeholder="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.HOBBY_PLACEHOLDER_FIELD' | translate}}"
+                                            typeToSearchText="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.HOBBY_TYPEAHEAD_FIELD' | translate}}"
+                                            markFirst="true"
+                                            searchable="true"
+                                            [hideSelected]="false"
+                                            [typeahead]="subject$">
+                                            </ng-select>
+                                    </div>
+                                </div>
+                                <fieldset class="form-group">
+                                    <app-btn [class]="'btn-primary'" [disabled]="(formData && formData.invalid) || (updateProfileResponse$ | async)?.loading" [text]="'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.PERSONAL_DATA.SAVE_BTN' | translate" [isLoading]="(updateProfileResponse$ | async)?.loading" (clickBtn)="submitData()"></app-btn>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

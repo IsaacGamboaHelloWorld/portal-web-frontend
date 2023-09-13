@@ -1,0 +1,27 @@
+<app-template-system
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="false"
+></app-template-system>
+
+<ng-template #content>
+  <div class="cont-pockets">
+    <div class="navigation-opts not-select">
+      <a *ngIf="step === 'EDIT'" (click)="back()"><em class="icon-arrow-left"></em> {{'GO_BACK' | translate}}</a>
+      <a *ngIf="step === 'EDIT'" (click)="openAlert()" class="close-payment">{{'PAYMENTS.CLOSED.BTN' | translate}} <em class="icon-x-circle no-border"></em></a>
+    </div>
+    <div class="edit-pocket">
+      <div class="edit-head-pocket">
+        <h2>{{'POCKETS.HOME.EDIT.TITLE' | translate}} </h2>
+      </div>
+      <div class="info-steps">
+        <div class="animated" *ngIf="step === 'EDIT'">
+          <app-edit-step-one (eventStep)="stepEvent($event)" (eventFormStep)="formStepEvent($event)"></app-edit-step-one>
+        </div>
+        <div class="animated" *ngIf="step === 'DELETE'">
+          <app-delete-step-one [formOne]="formStepEdit"></app-delete-step-one>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

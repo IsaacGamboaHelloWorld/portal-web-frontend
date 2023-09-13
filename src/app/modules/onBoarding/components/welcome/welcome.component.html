@@ -1,0 +1,14 @@
+<div class="cont-welcome">
+  <img [src]="'/welcome.png' | imageCdn" [alt]="'ONBOARDING.WELCOME.SUB_TITLE' | translate">
+  <h1>¡{{'ONBOARDING.WELCOME.TITLE' | translate}}!</h1>
+  <small>{{'ONBOARDING.WELCOME.SUB_TITLE' | translate}}</small>
+  <p>{{'ONBOARDING.WELCOME.DESCRIPTION' | translate}}</p>
+  <button class="btn btn-primary" (click)="slider()">¡{{'ONBOARDING.WELCOME.BTN' | translate}}!</button>
+  <div class="animated fade-in-down cont-animation-down">
+    <div class="box-welcome box-green"></div>
+    <div class="box-welcome box-yellow small-box"></div>
+  </div>
+  <div class="animated fade-in-up cont-animation-up">
+    <div class="box-welcome box-yellow big-box"></div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.cont-history-transaction
+  h3
+    margin-bottom: 12px
+    display: flex
+    justify-content: flex-start
+    align-items: center
+  .columns-info
+    color: $carbon-mid-400
+    margin-bottom: 15px
+  .transaction
+    margin-bottom: 8px
+  .head-title-pending,
+  .cont-value
+    +inline(top)
+  .head-title-pending
+    width: calc(100% - 324px)
+  .cont-value
+    width: 324px

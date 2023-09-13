@@ -1,0 +1,4 @@
+<div class="obfuscate-product">
+  <small>{{ text | translate}}. {{ obfuscate ? (accountNumber | creditCardHidden) : accountNumber  }}</small>
+  <i [ngClass]="(obfuscate ? 'icon-eye' : 'icon-eye-off')" (click)="toogleObfuscate()"></i>
+</div>

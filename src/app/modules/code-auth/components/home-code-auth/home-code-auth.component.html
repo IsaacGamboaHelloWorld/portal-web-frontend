@@ -1,0 +1,86 @@
+<div class="animated fade-in-up cont-home-2fa">
+  <form class="form-global" [formGroup]="formSecureData" (ngSubmit)="offices()">
+    <div class="form-group column small-12 medium-12 large-12">
+      <div class="cont-card-one-home" [ngClass]="{'cont-card-one-width': !secondFactorAuth}">
+        <div class="cont-icon-card-one">
+          <div class="circle-icon-card-one">
+            <img class="icon-card-one" alt="">
+          </div>
+        </div>
+        <div class="cont-text-card-one">
+          <p class="title">{{titleCardOne | translate }}</p>
+          <p class="sub-title">{{descCardOne | translate }}</p>
+          <a *ngIf="!secondFactorAuth" class="link action" (click)="redirect()">{{btnCardOne | translate }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="form-group column small-12 medium-12 large-12">
+      <p class="title-section">{{'CODE_AUTH.HOME.SUBTITLE' | translate: { number: 2 } }}</p>
+    </div>
+    <div class="form-group column small-12 medium-12 large-12 cont-secure-data-container-home">
+      <div class="form-group column small-12 medium-6 large-6 cont-secure-phone" [ngClass]="{'cont-secure-email': editSecureData}">
+        <div *ngIf="!editSecureData" class="cont-icon-card-two">
+          <img class="icon-card-two" alt="">
+        </div>
+        <div class="cont-secure-data-container">
+          <p *ngIf="!editSecureData" class="title">{{'CODE_AUTH.HOME.CARD2.TITLE' | translate }}</p>
+          <p *ngIf="!editSecureData" class="desc">******{{((stateGetSecureData | async)?.secureTelephone | slice: -4)}}</p>
+          <div class="cont-input" *ngIf="editSecureData" [ngClass]="{'active': 'SECURE_PHONE' === contactPreference}">
+            <label>{{'CODE_AUTH.HOME.CARD2.TITLE' | translate }}</label>
+            <input class="input-bp" formControlName="phoneSecureData" type="number">
+            <div class="radio">
+              <input type="radio" formControlName="contactPreference" id="option-1" name="contactPreference"
+              [value]="'SECURE_PHONE'">
+              <label for="option-1" class="contact-preference-message" (click)="selectContactPreference('SECURE_PHONE')">Marcar este telefono como preferido</label>
+            </div>
+          </div>
+          <ul>
+            <li><img [src]="'/24-check.svg' | imageCdn" alt=""> <span class="list">{{'CODE_AUTH.HOME.CARD2.TEXT1' | translate }}</span></li>
+            <li><img [src]="'/24-check.svg' | imageCdn" alt=""> <span class="list">{{'CODE_AUTH.HOME.CARD2.TEXT2' | translate }}</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="form-group column small-12 medium-6 large-6 cont-secure-phone" [ngClass]="{'cont-secure-email': editSecureData}">
+        <div *ngIf="!editSecureData" class="cont-icon-card-three">
+          <img class="icon-card-three" alt="">
+        </div>
+        <div class="cont-secure-data-container">
+          <p *ngIf="!editSecureData" class="title">{{'CODE_AUTH.HOME.CARD3.TITLE' | translate }}</p>
+          <p *ngIf="!editSecureData" class="desc">{{mailSecureData}}</p>
+          <div class="cont-input" *ngIf="editSecureData" [ngClass]="{'active': 'SECURE_EMAIL' === contactPreference}">
+            <label>{{'CODE_AUTH.HOME.CARD3.TITLE' | translate }}</label>
+            <input class="input-bp" formControlName="mailSecureData" email="true">
+            <div class="radio">
+              <input type="radio" formControlName="contactPreference" id="option-2" name="contactPreference"
+              [value]="'SECURE_EMAIL'">
+              <label for="option-2" class="contact-preference-message" (click)="selectContactPreference('SECURE_EMAIL')">Marcar este email como preferido</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group column small-12 medium-12 large-12">
+        <div class="cont-actions" [ngClass]="{'edit-mode': editSecureData}">
+          <a *ngIf="!editSecureData" class="link" (click)="edit('EMAIL')">{{'CODE_AUTH.HOME.BTN.EDIT' | translate }}</a>
+          <a *ngIf="editSecureData" class="link cancel" (click)="cancel('EMAIL')">{{'CODE_AUTH.HOME.BTN.CANCEL' | translate }} <img class="icon-btn-cancel" alt=""></a>
+          <a *ngIf="editSecureData" class="link update" [ngClass]="{'valid-update': formSecureData.invalid}" (click)="update('EMAIL')">{{'CODE_AUTH.HOME.BTN.UPDATE' | translate }} <img class="icon-btn-update" alt=""></a>
+        </div>
+      </div>
+    </div>
+    <div class="form-group column small-12 medium-12 large-12" *ngIf="!(stateGetSecureData | async)?.success">
+      <div class="cont-card-error">
+        <div class="circle-icon-error">
+          <img class="icon-card-error" alt="">
+        </div>
+        <div class="cont-text-card-error">
+          <p class="title-error">{{'CODE_AUTH.HOME.ERROR.TITLE' | translate }}</p>
+          <p class="text-error">{{'CODE_AUTH.HOME.ERROR.TEXT' | translate }}</p>
+        </div>
+        <app-btn
+        [text]="('CODE_AUTH.HOME.BTN.OFFICES' | translate)"
+        [isLoading]="loading"
+        [disabled]="formSecureData.invalid || loading"
+        [class]="'btn btn-primary'"></app-btn>
+      </div>
+    </div>
+  </form>
+</div>

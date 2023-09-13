@@ -1,0 +1,48 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.container-payment-ob
+  .cont-step-global
+    padding: 0px
+
+  .cont-step-confirmation
+    max-width: 740px
+    width: 100%
+    margin: 0 auto
+    display: block
+
+    .fs-14
+      font-size: 14px
+
+    .footer-step-confirmation
+      text-align: center
+      margin: 34px auto
+      flex-direction: row
+      align-items: center
+      .warning-text
+        color: $error-600
+        margin-bottom: 20px
+      button
+        margin: 0 30px
+        max-width: 183px
+        padding: 0px 32px
+        width: 122px
+
+    .ticket-global .btn-ticket
+      bottom: -20px
+      height: 72px
+
+@media only screen and ( max-width: $break-mobile)
+  .container-payment-ob
+    .space-ticket
+      width: calc(100vw - 32px)
+    .cont-step-confirmation
+      .ticket-global .btn-ticket
+        bottom: 0px
+      .footer-step-confirmation 
+        button 
+          max-width: 100%
+          width: 100%
+          margin: auto auto 24px auto
+  

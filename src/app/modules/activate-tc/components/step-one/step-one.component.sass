@@ -1,0 +1,91 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+
+.container-tc
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  .cont-step-one
+    margin-top: 15%
+    width: 344px
+    vertical-align: middle
+    .credit-card
+      position: relative
+      color: $carbon-mid-900
+      .card-container
+        width: 350px
+        height: 225px
+        vertical-align: top
+        background-size: contain
+        background-repeat: no-repeat
+      .mask:active,
+      .mask.hover
+        animation: 1.5s alternate mask
+      .mask2
+        animation: 1.5s alternate mask2
+      @keyframes mask
+        from
+          clip-path: circle(0px at 0px 0px)
+        to
+          clip-path: circle(350px at 90px 30px)
+      @keyframes mask2
+        from
+          clip-path: circle(350px at 90px 30px)
+        to
+          clip-path: circle(0px at 0px 0px)
+    .card-info
+      position: absolute
+      top: 0
+      .card-number
+        position: relative
+        top: 96px
+        bottom: 88px
+        left: 30px
+        right: 22px
+        p
+          font-size: $f-14 + 7
+          line-height: 1.62
+          text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5)
+      .franchise
+        position: relative
+        top: 125px
+        bottom: 24px
+        right: 24px
+        left: 259px
+        width: 61px
+    .bg_visa
+      color: $carbon-light-100
+    .bg_master
+      color: $carbon-light-100
+    .submit-step-one
+      text-align: center
+      margin: 32px 0
+      button
+        width: 183px
+
+
+@media only screen and (max-width: $break-mobile)
+  .container-tc
+    width: 100%
+    .cont-step-one
+      margin-top: 0
+      width: 100%
+      display: block
+      padding: 0 16px
+      .credit-card
+        position: relative
+        color: $carbon-mid-900
+        .card-container
+          position: relative
+          background-size: 100% 100%
+          right: 3px
+          width: 100%
+      .submit-step-one
+        text-align: center
+        margin: 32px 0
+        button
+          width: 100%

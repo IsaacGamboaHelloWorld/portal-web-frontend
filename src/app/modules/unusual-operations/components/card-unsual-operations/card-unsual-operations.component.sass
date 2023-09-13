@@ -1,0 +1,94 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.card-unop
+  padding: 24px 30px
+  border-radius: 12px
+  box-shadow: 0 1px 2px 0 $transparent-08
+  background-color: $cbn-lgt-100
+  width: 343px
+  height: 154px
+  display: flex
+  position: relative
+  .decimal-value
+    font-size: 14px
+    font-weight: 500
+    line-height: 2
+    letter-spacing: normal
+    color: $brd-100
+  .checkbox-card
+    position: absolute
+    right: 5px
+    top: 10px
+    label::before
+      border-radius: 6px
+      border: solid 1px $cbn-lgt-900
+  .card-unop__block-left
+    flex-grow: 1
+    .card-unop__block-left__title
+      display: flex
+      .card-unop__block-left__title__img-container
+        width: 20px
+        height: 20px
+        border-radius: 50%
+        background-color: rgba($scs-100 , 0.48)
+        display: flex
+        justify-content: center
+        align-content: center
+        .card-unop__block-left__title__img-container__img
+          margin: auto
+          color: $brd-600
+      .card-unop__block-left__title-lbl
+        font-size: 12px
+        font-weight: 500
+        line-height: 2
+        letter-spacing: normal
+        color: $cbn-900
+        margin-left: 8px
+    .card-unop__block-left__store
+      font-size: 14px
+      font-weight: 500
+      line-height: 2
+      letter-spacing: normal
+      color: $cbn-900
+      margin-top: 6px
+    .card-unop__block-left__date
+      font-size: 12px
+      font-weight: normal
+      line-height: 2
+      letter-spacing: normal
+      color: $cbn-mid-600
+  .card-unop__block-right
+    flex-grow: 1
+    .card-unop__block-right__title
+      display: flex
+      .card-unop__block-right__title__img-container
+        width: 20px
+        height: 20px
+        border-radius: 50%
+        background-color: rgba($scs-100 , 0.48)
+        display: flex
+        justify-content: center
+        align-content: center
+        .card-unop__block-right__title__img-container__img
+          margin: auto
+          color: $brd-600
+      .card-unop__block-right__title-lbl
+        font-size: 12px
+        font-weight: 500
+        line-height: 2
+        letter-spacing: normal
+        color: $cbn-900
+        margin-left: 8px
+    .card-unop__block-right__value
+      font-size: 14px
+      font-weight: 500
+      line-height: 2
+      letter-spacing: normal
+      color: $hlt-600
+      margin-top: 6px
+
+
+@media only screen and (min-width: $break-desktop-min)
+  .card-unop
+    width: 456px

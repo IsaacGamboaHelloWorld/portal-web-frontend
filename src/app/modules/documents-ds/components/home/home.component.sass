@@ -1,0 +1,26 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.documents-home-ds
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 100%
+  margin-top: 24px
+  &__item
+    margin-bottom: 16px
+    &:last-child
+      margin-bottom: 0
+  
+@media only screen and (min-width: $break-small-table-min)
+  .documents-home-ds
+    &__item
+      margin-bottom: 24px
+      &:last-child
+        margin-bottom: 24px
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .documents-home-ds
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: space-between

@@ -1,0 +1,105 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.totp-home
+  display: flex
+  flex-direction: column
+  margin: 16px 0px
+  .qr-container
+    .qr-desc
+      font-size: 14px
+      font-weight: 600
+      line-height: 2
+      letter-spacing: normal
+      color: $wrn-600
+    .qr-note
+      margin-top: 12px
+      font-size: 12px
+      font-weight: normal
+      line-height: 2
+      letter-spacing: normal
+      color: $cbn-mid-600
+    .img-container
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+      width: 100%
+      padding: 24px
+      margin: 24px auto
+      background-color: $cbn-lgt-100
+      border-radius: 12px
+      border: 1px solid $transparent-08
+      .img-qr
+        width: 300px
+        height: auto
+    .btn-container
+      margin-top: 24px
+      width: 100%
+      display: flex
+      justify-content: center
+      width: 100%
+  .loading-container
+    display: flex
+    align-items: center
+    height: 300px
+    align-self: center
+
+  .title-devices
+    margin: 8px 0 24px 0
+  .card-home-opt-sec-container
+    background-color: $carbon-light-100
+    max-width: 380px
+    min-height: auto
+    border-radius: 12px
+    box-shadow: 0 1px 2px 0 $transparent-08
+    margin-bottom: 16px
+    align-self: center
+    &:hover
+      cursor: pointer
+    .card-header-os
+      display: flex
+      flex-direction: row
+      align-items: center
+      padding: 16px 8px 16px 16px
+      .img-container
+        height: 40px
+        width: 40px
+        padding: 8px
+        background-color: rgba($act-100, 0.72)
+        img
+          width: 24px
+          height: 24px
+          background-repeat: no-repeat
+      .header-body-os
+        flex: 1 1
+        margin-left: 16px
+        h4
+          font-size: 14px
+          font-weight: 600
+          line-height: 2
+          letter-spacing: normal
+          color: $black-750
+        p
+          font-size: 12px
+          font-weight: normal
+          line-height: 2
+          letter-spacing: normal
+          color: $cbn-mid-600
+      em
+        color: $act-900
+        font-size: 16px
+
+@media only screen and (min-width: $break-small-table-min)
+  .totp-home
+    .qr-container
+      .img-container
+        width: 350px
+      .btn-container
+        justify-content: center
+        .btn
+          width: 100%
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+
+@media only screen and (min-width: $break-desktop-lg-min)

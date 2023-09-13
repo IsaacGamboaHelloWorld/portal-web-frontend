@@ -1,0 +1,52 @@
+<div class="step-confirmation-fd animated fade-in-up">
+  <app-ticket [imageTicket]="'/confirmation.png' | imageCdn"
+    [title]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.CONFIRM.TITLE' | translate"
+    [messageTitle]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.CONFIRM.AMOUNT_LBL' | translate"
+    [messageText]="(formThree$ | async)?.amountText | currencyFormat : true : 'decimal-vouchers'"
+    [listTemplate]="list"></app-ticket>
+  <div class="footer-step-confirmation">
+    <app-btn
+      [class]="'btn-primary'" [disabled]="(initPaymentPse$ | async)?.loading"
+      [text]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.CONFIRM.BUTTON_OK' | translate"
+      [isLoading]="(initPaymentPse$ | async)?.loading"
+      (clickBtn)="submitData()"
+    ></app-btn>
+  </div>
+</div>
+
+<ng-template #list>
+  <ul>
+    <li>
+        <span>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.CONFIRM.FROM_LBL' | translate}}</span>
+        <p> {{ 'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_1.PSE' | translate }} </p>
+    </li>
+    <li>
+        <span>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.CONFIRM.PRODUCT_TO_PAY' | translate}}</span>
+        <ng-container [ngSwitch]="(typeProductSelected$ | async)?.activePayment?.accountType">
+          <ng-container *ngSwitchCase="getTypePayment.CREDIT_CARD" [ngTemplateOutlet]="typeCreditCardTmp"></ng-container>
+          <ng-container *ngSwitchCase="getTypePayment.TC" [ngTemplateOutlet]="typeCreditCardTmp"></ng-container>
+          <ng-container *ngSwitchDefault [ngTemplateOutlet]="typeFreeDestiny"></ng-container>
+        </ng-container>
+    </li>
+    <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+        <p [innerHTML]=" costTransfer | currencyFormat : true : 'decimal-vouchers fs-14' "></p>
+    </li>
+</ul>
+</ng-template>
+
+<ng-template #typeCreditCardTmp>
+  <p class="type-product-pay">
+    <img [src]="((typeProductSelected$ | async)?.activePayment?.accountId | typeCreditCard)?.img | imageCdn" alt="">
+    {{'PRODUCT_TYPES.' + (typeProductSelected$ | async)?.activePayment?.accountType?.toUpperCase() | translate }}
+    No. {{ (typeProductSelected$ | async)?.activePayment?.accountId | creditCardMask | creditCardHidden | slice: -8 }}
+  </p>
+</ng-template>
+
+<ng-template #typeFreeDestiny>
+  <p class="type-product-pay">
+    {{'PRODUCT_TYPES.' + (typeProductSelected$ | async)?.activePayment?.accountType | translate }}
+    {{ (typeProductSelected$ | async)?.activePayment?.loanName }}
+    No - {{ (typeProductSelected$ | async)?.activePayment?.accountId }}
+  </p>
+</ng-template>

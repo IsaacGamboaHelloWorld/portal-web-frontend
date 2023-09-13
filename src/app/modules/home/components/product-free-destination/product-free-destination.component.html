@@ -1,0 +1,51 @@
+<article class="product-global product-free-destination  shadow-4dp hover-16dp">
+  <div class="product-global-content">
+    <div class="product-global-account-type">
+      <div class="product-global-account-type-info">
+        <p>{{product?.creditName | titlecase }}</p>
+        <small>{{'PRODUCT.NUMBER' | translate }}. {{ product?.accountIdentifier }}</small>
+      </div>
+    </div>
+
+    <ng-container *ngIf="hasProduct; else loadingOrError">
+      <div class="product-global-account-amount">
+
+        <ng-container *ngIf="neededToPay">
+          <p>{{'PRODUCT.FREE_DESTINATION.MINIMUM_PAYMENT' | translate}}</p>
+          <strong [innerHTML]="product?.minimumAmountToPay | currencyFormat: true"></strong>
+        </ng-container>
+
+        <ng-container *ngIf="!neededToPay">
+          <p>{{'PRODUCT.FREE_DESTINATION.TOTAL_BALANCE' | translate}}</p>
+          <strong [innerHTML]="product?.outstandingBalance | currencyFormat: true"></strong>
+          <small>{{'PRODUCT.FREE_DESTINATION.CREDIT_AMOUNT' | translate}}: <span [innerHTML]="product?.approvalAmount | currencyFormat: true"></span></small>
+        </ng-container>
+      </div>
+      <div class="product-global-account-view-detail" *ngIf="(optionsModule$ | async).data.product_detail.show">
+        <a class="link" (click)="redirect(product.accountIdentifier)">{{'PRODUCT.VIEW_DETAIL' | translate}} <em
+            class="icon-arrow-right-circle"></em></a>
+      </div>
+    </ng-container>
+  </div>
+
+  <span *ngIf="hasProduct" class="product-global-footer-line"></span>
+  <div *ngIf="hasProduct && product?.dueDays && product?.dueDays > 0" class="product-global-footer">
+    <div>
+      <span>{{'PRODUCT.FREE_DESTINATION.DUE_DAYS' | translate}}</span>
+      <strong>{{product.dueDays }}</strong>
+    </div>
+    <div class="payment-button-container" *ngIf="neededToPay && false">
+      <button type="button" (click)="payCredit()" class="btn btn-primary">{{'PRODUCT.FREE_DESTINATION.BUTTON_PAY' |
+        translate}}</button>
+    </div>
+    <div *ngIf="debt">
+      <span>{{'PRODUCT.FREE_DESTINATION.HAS_PAYMENT' | translate}} {{ debt | currencyFormat }}% </span>
+      <progress class="debt_status" max="100" [value]="debt"></progress>
+    </div>
+  </div>
+
+</article>
+
+<ng-template #loadingOrError>
+  <app-product-loading-error [product]="product"></app-product-loading-error>
+</ng-template>

@@ -1,0 +1,240 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.home-pfm-container
+  .form-dropdowns
+    display: flex
+    .select-month, .select-account
+      width: 168px
+    .select-month
+      margin-right: 7px
+  .graph-pfm-container
+    width: 100%
+    min-height: 390px
+    padding: 40px 0px 0px
+    border-radius: 12px
+    box-shadow: 0 2px 4px 0 $transparent-08
+    background-color: $cbn-lgt-100
+    margin-top: 24px
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    &.no-data
+      min-height: 268px
+      height: 268px
+      padding: 0
+    .title
+      font-size: 16px
+      font-weight: 600
+      line-height: 1.75
+      letter-spacing: normal
+      color: $black-750
+      margin-bottom: 24px
+    .container-inex
+      min-height: 200px
+      width: 90%
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+    pzl-list-expenses
+      width: 100%
+    pzl-list-incomes
+      width: 100%
+    ::-webkit-scrollbar
+      width: 4px
+      border-radius: 8px
+
+    ::-webkit-scrollbar-track
+      background: transparent
+
+    ::-webkit-scrollbar-thumb
+      background: $hlt-100
+      border-radius: 8px
+      height: 40px
+    .pt
+      margin-top: 24px
+    .pb
+      margin-bottom: 24px
+    .hr-border
+      width: 100%
+      height: 1px
+      background-color: $cbn-lgt-900
+    .total-lbl
+      font-size: 12px
+      font-weight: normal
+      line-height: 2
+      letter-spacing: normal
+      color: $cbn-900
+      display: flex
+      justify-content: space-between
+      align-items: center
+      width: 100%
+      margin: 5px
+    .total-value
+      font-size: 14px
+      font-weight: bold
+      line-height: 2
+      letter-spacing: normal
+      text-align: right
+
+    // override styles for pfm component
+    .pzl-balance-chart__content
+      min-width: 318px
+    .pzl-balance-chart__summary
+      width: 318px
+      .pzl-summary-balance__label.previous-balance-label
+        .pzl-summary-balance__icon--incomes
+          display: none !important
+      .pzl-summary-balance__label
+        margin-bottom: 13px
+        .pzl-icon
+          cursor: none
+        .pzl-currency__integer
+          font-size: 14px
+        .pzl-summary-balance__name
+          font-size: 12px
+      .pzl-summary-balance__step::before
+        box-sizing: content-box
+
+    // styles for toast info
+    .form-notification
+      background-color: rgba($inf-100, 0.24)
+      border: solid 1px $inf-100
+      width: 100%
+      margin-top: 23px
+      border-radius: 6px
+      .form-notification-container
+        display: flex
+        padding: 16px 0px
+        border-radius: 6px
+        width: 100%
+        .bar
+          width: 4px
+          height: 24px
+          margin-left: 4px
+          border-radius: 2px
+          background-color: $inf-400
+        .img-container
+          height: 24px
+          width: 24px
+          border-radius: 12px
+          padding: 4px
+          margin-left: 12px
+          background-color: $inf-100
+          .img
+            width: 15px
+            height: 15px
+            background-repeat: no-repeat
+            background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNyIgdmlld0JveD0iMCAwIDE2IDE3Ij4KICAgIDxnIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGc+CiAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgPGc+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0wIDBMMTYgMCAxNiAxNiAwIDE2eiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTU0OCAtNTIwKSB0cmFuc2xhdGUoNTI0IDUwMC41KSB0cmFuc2xhdGUoMjQgMjApIi8+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwYXRoIGZpbGw9IiMxMDY4RDkiIGZpbGwtcnVsZT0ibm9uemVybyIgZD0iTTcuMjE4IDIuNjIybC4wNC4xMDYuMDc2LjIxN2MxLjQyNS0uMDEyIDIuNzcuODM2IDMuMzIzIDIuMjE2bC4wNi4xNi42MSAxLjc2MmMuMDczLjIxLjIyNi4zOC40MjYuNDc3bC41NDcuMjY1Yy4zOS4xOS43LjUwOS44ODYuOTIybC4wNS4xMjljLjMyLjkxOS0uMTczIDEuOTItMS4wOTkgMi4yMzdsLTIuNTcuODhjLjIwOC45ODYtLjM1IDEuOTk0LTEuMzM1IDIuMzMtLjk4NS4zMzctMi4wNS0uMTE3LTIuNDk3LTEuMDIxbC0uNDAyLjEzOGMtLjg3NC4zLTEuODMyLS4xMi0yLjIwOC0uOTc2bC0uMDQ1LS4xMTVjLS4xNi0uNDYtLjEyOS0uOTYzLjA4Ni0xLjRsLjI2Ni0uNTQ0Yy4wOTgtLjE5OS4xMTItLjQyNy4wNC0uNjM3TDIuODYgOC4wMDdjLS41MS0xLjQ3LjAxNi0zLjA0NCAxLjE5My0zLjk0bC0uMDc2LS4yMThjLS4zMTEtLjg5OS4xNy0xLjg3OCAxLjA3NS0yLjE4OC44Ny0uMjk4IDEuODE0LjEzIDIuMTY1Ljk2MXptMS4zODEgOS43MDJsLTEuODk2LjY0OGMuMjU0LjM4My43NDUuNTYyIDEuMjAxLjQwNi40NTctLjE1Ni43MzMtLjU5OC42OTUtMS4wNTR6TTkuNzIyIDUuNTNjLS41LTEuMjQ2LTEuOTAyLTEuODg2LTMuMTg1LTEuNDQ4bC0xLjE1LjM5NEM0LjA2IDQuOTMgMy4zNTcgNi4zNjUgMy44MTMgNy42OGwuNjEgMS43NjFjLjE2LjQ2LjEzLjk2NC0uMDg2IDEuNDAxbC0uMjY2LjU0M2MtLjA5OC4yLS4xMTIuNDI4LS4wNDYuNjE4bC4wMy4wNzhjLjE1OS4zNi41NzMuNTQyLjk1LjQxM2w2LjgwNC0yLjMyN2MuNC0uMTM3LjYxMy0uNTcuNDgzLS45NDZsLS4wMzUtLjA4OWMtLjA4LS4xNzgtLjIyLS4zMjMtLjM5OC0uNDA5bC0uNTQ3LS4yNjVjLS40NC0uMjEyLS43NzctLjU5LS45MzctMS4wNUw5Ljc3IDUuNjU3em0tNC4zNC0yLjkyNWMtLjM1NS4xMjEtLjU1NS40ODgtLjQ3NC44NDJsLjAyMi4wNzYuMDE3LjA0OC4xMTItLjA0IDEuMTUtLjM5NC4xMTQtLjAzNy0uMDE3LS4wNDdjLS4xMy0uMzc4LS41NDUtLjU3OC0uOTI0LS40NDh6IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNTQ4IC01MjApIHRyYW5zbGF0ZSg1MjQgNTAwLjUpIHRyYW5zbGF0ZSgyNCAyMCkiLz4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=")
+        .content
+          width: 100%
+          display: flex
+          flex-direction: column
+          margin: 0px 8px
+          span
+            font-family: Inter
+            font-size: 12px
+            font-weight: 500
+            line-height: 2
+          .message
+            color: $black-750
+            font-weight: 600
+            line-height: 2.15
+            width: 100%
+          .sub-message
+            color: $cbn-mid-400
+
+  .graph-pfm-no-data
+    width: 343px
+    height: 327px
+    background-color: $carbon-light-100
+    padding: 56px 24px
+    margin: 24px auto
+    border-radius: 12px
+    display: flex
+    flex-direction: column
+    align-items: center
+    .icon
+      width: 48px
+      height: 48px
+      border-radius: 24px
+      padding: 8px
+      background-color: $inf-100
+      margin: 0px auto
+      img
+        width: 32px
+        height: 32px
+    .title
+      font-size: 16px
+      font-weight: 600
+      line-height: 1.55
+      letter-spacing: normal
+      margin:  15px auto 12px
+      color: $black-750
+    .description
+      font-size: 13px
+      font-weight: normal
+      line-height: 2.15
+      letter-spacing: normal
+      text-align: center
+      color: $black-750
+      margin: 0px 8px
+    .btn-primary
+      background: $hlt-600
+      width: 295px
+      height: 48px
+      margin-top: 24px
+      font-size: 14px
+      font-weight: 600
+      line-height: 1.71
+      letter-spacing: normal
+
+@media only screen and (min-width: $break-small-table-min)
+  .home-pfm-container
+    .form-dropdowns
+      .select-month, .select-account
+        width: 248px
+      .select-month
+        margin-right: 24px
+    .graph-pfm-container
+      padding: 16px 28px 0
+      .container-inex
+        width: 100%
+      .pt
+        margin-top: 32px
+      .pt-ex
+        margin-top: 24px
+      .form-notification
+        margin-top: 36px
+
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .home-pfm-container
+    .form-dropdowns
+      .select-month, .select-account
+        width: 296px
+      .select-month
+        margin-right: 24px
+    .graph-pfm-container
+      padding: 30px 29px 38px 35px
+      &.no-data
+        min-height: 390px
+        height: 390px
+        padding: 0
+      // override styles for pfm component
+      .pzl-balance-chart__content
+        min-width: 320px !important
+      .pzl-balance-chart__summary
+        width: 100%
+        .pzl-summary-balance__label
+          margin-bottom: 16px
+
+@media only screen and (min-width: $break-desktop-min)
+  .home-pfm-container
+    .form-dropdowns
+      .select-month, .select-account
+        width: 376px
+    .graph-pfm-container
+      padding: 35px 36px 36px 40px

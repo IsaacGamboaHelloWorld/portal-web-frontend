@@ -1,0 +1,18 @@
+<div class="cont-modal-move-pockets">
+  <div class="img-modal">
+    <div class="cont-img">
+      <img [src]="img | imageCdn" alt="">
+    </div>
+  </div>
+  <div class="textModal">
+    <p class="title" [innerHTML]="title | translate"></p>
+    <p class="subTitle" [innerHTML]="desc | translate : { value: (value | currencyFormat), account: account }"></p>
+  </div>
+  <div class="btnModal">
+    <app-btn (clickBtn)="emitClick()"
+      [text]="(btnAgree | translate)"
+      [isLoading]="loading"
+      [disabled]="loading"
+      [class]="'btn btn-primary'"></app-btn>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<label>{{label | translate}}</label>
+<div class="card-service-selected" *ngIf="data">
+    <p class="mask"></p>
+    <div class="head">
+        <p>{{data?.billerName}}</p>
+        <span>{{ 'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.REF_PAYMENT' | translate}}  {{data?.contract}}</span>
+        <p class="nickname">{{data?.billerNickName || data?.billerNickname}}</p>
+        <p class="value" *ngIf="data?.amount > 0">{{data?.amount | currencyFormat}}</p>
+    </div>
+</div>

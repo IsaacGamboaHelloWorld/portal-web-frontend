@@ -1,0 +1,91 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.ds-tabbar-container
+  z-index: 1
+  position: sticky
+  display: block
+  left: 0
+  right: 0
+  bottom: 0
+  width: 100%
+  height: 64px
+  background-color: $cbn-lgt-100
+  box-shadow: 0 -2px 4px 0 $transparent-08
+  .list-container
+    display: flex
+    justify-content: space-around
+    .item
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 68px
+      position: relative
+      .li-content
+        position: relative
+        display: flex
+        flex-direction: column
+        align-items: center
+        small:is(.bar, .hide-bar)
+          width: 36px
+          height: 4px
+          border-bottom-left-radius: 4px
+          border-bottom-right-radius: 4px
+          position: absolute
+        .bar
+          background-color: $hlt-600
+        .hide-bar
+          background-color: $cbn-lgt-100
+        .badge
+          display: none
+          position: absolute
+          top: 0
+          right: 0
+          width: 8px
+          height: 8px
+          border-radius: 4px
+          background-color: $act-900
+          &.show
+            display: block
+        i
+          margin-top: 16px
+          width: 24px
+          height: 24px
+          font-size: 24px
+          color: $cbn-mid-600
+          position: relative
+        p
+          font-size: 11px
+          font-weight: 500
+          line-height: 1.82
+          letter-spacing: normal
+          text-align: center
+          color: $cbn-mid-600
+      &.disable
+        cursor: not-allowed
+        .li-content
+          pointer-events: none
+          .bar
+            display: none
+          i, p
+            color: rgba($cbn-mid-100, 0.48)
+      &.active
+        .li-content
+          .hide-bar
+            display: none
+          i
+            color: $hlt-600
+          p
+            font-weight: 600
+            color: $black-750
+  &.absolute
+    position: absolute
+
+
+
+@media only screen and (min-width: $break-medium-table-landscape-min)
+  .ds-tabbar-container
+    left: $menu-lat-width
+    width: calc( 100% - #{$menu-lat-width})
+    display: none
+

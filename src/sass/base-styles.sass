@@ -1,0 +1,458 @@
+@import 'variables'
+@import 'colors'
+@import 'mixins'
+@import 'globalVars'
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video
+  margin: 0
+  padding: 0
+  border: 0
+  font-size: 100%
+  vertical-align: baseline
+  font-weight: normal
+
+
+*
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+  border: 0
+  font-size: 100%
+  vertical-align: baseline
+  outline: none
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+  line-height: 1.25
+  font-weight: normal
+
+h1
+  font-size: $f-30 + 4
+  letter-spacing: -0.62px
+
+h2
+  font-size: $f-30 - 2
+  letter-spacing: -0.2px
+
+h3
+  font-size: $f-20 + 1
+  letter-spacing: -0.51px
+
+h4
+  font-size: $f-20 - 2
+  letter-spacing: -0.42px
+
+h5
+  font-size: $f-14 + 2
+  letter-spacing: -0.38px
+
+h6
+  font-size: $f-14
+  letter-spacing: -0.34px
+
+
+img
+  vertical-align: top
+  font-size: 0
+
+ul
+  margin: 0
+  padding: 0
+  list-style: none
+  color: $carbon-dark-900
+  font-weight: 300
+
+.scroll-horizontal
+  white-space: nowrap
+  overflow-x: auto
+  -webkit-overflow-scrolling: touch
+
+strong
+  font-weight: 700
+
+a
+  text-decoration: none
+  &.not-select
+    cursor: default
+
+html
+  &.show-recaptcha
+    .grecaptcha-badge
+      z-index: 5
+      opacity: 1
+      visibility: visible
+
+body
+  margin: 0
+  padding: 0
+  position: relative
+  font-size: $f-14
+  font-family: $text-font
+  background: $carbon-light-400
+  overscroll-behavior: none
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  scroll-behavior: smooth
+  -webkit-tap-highlight-color: transparent
+  -webkit-touch-callout: none
+
+.wrapper
+  width: 100%
+  padding: 0 26px 0 156px
+  &.not-space-right
+    padding-right: 0
+
+
+.clearfix
+  &::after
+    clear: both
+  &::before,
+  &::after
+    content: ' '
+    display: table
+
+.clear
+  clear: both
+
+.columns,
+.column
+  padding: 0 8px
+  &.not-space
+    padding: 0
+
+
+.visible-mobile,
+.visible-tablet
+  display: none
+
+.not-select
+  user-select: none
+
+.element-hidden
+  display: none
+  &.block
+    display: block
+
+.capitalize
+  text-transform: capitalize
+
+.go_back
+  cursor: pointer
+  +inline(top)
+  i
+    +inline(middle)
+    font-size: $f-14 + 4
+    margin-right: 5px
+    padding: 1px
+    border: 1px solid $carbon-light-100
+    border-radius: 100%
+
+.shadow-1dp
+  box-shadow: 0 1px 3px 0 rgba($carbon-dark-900, 0.14)
+  transition: .3s
+  &.hover-4dp
+    &:hover
+      box-shadow: 0 4px 16px 0 rgba($carbon-dark-900, 0.14)
+
+
+.shadow-4dp
+  box-shadow: 0 4px 16px 0 rgba($carbon-dark-900, 0.14)
+  transition: .3s
+  &.hover-16dp
+    &:hover
+      box-shadow: 0 16px 24px 0 rgba($carbon-dark-900, 0.14)
+
+.paragraph-small
+  letter-spacing: -0.3px
+  font-size: $f-14 - 1
+  line-height: 23px
+
+.paragraph-default
+  letter-spacing: -0.34px
+  line-height: 24px
+  font-size: $f-14 + 1
+  .outstanding
+    font-weight: 500
+
+.title-section
+  font-size: $f-20
+  line-height: 24px
+  letter-spacing: -0.24px
+
+.slider-container
+  position: relative
+  overflow: hidden
+  padding-bottom: 15px
+
+.tns-outer [hidden]
+  display: none
+
+.tns-slider
+  transition: all 0s
+  .tns-item
+    position: relative
+
+.tns-horizontal.tns-subpixel > .tns-item
+  display: inline-block
+  vertical-align: top
+  white-space: normal
+
+.tns-liveregion
+  display: none
+
+.decimal-numbers
+  display: inline-block
+  font-size: calc(1em - 20%)
+  color: $carbon-mid-100
+.decimal-vouchers
+  font-size: 28px
+  font-weight: 600
+
+.tns-nav
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 0
+  text-align: center
+  button
+    width: 6px
+    height: 6px
+    opacity: .5
+    background: $carbon-light-100
+    border-radius: 50%
+    margin: 0 4px
+    cursor: pointer
+    transition: .3s
+    &.tns-nav-active
+      opacity: 1
+
+.tns-controls
+  button
+    position: absolute
+    top: 50%
+    transform: translateY(-50%)
+    z-index: 2
+    background: transparent
+    color: $carbon-light-100
+    cursor: pointer
+    &::after
+      font-family: 'icomoon'
+      font-size: $f-20 + 4
+    &[data-controls='prev']
+      left: 0
+      &::after
+        content: '\e90f'
+    &[data-controls='next']
+      right: 0
+      &::after
+        content: '\e90e'
+
+.hidden-button-close
+  .modal-box
+    .cancel_btn
+      display: none
+
+.ng-select.ng-select-single
+  .ng-select-container
+    height: 48px
+    padding: 2px
+    border-color: $carbon-mid-100
+    input
+      height: 42px
+      padding-left: 0px
+
+@keyframes lds-flickr-opacity
+  0%
+    transform: translate(0 0)
+    opacity: 1
+
+  49.99%
+    opacity: 1
+    transform: translate(20px, 0)
+
+  50%
+    opacity: 0
+    transform: translate(20px, 0)
+
+  100%
+    opacity: 0
+    transform: translate(0, 0)
+
+
+@keyframes lds-flickr
+  0%
+    transform: translate(0, 0)
+
+  50%
+    transform: translate(20px, 0)
+
+  100%
+    transform: translate(0, 0)
+
+
+
+.lds-flickr
+  position: relative
+  width: 200px
+  height: 30px
+
+.lds-flickr div
+  position: absolute
+  width: 15px
+  height: 15px
+  border-radius: 50%
+  top: 0
+  left: 80px
+
+.lds-flickr div:nth-child(1)
+  background: $g-500
+  animation: lds-flickr 1s linear infinite
+  animation-delay: -0.5s
+
+.lds-flickr div:nth-child(2)
+  background: $gc-600
+  animation: lds-flickr 1s linear infinite
+  animation-delay: 0s
+
+.lds-flickr div:nth-child(3)
+  background: $g-500
+  animation: lds-flickr-opacity 1s linear infinite
+  animation-delay: -0.5s
+
+.grecaptcha-badge
+  visibility: hidden
+  opacity: 0
+  z-index: -1
+  &.show
+    z-index: 5
+    opacity: 1
+    visibility: visible
+
+.half-circles
+  position: relative
+  &::after,
+  &::before
+    position: absolute
+    content: ''
+    height: 10px
+    width: 20px
+    background: $carbon-light-400
+    top: 0
+    z-index: 1
+    border-top-right-radius: 10px
+    border-top-left-radius: 10px
+  &::after
+    right: -5px
+    box-shadow: 4px 0 7px -4px rgba($carbon-dark-900, .14) inset
+    transform: rotate(270deg)
+  &::before
+    left: -5px
+    box-shadow: -4px 0 7px -4px rgba($carbon-dark-900, .14) inset
+    transform: rotate(90deg)
+
+.grecaptcha-badge
+  bottom: 48px !important
+
+.loading-global
+  position: relative
+  &::after
+    content: ''
+    position: absolute
+    height: 100%
+    width: 500px
+    top: 0
+    left: -500px
+    background-image: linear-gradient(90deg,hsla(0,0%,100%,0),hsla(0,0%,100%,.6),hsla(0,0%,100%,0))
+    animation: skeleton-progress 1.2s ease-in-out infinite
+
+.placeholder-box
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+  background-color: var(--white)
+
+.placeholder
+  +loading()
+  &.width-10
+    width: 10%
+  &.width-20
+    width: 20%
+  &.width-30
+    width: 30%
+  &.width-40
+    width: 40%
+  &.width-50
+    width: 50%
+  &.width-60
+    width: 60%
+  &.width-70
+    width: 70%
+  &.width-80
+    width: 80%
+  &.width-90
+    width: 90%
+
+.ui-widget-overlay
+  background: $carbon-dark-900
+  opacity: 0.7
+
+.fs-14
+  font-size: 14px
+
+.fs-18
+  font-size: 18px
+
+.input-medium
+  height: 48px
+.input-large
+  height: 40px
+
+.pb-rounded-50
+  border-radius: 50%
+
+.pb-visible
+  visibility: visible !important
+
+.pb-invisible
+  visibility: hidden !important
+
+.mt-0
+  margin-top: 0 !important
+
+.hr-border
+  width: 100%
+  height: 1px
+  background-color: $cbn-lgt-900
+
+
+@media only screen and (max-width: $break-medium-table-portrait-max)
+  .wrapper
+    padding-right: 30px
+  .hidden-tablet
+    display: none
+  .visible-tablet
+    display: block
+
+@media only screen and (max-width: $break-medium-table-portrait-max)
+  .wrapper
+    padding: 0 15px
+    &.not-space-mobile
+      padding: 0
+  .hidden-mobile
+    display: none
+  .visible-mobile
+    display: block

@@ -1,0 +1,50 @@
+<div class="cont-table-movements" *ngIf="hasMovements">
+    <div class="scroll-table-header">
+        <p class="datecell">{{'MOVEMENT.DEPOSIT.DATE' | translate}}</p>
+        <p class="titlecell">{{'MOVEMENT.DEPOSIT.DESCRIPTION' | translate}}</p>
+        <p class="valuecell">{{'MOVEMENT.DEPOSIT.VALUE' | translate}}</p>
+    </div>
+    <div class="scroll-table">
+        <ul class="table-movements-desktop">
+            <li *ngFor="let movement of movements; let i = index">
+                <div class="info-movement">
+                    <p class="datecell">{{movement.transactionInformation.transactionDate | date:'dd/MMM/yyyy' | replace : '.' : ''}}</p>
+                    <p class="titlecell">{{movement.transactionInformation.transactionType}}</p>
+                    <div class="valuecell">
+                        <p *ngIf="showIncome(movement.amountsWithOperationType.INCOME, movement.amountsWithOperationType.OUTCOME)" class="green" [innerHTML]="movement.amountsWithOperationType.INCOME | currencyFormat: true"></p>
+                        <p *ngIf="!showIncome(movement.amountsWithOperationType.INCOME, movement.amountsWithOperationType.OUTCOME)" [innerHTML]="'-' +(movement.amountsWithOperationType.OUTCOME | currencyFormat: true)"></p>
+                        <em [ngClass]="toggle[i] ? 'icon-minus': 'icon-plus'" (click)="toggle[i] = !toggle[i];"></em>
+                    </div>
+                </div>
+                <div class="info-hidden" [class.show]="toggle[i]">
+                    <div>
+                        <p><span>{{'MOVEMENT.DEPOSIT.OFFICCE' | translate}}:</span> {{movement.officeInformation.officeName}}</p>
+                        <p><span>{{'MOVEMENT.DEPOSIT.NID' | translate}}:</span> {{movement.officeInformation.officeId}}</p>
+                        <p *ngIf="showVal(movement.amountsWithOperationType.CASH)"><span>{{'MOVEMENT.DEPOSIT.VALUE_CASH' | translate}}: </span><small [innerHTML]="movement.amountsWithOperationType.CASH | currencyFormat: true"></small></p>
+                        <p *ngIf="showVal(movement.amountsWithOperationType.TICKET)"><span>{{'MOVEMENT.DEPOSIT.VALUE_BILL' | translate}}: </span><small [innerHTML]="movement.amountsWithOperationType.TICKET | currencyFormat: true"></small></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="table-movements-mobile">
+            <li *ngFor="let movement of movements | searchTextMovement: filterText; let i = index">
+                <div class="info-movement">
+                    <p class="datecell"><span class="capitalize">{{movement.transactionInformation.transactionDate | date:'dd/MMM/yyyy' | replace : '.' : ''}}</span><br>{{movement.transactionInformation.transactionType}}</p>
+                    <div class="valuecell">
+                        <p *ngIf="showIncome(movement.amountsWithOperationType.INCOME, movement.amountsWithOperationType.OUTCOME)" class="green" [innerHTML]="movement.amountsWithOperationType.INCOME | currencyFormat: true"></p>
+                        <p *ngIf="!showIncome(movement.amountsWithOperationType.INCOME, movement.amountsWithOperationType.OUTCOME)" [innerHTML]="'-' + (movement.amountsWithOperationType.OUTCOME | currencyFormat: true)"></p>
+                        <em [ngClass]="toggle[i] ? 'icon-minus': 'icon-plus'" (click)="toggle[i] = !toggle[i];"></em>
+                    </div>
+                </div>
+                <div class="info-hidden" [class.show]="toggle[i]">
+                    <div>
+                        <p><span>{{'MOVEMENT.DEPOSIT.OFFICCE' | translate}}:</span> {{movement.officeInformation.officeName}}</p>
+                        <p><span>{{'MOVEMENT.DEPOSIT.NID' | translate}}:</span> {{movement.officeInformation.officeId}}</p>
+                        <p *ngIf="showVal(movement.amountsWithOperationType.CASH)"><span>{{'MOVEMENT.DEPOSIT.VALUE_CASH' | translate}}: </span><small [innerHTML]="movement.amountsWithOperationType.CASH | currencyFormat: true"></small></p>
+                        <p *ngIf="showVal(movement.amountsWithOperationType.TICKET)"><span>{{'MOVEMENT.DEPOSIT.VALUE_BILL' | translate}}: </span><small [innerHTML]="movement.amountsWithOperationType.TICKET | currencyFormat: true"></small></p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>

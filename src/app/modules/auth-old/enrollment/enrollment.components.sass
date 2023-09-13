@@ -1,0 +1,34 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.cont-step-enrollment
+  padding-top: 38px
+  position: relative
+  .line-time
+    margin: 20px auto
+    .line
+      width: calc(100% - 30px)
+
+.reset-process
+  display: block
+  height: auto
+  text-align: left
+  margin-bottom: 13px
+  top: 10px
+  position: absolute
+  a
+    color: $gray3
+    font-size: $f-14
+    float: none
+    .icon-arrow-back
+      color: $gc-800
+      font-size: $f-20 + 4
+      vertical-align: middle
+
+@media only screen and (max-height: 690px)
+  .reset-process
+    top: 10px
+
+@media only screen and (max-width: $break-tablet)
+  .reset-process
+    top: 10px

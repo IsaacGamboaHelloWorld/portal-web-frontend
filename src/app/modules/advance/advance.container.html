@@ -1,0 +1,23 @@
+<app-template-system 
+  [title]="'ADVANCE.TITLE' | translate"
+  [subtitle]="'PENDING_TRANSFER.TRANSFER' | translate"
+  [navigatorActive]="true"
+  [sectionContent]="content"
+  [fullContent]="false"
+  [showClose]="true"
+  [sectionHome]="true"
+  [backUrl]="backUrl"
+  [stepsActive]="true"
+  [currentStep]="step"
+  [lineSteps]="nameSteps"
+  [paramRoute1]="param1"
+  [paramRoute2]="param2"
+ (eventModal)="backHome($event)"
+  >
+</app-template-system>
+
+<ng-template #content>
+<div class="cont-steps-advance pb-col-sp-4">
+  <router-outlet></router-outlet>
+</div>
+</ng-template>

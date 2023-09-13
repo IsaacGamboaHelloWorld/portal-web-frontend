@@ -1,0 +1,335 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.column
+  padding: 0
+
+.cont-home-2fa
+  width: 493px
+  .title-section
+    font-size: 16px
+    font-weight: 600
+  .cont-card-one-home
+    width: 100%
+    height: 80px
+    border-radius: 6px
+    border: solid 1px $carbon-light-600
+    background: $carbon-light-100
+    display: flex
+    .cont-icon-card-one
+      width: 45px
+      height: 24px
+      border-left: 4px $info-400 solid
+      position: relative
+      margin-top: 16px
+      left: 5px
+      .circle-icon-card-one
+        width: 24px
+        height: 24px
+        background-color: $info-100
+        border-radius: 200px
+        -moz-border-radius: 200px
+        -webkit-border-radius: 200px
+        display: flex
+        justify-content: center
+        align-items: center
+        margin-left: 12px
+        .icon-card-one
+          width: 16px
+          height: 16px
+          background-color: $info-600
+          mask: url('#{$base-url}/images/24-essential-bell-5.svg') no-repeat center / contain
+          -webkit-mask: url('#{$base-url}/images/24-essential-bell-5.svg') no-repeat center / contain
+    .cont-text-card-one
+      .title
+        width: 410px
+        height: 28px
+        margin: 16px 0 0 8px
+        font-family: Inter
+        font-size: 13px
+        font-weight: 600
+        font-stretch: normal
+        font-style: normal
+        line-height: 2.15
+        letter-spacing: normal
+        color: #0d0d0d
+      .sub-title
+        width: 410px
+        height: 24px
+        margin: 0 0 0 8px
+        font-family: Inter
+        font-size: 12px
+        font-weight: 500
+        font-stretch: normal
+        font-style: normal
+        line-height: 2
+        letter-spacing: normal
+        color: $carbon-mid-400
+  .cont-card-one-width
+    height: 134px
+  .cont-secure-phone
+    margin-top: 0
+    height: 194px
+  .cont-secure-email
+    width: 238px
+    height: 100%
+  .con-edit
+    position: absolute
+    bottom: 0
+  .cont-edit-mode
+    position: relative
+  .cont-secure-data-container-home
+    border-radius: 12px
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08)
+    background: $carbon-light-100
+    .cont-secure-data-container
+      width: 100%
+      height: 100%
+      p
+        position: relative
+        left: 64px
+        top: 20px
+        display: table-row
+      .title
+        font-size: 16px
+        font-weight: 500
+      .desc
+        font-size: 10px
+        font-weight: 500
+        color: $carbon-mid-600
+        height: 20px
+      ul
+        position: relative
+        left: 20px
+        top: 20%
+        li
+          font-size: 11px
+          font-weight: 500
+          .list
+            height: 20px
+            line-height: 2
+            letter-spacing: normal
+            color: $carbon-mid-400
+    .cont-icon-card-two
+      border-radius: 200px
+      -moz-border-radius: 200px
+      -webkit-border-radius: 200px
+      width: 36px
+      height: 36px
+      background-color: $secondary-100
+      display: flex
+      justify-content: center
+      align-items: center
+      position: absolute
+      left: 25px
+      top: 20px
+      .icon-card-two
+        width: 26px
+        height: 25px
+        background-color: $act-600
+        mask: url('#{$base-url}/images/24-essential-cellphone.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-essential-cellphone.svg') no-repeat center / contain
+    .cont-icon-card-three
+      border-radius: 200px
+      -moz-border-radius: 200px
+      -webkit-border-radius: 200px
+      width: 36px
+      height: 36px
+      background-color: $secondary-100
+      display: flex
+      justify-content: center
+      align-items: center
+      position: absolute
+      left: 25px
+      top: 20px
+      .icon-card-three
+        width: 24px
+        height: 24px
+        background-color: $act-600
+        mask: url('#{$base-url}/images/24-essential-email-8.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-essential-email-8.svg') no-repeat center / contain
+  .cont-input
+    padding: 16px 24px
+    label
+      font-size: 12px
+      font-weight: 500
+    input
+      height: 40px
+      color: #7b7b7b
+      border: solid 1px #d9d9d9
+    input:focus
+      background-color: $carbon-light-400
+      border-color: $carbon-mid-600
+    .contact-preference-message
+      margin-top: 10px
+      line-height: 2
+      letter-spacing: normal
+      color: $carbon-mid-400
+    &.active
+      border-color: $g-500
+  .cont-actions
+    height: 56px
+    text-align: center
+    width: 100%
+    background-color: rgba(245, 245, 245, 0.32)
+    padding: 15px 0
+    &.edit-mode
+      a
+        position: relative
+        left: 0
+        right: 0
+        margin: 10px
+    .update
+      font-size: 12px
+      color: $hlt-900
+      position: absolute
+      right: 20px
+      .icon-btn-update
+        position: relative
+        bottom: 5px
+        width: 26px
+        height: 26px
+        background-color: $hlt-900
+        mask: url('#{$base-url}/images/24-essential-check-10.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-essential-check-10.svg') no-repeat center / contain
+    .valid-update
+      pointer-events: none
+      color: $carbon-mid-100
+      .icon-btn-update
+        background-color: $carbon-mid-100
+    .cancel
+      font-size: 12px
+      color: $act-900
+      position: absolute
+      left: 20px
+      .icon-btn-cancel
+        position: relative
+        bottom: 5px
+        width: 26px
+        height: 26px
+        background-color: $act-900
+        mask: url('#{$base-url}/images/24-essential-delete-32.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-essential-delete-32.svg') no-repeat center / contain
+  .cont-card-error
+    width: 493px
+    display: flex
+    align-items: center
+    justify-content: center
+    flex-direction: column
+    text-align: center
+    button
+      width: 129px
+      height: 40px
+      line-height: 0
+      padding: 0
+      position: relative
+      top: 24px
+      background: $hlt-600
+    .cont-text-card-error
+      display: flex
+      align-items: center
+      justify-content: center
+      flex-direction: column
+      margin: 12px 0 0 0
+      .title-error
+        width: 224px
+        height: 28px
+        font-family: Inter
+        font-size: 16px
+        font-weight: 600
+        font-stretch: normal
+        font-style: normal
+        line-height: 1.75
+        letter-spacing: normal
+        text-align: center
+        color: #0d0d0d
+      .text-error
+        width: 272px
+        height: 56px
+        font-family: Inter
+        font-size: 13px
+        font-weight: normal
+        font-stretch: normal
+        font-style: normal
+        line-height: 2.15
+        letter-spacing: normal
+        text-align: center
+    .circle-icon-error
+      width: 48px
+      height: 48px
+      background-color: $err-100
+      border-radius: 200px
+      -moz-border-radius: 200px
+      -webkit-border-radius: 200px
+      display: flex
+      justify-content: center
+      align-items: center
+      .icon-card-error
+        width: 32px
+        height: 32px
+        background-color: $err-600
+        mask: url('#{$base-url}/images/24-essential-sticker-14.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-essential-sticker-14.svg') no-repeat center / contain
+  .action
+    position: absolute
+    margin: 0 0 0 8px
+    bottom: 16px
+    color: $inf-600
+    font-size: 12px
+    font-weight: 600
+
+@media only screen and (max-width: $break-mobile)
+  .cont-home-2fa
+    width: 343px
+    margin-right: 16px
+    margin-left: 16px
+    .column
+      padding: 0
+    .cont-card-one-home
+      width: 100%
+      height: 134px
+      .cont-text-card-one
+        width: 271px
+        .title
+          width: 100%
+        .sub-title
+          width: 260px
+    .cont-secure-phone
+      width: 100%
+    .cont-card-two-home
+      width: 100%
+      height: 194px
+      .cont-text-card-two
+        width: 280px
+        .title
+          width: 100%
+        .desc
+          width: 100%
+      ul
+        bottom: 5px
+    .cont-card-three-home
+      width: 100%
+      height: 144px
+      .cont-text-card-three
+        width: 280px
+        .title
+          width: 100%
+        .desc
+          width: 100%
+          overflow: initial
+    .cont-actions
+      width: 100%
+      .update
+        right: 50px
+      .cancel
+        left: 50px
+    .cont-input
+      input
+        width: 295px
+    .cont-card-error
+      position: relative
+      top: 20px
+      width: 100%
+

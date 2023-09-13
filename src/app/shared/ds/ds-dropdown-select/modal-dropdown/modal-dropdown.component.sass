@@ -1,0 +1,100 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+
+.screen
+  height: 253px
+.full-screen
+  height: 100vh
+
+.cont-modal-dropdown
+  background: $carbon-light-100
+  border-radius: 15px 15px 0 0
+  padding: 24px
+  text-align: center
+  width: 100%
+  ul
+    position: absolute
+    left: 27px
+    right: 27px
+    top: 40px
+    height: 150px
+    overflow: auto
+    text-align: left
+    li
+      height: 24px
+      font-size: 14px
+      font-weight: 500
+      font-stretch: normal
+      font-style: normal
+      line-height: 1.71
+      letter-spacing: normal
+      margin-bottom: 24px
+      cursor: pointer
+      div:hover
+        color: $g-800
+    .selected
+      color: $g-800
+    .text-contact
+      color: $carbon-mid-400
+      position: relative
+      padding-top: 40px
+    .bold-text
+      font-size: $f-12 + 2
+      font-weight: 500
+      color: $carbon-dark-900
+  hr
+    height: 1px
+    background-color: #d9d9d9
+    position: absolute
+    bottom: 50px
+    left: 27px
+    right: 27px
+    z-index: 999
+  .button-card-footter
+    width: 100%
+    position: absolute
+    bottom: 0
+    padding: 25px
+    background: $carbon-light-100
+    z-index: 999
+    left: 0
+    button
+      background: transparent
+      color: $orange-900
+      font-size: 15px
+      font-weight: 600
+      cursor: pointer
+      margin: 0 auto
+::-webkit-scrollbar
+  width: 4px
+  height: 10px
+  border-radius: 4px
+
+::-webkit-scrollbar-track
+  background: transparent
+
+::-webkit-scrollbar-thumb
+  background: $hlt-600
+  height: 10px
+  border-radius: 4px
+
+@media only screen and (max-width: $break-mobile)
+  .cont-modal-dropdown
+    .ul-height
+      height: 80%
+    .button-full
+      width: 100%
+      display: flex
+      justify-content: center
+      position: absolute
+      top: 15px
+      background: $carbon-light-100
+      z-index: 999
+      left: 0
+      button
+        background: $carbon-light-900
+        height: 3px
+        width: 30px
+        cursor: pointer

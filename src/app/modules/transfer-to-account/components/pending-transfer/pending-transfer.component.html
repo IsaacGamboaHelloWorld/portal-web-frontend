@@ -1,0 +1,41 @@
+<app-historic-transaction
+    [title]="'PENDING_TRANSFER.TITLE' | translate"
+    [columnOneName]="'PENDING_TRANSFER.TRANSFER' | translate"
+    [columnTwoName]="'MOVEMENT.DEPOSIT.VALUE' | translate"
+    [columnThreeName]="'PENDING_TRANSFER.STATUS' | translate"
+></app-historic-transaction>
+<ul>
+  <li *ngFor="let pending of pending?.data">
+    <app-transaction
+        [amount]="pending?.transferInformation?.amount | currencyFormat"
+        [pending]="'PENDING_TRANSFER.TIME_TRANSFER' | translate"
+        [status]="'PENDING_TRANSFER.PROGRESS' | translate"
+        [typeStatus]="'pending'"
+        [dataColumnOne]="columnOne"
+        [dataColumnTwo]="columnTwo"
+    ></app-transaction>
+
+    <ng-template #columnOne>
+      <p class="state pending visible-tablet">{{'PENDING_TRANSFER.PROGRESS' | translate}}</p>
+      <p><strong>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}
+        :</strong> {{'PRODUCT_TYPES.' + pending?.accountFromInformation?.productType | uppercase | translate}}
+        {{pending?.accountFromInformation?.accountIdentifier | slice: -4}}</p>
+      <p><strong>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}
+        :</strong> {{pending?.accountToInformation?.name}}</p>
+      <p class="visible-tablet"><strong>{{'TRANSFER.CONFIRMATION.FORM.AMOUNT' | translate}}
+        :</strong> {{pending?.transferInformation?.amount | currencyFormat}}</p>
+    </ng-template>
+
+    <ng-template #columnTwo>
+      <p><strong>{{'TRANSFER.CONFIRMATION.FORM.DESCRIPTION' | translate}}:</strong> {{pending?.notes}}</p>
+      <p><strong>{{'PENDING_TRANSFER.DOCUMENT_TO' | translate}}
+        :</strong> {{pending?.accountToInformation?.identificationType}} {{pending?.accountToInformation?.identificationNumber}}
+      </p>
+      <p><strong>{{'PENDING_TRANSFER.ACCOUNT_TO' | translate}}:</strong> {{pending?.accountToInformation?.bankName}}
+        - {{'PRODUCT_TYPES.' + pending?.accountToInformation?.productType | uppercase | translate}}
+        {{pending?.accountToInformation?.accountIdentifier}}</p>
+      <p class="visible-tablet"><strong>{{'TRANSFER.PENDING.STATUS' | translate}}
+        :</strong>{{'PENDING_TRANSFER.TIME_TRANSFER' | translate}}</p>
+    </ng-template>
+  </li>
+</ul>

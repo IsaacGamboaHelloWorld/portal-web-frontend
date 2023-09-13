@@ -1,0 +1,8 @@
+<div class="home-security">
+  <ng-container *ngFor="let opt of options; trackBy: trackByFn; let i = index">
+    <div *ngIf="showOption((optionsModule$ | async)?.data?.security.options, opt.title)" class="pb-col-sp-4 pb-col-mtp-4 pb-order-mtp-{{i + 1}} pb-order-sp-{{opt.order}}">
+      <app-card-home-options [data]="opt" [isNew]="opt.title === 'Administración de topes' && (limitManagementGet$ | async)?.data?.firstTime">
+      </app-card-home-options>
+    </div>
+  </ng-container>
+</div>

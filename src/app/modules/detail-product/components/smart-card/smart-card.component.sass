@@ -1,0 +1,54 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.detail-smart-card
+  background: $carbon-light-100
+  max-width: 401px
+  border-radius: 15px
+  color: $carbon-dark-900
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.14)
+  padding: 29px
+  overflow: hidden
+  margin-bottom: 32px
+  button
+    .dot-btn
+      background: $g-500
+      opacity: 1
+
+@media only screen and (max-width: 1024px)
+  .detail-smart-card
+    min-width: 100%
+
+@media only screen and (max-width: $break-tablet)
+  .detail-smart-card
+    max-width: 401px
+
+@media only screen and (max-width: $break-mobile)
+  .detail-smart-card
+    min-width: 90%
+    max-width: 90%
+    margin: 0 auto 32px
+    min-height: 320px
+
+    .cont-head-product
+      padding: 20px
+      .account-type
+        p
+          font-size: $f-20 - 3
+      .account-type-status
+        font-size: $f-14
+
+      .account-total-info
+        &:after
+          left: -40px
+          top: 101px
+
+      .account-status-info
+        .account-status-info-item
+          position: relative
+          p
+            min-width: 140px
+          h4
+            position: absolute
+            right: 0

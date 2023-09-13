@@ -1,0 +1,56 @@
+<div class="animated fade-in-up cont-info-biometric">
+	<div class="info-biometric">
+		<form class="form-global" autocomplete="off">
+			<div class="form-group">
+				<div class="cont-images">
+					<img class="box-image" [src]="imgStep | imageCdn" [alt]="imgStep">
+				</div>
+			</div>
+			<div class="form-group cont-text">
+				<p class="title animated">{{titleStep | translate}}</p>
+			</div>
+			<div class="form-group cont-text">
+				<p #step class="text animated" [innerHTML]="textStep | translate: { value: 'bold-text' } "></p>
+			</div>
+			<div class="form-group cont-text" (click)="question(true, false)">
+				<p class="link question" *ngIf="count === (listPoints.length - 1)">
+					{{'AUTH.ENROLLMENT.BIOMETRIC.ONBOARDING.QUESTION' | translate}}
+				</p>
+			</div>
+			<div class="form-group">
+				<div class="cont-slides" [ngClass]="{'cont-slides-rm': count === (listPoints.length - 1)}">
+					<div class="controls">
+						<button class="left" type="button" (click)="toggle('prev')" [ngClass]="{'back-left': count >= 1}"
+							*ngIf="count >= 1">
+							<i [ngClass]="{'icon-arrow3-left': true}"></i>
+						</button>
+						<div class="points" [ngClass]="{'display-point': count === (listPoints.length - 1)}">
+							<div *ngFor="let point of listPoints; let i=index">
+								<input class="page-point" type="radio" name="page" [value]="point.value">
+								<label for="page"></label>
+							</div>
+						</div>
+						<div class="cont-btn-end">
+							<button class="right" type="button" (click)="toggle('next')" *ngIf="count < (listPoints.length - 1)">
+								<i [ngClass]="{'icon-arrow3-right': true}"></i>
+							</button>
+							<app-btn *ngIf="count === (listPoints.length - 1)"
+								[type]="'button'"
+								(clickBtn)="registerBiometric()"
+								[text]="'AUTH.ENROLLMENT.BIOMETRIC.ONBOARDING.BTN' | translate"
+								[id]="'btn-step-two'"
+								[isLoading]="isLoading"
+								[class]="'btn-primary btn-send'"
+							></app-btn>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="form-group" *ngIf="count < 2">
+				<div class="cont-skip">
+					<a class="link" (click)="skip()">{{'AUTH.ENROLLMENT.BIOMETRIC.ONBOARDING.SKIP' | translate}}</a>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,143 @@
+<app-template-system
+[sectionContent]="content"
+[fullContent]="true"
+[navigatorActive]="false"
+></app-template-system>
+
+<ng-template #content>
+  <ng-container *ngIf="hasPockets && showOnboarding !== 0">
+    <div class="cont-pockets">
+      <div class="navigation-opts not-select">
+        <a (click)="back()"><em class="icon-arrow-left"></em> {{'GO_BACK' | translate}}</a>
+      </div>
+      <ng-container *ngIf="showOnboarding === 2 else onBoarding">
+        <div class="home-pockets">
+          <div class="home-head-pockets">
+            <h2>{{'POCKETS.TITLE' | translate}}</h2>
+          </div>
+          <form class="form-global" [formGroup]="formPocketsHome">
+            <div class="select-bp home-pockets-option">
+              <label>{{'POCKETS.ACCOUNT' | translate}}</label>
+              <select formControlName="account_origin" [compareWith]="compareFnOrigin" (change)="changeAccount()">
+                <option value="" disabled>{{'PAYMENTS_PSE.DETAIL_STEP.CHOOSE' | translate}}</option>
+                <option *ngFor="let product of productsOrigin$ | async; trackBy: trackByFn" [ngValue]="product">
+                  {{'PRODUCT_TYPES_SMALL.' + product.typeAccount | translate}}
+                  {{product.id | slice: -4}} {{product.loading |
+                    loadAmount: (product?.productAccountBalances?.saldo_disponible?.amount | currencyFormat) :
+                    product.loaded : ('PAYMENTS.AVAILABLE_BALANCE' | translate) :
+                    ('TRANSFER.LOADING_AMOUNT' | translate) }}
+                  </option>
+                </select>
+              </div>
+            </form>
+            <div class="pockets-content">
+              <ul>
+                <li>
+                  <app-new-pocket [pocketsAmount]="pocketsList?.length"></app-new-pocket>
+                </li>
+                <ng-container *ngIf="currentAccountId && pocketsList">
+                  <app-card-pocket [parentId]="currentAccountId" [pocketsList]="pocketsList"></app-card-pocket>
+                </ng-container>
+                <ng-container *ngIf="(homePockets$ | async)?.loading">
+                  <li class="itemLoading" *ngFor="let i of [].constructor(loadingItems)">
+                    <div class="cardLoading loading-global shadow-1dp">
+                      <div class="cardLoading-header">
+                        <div class="icon placeholder width-40"></div>
+                        <div class="name placeholder width-40"></div>
+                      </div>
+                      <div class="cardLoading-body">
+                        <div class="item">
+                          <div class="placeholder width-30"></div>
+                          <div class="placeholder width-80"></div>
+                        </div>
+                        <div class="item right">
+                          <div class="placeholder width-30"></div>
+                          <div class="placeholder width-80"></div>
+                        </div>
+                      </div>
+                      <div class="cardLoading-footer">
+                        <div class="item initial">
+                          <div class="placeholder width-100"></div>
+                        </div>
+                        <div class="item">
+                          <div class="placeholder width-100"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+    <ng-template #onBoarding>
+      <div class="home-pockets">
+        <div class="home-head-pockets">
+          <h2>{{'POCKETS.TITLE' | translate}}</h2>
+        </div>
+      </div>
+      <div class="onboarding-container">
+        <div class="container-background">
+          <div>
+            <div class="step step1 active">
+              <div class="circle-green">
+                <img [src]="'/icon-hand-money.png' | imageCdn" alt="">
+              </div>
+              <p>
+                {{'POCKETS.ONBOARDING.STEP1.TITLE' | translate}}
+              </p>
+              <button class="btn btn-primary" (click)="nextStep()">{{'POCKETS.ONBOARDING.STEP1.BUTTON' | translate}}</button>
+              <a class="link" (click)="nextStep()">{{'POCKETS.ONBOARDING.STEP1.LINK' | translate}}</a>
+            </div>
+          </div>
+          <div>
+            <div class="step step2">
+              <div class="circle-green">
+                <img [src]="'/icon-money.png' | imageCdn" alt="">
+              </div>
+              <p class="paragraph-default">
+                {{'POCKETS.ONBOARDING.STEP2.TITLE' | translate}}
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="step step3">
+              <div class="circle-green">
+                <img [src]="'/icon-travel.png' | imageCdn" alt="">
+              </div>
+              <p class="paragraph-default">
+                {{'POCKETS.ONBOARDING.STEP3.TITLE' | translate}}
+              </p>
+            </div>
+          </div>
+          <div>
+            <div class="step step4">
+              <div class="circle-green">
+                <img [src]="'/icon-bolsillos.png' | imageCdn" alt="">
+              </div>
+              <p class="paragraph-default">
+                {{'POCKETS.ONBOARDING.STEP4.TITLE' | translate}}
+              </p>
+              <div class="last-step-controls">
+                <button (click)="backStep()" class="nav-button prev" data-controls="prev"><em class="icon-arrow-left"></em></button>
+                <button class="btn btn-primary" (click)="closeOnboarding()">{{(pocketsList?.length > 0 ? 'POCKETS.ONBOARDING.STEP4.BUTTONV' : 'POCKETS.ONBOARDING.STEP4.BUTTON') | translate}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="controls" *ngIf="indexPage !== 1 && indexPage !== 4">
+          <button (click)="backStep()" class="nav-button prev" data-controls="prev" [disabled]="indexPage === 2"><em class="icon-arrow-left"></em></button>
+          <div class="dots">
+            <a (click)="goStep(2)" class="dot dot2" [ngClass]="{'active-dot': indexPage === 2}"></a>
+            <a (click)="goStep(3)" class="dot dot3" [ngClass]="{'active-dot': indexPage === 3}"></a>
+            <a (click)="goStep(4)" class="dot dot4" [ngClass]="{'active-dot': indexPage === 4}"></a>
+          </div>
+          <button (click)="nextStep()" class="nav-button next" data-controls="next"><em class="icon-arrow-right"></em></button>
+        </div>
+        
+      </div>
+    </ng-template>
+  </ng-template>
+  

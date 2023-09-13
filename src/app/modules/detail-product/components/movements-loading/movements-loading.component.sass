@@ -1,0 +1,65 @@
+@import '../../../../../sass/variables'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/mixins'
+
+.cont-movements-loading
+    margin: 0 auto
+    .error-movement
+      max-width: 260px
+      margin-top: 10%
+      text-align: center
+      p
+        margin-top: 20px
+      span
+        padding: 21px
+        border-radius: 100%
+        background: $g-50
+        display: inline-block
+        img
+          width: 70px
+          height: 70px
+          margin-bottom: 0
+      .btn
+        line-height: 40px
+        font-size: $f-14
+        margin-top: 10px
+    .cont-table-movements
+      .scroll-table-header
+        display: flex
+        padding: 11px 24px
+        color: $gray3
+        border-bottom: 1px solid $gray2
+        .datecell
+          flex-grow: 1
+        .titlecell
+          flex-grow: 2
+        .valuecell
+          flex-grow: 1
+          text-align: center
+      .scroll-table
+        display: flex
+        background: $carbon-light-100
+        height: 431px
+        justify-content: center
+        .product-loading
+          align-self: center
+
+@media only screen and (max-width: $break-tablet)
+  .cont-movements-loading
+    .cont-table-movements
+      .type-product-movement
+        background: $carbon-light-100
+        margin-top: 1px
+
+@media only screen and (max-width: $break-mobile)
+  .cont-movements-loading
+    .error-movement
+      margin-top: 17%
+    .cont-table-movements
+      .type-product-movement
+        display: none
+        background: $carbon-light-100
+      .scroll-table
+        border-radius: 15px
+        border-top-left-radius: 0
+        border-top-right-radius: 0

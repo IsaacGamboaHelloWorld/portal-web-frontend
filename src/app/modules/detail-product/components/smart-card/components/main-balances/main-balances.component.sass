@@ -1,0 +1,30 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.smart-card-main-balances
+  padding-bottom: 32px
+  position: relative
+  &::after
+    border-bottom: 1px solid $carbon-light-900
+    width: 1000px
+    position: absolute
+    content: ''
+    bottom: 0
+    left: -100px
+  h5
+    color: $carbon-mid-400
+    margin-bottom: 5px
+  .main-balance
+    font-size: $f-30 + 4
+    color: $carbon-dark-900
+    letter-spacing: -1.1px
+    min-height: 41px
+
+@media only screen and (max-width: $break-tablet)
+  .smart-card-main-balances
+    padding-bottom: 27px
+
+@media only screen and (max-width: $break-mobile)
+  .smart-card-main-balances
+    padding-bottom: 27px

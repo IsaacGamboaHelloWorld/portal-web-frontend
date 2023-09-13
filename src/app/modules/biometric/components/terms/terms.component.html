@@ -1,0 +1,48 @@
+
+<div class="animated fade-in-up cont-terms-biometric">
+  <div class="terms-biometric">
+    <div class="top-image-container">
+      <img [src]="'/idea@3x.png' | imageCdn" alt="idea">
+    </div>
+    <form class="form-global" autocomplete="off">
+      <div class="form-group title">
+        <span >{{'AUTH.ENROLLMENT.BIOMETRIC.TERMS.TITLE' | translate}}</span>
+      </div>
+      <div class="form-group desc">
+        <span >{{'AUTH.ENROLLMENT.BIOMETRIC.TERMS.DESC' | translate}}</span>
+      </div>
+      <div class="form-group">
+        <ul>
+          <li>
+            <span class="point">
+              <img [src]="'/24-essential-check-10.svg' | imageCdn" alt="check">
+            </span> 
+            <p innerHTML="{{'AUTH.ENROLLMENT.BIOMETRIC.TERMS.STEP1' | translate: { value: 'desc-bold' }  }}" class="list-bold"></p>
+          </li>
+          <li>
+            <span class="point">
+              <img [src]="'/24-essential-check-10.svg' | imageCdn" alt="check">
+            </span>
+            <p innerHTML="{{'AUTH.ENROLLMENT.BIOMETRIC.TERMS.STEP2' | translate: { value: 'desc-bold' }  }}" class="list-bold"></p>
+          </li>
+          <li>
+            <span class="point">
+              <img [src]="'/24-essential-check-10.svg' | imageCdn" alt="check">
+            </span> 
+            <p innerHTML="{{'AUTH.ENROLLMENT.BIOMETRIC.TERMS.STEP3' | translate: { value: 'desc-bold' }  }}" class="list-bold"></p>
+          </li>
+        </ul>
+      </div>
+      <div class="form-group cont-btn-name">
+        <app-btn
+        (clickBtn)="submitTerms()"
+        [disabled]="false"
+        [text]="'AUTH.ENROLLMENT.BIOMETRIC.TERMS.BTN' | translate"
+        [id]="'btn_login'"
+        [isLoading]="false"
+        [class]="'btn btn-primary'"
+        ></app-btn>
+      </div>
+    </form>
+  </div>
+</div>

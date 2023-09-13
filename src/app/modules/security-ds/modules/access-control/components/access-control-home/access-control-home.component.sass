@@ -1,0 +1,44 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.ac-home-container
+  margin-top: 24px
+  margin-bottom: 12px
+  h3
+    font-size: 14px
+    font-weight: 500
+    line-height: 2
+    letter-spacing: normal
+    color: $cbn-900
+  .ac-list-cards
+    display: flex
+    flex-direction: column
+    margin-top: 12px
+    .ac-card-container
+      margin-bottom: 16px
+
+  // override ds-modal.component styles
+  &.ds-modal-container
+    .img-container
+      margin: 0px auto
+    .subtitle
+      font-size: 13px
+      font-weight: normal
+      line-height: 2.15
+      letter-spacing: normal
+      color: $cbn-900
+      margin-top: 8px
+    .desc
+      margin-top: 32px
+    .footer-buttons
+      margin-top: 32px
+      flex-direction: column-reverse
+      .cancel
+        margin-top: 12px
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .ac-home-container
+    .ac-list-cards
+      display: flex
+      flex-direction: row
+      justify-content: space-between

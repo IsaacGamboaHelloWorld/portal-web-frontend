@@ -1,0 +1,58 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.profile-card
+  background: $carbon-light-100
+  width: 100%
+  border-radius: 15px
+  color: $carbon-dark-900
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.14)
+  padding: 24px
+  overflow: hidden
+  margin-bottom: 32px
+  .user-name
+    font-family: Inter
+    font-size: 18px
+    font-weight: 500
+    font-stretch: normal
+    font-style: normal
+    line-height: 0.78
+    letter-spacing: normal
+    text-align: center
+  .names-abreviation
+    display: inline-block
+    background: linear-gradient(136deg, $orange-100 11%, $orange-700 87%)
+    width: 78px
+    height: 78px
+    border-radius: 39px
+    padding: 4px
+    margin-bottom: 16px
+    div
+      padding: 3px
+      width: 71px
+      height: 71px
+      background: $carbon-light-100
+      border-radius: 36px
+      div
+        background-color: $orange-400
+        width: 64px
+        height: 64px
+        border-radius: 32px
+        display: flex
+        justify-content: center
+        align-items: center
+        color: $carbon-light-100
+        font-size: 21px
+        font-family: inter
+@media only screen and (max-width: $break-tablet)
+  .profile-card
+
+@media only screen and (max-width: 1023px)
+  .profile-card
+
+@media only screen and (max-width: $break-mobile)
+  .profile-card
+    margin: 0 auto 32px
+
+    

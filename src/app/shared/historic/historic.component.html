@@ -1,0 +1,47 @@
+<div class="container-historic">
+  <div class="head">
+    <p class="title">{{title}}</p>
+    <div class="table-header-menu">
+      <a class="filter-btn" (click)="openFilter()">
+        <em class="icon-filter"></em>
+      </a>
+      <a  *ngIf="showSearch" class="glass-a" (click)="openSearchBox()">
+        <em class="icon-search" *ngIf="!filterState"></em>
+        <em class="icon-x-close" *ngIf="filterState"></em>
+      </a>
+    </div>
+  </div>
+  <ng-container *ngIf="hasFilter">
+    <div class="filter-movement">
+        <div class="clearfix cont-filters">
+            <div class="filter-active">
+              <p *ngIf="(responseFilter['typeFilter'] === 'range')">{{responseFilter['name']}}</p>
+              <p *ngIf="(responseFilter['typeFilter'] === 'date')">{{responseFilter['from'] | date: 'dd/MMM/yyyy' | replace : '.' : '' }} - {{responseFilter['to'] | date: 'dd/MMM/yyyy' | replace : '.' : '' }}</p>
+              <span (click)="removeFilter()">×</span>
+            </div>
+        </div>
+    </div>
+</ng-container>
+  <div class="filter-container" *ngIf="filterState">
+    <div class="filter-input form-global">
+      <input type="text" [(ngModel)]="textFilter" (change)="onChange($event)" (keyup)="onKeyUp($event)" class="input-bp search-field">
+      <em class="search-input icon-search" *ngIf="emptyState"></em>
+      <a class="clear-input" *ngIf="!emptyState" (click)="doClear($event)">
+        <em class="icon-plus"></em>
+      </a>
+    </div>
+  </div>
+  <div class="paginator">
+    <app-paginator [data]="dataTable" (dataPaginator)="resultPaginator($event)" [filter]="textFilter" [dataDate]="dateFilter" [hasFilter]="hasFilter"></app-paginator>
+  </div>
+  <div class="table">
+    <app-table-historic *ngIf="dataPaginator.length" [columns]="numberColumns" [names]="nameColumns" [(table)]="dataPaginator" [filter]="textFilter" [bodyWithCard]="bodyWithCard"></app-table-historic>
+
+    <div class="empty-pending" *ngIf="!dataPaginator.length">
+      <div class="error-pending">
+        <p >{{'TRANSFER.HISTORIC.RESULT_FILTER' | translate}}</p>
+      </div>
+      <img [src]="'/empty-state.png' | imageCdn" [alt]="'TRANSFER.EMPTY_TRANSFER' | translate">
+    </div>
+  </div>
+</div>

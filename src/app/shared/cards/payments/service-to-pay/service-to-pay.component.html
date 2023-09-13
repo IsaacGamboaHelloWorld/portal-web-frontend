@@ -1,0 +1,45 @@
+<ng-container *ngIf="!loading else loadingState">
+    <ng-container *ngIf="!nodata; else noData">
+        <div class="card shadow-1dp">
+            <div class="card-enterprise">{{enterprise}}</div>
+            <div class="card-info-options">
+                <div class="card-info-payment">
+                    <h4>{{nameService}}</h4>
+                    <p>{{amount | currencyFormat}}</p>
+                </div>
+                <div class="card-info-btn">
+                    <button (click)="pay()">{{'PAYMENTSV2.SHARED_COPY.BTN_PAY' | translate}}</button>
+                </div>
+            </div>
+            <div class="card-info-date" [ngClass]="{'green': programmed}" *ngIf="programmed">{{'PAYMENTSV2.SHARED_COPY.LBL_PROGRAMED' | translate}}: {{date | date: 'dd/MMM/yyyy' | replace : '.' : ''}}</div>
+            <div class="card-info-date" [ngClass]="{'green': programmed}" *ngIf="!programmed">{{'PAYMENTSV2.SHARED_COPY.LBL_OUTDATE' | translate}}: {{date | date: 'dd/MMM/yyyy' | replace : '.' : ''}}</div>
+        </div>
+    </ng-container>
+</ng-container>
+<ng-template #loadingState>
+    <div class="card shadow-1dp">
+        <div class="card-info-loading title loading-global">
+            <div class="icon placeholder width-40"></div>
+        </div>
+        <div class="card-info-loading loading-global">
+            <div class="icon placeholder width-40"></div>
+        </div>
+        <div class="card-info-loading loading-global">
+            <div class="icon placeholder width-60"></div>
+        </div>
+        <div class="card-info-loading loading-global">
+            <div class="icon placeholder width-40"></div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #noData>
+    <div class="card shadow-1dp no-data">
+        <img [src]="'/success.png' | imageCdn" alt=""/>
+        <div class="card-info-options">
+            <div class="card-info-payment">
+                <h4>¡Estás al día con tus pagos!</h4>
+                <p>No tienes pagos pendientes.</p>
+            </div>
+        </div>
+    </div>
+</ng-template>

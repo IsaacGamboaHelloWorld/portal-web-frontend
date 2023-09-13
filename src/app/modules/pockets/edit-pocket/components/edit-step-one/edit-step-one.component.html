@@ -1,0 +1,39 @@
+<div class="cont-step-one-edit-pocket" *ngIf="hasData$">
+	<ng-container *ngIf="formStepOne">
+		<form class="form-global" [formGroup]="formStepOne" (ngSubmit)="editForm()">
+			<ng-container *ngIf="stepOne">
+				<fieldset class="form-group variation-field">
+					<label>{{'POCKETS.EDIT.EDIT.NAME' | translate}}</label>
+					<input type="text" class="input-bp" formControlName="name">
+				</fieldset>
+				<fieldset class="form-group">
+					<label>{{'POCKETS.EDIT.EDIT.POCKET_USE' | translate}}</label>
+					<div class="radio form-radiobutton-contanier type-pocket-{{i}}" *ngFor="let category of (categories$ | async).categories; let i = index">
+						<input type="radio" formControlName="pocketType" value="{{category}}" name="pocketType" id="type-{{i}}" (click)="setClass(i)">
+						<label for="type-{{i}}">{{'POCKETS.NEW.STEP_ONE.'+category.toUpperCase() | translate}}</label>
+					</div>
+				</fieldset>
+				<button class="btn btn-primary btn-next-step" (click)="nextStep(); step = 'EDIT'">{{'CONTINUE' | translate}}</button>
+			</ng-container>
+			<ng-container *ngIf="!stepOne">
+				<fieldset class="form-group variation-field">
+					<label>{{'POCKETS.EDIT.EDIT.GOAL' | translate}}</label>
+					<input type="tel" class="input-bp" formControlName="amount" placeholder="$" appCurrency [form]="formStepOne" [property]="'amount'" pattern="^(?!\s.*$).*">
+				</fieldset>
+				<fieldset class="form-group variation-field">
+					<label>{{'POCKETS.EDIT.EDIT.PERIODIC' | translate}}</label>
+					<input type="tel" class="input-bp" formControlName="periodicity_amount" placeholder="$" appCurrency [form]="formStepOne" [property]="'periodicity_amount'" pattern="^(?!\s.*$).*">
+				</fieldset>
+				<fieldset class="form-group">
+					<app-dropdown-select [label]="'POCKETS.EDIT.EDIT.PERIODIC_TIME'" [form]="formStepOne" [property]="'period'" [fixedOptions]="options"></app-dropdown-select>
+				</fieldset>
+				<fieldset class="edit-step-one">
+					<app-btn [class]="'btn-primary'" [disabled]="formStepOne?.invalid || (pocketEdit$ | async)?.loading" [isLoading]="(pocketEdit$ | async)?.loading" [text]="'POCKETS.EDIT.EDIT.BTN'  | translate" (clickBtn)="editForm()"></app-btn>
+				</fieldset>
+			</ng-container>
+			<fieldset class="delete-step-one">
+				<a class="link" (click)="deletePocket()">{{'POCKETS.EDIT.DELETE.BTN'  | translate}}</a>
+			</fieldset>
+		</form>
+	</ng-container>
+</div>

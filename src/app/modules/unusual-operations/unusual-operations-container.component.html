@@ -1,0 +1,14 @@
+<app-template-system
+  [sectionContent]="content"
+  [fullContent]="false"
+  [navigatorActive]="true"
+  [showClose]="false"
+  [sectionHome]="true"
+  [backUrl]="mainNavigate.home"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-unusual-operations">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

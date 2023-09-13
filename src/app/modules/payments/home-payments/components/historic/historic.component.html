@@ -1,0 +1,12 @@
+<section class="cont-historic-payments">
+  <h2>{{'TRANSFER.HISTORIC.TITLE' | translate}}</h2>
+  <div class="historic-payments">
+    <ng-container>
+      <ul>
+        <li *ngFor="let transaction of historicData">
+          <app-transaction-payment [transaction]="transaction"></app-transaction-payment>
+        </li>
+      </ul>
+    </ng-container>
+  </div>
+</section>

@@ -1,0 +1,60 @@
+<div class="container-edit-profile">
+        <div class="cont-edit-profile">
+            <div class="not-space-mobile">
+                <div class="head-nav not-select">
+                    <a (click)="back()"><em class="icon-arrow-back"></em> {{'REGISTER_PRODUCT_AFFILIATION.BACK_BTN' | translate}}</a>
+                    <a (click)="openAlert()" class="close-transfer">{{'REGISTER_PRODUCT_AFFILIATION.CLOSE_BTN' | translate}} <em class="icon-x-circle"></em></a>
+                </div>
+                <div class="top-edit-profile-section">
+                    <h2>{{'CUSTOMER_PROFILE.EDIT_PROFILE.TITLE' | translate}}</h2>
+                </div>
+                <div class="align-edit-profile">
+                    <div class="edit-card-container">
+                        <div class="edit-profile-section-card">
+                            <app-section-header [iconPath]="'/profile/contact-data@3x.png'" [title]="'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.CONTACT_DATA.TITLE' | translate"></app-section-header>
+                            <div class="bottom-profile-section-card" *ngIf="(user$ | async)?.data as user">
+                                <form [formGroup]="formData" *ngIf="(catalogs$ | async)?.data">
+                                    <div class="bottom-profile-section-container">
+                                        <div class="item">
+                                            <span>
+                                                {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.CONTACT_DATA.EMAIL_TYPE' | translate}}
+                                            </span>
+                                            <ng-select
+                                                formControlName="emailType"
+                                                [items]="(emailTypeElements$ | async)"
+                                                bindLabel="longName"
+                                                [closeOnSelect]="true"
+                                                [multiple]="false"
+                                                placeholder="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.CONTACT_DATA.EMAIL_TYPE_PLACEHOLDER_FIELD' | translate}}"
+                                                typeToSearchText="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.CONTACT_DATA.EMAIL_TYPE_TYPEAHEAD_FIELD' | translate}}"
+                                                markFirst="true"
+                                                searchable="true"
+                                                [hideSelected]="false"
+                                                [typeahead]="subject$">
+                                                </ng-select>
+                                        </div>
+                                        <div class="item">
+                                            <span>
+                                                {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.CONTACT_DATA.EMAIL_FIELD' | translate}}
+                                            </span>
+                                            <input type="text" formControlName="email" class="text-input">
+                                        </div>
+                                        <div class="item">
+                                            <span>
+                                                {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.CONTACT_DATA.PHONE_FIELD' | translate}}
+                                            </span>
+                                            <input type="text" formControlName="phone" class="text-input"  appOnlyNumbers pattern="\d*">
+                                        </div>
+                                    </div>
+                                    <fieldset class="form-group">
+                                        <app-btn [class]="'btn-primary'" [disabled]="(formData && formData.invalid) || (updateProfileResponse$ | async)?.loading"  [text]="'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.CONTACT_DATA.SAVE_BTN' | translate" [isLoading]="(updateProfileResponse$ | async)?.loading" (clickBtn)="submitData()"></app-btn>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+

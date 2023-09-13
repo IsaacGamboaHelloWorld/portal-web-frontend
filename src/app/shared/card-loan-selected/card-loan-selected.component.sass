@@ -1,0 +1,67 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.card-loan-selected
+  width: 320px
+  height: 150px
+  border-radius: 12px
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+  background-color: white
+  border-left: 4px solid $gc-850
+  position: relative
+  .mask
+    width: 12px
+    height: 100%
+    left: -1px
+    background-color: white
+    float: left
+    position: relative
+    border-radius: 8px
+  .head
+    margin-left: 24px
+    margin-top: 20px
+    position: absolute
+    .img-back
+      padding: 4px
+      border-radius: 100%
+      max-width: 32px
+      height: 32px
+      display: flex
+      margin-bottom: 10px
+      &.im-y
+        background: $orange-100
+      &.im-b
+        background: $occidente
+      &.bg-default
+        background: $money-default
+      &.bg-master
+        background: $carbon-mid-900
+      &.bg-visa
+        background: $visa-bg
+      img
+        width: 24px
+        max-height: 24px
+        margin: auto
+    p
+      font-size: $f-14 - 1
+      color: $carbon-mid-600
+      margin-bottom: 8px
+      &.nickname
+        font-size: $f-14
+        color: $carbon-dark-900
+        font-weight: 400
+      &.value
+        font-size: $f-14 - 1
+        color: $carbon-dark-900
+        font-weight: 400
+    span
+      font-size: $f-14 - 3
+      color: $carbon-mid-600
+      display: block
+      margin-bottom: 8px
+
+@media only screen and (max-width: $break-mobile)
+  .card-loan-selected
+    width: 192px

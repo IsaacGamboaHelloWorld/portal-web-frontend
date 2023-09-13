@@ -1,0 +1,100 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.smart-card-header
+  display: flex
+  .icon
+    max-width: 30px
+    margin-right: 8px
+  .header-data
+    width: 100%
+    .cont-head-edit
+      display: flex
+      h4
+        margin-bottom: 4px
+    .edit-img
+      cursor: pointer
+      position: relative
+      left: 8px
+      width: 24px
+      height: 24px
+      background-color: $secondary-900
+      mask: url('#{$base-url}/images/edit.svg') no-repeat center / contain
+      -webkit-mask: url('#{$base-url}/images/edit.svg') no-repeat center / contain
+    .edit
+      cursor: pointer
+      position: relative
+      left: 10px
+      color: $secondary-900
+      width: 35px
+      height: 16px
+      font-size: 12px
+      font-weight: 600
+      font-stretch: normal
+      font-style: normal
+      line-height: 2
+      letter-spacing: normal
+      text-align: center
+    .information-under-name
+      display: flex
+      padding-bottom: 31px
+      .status
+        +statusProduct
+        border-radius: 16px
+      p
+        color: $carbon-mid-400
+    .form-edit
+      margin-bottom: 18px
+    .form-global
+      height: 40px
+      width: 100%
+      .form-group
+        margin: 0
+        input
+          width: 209px
+          height: 40px
+        .check
+          cursor: pointer
+          width: 40px
+          height: 40px
+          border-radius: 8px
+          background-color: $g-500
+          position: relative
+          bottom: 5px
+          left: 12px
+          .check-img
+            width: 24px
+            height: 24px
+            background-color: $carbon-light-100
+            mask: url('#{$base-url}/images/check.svg') no-repeat center / contain
+            -webkit-mask: url('#{$base-url}/images/check.svg') no-repeat center / contain
+        .close
+          cursor: pointer
+          width: 40px
+          height: 40px
+          border-radius: 8px
+          background-color: transparent
+          position: relative
+          bottom: 5px
+          left: 20px
+          .close-img
+            width: 24px
+            height: 24px
+            background-color: $secondary-900
+            mask: url('#{$base-url}/images/close.svg') no-repeat center / contain
+            -webkit-mask: url('#{$base-url}/images/close.svg') no-repeat center / contain
+
+
+@media only screen and (max-width: $break-tablet)
+  .smart-card-header
+    .header-data
+      .information-under-name
+        padding-bottom: 26px
+
+@media only screen and (max-width: $break-mobile)
+  .smart-card-header
+    .header-data
+      .information-under-name
+        padding-bottom: 26px

@@ -1,0 +1,36 @@
+<div class="card-programed shadow-1dp" [ngClass]="{ 'disabled': disabled }">
+    <ng-container *ngIf="!showInEnd; else showIntoEnd">
+        <div class="header-component">
+            <p>{{(actived ? 'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.UNPROGRAM_PAYMENT' : 'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.PROGRAM_PAYMENT') | translate}}</p>
+            <div class="check-container">
+                <app-checkbox-slide [inline]="true" [check]="actived" [hidelabel]="true" (stateCheck)="changeStatus($event)"></app-checkbox-slide>
+            </div>
+        </div>
+        <div class="body-component" *ngIf="actived">
+            <div class="col-body">
+                <p class="title">{{'PAYMENTSV2.SHARED_COPY.LBL_NO_MORE' | translate}}</p>
+                <p>{{data?.maxAmount | currencyFormat}}</p>
+            </div>
+            <div class="col-body">
+                <p class="title">{{'PAYMENTSV2.SHARED_COPY.LBL_WHEN' | translate}}</p>
+                <p>{{data?.daysBeforeAfterExpiration}} {{(data?.daysBeforeAfterExpiration !== '1' ? 'PAYMENTS.FORM_THREE.DAYS_BEFORE' : 'PAYMENTS.FORM_THREE.DAYpago_BEFORE') | translate}}</p>
+            </div>
+        </div>
+        <div class="footer-component"><button class="btn-primary-inverse" *ngIf="actived" (click)="edit()">{{'EDIT' | translate}}</button></div>
+    </ng-container>
+
+    <ng-template #showIntoEnd>
+        <p class="title-end">{{(actived ?
+            'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.PROGRAMMED.PROGRAM_PAYMENT_TITLE' :
+            'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.PROGRAMMED.UNPROGRAM_PAYMENT_TITLE') | translate}}</p>
+        <p *ngIf="actived" class="desc-end" [innerHTML]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.PROGRAMMED.PROGRAM_PAYMENT_DESCRIPTION' | translate"></p>
+        <div class="header-end">
+            <div class="check-container">
+                <app-checkbox-slide [inline]="true" [check]="actived" [hidelabel]="true" [disabled]="disabled" (stateCheck)="changeStatus($event)"></app-checkbox-slide>
+            </div>
+            <p class="programmed-end"> {{ (actived ?
+              'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.PROGRAMMED.PROGRAM_PAYMENT' :
+              'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_SUCCESS.PROGRAMMED.UNPROGRAM_PAYMENT') | translate }} </p>
+        </div>
+    </ng-template>
+</div>

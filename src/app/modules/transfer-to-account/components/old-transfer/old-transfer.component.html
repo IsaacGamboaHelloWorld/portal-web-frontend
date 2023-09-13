@@ -1,0 +1,17 @@
+<app-template-system
+    [title]="'TRANSFER.NEW_TRANSFER' | translate"
+    [sectionContent]="content"
+    [navigatorActive]="true"
+    [currentStep]="viewBack ? (step$ | async) : maxStep"
+    [maxStep]="maxStep"
+    [showClose]="true"
+    [fullContent]="true"
+    [backUrl]="backUrl"
+    (eventModal)="backHome($event)"
+></app-template-system>
+<ng-template #content>
+    <div class="main-your-plus pb-col-sp-4">
+      <app-line-time [step]="(step$ | async)?.step" [items]="items$ | async" *ngIf="(step$ | async)?.step === 1 || (step$ | async)?.step === 2 || (step$ | async)?.step === 3"></app-line-time>
+        <router-outlet></router-outlet>
+    </div>
+</ng-template>

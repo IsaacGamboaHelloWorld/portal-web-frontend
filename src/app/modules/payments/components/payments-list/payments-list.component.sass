@@ -1,0 +1,102 @@
+@import '~sass/mixins'
+@import '~sass/colors'
+@import '~sass/variables'
+
+.items-container
+  .register-payment
+    display: block
+    padding: 12px 20px
+    position: relative
+    border-radius: 10px
+    margin-bottom: 8px
+    em
+      border: 1.3px solid $carbon-light-100
+      font-size: $f-14 + 5
+      border-radius: 100%
+      position: absolute
+      right: 20px
+      top: 22px
+      width: 24px
+      height: 24px
+      padding: 1px
+      font-weight: normal
+  .item-payment
+    margin-bottom: 8px
+    &:last-child
+      margin: 0
+    .payment-registered
+      display: flex
+      padding: 15px
+      background: $carbon-light-100
+      border-radius: 10px
+      .info
+        flex-grow: 3
+        p
+          font-weight: 500
+          font-size: 14px
+        span
+          font-weight: normal
+          font-size: 11px
+          color: $gray3
+      em
+        align-self: center
+        color: $carbon-mid-100
+
+.loading-list-payments
+  display: flex
+  align-items: center
+  margin-top: 8px
+  overflow: hidden
+  ul
+    width: 100%
+    li
+      padding: 23px
+      background: $carbon-light-100
+      margin-bottom: 8px
+      border-radius: 10px
+      &:last-child
+        margin: 0
+      &.button-container
+        padding: 0
+        background: $carbon-light-100
+        margin-bottom: 8px
+        border-radius: 10px
+      .register-payment
+        display: block
+        padding: 12px 20px
+        position: relative
+        border-radius: 10px
+        margin-bottom: 8px
+        em
+          border: 1.3px solid $carbon-light-100
+          font-size: $f-14 + 5
+          border-radius: 100%
+          position: absolute
+          right: 20px
+          top: 22px
+          width: 24px
+          height: 24px
+          padding: 1px
+          font-weight: normal
+    p
+      height: 8px
+      margin-bottom: 10px
+      &:last-child
+        margin: 0
+
+.error-list-payments
+  padding: 32px 24px 24px
+  text-align: center
+  img
+    height: 60px
+    width: auto
+    margin-bottom: 16px
+  strong
+    display: block
+    margin-bottom: 16px
+    font-size: $f-14 + 2
+  p
+    line-height: 1.77
+  button
+    margin-top: 32px
+    width: 100%

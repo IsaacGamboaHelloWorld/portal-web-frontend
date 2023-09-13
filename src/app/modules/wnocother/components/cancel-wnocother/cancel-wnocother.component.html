@@ -1,0 +1,10 @@
+<div class="animated fade-in-up cont-step-alert">
+    <div>
+        <img [src]="'/alerta.png' | imageCdn" [alt]="'WITHDRAWAL.CANCEL_STEP.DESC' | translate">
+        <h5>{{'WITHDRAWAL.CANCEL_STEP.DESC' | translate}}</h5>
+        <div class="footer-step-alert">
+            <button type="button" class="btn btn-primary" (click)="goBack()">{{'WITHDRAWAL.CANCEL_STEP.YES_OPT' | translate}}</button>
+            <a class="link" (click)="play()">{{'WITHDRAWAL.CANCEL_STEP.NO_OPT' | translate}}</a>
+        </div>
+    </div>
+</div>

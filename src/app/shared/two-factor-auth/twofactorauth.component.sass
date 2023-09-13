@@ -1,0 +1,96 @@
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+
+.adl-content-2fa
+  .invalid-input
+    border-color: #ff0000
+  *
+    margin: 0
+    padding: 0
+  .radio
+    margin-bottom: 7px
+  .img-icon
+    margin-bottom: 30px
+  .title
+    margin-bottom: 10px
+  h5
+    font-weight: 600
+    font-family: Inter
+  .description
+    font-size: $f-14 - 1
+    margin-bottom: 30px
+  .description-pse
+    text-align: left
+    margin-left: 20px
+    margin-bottom: 10px
+    font-family: Inter
+    font-size: $f-14 - 1
+    font-weight: normal
+    font-stretch: normal
+    font-style: normal
+    line-height: 2.15
+    letter-spacing: normal
+  .error
+    margin-bottom: 10px
+  .without-received
+    margin-bottom: 10px
+  .timer
+    margin-bottom: 20px
+  .error
+    text-align: justify
+    color: $err-600
+    font-weight: 400
+    font-size: 12px
+    line-height: 16px
+  .content-select
+    margin-bottom: 20px
+  .content-otp
+    margin-bottom: 5px
+    .set-state-error-bg
+      border: solid 1.2px $gc-800
+      background-color: rgba(197, 236, 191, 0.5)
+    fieldset
+      height: 48px
+      border-radius: 8px
+      border: solid 1.2px #d9d9d9
+      background-color: #ffffff
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button
+        -webkit-appearance: none
+        margin: 0
+      input[type=number]
+        -moz-appearance: textfield
+      input
+        border-radius: 3px
+        font-size: 20px
+        height: 40px
+        margin: 0
+        margin-left: 3px
+        outline: none
+        text-align: center
+        transition: all .2s ease-in-out
+        width: 40px
+        background-color: $transparent
+        &.invalid-otp-input
+          @extend .invalid-input
+        &.ng-invalid:not(.ng-untouched)
+          @extend .invalid-input
+        &:focus
+          border-color: #800080
+          box-shadow: 0 0 5px #800080 inset
+        &::selection
+          background: transparent
+      &.error-otp
+        border: solid 1px $err-600
+        background-color: rgba($err-600, 0.32)
+    .set-state-succes-bg
+      border-radius: 8px
+      border: solid 1.2px $success-600
+      background-color: rgba(197, 236, 191, 0.5)
+      input
+        background: transparent
+@media only screen and (max-width: $break-mobile)
+  .adl-content-2fa .content-otp fieldset
+    input
+      margin: 4px 4px
+      width: 9%

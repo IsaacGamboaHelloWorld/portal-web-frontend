@@ -1,0 +1,11 @@
+<app-template-system [title]="'PAYMENTSV2.CHOOSE_TYPE.MAIN_TITLE' | translate" [sectionContent]="content">
+</app-template-system>
+
+<ng-template #content>
+	<div class="buttons-container">
+		<app-btn-square [url]="navigate.paymentsv2obligations" [imageUrl]="'/cta-especifica.png' | imageCdn" [title]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE1.TITLE' | translate" [subtitle]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE1.DESC' | translate"></app-btn-square>
+		<app-btn-square [url]="navigate.paymentsv2services" [imageUrl]="'/cta-especifica.png' | imageCdn" [title]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE2.TITLE' | translate" [subtitle]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE2.DESC' | translate"></app-btn-square>
+		<app-btn-square [imageUrl]="'/cta-especifica.png' | imageCdn" [title]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE3.TITLE' | translate" [subtitle]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE3.DESC' | translate"></app-btn-square>
+		<app-btn-square [imageUrl]="'/cta-especifica.png' | imageCdn" [title]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE4.TITLE' | translate" [subtitle]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE4.DESC' | translate"></app-btn-square>
+	</div>
+</ng-template>

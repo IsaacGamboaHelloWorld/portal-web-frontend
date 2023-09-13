@@ -1,0 +1,162 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+.cont-step-one-move-pockets
+  width: 100%
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  .cont-step-one
+    width: 491px
+    .cont-input
+      height: 124px
+      padding: 24px
+      border-radius: 12px
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08)
+      background-color: $carbon-light-100
+      label
+        line-height: 2
+        font-weight: 500
+    .title
+      line-height: 2
+      font-size: 14px
+      height: 28px
+      margin-bottom: 13px
+      margin-top: 24px
+    .title-card
+      margin-bottom: 0
+    .cont-options
+      display: flex
+      flex-direction: row
+      li
+        padding-right: 14px
+      .box-border
+        border: solid 1.3px $g-500
+      .box
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-direction: column
+        cursor: pointer
+        width: 154px
+        height: 120px
+        border-radius: 12px
+        box-shadow: 0 1px 2px 0 #00000024
+        background-color: $carbon-light-100
+        .cont-icon
+          display: flex
+          justify-content: center
+          align-items: center
+          width: 44px
+          height: 44px
+          background-color: $secondary-100
+          border-radius: 200px
+          -moz-border-radius: 200px
+          -webkit-border-radius: 200px
+          .this-pocket
+            width: 24px
+            height: 24px
+            background-color: $orange-900
+            mask: url('#{$base-url}/images/this-pocket.svg') no-repeat center / contain
+            -webkit-mask: url('#{$base-url}/images/this-pocket.svg') no-repeat center / contain
+          .other-pocket
+            width: 24px
+            height: 24px
+            background-color: $orange-900
+            mask: url('#{$base-url}/images/other-pocket.svg') no-repeat center / contain
+            -webkit-mask: url('#{$base-url}/images/other-pocket.svg') no-repeat center / contain
+          .back-pocket
+            width: 24px
+            height: 24px
+            background-color: $orange-900
+            mask: url('#{$base-url}/images/back-pocket.svg') no-repeat center / contain
+            -webkit-mask: url('#{$base-url}/images/back-pocket.svg') no-repeat center / contain
+        .text-tributary
+          position: relative
+          width: 118px
+          height: 32px
+          text-align: center
+          top: 10px
+          font-size: 13px
+          font-weight: 500
+        .container-radio
+          display: block
+          position: relative
+          cursor: pointer
+          font-size: 22px
+          -webkit-user-select: none
+          -moz-user-select: none
+          -ms-user-select: none
+          user-select: none
+        .container-radio input
+          position: absolute
+          opacity: 0
+          cursor: pointer
+        .checkmark
+          position: absolute
+          height: 20px
+          width: 20px
+          background-color: $carbon-light-100
+          border: solid 1.3px $black-800
+          border-radius: 50%
+          left: 50px
+          bottom: -5px
+        .container-radio:hover input ~ .checkmark
+          background-color: $carbon-mid-100
+        input:checked ~ .checkmark
+            background-color: $g-500
+            border: none
+        .checkmark::after
+          content: ""
+          position: absolute
+          display: none
+        .container-radio
+          input:checked ~ .checkmark::after
+            display: block
+        .container-radio
+          .checkmark::after
+            top: 6px
+            left: 6px
+            width: 8px
+            height: 8px
+            border-radius: 50%
+            background: white
+    .btn-footer
+      text-align: center
+@media only screen and (max-width: $break-mobile)
+  .cont-step-one-move-pockets
+    width: 100%
+    .cont-step-one
+      width: 100%
+    .form-global
+      margin: 0 auto
+      width: 100%
+      .cont-dropdwon
+        margin-left: 16px
+        margin-right: 16px
+      .cont-input
+        margin: 0 16px
+      .cont-card
+        margin: 0 16px
+      .title
+        margin-left: 16px
+      .title-card
+        margin-bottom: 0
+        margin-left: 0
+      .cont-section
+        margin-left: 16px
+        .cont-options
+          display: flex
+          flex-direction: row
+          li
+            padding-right: 8px
+      .btn-footer
+        width: 100%
+        padding: 0 16px
+        margin-top: 32px
+        button
+          width: 100%

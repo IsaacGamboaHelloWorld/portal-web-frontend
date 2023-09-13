@@ -1,0 +1,63 @@
+<ng-container *ngIf="formGlobal$ | async as form">
+  <div class="animated fade-in-up cont-step-global cont-step-confirmation-advance">
+    <app-ticket
+        [imageTicket]="'/80-money-success@3x.png' | imageCdn"
+        [title]="'TRANSFER.CONFIRMATION.TITLE' | translate"
+        [messageTitle]="'TRANSFER.CONFIRMATION.FORM.ADVANCE' | translate"
+        [messageText]="form?.amount | currencyFormat : true : 'decimal-vouchers'"
+        [listTemplate]="list"
+        [note]="'TRANSFER.CONFIRMATION.FORM.NOTE' | translate"
+    ></app-ticket>
+    <div class="footer-step">
+      <app-btn
+          [class]="'btn-primary'"
+          [disabled]="(transferAdvance$ | async)?.loading"
+          [text]="'TRANSFER.CONFIRMATION.BTN' | translate"
+          [isLoading]="(transferAdvance$ | async)?.loading"
+          (clickBtn)="advanceTransfer(form)"></app-btn>
+    </div>
+  </div>
+
+
+  <ng-template #list>
+    <ul>
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+        <p class="min-height"> {{ 'BANKS.'+ form.origin?.accountInformation?.bank | translate }} 
+          - {{ 'PRODUCT_TYPES.' + form?.origin?.typeAccount | translate}}
+          - Nro. {{form?.origin?.id | slice: -4}}</p>
+      </li>
+
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.TO' | translate}}</span>
+        <p [innerHTML]="('BANKS.'+ form.destination?.accountInformation?.bank | translate) +
+        ' - ' +
+        ('PRODUCT_TYPES.' + form?.destination?.typeAccount | translate) +
+        ' ' +
+        (form?.destination?.id | slice: -4) +
+        ' - ' +
+        ('PRODUCT.DEPOSIT_ACCOUNT.BALANCE_AVAILABLE' | translate) +
+        ' ' +
+        (form?.destination?.productAccountBalances?.saldo_disponible?.amount | currencyFormat : true : 'decimal-vouchers-custom')
+        "
+        ></p>
+      </li>
+
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.DUES' | translate}}</span>
+        <p>36</p>
+      </li>
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.DESCRIPTION' | translate}}</span>
+        <p>{{form?.description}}</p>
+      </li>
+      <li>
+        <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+        <p [innerHTML]="cost | currencyFormat : true : 'decimal-vouchers-custom'"></p>
+      </li>
+    </ul>
+  </ng-template>
+</ng-container>
+
+
+

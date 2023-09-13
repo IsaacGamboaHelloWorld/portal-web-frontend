@@ -1,0 +1,112 @@
+<div class="main-step-one width-height-auto">
+  <form class="form-global" [formGroup]="formFastTransfer" (ngSubmit)="submitForm()">
+    <!-- Cuenta origen -->
+    <div class="padding-top-16px padding-bottom-0px">
+      <div class="card-change-data">
+        <app-card-change-data [form]="formFastTransfer" [property]="'account_origin'"
+          [options]="(productsOrigin$ | async)" [append]="modal" [dataCard]="(productDefault$ | async)"
+          [label]="'PAYMENTS.CONFIRMATION.FORM.ORIGIN'" (event)="changeOrigin()"></app-card-change-data>
+      </div>
+    </div>
+
+    <label class="padding-top-bottom-16px display-block">{{'TRANSFER.FAST_TRANSFER.SUBTITLE' | translate}}</label>
+    <div class="body bg-color-white border-radius-12 padding-left-right-16px">
+      <!-- Banco -->
+      <div class="padding-top-16px">
+        <label class="label-txt padding-top-0px" for="">{{'REGISTER_PRODUCT_AFFILIATION.DESTINATION_BANK_LBL' |
+          translate}}</label>
+        <div class="select-bp">
+          <select formControlName="bankId" [compareWith]="compareFnBanks">
+            <option value="null" selected disabled>{{'REGISTER_PRODUCT_AFFILIATION.CHOOSE_DESTINATION_BANK_PLACEHOLDER'
+              | translate}}</option>
+            <option *ngFor="let bank of (banks$ | async)?.data" [ngValue]="bank">{{bank.name}}</option>
+          </select>
+          <div class="messages-select">
+            <i class="icon-refresh warning" (click)="fetchBanks()" *ngIf="(banks$ | async)?.error"
+              [title]="'PRODUCT.ERROR.BTN' | translate"></i>
+            <i class="icon-check success" *ngIf="(banks$ | async)?.loaded"></i>
+            <img [src]="'/loading.gif' | imageCdn" [alt]="'LOADING' | translate" *ngIf="(banks$ | async)?.loading">
+          </div>
+        </div>
+      </div>
+
+      <!-- Seleccion cuenta -->
+      <div class="display-flex card-list padding-top-16px">
+        <div class="card-item padding-right-4px">
+          <app-card-account-radius [isActive]="getDestinationAccountType.value === '1'" [index]="'1'"
+            [form]="formFastTransfer" [property]="'destinationAccountType'"
+            [text]="'TRANSFER.FAST_TRANSFER.ACCOUNT_DESTINATION.DEPOSIT_ACCOUNT' | translate" [type]="'ONLY_TEXT'"
+            (setCardEmit)="selectCard($event)"></app-card-account-radius>
+        </div>
+        <div class="card-item padding-left-4px">
+          <app-card-account-radius [isActive]="getDestinationAccountType.value === '2'" [index]="'2'"
+            [form]="formFastTransfer" [property]="'destinationAccountType'"
+            [text]="'TRANSFER.FAST_TRANSFER.ACCOUNT_DESTINATION.CURRENT_ACCOUNT' | translate" [type]="'ONLY_TEXT'"
+            (setCardEmit)="selectCard($event)"></app-card-account-radius>
+        </div>
+      </div>
+      <!-- Num cuenta -->
+      <div class="padding-top-16px">
+        <app-ds-input [label]="'REGISTER_PRODUCT_AFFILIATION.DESTINATION_ACCOUNT_LBL' | translate"
+          [form]="formFastTransfer" [property]="'destinationAccountId'" [typeText]="'number'"
+          [typeInput]="getDestinationAccountId.valid ||  getDestinationAccountId.value == '' ? 'default' : 'error'"
+          [placeholder]="'REGISTER_PRODUCT_AFFILIATION.DESTINATION_ACCOUNT_PLACEHOLDER' | translate">
+        </app-ds-input>
+      </div>
+      <!-- Tipo de documento -->
+      <div class="padding-top-16px">
+        <app-ds-dropdown-select [label]="'REGISTER_PRODUCT_AFFILIATION.DESTINATION_DOCUMENT_TYPE_LBL' | translate"
+          [placeHolder]="'REGISTER_PRODUCT_AFFILIATION.DESTINATION_DOCUMENT_TYPE_PLACEHOLDER' | translate"
+          [form]="formFastTransfer" [property]="'customerIdType'" [fixedOptions]="documentTypes">
+
+        </app-ds-dropdown-select>
+      </div>
+      <!-- Nombre de titular -->
+      <div class="padding-top-16px">
+        <app-ds-input [label]="'REGISTER_PRODUCT_AFFILIATION.DESTINATION_USER_NAME_LBL' | translate"
+          [form]="formFastTransfer" [property]="'customerName'" [typeText]="'text'"
+          [typeInput]="getCustomerName.valid || getCustomerName.value == '' ? 'default' : 'error'"
+          [placeholder]="'REGISTER_PRODUCT_AFFILIATION.DESTINATION_USER_NAME_PLACEHOLDER' | translate">
+        </app-ds-input>
+      </div>
+      <!-- Numero de doumento -->
+      <div class="padding-top-16px">
+        <app-ds-input [label]="'REGISTER_PRODUCT_AFFILIATION.DESTINATION_DOCUMENT_NUMBER_LBL' | translate"
+          [form]="formFastTransfer" [property]="'customerId'" [typeText]="'number'"
+          [typeInput]="getCustomerId.valid || getCustomerId.value == '' ? 'default' : 'error'"
+          [placeholder]="'REGISTER_PRODUCT_AFFILIATION.DESTINATION_DOCUMENT_NUMBER_PLACEHOLDER' | translate">
+        </app-ds-input>
+      </div>
+      <!-- Valor -->
+      <div class="padding-top-16px">
+        <app-ds-input [label]="VALUE_TO_TRANSFER | translate" [placeholder]="'$00.0' | translate"
+          [caption]=" getAmount?.errors?.max ? (MAX | translate) : getAmount?.errors?.min  ? (MIN | translate): ''"
+          [typeInput]="getAmount.valid || getAmount.value == '$' || getAmount.value == ''  ? 'default' : 'error'"
+          [form]="formFastTransfer" [property]="'amount'" [useCurrency]="true" [typeText]="'number'">
+        </app-ds-input>
+      </div>
+      <!-- Descripcion -->
+      <div class="padding-top-16px">
+        <app-ds-input [label]="'TRANSFER.FAST_TRANSFER.VALUE.DESCRIPTION' | translate" [form]="formFastTransfer"
+          [property]="'description'" [typeText]="'text'"
+          [typeInput]="getDescription.valid || getDescription.value == '' ? 'default' : 'error'"
+          [placeholder]="'' | translate">
+        </app-ds-input>
+      </div>
+      <!-- Factura -->
+      <div class="padding-top-bottom-16px">
+        <app-ds-input [label]="'TRANSFER.FAST_TRANSFER.VALUE.INVOICE_NUMBER' | translate" [form]="formFastTransfer"
+          [property]="'voucher'" [typeText]="'text'"
+          [typeInput]="getVoucher.valid || getVoucher.value == '' ? 'default' : 'error'" [placeholder]="'' | translate">
+        </app-ds-input>
+      </div>
+
+    </div>
+    <div class="btn-continue display-flex justify-content-center padding-top-bottom-16px">
+      <button type="submit" class="btn btn-primary" [disabled]="formFastTransfer.invalid">{{'CONTINUE' |
+        translate}}</button>
+    </div>
+  </form>
+</div>
+
+<div #modal></div>

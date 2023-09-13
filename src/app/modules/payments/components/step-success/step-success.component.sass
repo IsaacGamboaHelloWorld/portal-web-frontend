@@ -1,0 +1,44 @@
+@import '../../../../../sass/mixins'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/variables'
+
+.cont-step-success
+  max-width: 740px
+  width: 100%
+  margin: 0 auto
+  display: block
+  padding: 50px 0
+  .head-step-success
+    text-align: center
+    padding-bottom: 22px
+    margin-bottom: 27px
+    img
+      width: 120px
+      height: auto
+      margin-bottom: 18px
+    h5
+      font-weight: bold
+  .footer-step-success
+    clear: both
+    text-align: center
+    margin: 16px 0
+    display: flex
+    flex-direction: column
+    align-items: center
+    padding-top: 20px
+    .buttons-container
+      width: 400px
+      button
+        width: 100%
+        max-width: 183px
+        margin-bottom: 33px
+        margin-right: 30px
+      a
+        letter-spacing: 0
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-success
+    text-align: center
+    .head-step-success
+      h5
+        text-align: center

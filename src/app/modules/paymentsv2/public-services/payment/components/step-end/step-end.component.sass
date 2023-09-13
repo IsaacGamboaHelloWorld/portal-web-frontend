@@ -1,0 +1,76 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.container-payment-ps
+  .cont-step-end
+    max-width: 740px
+    width: 100%
+    margin: 0 auto
+    display: block
+
+    .footer-step-end
+      text-align: center
+      margin-top: 34px
+      flex-direction: row
+      align-items: center
+      .warning-text
+        color: $error-600
+        margin-bottom: 20px
+      button
+        margin: 0 30px
+        max-width: 183px
+        padding: 0px 32px
+        width: 122px
+
+    .card-programmed-payment
+      margin: 28px 0px
+      width: calc(100% + 16px)
+      margin-left: -8px
+      .card-programed
+        padding: 24px
+        p
+          letter-spacing: normal
+          color: $cbn-900
+          font-weight: 500
+          line-height: 2
+        .title-end
+          font-size: 14px
+          font-weight: 600
+        .desc-end
+          font-size: 12px
+          margin-top: 8px
+        .programmed-end
+          font-size: 13px
+          line-height: 2.15
+          margin-left: 8px
+        .header-end
+          display: flex
+          margin-top: 12px
+          align-items: flex-end
+
+  .ticket-global .btn-ticket
+    bottom: -48px
+    height: 72px
+
+@media only screen and (max-width: $break-mobile)
+  .container-payment-ps
+    .cont-step-end
+      width: 100%
+      .footer-step-end button 
+        max-width: 100%
+        width: 100%
+        margin: auto auto 24px auto
+      .card-programmed-payment
+        margin: 16px 0px
+        margin-left: 0px
+        width: 100%
+      .footer-step-end
+        margin-top: 8px
+    .space-ticket
+      margin: 0px
+
+@media only screen and (max-width: $break-tablet)
+  .container-payment-ps
+    .ticket-global .btn-ticket
+        bottom: 0px

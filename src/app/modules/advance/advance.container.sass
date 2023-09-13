@@ -1,0 +1,53 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.cont-advance
+  .titles-advance
+    margin: 14px 0 65px
+    h2
+      font-weight: bold
+      letter-spacing: -0.2px
+    p
+      line-height: 1.71
+  .head-new-transfer-advance
+    display: flex
+    justify-content: space-between
+    align-items: center
+    padding: 20px 0
+    a
+      color: $carbon-mid-400
+      margin-right: 10px
+      transition: .3s
+      em
+        +inline(middle)
+        color: $gc-800
+        font-size: $f-20 + 4
+      &.close-transfer
+        margin: 0
+        em
+          margin-left: 10px
+      &:hover
+        color: $carbon-dark-900
+  .line-time
+    margin-top: 65px
+  .cont-steps-advance
+    min-height: 30vh
+    width: 100%
+    max-width: 715px
+    display: block
+    margin: 0 auto
+
+
+@media only screen and (max-width: $break-mobile)
+  .cont-advance
+    .form-global .form-group
+      padding: 0
+    .head-new-transfer-advance
+      padding: 20px 16px
+    .titles-advance,
+    .cont-steps-advance
+      padding: 0 16px
+    .titles-advance
+      h2
+        font-size: $f-20 + 1

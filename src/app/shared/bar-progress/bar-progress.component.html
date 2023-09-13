@@ -1,0 +1,5 @@
+<div class="cont-bar-progress">
+  <p *ngIf="title">{{title}}</p>
+  <progress id="file" value="{{valueProgress}}" max="{{max}}" [ngStyle]="customStyle"></progress>
+  <p *ngIf="desc">{{desc}}</p>
+</div>

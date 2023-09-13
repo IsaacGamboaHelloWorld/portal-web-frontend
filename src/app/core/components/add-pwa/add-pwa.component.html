@@ -1,0 +1,13 @@
+<div class="pwa-install" [ngClass]="{'show': show}">
+	<button [id]="'CLOSE' | translate" class="close-pwa" (click)="close($event)" [title]="'CLOSE' | translate"><span id="iconClose" class="icon-close"></span></button>
+	<div class="cont-info">
+    <div class="cont-img">
+		  <img [src]="'/isologopwa.png' | imageCdn" [alt]="'PWA.TITLE' | translate">
+    </div>
+		<div class="cont-text">
+			<p>{{'PWA.TITLE' | translate}}</p>
+			<span>{{domain}}</span>
+		</div>
+	</div>
+	<button [id]="'PWA.BTN' | translate" class="btn btn-primary" (click)="install($event)" [title]="'PWA.BTN' | translate">{{'PWA.BTN' | translate}}</button>
+</div>

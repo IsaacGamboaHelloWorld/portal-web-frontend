@@ -1,0 +1,19 @@
+<div class="animated fade-in-up cont-step-three-transfer-advance" *ngIf="show">
+  <form class="form-global" [formGroup]="formWhen" (ngSubmit)="formSubmit()">
+    <div class="form-group">
+      <div class="date-today" [ngClass]="{'active': typeActive === today}">
+        <div class="radio capitalize">
+          <input type="radio" formControlName="dueDate" id="option-1" name="dueDate"
+                 [value]="today">
+          <label for="option-1" (click)="selectedOption(today)">{{ 'DATE.TODAY' | translate }}
+            - {{newDate | date: 'dd/MMM/yyyy' | replace : '.' : '' }}</label>
+        </div>
+      </div>
+    </div>
+    <p>{{'ADVANCE.WHEN.DESCRIPTION' | translate}}</p>
+    <div class="form-group submit-cont">
+      <button type="submit" class="btn btn-primary"
+              [disabled]="formWhen.invalid">{{'CONTINUE' | translate}}</button>
+    </div>
+  </form>
+</div>

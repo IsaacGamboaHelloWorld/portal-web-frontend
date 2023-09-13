@@ -1,0 +1,68 @@
+<div class="modal-product-actions" *ngIf="actions$ | async as actions">
+
+  <div class="content-product-actions" *ngIf="actions.loaded">
+    <div class="head-product-actions">
+      <p>{{'ACTIONS_AVAL.TITLE' | translate}}</p>
+      <div class="align-product-actions">
+        <div>
+          <p>{{'ACTIONS_AVAL.TOTAL' | translate}}</p>
+          <strong>{{actions?.data?.stocksAval[actions?.data?.stocksAval.length - 1]?.numberBaseStocks | number | replace : ',' : '.' }}</strong>
+        </div>
+        <div>
+          <img [src]="'/aval.png' | imageCdn" [alt]="'NAME_GROUP' | translate">
+        </div>
+      </div>
+    </div>
+    <div class="body-product-actions">
+      <ul>
+        <li *ngFor="let stock of actions.data?.stocksAval">
+          <p>{{stock?.balanceDescription}} <small class="capitalize">{{stock?.date | createDate | date:'dd/MMM/yyyy' | replace : '.' : ''}}</small>:</p>
+          <strong>{{stock?.amount | currencyFormat}}</strong>
+        </li>
+      </ul>
+    </div>
+    <div class="footer-product-actions">
+      <p>{{'ACTIONS_AVAL.DESCRIPTION' | translate}}</p>
+    </div>
+  </div>
+
+  <div class="no-product-actions" *ngIf="actions.error && actions.code === '55'">
+    <div class="img-oval">
+      <img [src]="'/bell-blue.svg' | imageCdn" alt="{{'ACTIONS_AVAL.WITHOUT_DATA.TITLE' | translate}}">
+    </div>
+    <strong>{{'ACTIONS_AVAL.WITHOUT_DATA.TITLE' | translate}}</strong>
+    <p>{{actions?.errorMessage}}</p>
+    <button class="btn btn-primary" (click)="actionCancel.emit()" type="button">{{'ACTIONS_AVAL.WITHOUT_DATA.BTN' | translate}}</button>
+  </div>
+
+  <div class="error-product-actions" *ngIf="actions.error && actions.code !== '55'">
+    <img [src]="'/enrollment/service-error.png' | imageCdn" alt="">
+    <strong>¡{{'ACTIONS_AVAL.ERROR.TITLE' | translate}}!</strong>
+    <p>{{actions?.errorMessage}}</p>
+    <button class="btn btn-primary" (click)="retry()" type="button">{{'ERROR_TITLE' | translate}}</button>
+  </div>
+
+  <div class="loading-product-actions loading-global" *ngIf="actions.loading">
+    <div class="head-loading-actions">
+      <p class="title-actions-loading placeholder width-50"></p>
+      <div class="align-head-actions">
+        <div>
+          <p class="placeholder width-50"></p>
+          <p class="placeholder width-70"></p>
+        </div>
+        <div>
+          <div class="placeholder"></div>
+        </div>
+      </div>
+    </div>
+    <div class="body-loading-actions">
+      <ul>
+        <li *ngFor="let i of [].constructor(loadings)">
+          <p class="placeholder width-40"></p>
+          <p class="placeholder"></p>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</div>

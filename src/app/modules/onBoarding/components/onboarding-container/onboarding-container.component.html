@@ -1,0 +1,18 @@
+<header class="header-onboarding">
+  <img [src]="'/logotipo-horizontalx3.png' | imageCdn" alt="">
+  <a (click)="redirect()" class="link" *ngIf="false">{{'SKIP' | translate}}</a>
+</header>
+
+<div class="container-onBoarding not-select show-slider" [ngClass]="{'finish': showButton, 'show-slider': showSlider}">
+  <app-welcome *ngIf="!showSlider" (showSlider)="redirect()"></app-welcome>
+  <app-slider-on-boarding
+      *ngIf="false"
+      (showBtn)="index($event)"
+      (redirect)="redirect()"
+  ></app-slider-on-boarding>
+</div>
+
+<footer class="footer-onboarding">
+  <app-global-footer></app-global-footer>
+</footer>
+

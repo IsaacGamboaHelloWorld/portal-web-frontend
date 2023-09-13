@@ -1,0 +1,41 @@
+{
+    "/local-img/**": {
+        "target": {
+            "host": "pb-dev-popular.avaldigitallabs.com",
+            "protocol": "https:",
+            "port": 443
+        },
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "info",
+        "pathRewrite": {
+            "^/local-img": ""
+        }
+    },
+    "/api/*": {
+        "target": {
+            "host": "pb-dev-api-popular.avaldigitallabs.com",
+            "protocol": "https:",
+            "port": 443
+        },
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "info",
+        "pathRewrite": {
+            "^/api": ""
+        }
+    },
+    "/api/mock/*": {
+        "target": {
+            "host": "30ea35c5-581b-4eb8-b9b6-7285d54cc4d4.mock.pstmn.io",
+            "protocol": "https:",
+            "port": 443
+        },
+        "secure": true,
+        "changeOrigin": true,
+        "logLevel": "info",
+        "pathRewrite": {
+            "^/api/mock": ""
+        }
+    }
+}

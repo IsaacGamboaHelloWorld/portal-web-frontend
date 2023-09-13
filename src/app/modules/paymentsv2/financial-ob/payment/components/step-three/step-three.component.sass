@@ -1,0 +1,49 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.cont-step-three
+  display: flex
+  align-items: center
+  justify-content: center
+  flex-direction: column
+  max-width: 390px
+  min-width: 390px
+  .box-step-three
+    width: 390px
+    text-align: center
+    padding: 24px
+    background: $carbon-light-100
+    border-radius: 12px
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+    .box-image
+      margin-top: 24px
+      img
+        width: 80px
+        height: 80px
+    .confirm
+      margin-top: 12px
+      span
+        font-size: $f-14 - 3
+        color: $carbon-mid-600
+        line-height: 1.82
+      .date
+        font-size: $f-14 + 2
+        font-weight: 600
+        margin-bottom: 16px
+        line-height: 1.5
+  .footer-step
+    margin-top: 16px
+    button
+      border-radius: 8px
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-three
+    min-width: 343px
+    .box-step-three
+      width: 100%
+    .footer-step
+      width: 100%
+      button
+        width: 100%
+

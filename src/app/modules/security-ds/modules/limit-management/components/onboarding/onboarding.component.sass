@@ -1,0 +1,39 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.limit-onboarding
+  display: flex
+  flex-direction: column
+  align-items: center
+  font-style: normal
+  color: $cbn-600
+  margin: auto 16px
+  &__image
+    height: 80px
+    width: 80px
+  &__name
+    margin-top: 16px
+    font-weight: 700
+    font-size: 16px
+    line-height: 20px
+    text-align: center
+  &__description
+    margin-top: 16px
+    font-weight: 400
+    font-size: 13px
+    line-height: 22px
+    text-align: center
+    max-width: 328px
+    strong
+      font-weight: 600
+  &__button
+    margin-top: 32px
+    width: 100%
+
+@media only screen and (min-width: $break-small-table-min)
+  .limit-onboarding
+    &__description
+      max-width: 295px
+    &__button
+      width: 159px
+

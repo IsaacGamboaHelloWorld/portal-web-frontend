@@ -1,0 +1,57 @@
+<div class="animated fade-in-up cont-step-global cont-step-confirmation">
+  <app-ticket [imageTicket]="'/confirmation.png' | imageCdn" [title]="'TRANSFER.CONFIRMATION.TITLE' | translate"
+    [messageTitle]="(!(formNewTransfer$ | async)?.data.scheduledTransfer ? 'TRANSFER.CONFIRMATION.FORM.AMOUNT' : 'TRANSFER.CONFIRMATION.FORM.AMOUNT_SCHEDULED') | translate"
+    [messageText]="(formNewTransfer$ | async)?.data.transferInformation?.amount | currencyFormat : true : 'decimal-vouchers'"
+    [listTemplate]="list"></app-ticket>
+
+  <div class="footer-step">
+    <app-btn [class]="'btn-primary'" [disabled]="loading"
+      [text]="(!(formNewTransfer$ | async)?.data.scheduledTransfer ? 'TRANSFER.CONFIRMATION.BTN' : 'TRANSFER.CONFIRMATION.BTN_SCHEDULED') | translate"
+      [isLoading]="loading" (clickBtn)="submitData()">
+    </app-btn>
+  </div>
+</div>
+<ng-template #list>
+  <ul>
+    <li *ngIf="(formNewTransfer$ | async)?.data.account_origin as origin">
+      <span>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+      <p>
+        {{'BANKS.'+origin?.accountInformation?.bank | translate}} - {{'PRODUCT_TYPES.' + origin?.typeAccount |
+        translate}} {{origin?.id | slice: -4}} - {{'PRODUCT.DEPOSIT_ACCOUNT.BALANCE_AVAILABLE' | translate}}
+        <span class="text-bold"
+          [innerHTML]="origin?.productAccountBalances?.saldo_disponible?.amount | currencyFormat : true : 'decimal-vouchers-custom'"></span>
+      </p>
+    </li>
+    <li *ngIf="(formNewTransfer$ | async)?.data as destination">
+      <ng-container *ngIf="!(isNew$ | async)">
+        <span>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+        <p class="min-height">{{(destination?.account_destination?.bankName) | translate}} - {{ 'PRODUCT_TYPES.' +
+          destination?.account_destination?.destinationAccountType | translate}}
+          {{destination?.account_destination?.destinationAccountId | slice: -4}}</p>
+      </ng-container>
+    </li>
+    <li>
+      <span>{{(!(formNewTransfer$ | async)?.data.scheduledTransfer ? 'TRANSFER.CONFIRMATION.FORM.DATE' :
+        'TRANSFER.CONFIRMATION.FORM.DATE_SCHEDULED') | translate}}</span>
+      <p *ngIf="isNew$ | async">{{ 'TRANSFER.CONFIRMATION.FORM.NEW_ACCOUNT_DATE_MESSAGE' | translate }}</p>
+      <ng-container *ngIf="!(isNew$ | async)">
+        <p class="capitalize" *ngIf="!(formNewTransfer$ | async)?.data.scheduledTransfer"> {{ 'DATE.TODAY' | translate
+          }} - {{ date | date:'dd/MMM/yyyy' | replace : '.' : '' }}</p>
+      </ng-container>
+    </li>
+    <li>
+      <ng-container *ngIf="(formNewTransfer$ | async).data as cost">
+        <span>{{'TRANSFER.CONFIRMATION.FORM.DESCRIPTION' | translate}}</span>
+        <p>{{cost.notes}} - {{cost.invoiceNumber}}</p>
+      </ng-container>
+    </li>
+    <li>
+      <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+      <p [innerHTML]="'$'+(formNewTransfer$ | async)?.data?.transactionCost"></p>
+    </li>
+    <li>
+      <span class="footer-scheduled" [ngClass]="{'footer-scheduled': true}">{{'TRANSFER.SCHEDULED.FOOTER_SCHEDULED' |
+        translate}}</span>
+    </li>
+  </ul>
+</ng-template>

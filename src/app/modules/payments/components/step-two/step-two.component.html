@@ -1,0 +1,70 @@
+<div class="cont-step-two-payment">
+  <form class="form-global" [formGroup]="formStepTwo" (ngSubmit)="submitForm()">
+    <ng-container *ngIf="formOne$ | async as one">
+      <ng-container *ngIf="!one?.isNew ">
+        <fieldset class="form-group">
+          <ng-container *ngIf="differtenValues">
+            <div class="radio form-radiobutton-contanier payment-container-1" *ngIf="hasMinimunPayment">
+              <input type="radio" formControlName="amount" id="type-payment-1" [value]="productTopay?.productAccountBalances?.valor_pago_minimo?.amount" (click)="setClass('.payment-container-1')">
+              <label class="custom-control-label" for="type-payment-1">
+                {{'PAYMENTS.CONFIRMATION.MIN_PAYMENT' | translate}} {{productTopay?.productAccountBalances?.valor_pago_minimo?.amount | currencyFormat}}
+              </label>
+            </div>
+            <div class="radio form-radiobutton-contanier payment-container-2" *ngIf="hasTotalPayment">
+              <input type="radio" formControlName="amount" id="type-payment-2" [value]="productTopay?.productAccountBalances?.pago_total_pesos?.amount" (click)="setClass('.payment-container-2')">
+              <label class="custom-control-label" for="type-payment-2">
+                {{'PAYMENTS.CONFIRMATION.TOTAL_PAYMENT' | translate}} {{productTopay?.productAccountBalances?.pago_total_pesos?.amount | currencyFormat}}
+              </label>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="equalValues && !hasBilledPayment">
+            <div class="radio form-radiobutton-contanier payment-container-4">
+              <input type="radio" formControlName="amount" id="type-payment-4" [value]="productTopay?.productAccountBalances?.pago_total_pesos?.amount" (click)="setClass('.payment-container-4')">
+              <label class="custom-control-label" for="type-payment-4">
+                {{'PAYMENTS.CONFIRMATION.MIN_PAYMENT' | translate}} {{productTopay?.productAccountBalances?.pago_total_pesos?.amount | currencyFormat}}
+              </label>
+            </div>
+          </ng-container>
+          <div class="payment-value" *ngIf="hasBilledPayment && one?.account_destination.biller">
+            <span>{{'PAYMENTS.FORM_TWO.NUMBER_BILL' | translate}}</span>
+            <p>{{billTopay?.contract}}</p>
+            <span>{{'PAYMENTS.FORM_TWO.PAYMENT_BILL' | translate}}</span>
+            <p class="value">{{billTopay?.amount | currencyFormat}}</p>
+            <input type="hidden" formControlName="amount" [value]="billTopay?.amount.toString()">
+            <fieldset class="form-group">
+              <button type="submit" class="btn btn-primary">{{'CONTINUE' | translate}}</button>
+            </fieldset>
+          </div>
+          <div class="radio form-radiobutton-contanier payment-container-3 active" *ngIf="!hasBilledPayment || !one?.account_destination.biller">
+            <input type="radio" formControlName="amount" id="type-payment-3" [value]="OTHER_VALUE" (click)="setClass('.payment-container-3')">
+            <label class="custom-control-label" for="type-payment-3" *ngIf="!showLabel">{{'PAYMENTS.CONFIRMATION.OTHER_PAYMENT' | translate}}</label>
+            <label class="custom-control-label" for="type-payment-3" *ngIf="showLabel">{{'PAYMENTS.CONFIRMATION.OTHER' | translate}}</label>
+            <input type="tel" formControlName="amounttext" placeholder="$" appCurrency [form]="formStepTwo" [property]="'amounttext'" (keyup)="setValue()">
+            <fieldset class="form-group" *ngIf="one.account_destination.biller == false">
+              <button type="submit" class="btn btn-primary">{{'CONTINUE' | translate}}</button>
+            </fieldset>
+          </div>
+        </fieldset>
+        <div class="optional-info" *ngIf="!hasBilledPayment">
+          <p>{{'PAYMENTS.CONFIRMATION.FORM.DESCRIPTION' | translate}} ({{'OPTIONAL' | translate}})</p>
+          <fieldset class="form-group coments-container">
+            <input type="text" [placeholder]="'PAYMENTS.FORM_TWO.EXAMPLE_ONE' | translate" class="input-bp comments-text" formControlName="comments" pattern="^(?!\s.*$).*">
+          </fieldset>
+          <fieldset class="form-group container_centered">
+            <button type="submit" class="btn btn-primary" [disabled]="formStepTwo.invalid || (formStepTwo.invalid  && hasBilledPayment)">{{'CONTINUE' | translate}}</button>
+          </fieldset>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="one?.isNew">
+        <fieldset class="form-group">
+          <label>{{'PAYMENTS.CONFIRMATION.FORM.AMOUNT' | translate}}</label>
+          <input type="tel" formControlName="amount" class="input-bp" placeholder="$" appCurrency [form]="formStepTwo" [property]="'amount'">
+        </fieldset>
+        <fieldset class="form-group container_centered">
+          <button type="submit" class="btn btn-primary" [disabled]="formStepTwo.invalid">{{'CONTINUE' | translate}}</button>
+        </fieldset>
+      </ng-container>
+    </ng-container>
+  </form>
+</div>

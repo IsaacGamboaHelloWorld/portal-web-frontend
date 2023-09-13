@@ -1,0 +1,89 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.cont-login-ds
+  width: 298px
+  .title
+    width: 298px
+    height: 28px
+    margin: 0 0 48px
+    font-family: Inter
+    font-size: 18px
+    font-weight: bold
+    font-stretch: normal
+    font-style: normal
+    line-height: 1.56
+    letter-spacing: normal
+    text-align: center
+    color: $cbn-900
+  button
+    width: 100%
+  .recaptcha
+    height: 20px
+    margin: 48px 4px 0 5px
+    font-family: Inter
+    font-size: 11px
+    font-weight: 500
+    font-stretch: normal
+    font-style: normal
+    line-height: 1.82
+    letter-spacing: normal
+    color: $cbn-mid-400
+    .link-recaptcha
+      color: $act-900
+      cursor: pointer
+.cont-biometric
+  text-align: center
+  color: $cbn-mid-100
+  .text-biometric
+    float: none
+    width: 162px
+    height: 24px
+    margin: 0 4px 0 0
+    font-family: Inter
+    font-size: 14px
+    font-weight: 600
+    font-stretch: normal
+    font-style: normal
+    line-height: 1.71
+    letter-spacing: normal
+    text-align: center
+    color: $cbn-mid-100
+  .icon-biometric
+    width: 24px
+    height: 24px
+    background-color: $cbn-mid-100
+    mask: url('#{$base-url}/images/24-essential-fingerprint-3.svg') no-repeat center / contain
+    -webkit-mask: url('#{$base-url}/images/24-essential-fingerprint-3.svg') no-repeat center / contain
+.enable-biometric
+  color: $act-900
+  pointer-events: all
+  .text-biometric
+    color: $act-900
+  .icon-biometric
+    background-color: $act-900
+.disabled-biometric
+  pointer-events: none
+  cursor: not-allowed
+  .text-biometric
+    color: $cbn-mid-100
+  .icon-biometric
+    background-color: $cbn-mid-100
+@media only screen and (max-width: $break-small-phone)
+  .cont-login-ds
+    .title
+      position: relative
+      margin: 48px auto
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .cont-login-ds
+    .title
+      position: relative
+      margin: 48px auto
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+@media only screen and (min-width: $break-desktop-xlg-min)

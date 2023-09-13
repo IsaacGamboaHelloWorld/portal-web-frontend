@@ -1,0 +1,57 @@
+<div class="card-home-opt-sec-container pb-col-sp-4" (click)="redirect()">
+  <ng-container *ngIf="!loading; else loadingState">
+    <!-- header -->
+    <div class="card-header-os" [ngClass]="{ 'isNew': isNew }">
+      <div class="img-container pb-rounded-50">
+        <img [src]="data?.img | imageCdn" alt="">
+      </div>
+      <div *ngIf="!!data?.title && !!data?.subtitle" class="header-body-os">
+        <small *ngIf="isNew" class="new-text"> <small class="point"></small> {{ 'SECURITY.NEW' | translate }} </small>
+        <h4> {{ data?.title }} </h4>
+        <p> {{ data?.subtitle }} </p>
+      </div>
+      <em *ngIf="showNavigate" class="icon-arrow2-right"></em>
+    </div>
+    <!-- body -->
+    <div *ngIf="(!!data?.opt1 && !!data?.opt2) || (!!data?.bodyTitle && !!data?.bodySubtitle)"
+      class="card-body-os">
+      <div class="body-text" *ngIf="!!data?.bodyTitle && !!data?.bodySubtitle">
+        <strong class="body-title">
+          <img [src]="'/pendiente.svg' | imageCdn" alt="">
+          {{ data?.bodyTitle }}
+        </strong>
+        <p class="body-subtitle"> {{ data?.bodySubtitle }} </p>
+      </div>
+
+      <div *ngIf="!!data?.opt1 && !!data?.opt2" class="body-opt-os">
+        <strong class="opt">
+          <img [src]="'/verificado.svg' | imageCdn" alt="">
+          {{ data?.opt1 }}
+        </strong>
+        <strong class="opt">
+          <img [src]="'/pendiente.svg' | imageCdn" alt="">
+          {{ data?.opt2 }}
+        </strong>
+      </div>
+    </div>
+    <!-- footer -->
+    <div *ngIf="!!data?.bottomLabel" class="card-footer-os">
+      <strong class="bottom-label"> {{ data?.bottomLabel }} </strong>
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #loadingState>
+  <div class="box item-loading shadow-1dp">
+		<div class="bg-icon-loading placeholder"></div>
+		<p class="title-loading placeholder width-50"></p>
+		<p class="text-loading placeholder width-20"></p>
+    <div *ngIf="(!!data?.opt1 && !!data?.opt2) || (!!data?.bodyTitle && !!data?.bodySubtitle)" class="body-loading">
+      <p class="option-loading placeholder width-40"></p>
+      <p class="option-loading placeholder width-80"></p>
+    </div>
+    <div *ngIf="!!data?.bottomLabel" class="footer-loading">
+      <p class="button-loading placeholder width-60"></p>
+    </div>
+	</div>
+</ng-template>

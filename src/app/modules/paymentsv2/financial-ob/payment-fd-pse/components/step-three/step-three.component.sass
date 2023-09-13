@@ -1,0 +1,36 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.changes-styles-in-pse-fd
+  .step-three-fd
+    width: 100%
+    margin: 40px auto
+    .input-container
+      width: 343px
+      padding: 24px 16px
+      background-color: $carbon-light-100
+      border-radius: 12px
+      box-shadow: 0 1px 2px 0 $transparent-08
+      margin-bottom: 32px
+    .btn-container
+      width: 100%
+      button
+        width: 100%
+// override styles DsNotificationCompomnent
+.ds-notification
+  top: 80px
+
+@media only screen and (min-width: $break-medium-table-landscape-min)
+  .changes-styles-in-pse-fd
+    .step-three-fd
+      margin: 24px auto
+      .input-container
+        width: 491px
+        padding: 24px
+        margin-bottom: 24px
+      .btn-container
+        width: 154px
+        margin: auto
+  // override styles DsNotificationCompomnent
+  .ds-notification
+    top: 120px

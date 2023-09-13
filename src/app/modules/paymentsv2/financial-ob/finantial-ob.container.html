@@ -1,0 +1,92 @@
+<app-template-system [title]="'PAYMENTSV2.FINANCIAL_OP.MAIN_TITLE' | translate" [sectionHome]="true" [backUrl]="navigate.paymentsv2" [sectionContent]="content" [fullContent]="true" [navigatorActive]="true">
+</app-template-system>
+
+<ng-template #content>
+    <div class="finalcial-op-container" [ngClass]="{'zero-records': (allPayments$ | async)?.registeredLoans?.length > 0}">
+        <ng-container *ngIf="(allPayments$ | async)?.registeredLoans?.length !== 0; else noRecords">
+            <div class="finalcial-op-container-next-items">
+                <div class="title-arrows">
+                    <h5>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.HOME.TITLE' | translate}}</h5>
+                    <div *ngIf="showArrow && !isMobile" class="cont-arrows">
+                        <img class="left" [src]="iconArrowRight | imageCdn" (click)="onLeft()" [ngClass]="{'left-invested': iconColor}" alt="">
+                        <img class="right" [src]="iconArrowLeft | imageCdn" (click)="onRight()" [ngClass]="{'left-invested': iconColor}" alt="">
+                    </div>
+                </div>
+                <div class="next-payments-list" #scroll (scroll)="scrollHandler($event)">
+                    <ng-container *ngIf="hasNextBills$ | async; else loadingNextPayments ">
+                        <ng-container *ngIf="(productsOrigin$ | async)?.length > 0; else noData">
+                            <app-financial-to-pay *ngFor="let info of (productsOrigin$ | async) " [programmed]="false" [enterprise]="info?.accountInformation?.bank " [nameService]="info?.accountInformation?.productType " (payAction)="doPayLoanTop($event)
+                    " [ref]="info?.accountInformation?.accountIdentifier " [date]="info?.dueDate " [data]="info "></app-financial-to-pay>
+                        </ng-container>
+                    </ng-container>
+                </div>
+                <div class="finalcial-op-container-manager">
+                    <div class="finalcial-op-container-manager-content ">
+                        <div class="finalcial-op-listed ">
+                            <div class="manager-header ">
+                                <h5>{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.HOME.SUBTITLE1' | translate}}</h5>
+                                <a class="delete-link link" (click)="activeEdit()" *ngIf="(allPayments$ | async)?.registeredLoans?.length > 0">{{(editModeStatus ? 'Cancelar' : 'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.HOME.BTN_EDIT') | translate}}</a>
+                            </div>
+                            <button class="btn btn-primary btn-register-service" (click)="addNewLoan() ">{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.HOME.BTN_ADD' | translate}}<em class="icon-plus "></em></button>
+                            <div class="list-payments">
+                                <ng-container *ngIf="hasAllBills$ | async; else loadingAllPayments ">
+                                    <app-loan-to-admin *ngFor="let info of (allPayments$ | async).registeredLoans; let i = index" [data]="info" [tagnumber]="i" [nameService]="info?.loanName " [enterprise]="info?.bankName " [ref]="info?.accountId " (click)="selectBill(info, i)" [editMode]="editModeStatus"
+                                        (deleteAction)="doDeleteFinancialOp($event)" [bankList]="allBanks"></app-loan-to-admin>
+                                </ng-container>
+                            </div>
+                            <div class="shadow-bottom"></div>
+                        </div>
+                        <ng-container *ngIf="!isMobile">
+                            <div class="financial-op-admin " *ngIf="(selectedPayment$ | async)?.activePayment; else loadingInfo">
+                                <app-loan-payment-info
+                                    [bankList]="allBanks"
+                                    [serviceName]="(selectedPayment$ | async)?.activePayment?.loanName"
+                                    [productType]="(selectedPayment$ | async)?.activePayment?.accountType"
+                                    [enterprise]="(selectedPayment$ |async)?.activePayment?.bankName"
+                                    [owner]="(selectedPayment$ | async)?.activePayment?.accountId"
+                                    [ref]="(selectedPayment$ | async)?.activePayment?.accountId"
+                                    [data]="(selectedPayment$ | async)?.activePayment"
+                                    (payAction)="doPayLoan($event)"
+                                ></app-loan-payment-info>
+                            </div>
+                        </ng-container>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>
+
+<ng-template #loadingInfo>
+    <app-loan-payment-info [loading]="true"></app-loan-payment-info>
+</ng-template>
+
+<ng-template #noRecords>
+    <div class="zero-background ">
+        <div class="circle-green ">
+            <img [src]=" '/pagos.png' | imageCdn " alt="">
+        </div>
+        <div class="circle-big animated-fast zoomIn"></div>
+        <div class="circle-medium animated-fast zoomIn"></div>
+        <div class="circle-small animated-fast zoomIn"></div>
+        <p class="title ">{{'¡No tienes obligaciones inscritas!' | translate}}</p>
+        <p>
+            {{'Inscribe tus obligaciones bancarias para pagar fácilmente.' | translate}}
+        </p>
+        <button class="btn btn-primary " (click)="addNewLoan() ">{{'Inscribir obligación' | translate}}</button>
+    </div>
+</ng-template>
+
+<ng-template #loadingNextPayments>
+    <app-financial-to-pay [loading]="true"></app-financial-to-pay>
+    <app-financial-to-pay [loading]="true"></app-financial-to-pay>
+    <app-financial-to-pay [loading]="true"></app-financial-to-pay>
+</ng-template>
+
+<ng-template #loadingAllPayments>
+    <app-loan-to-admin [loading]="true"></app-loan-to-admin>
+</ng-template>
+
+<ng-template #noData>
+    <app-financial-to-pay [nodata]="true"></app-financial-to-pay>
+</ng-template>

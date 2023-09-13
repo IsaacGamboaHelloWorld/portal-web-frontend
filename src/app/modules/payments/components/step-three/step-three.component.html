@@ -1,0 +1,36 @@
+<ng-container *ngIf="formOne$ | async as one">
+    <div class="cont-step-three-payment">
+        <form class="form-global" [formGroup]="formStepThree" (ngSubmit)="submitForm()">
+            <div class="form-group" *ngIf="paymentType === paymentpublic && !pilotView && one?.account_destination.biller">
+                <div class="date-contaniner form-radiobutton-contanier date-custom" [ngClass]="{'active': typeActive === optionTwo}">
+                    <div class="radio">
+                        <input type="radio" formControlName="scheduledPayment" id="option-2" name="scheduledPayment" [value]="optionTwo" (click)="setClass('.date-custom')">
+                        <label for="option-2" (click)="selectedOption(optionTwo)">{{'PAYMENTS.FORM_THREE.LIMIT_DATE' | translate}} - {{optionTwo | date: 'dd/MMM/yyyy' | replace : '.' : '' }}</label>
+                    </div>
+                    <app-checkbox-slide [text]="'PAYMENTS.FORM_THREE.PAYMENT_LOOP' | translate" [check]="formStepThree.value['recursive']" [form]="formStepThree" [property]="'recursive'"></app-checkbox-slide>
+                    <div class="recursive-group" *ngIf="recursive">
+                        <label>{{'PAYMENTS.FORM_THREE.MAX_AMOUNT' | translate}}</label>
+                        <input type="tel" formControlName="amounttext" [placeholder]="'PAYMENTS.FORM_THREE.MAX_AMOUNT_PROMPT' | translate" appCurrency [form]="formStepThree" [property]="'amounttext'" (click)="setFocus()">
+                        <div class="select-bp">
+                            <label>{{'PAYMENTS.FORM_THREE.WHEN' | translate}}</label>
+                            <select formControlName="range">
+                            <option *ngFor="let item of [].constructor(itemsRange); let i = index" [ngValue]="i + 1" >{{i + 1}} {{(i > 0 ? 'PAYMENTS.FORM_THREE.DAYS_BEFORE' : 'PAYMENTS.FORM_THREE.DAY_BEFORE') | translate}}</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="date-contaniner form-radiobutton-contanier date-fixed" [ngClass]="{'active': typeActive === optionOne}">
+                    <div class="radio">
+                        <input type="radio" formControlName="scheduledPayment" id="option-1" name="scheduledPayment" [value]="optionOne" (click)="setClass('.date-fixed')">
+                        <label for="option-1" (click)="selectedOption(optionOne)">{{'PAYMENTS.FORM_THREE.TODAY' | translate}} - {{today | date: 'dd/MMM/yyyy' | replace : '.' : '' }}</label>
+                    </div>
+                </div>
+            </div>
+            <fieldset class="form-group">
+                <button type="submit" class="btn btn-primary" [disabled]="formStepThree.invalid">{{'CONTINUE' | translate}}</button>
+            </fieldset>
+        </form>
+    </div>
+</ng-container>

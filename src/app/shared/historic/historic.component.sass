@@ -1,0 +1,141 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+=buttonHeader
+  position: relative
+  z-index: 1
+  top: 2px
+  left: 1px
+
+.container-historic
+  border-radius: 15px
+  box-shadow: 0 1px 3px 0 rgba(63, 63, 68, 0.15), 0 0 0 1px rgba(63, 63, 68, 0.05)
+  background-color: $carbon-light-100
+  .head
+    height: 59px
+    border-bottom: 1px solid $carbon-light-900
+    display: flex
+    justify-content: center
+    align-items: center
+    .title
+      padding-left: 24px
+      width: 100px
+      height: 24px
+      font-family: Inter
+      font-size: $f-14 + 4px
+      font-weight: 500
+      font-stretch: normal
+      font-style: normal
+      line-height: 1.33
+      letter-spacing: normal
+      color: $carbon-dark-900
+    .table-header-menu
+      justify-self: flex-end
+      margin-left: auto
+      display: flex
+      position: relative
+      padding-right: 24px
+      a
+        width: 16px
+        height: 16px
+        margin: 0 10px
+        em
+          +buttonHeader
+        &::after
+          width: 1px
+          height: 1px
+          content: ''
+          top: -32px
+          position: relative
+          z-index: -2
+          left: -12px
+          border-radius: 100%
+          z-index: 1
+        &:hover::after
+          display: block
+          width: 40px
+          height: 40px
+          animation-name: hover-back
+          animation-duration: .2s
+          background: $black-100-rgba
+          position: relative
+          margin-top: 3px
+  .filter-movement
+    background: $carbon-light-100
+    padding: 0 20px
+    border-bottom: 1px solid $gray2
+    .filter-active
+      background: $carbon-light-100
+      border-radius: 4px
+      border: 1px solid $g-500
+      font-size: $f-14 - 1
+      padding: 5px 44px 5px 10px
+      color: $g-500
+      cursor: pointer
+      +inline(top)
+      margin: 15px 0
+      position: relative
+      span
+        position: absolute
+        right: 7px
+        top: 50%
+        font-size: 20px
+        font-weight: 100
+        transform: translateY(-50%)
+  .filter-container
+    padding: 16px 15px
+    border-bottom: 1px solid $gray2
+    .filter-input
+      position: relative
+      .search-field
+        &:focus
+          border: 1px solid $carbon-mid-400
+      .search-input, .clear-input
+        position: absolute
+        right: 10px
+        top: 15px
+        color: $carbon-mid-100
+        z-index: 5
+        font-size: $f-14 + 6
+      .clear-input
+        z-index: 11
+        em.icon-plus
+          transform: rotate(45deg)
+          display: inline-block
+          background: $carbon-light-900
+          color: $carbon-mid-400
+          border-radius: 100%
+  .paginator
+    height: 48px
+    border-bottom: 1px solid $carbon-light-900
+  .table
+    .empty-pending
+      display: flex
+      justify-content: center
+      align-items: center
+      min-height: 64vh
+      text-align: center
+      flex-direction: column
+      img
+        width: 120px
+        height: auto
+        margin-bottom: 13px
+      .error-pending
+        max-width: 350px
+        p
+          margin-bottom: 15px
+        .btn
+          line-height: 40px
+          font-size: $f-14
+          padding: 0 20px
+
+
+
+@media only screen and (max-width: $break-mobile)
+  .container-historic
+    .table
+      .empty-pending
+        min-height: inherit
+        margin: 30px 0

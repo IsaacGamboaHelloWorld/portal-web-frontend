@@ -1,0 +1,146 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.cont-registered-accounts
+  margin-top: 20px
+  .cont-btn
+    display: inline-block
+    position: relative
+  .back
+    background: transparent
+    display: flex
+    justify-content: flex-start
+    align-content: center
+    line-height: 1.71
+    cursor: pointer
+    i
+      color: $gc-800
+      font-size: $f-20 + 2
+      margin-right: 12px
+  h3
+    font-size: $f-30 - 2
+    font-weight: bold
+    margin: 35px 0 25px
+
+.cont-accounts
+  .form,
+  .info-account
+    +inline(top)
+  .form
+    width: 350px
+    form
+      margin-bottom: 24px
+    ul
+      padding: 1px
+      overflow-y: auto
+      max-height: 60vh
+      li
+        margin-bottom: 8px
+  .loading-product
+    border-radius: 10px
+    padding: 18px 14px
+    overflow: hidden
+    > div
+      +inline(middle)
+    .loading-product-profile
+      width: 45px
+      height: 45px
+    .loading-product-text
+      width: calc(100% - 45px)
+      padding-left: 12px
+    p
+      height: 8px
+      margin-bottom: 10px
+      &:last-child
+        margin: 0
+  .error-affiliation
+    margin: 62px auto
+    text-align: center
+    max-width: 296px
+    width: 100%
+    &.retry
+      img
+        height: 74px
+    img
+      width: auto
+      height: 60px
+      margin-bottom: 20px
+    strong
+      font-size: $f-14 + 2
+      font-weight: 600
+      line-height: 1.5
+      margin-bottom: 8px
+      display: block
+    p
+      line-height: 1.77
+      font-size: $f-14 - 1
+      strong
+        font-size: $f-14 - 1
+        display: inline-block
+    button
+      margin-top: 24px
+  .info-account
+    width: calc(100% - 350px)
+    padding: 0 30px 0 75px
+  .new-account
+    .register-account
+      padding: 12px 20px
+      position: relative
+      border-radius: 10px
+      margin-bottom: 8px
+      display: flex
+      align-items: center
+      em
+        border: 1.3px solid $carbon-light-100
+        font-size: $f-14 + 7
+        border-radius: 100%
+        position: absolute
+        right: 20px
+
+
+
+@media only screen and (max-width: $break-tablet)
+  .cont-accounts
+    .info-account
+      padding: 0 0 0 20px
+
+
+@media only screen and (max-width: 830px)
+  .cont-registered-accounts
+    .cont-btn
+      .mask-btn
+        position: absolute
+        left: 0
+        right: 0
+        bottom: 0
+        top: 0
+        cursor: pointer
+  .cont-accounts
+    .form
+      ul
+        overflow: inherit
+        max-height: inherit
+    .form,
+    .info-account
+      padding: 0
+      width: 100%
+  .animation-mobile
+    .cont-accounts
+      .info-account
+        display: none
+    &.active
+      h3
+        display: none
+      .cont-accounts
+        .form
+          display: none
+        .info-account
+          display: block
+
+
+
+
+@media only screen and (max-width: $break-mobile)
+  .cont-registered-accounts
+    padding: 0 15px

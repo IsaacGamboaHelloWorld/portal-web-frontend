@@ -1,0 +1,42 @@
+<app-template-system [title]="'PAYMENTSV2.CHOOSE_TYPE.MAIN_TITLE' | translate" [sectionContent]="content"
+  [fullContent]="true" [showClose]="!(hasData$ | async)" [sectionHome]="!(hasData$ | async)"
+  [navigatorActive]="!(hasData$ | async)" [backUrl]="navigate.home"></app-template-system>
+
+<ng-template #content>
+  <div class="choose-history-container">
+    <div class="buttons-container" [ngClass]="{'zero' : (historicPayments$ | async)?.data?.length === 0}">
+      <app-btn-square *ngIf="(optionsModule$ | async)?.data?.payments?.options?.bank_obligation"
+        [url]="navigate.paymentsv2obligations" [imageUrl]="baseAssets + '/assets/animations/obligacionbancaria.json'"
+        [title]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE1.TITLE' | translate"
+        [subtitle]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE1.DESC' | translate" [id]="'OPT_BANK'" [widthImg]="80"
+        [heightImg]="80" [renderer]="'canvas'" (clickBtn)="clickRedirect()"></app-btn-square>
+      <app-btn-square *ngIf="(optionsModule$ | async)?.data?.payments?.options?.public_service"
+        [url]="navigate.paymentsv2services" [imageUrl]="baseAssets + '/assets/animations/serviciospublicos.json'"
+        [title]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE2.TITLE' | translate"
+        [subtitle]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE2.DESC' | translate" [id]="'OPT_BILL'" [widthImg]="80"
+        [heightImg]="80" [renderer]="'canvas'" (clickBtn)="clickRedirect()"></app-btn-square>
+      <app-btn-square *ngIf="(optionsModule$ | async)?.data?.payments?.options?.payment_taxes"
+        [url]="navigate.payment_taxes" [imageUrl]="baseAssets + '/assets/animations/impuestos.json'"
+        [title]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE3.TITLE' | translate"
+        [subtitle]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE3.DESC' | translate" [id]="'OPT_PAYMENT_TAXES'" [widthImg]="80"
+        [heightImg]="80" [renderer]="'canvas'" (clickBtn)="clickRedirect()"></app-btn-square>
+
+      <app-btn-square *ngIf="(optionsModule$ | async)?.data?.payments?.options?.payment_stack"
+        [url]="navigate.pay_stack" [imageUrl]="baseAssets + '/assets/animations/pila.json'"
+        [title]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE4.TITLE' | translate"
+        [subtitle]="'PAYMENTSV2.CHOOSE_TYPE.BUTTONS.TYPE4.DESC' | translate" [id]="'OPT_PAYMENT_PILA'" [widthImg]="80"
+        [heightImg]="80" [renderer]="'canvas'" (clickBtn)="clickRedirect()"></app-btn-square>
+    </div>
+    <ng-container *ngIf="(optionsModule$ | async)?.data?.payments?.options?.payment_history">
+      <ng-container *ngIf="!(historicPayments$ | async).error">
+        <ng-container *ngIf="(historicPayments$ | async).loaded; else errorOrLoading">
+          <app-table [movements]="(historicPayments$ | async)" [option]="'historicPayments'"></app-table>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #errorOrLoading>
+  <app-table [loading]="true"></app-table>
+</ng-template>

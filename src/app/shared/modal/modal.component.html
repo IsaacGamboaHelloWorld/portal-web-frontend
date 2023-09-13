@@ -1,0 +1,18 @@
+<div class="wrap-modal {{config.typeClass}}"
+     [ngClass]="{'show-cursor': config.closeOutSide, 'animation': config.animation }">
+  <div class="modal-container" [ngClass]="{'modal-no-padding': config.paddingContainer}">
+    <div class="modal-content {{config.align}}">
+
+      <div class="modal-background" (click)="onOverlayClicked()"></div>
+
+      <div class="modal-box">
+        <div class="navigation-popup">
+          <button class="cancel_btn" (click)="close()"><em class="icon-close"></em></button>
+        </div>
+        <ng-template appInsertion>
+
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

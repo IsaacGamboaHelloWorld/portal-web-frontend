@@ -1,0 +1,31 @@
+<div class="animated fade-in-up cont-step-two-payment" *ngIf="formTwo">
+    <form class="form-global" [formGroup]="formTwo">
+        <fieldset class="form-group">
+            <div class="radio form-radiobutton-contanier type-0" *ngIf="minPayment > 0">
+                <label for="type-0">{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP2.MIN_LBL' | translate}}</label>
+                <input type="radio" formControlName="option_to_pay" [value]="minPayment" name="option_to_pay" id="type-0" (click)="setClass('0')">
+                <span>{{minPayment | currencyFormat}}</span>
+            </div>
+            <div class="radio form-radiobutton-contanier type-1" *ngIf="totalPayment > 0">
+                <label for="type-1">{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP2.TOTAL_LBL' | translate}}</label>
+                <input type="radio" formControlName="option_to_pay" [value]="totalPayment" name="option_to_pay" id="type-1" (click)="setClass('1')">
+                <span>{{totalPayment | currencyFormat}}</span>
+            </div>
+            <div class="radio form-radiobutton-contanier other-value type-2" *ngIf="otherPayment">
+                <img *ngIf="editOtherValue" [src]="'/close-s@3x.png' | imageCdn" alt="" (click)="setValue()">
+                <label *ngIf="!editOtherValue" class="custom-control-label" for="type-2">{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP2.OTHER_LBL' | translate}}</label>
+                <input type="radio" formControlName="option_to_pay" id="type-2" name="option_to_pay" [value]="OTHER_VALUE">
+                <input type="tel" formControlName="amounttext" placeholder="$" appCurrency [form]="formTwo" [property]="'amounttext'" (blur)="setValue()" (focus)="setClassOtherValue()">
+            </div>
+            <div>
+                <fieldset class="form-group coments-container">
+                    <label class="custom-control-label" for="type-2">{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP2.DESC_LBL' | translate}}</label>
+                    <input type="text" [placeholder]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP2.PROMPT_LBL' | translate" class="input-bp comments-text" formControlName="comments" pattern="^(?!\s.*$).*">
+                </fieldset>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="btn btn-primary" [disabled]="formTwo.invalid" (click)="submitData()">{{'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT.STEPS.STEP2.CONTINUE_BTN' | translate}}</button>
+            </div>
+        </fieldset>
+    </form>
+</div>

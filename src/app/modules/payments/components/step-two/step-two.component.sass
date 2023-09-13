@@ -1,0 +1,93 @@
+@import '../../../../../sass/variables'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/mixins'
+
+.cont-step-two-payment
+  width: 100%
+  max-width: 350px
+  margin: 0 auto
+  display: block
+  .optional-info
+    > p
+      padding: 0
+      font-size: $f-14 - 2
+      line-height: 23px
+      letter-spacing: -0.3px
+
+    .coments-container
+        margin-top: 0
+  .not-margin
+    margin: 0
+  .form-group
+    .form-radiobutton-contanier
+      margin-bottom: 31px
+      background: $carbon-light-100
+      &.active
+        border: solid 1px $g-500
+        background: $gb-500
+        box-shadow: none
+    p
+      font-size: $f-14
+    button
+      width: 100%
+    .amount-payment
+      position: relative
+      p
+        position: absolute
+        left: 0
+        right: 0
+        top: 0
+        bottom: 0
+        line-height: 48px
+        font-size: $f-14 + 2
+        padding: 0 10px
+        background: $carbon-light-100
+        z-index: -1
+      input
+        color: transparent
+        background: transparent
+    .input-bp
+      &.ng-pristine.ng-valid
+        border: 1px solid $black-300
+
+  .payment-value
+    text-align: center
+    background: white
+    padding: 24px
+    border-radius: 15px
+    box-shadow: 0 1px 3px 0 rgba(63, 63, 68, 0.15), 0 0 0 1px rgba(63, 63, 68, 0.05)
+    margin: 30px 0
+    max-width: 344px
+    span
+      font-size: $f-14
+      line-height: 1.71px
+      display: inline-block
+      margin-bottom: 15px
+    p
+      font-size: $f-14 + 2
+      line-height: normal
+      font-weight: 600
+      color: $carbon-dark-900
+      margin-bottom: 16px
+      &.value
+        font-size: $f-14 + 20
+        line-height: normal
+        letter-spacing: 1.12px
+        color: $carbon-dark-900
+        font-weight: 400
+
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-two-payment
+    max-width: 100%
+    padding: 0 14px
+    .form-group
+      button
+        width: 100%
+        max-width: 100%
+    .payment-value
+      background: white
+      padding: 24px
+      border-radius: 15px
+      box-shadow: 0 1px 3px 0 rgba(63, 63, 68, 0.15), 0 0 0 1px rgba(63, 63, 68, 0.05)
+      margin: 30px 0

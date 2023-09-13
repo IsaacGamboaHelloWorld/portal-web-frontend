@@ -1,0 +1,19 @@
+<app-template-system
+  [title]="'PFM_PRODUCT_DETAIL.TITLE' | translate"
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [showClose]="false"
+  [sectionHome]="true"
+  [navInternal]="false"
+  [activeBackHistory]="true"
+  [backUrl]="navigate.home"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-product-pfm">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,32 @@
+<div class="home-products">
+  <h6>{{'PAYROLLLOANS.TITLE' | translate}}</h6>
+  <ul class="cont-section-products">
+    <li *ngFor="let item of filter">
+      <article class="product-global shadow-4dp hover-16dp to-plus">
+        <div class="product-global-content">
+          <div class="product-global-account-type">
+            <div class="product-global-account-type-info">
+              <p>{{'PRODUCT_TYPES.PAYDAY_LOAN' | translate}}</p>
+              <small>{{'PRODUCT.NUMBER' | translate}}. {{ item?.accountId }}</small>
+            </div>
+          </div>
+          <div class="product-global-account-amount">
+            <p>{{'PAYROLLLOANS.CARD.FEEAMOUNT' | translate}}</p>
+            <strong [innerHTML]="item?.feeAmount | currencyFormat: true"></strong>
+            <p class="name-company">{{ item?.company?.sliceName | titlecase}}</p>
+          </div>
+          <div class="product-global-account-view-detail">
+            <a class="link" (click)="redirect(item.accountType, item.accountId)">{{'PRODUCT.VIEW_DETAIL' | translate}} <em class="icon-arrow-right-circle"></em></a>
+          </div>
+        </div>
+        <span class="product-global-footer-line"></span>
+        <div class="product-global-footer full">
+          <div>
+            <p>{{'PAYROLLLOANS.CARD.PERCENTAGE' | translate}} {{item?.percentaje}} %</p>
+            <progress class="goal_status" [max]="item?.total" [value]="item?.percentaje"></progress>
+          </div>
+        </div>
+      </article>
+    </li>
+  </ul>
+</div>

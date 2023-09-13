@@ -1,0 +1,160 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.documents-certificate-ds
+  display: flex
+  flex-direction: column
+
+  .card-list
+    margin-top: 8px 
+    display: flex
+    overflow-x: scroll
+    margin-left: -20px
+    width: 100vw
+    padding-bottom: 6px
+    .card-item
+      margin-left: 16px
+      &:last-child
+        margin-right: 16px
+  .list-carousel
+    display: flex
+    justify-content: center
+    width: 100%
+    margin-top: 10px
+    &_item
+      height: 8px
+      width: 8px
+      margin-right: 8px
+      border-radius: 50%
+      background-color: $cbn-lgt-900
+      &:last-child
+        margin-right: 0
+      &.active-li
+        background-color: $act-900
+  .form-title
+    margin-top: 24px
+    font-size: 14px
+    font-weight: 500
+    line-height: 2
+    letter-spacing: normal
+    color: $cbn-900
+  .form-certificate
+    display: flex
+    flex-direction: column
+    width: 280px
+    padding: 24px 16px
+    margin-top: 8px
+    background-color: $cbn-lgt-100
+    border-radius: 12px
+    box-shadow: 0 2px 0 $transparent-08
+    .input-type
+      margin-top: 24px
+  .btn-container
+    display: flex
+    justify-content: flex-start
+  .btn
+    margin-top: 32px
+    width: 280px
+    font-size: 14px
+    font-weight: 600
+    letter-spacing: normal
+    color:  $cbn-lgt-100
+
+
+@media only screen and (min-width: $break-mobile-min)
+  .documents-certificate-ds
+    .card-list
+      margin-left: -3.733%
+      width: calc(100vw - 2px)
+    .form-certificate
+      width: 343px
+    .btn
+      width: 343px
+
+    // override DsStateCard styles
+    .container-card-state
+      &.error
+        width: 343px
+        height: 256px
+        padding: 24px
+        .btn-primary
+          width: 295px
+
+@media only screen and (min-width: $break-small-table-min)
+  .documents-certificate-ds
+    .card-list
+      margin-left: -76px
+    .form-certificate
+      width: 520px
+    .btn-container
+      justify-content: center
+    .btn
+      width: 230px
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .documents-certificate-ds
+    .card-list
+      margin-left: -76px
+    .form-certificate
+      width: 616px
+      flex-direction: row
+      justify-content: space-between
+      .input-recipient
+        width: calc( 50% - 12px )
+      .input-type
+        width: calc( 50% - 12px )
+        margin-top: 0
+    .btn-container
+      width: 616px
+
+@media only screen and (min-width: $break-medium-table-landscape-min)
+  .documents-certificate-ds
+    .card-list
+      margin-top: 24px
+      margin-left: 0
+      width: 100%
+      overflow-x: auto
+      flex-wrap: wrap
+      .card-item
+        margin-bottom: 24px
+        margin-left: 0
+        margin-right: 16px
+    .list-carousel
+      display: none
+    .form-certificate
+      width: 834px
+    .btn-container
+      width: 834px
+
+@media only screen and (min-width: $break-desktop-min)
+  .documents-certificate-ds
+    .form-certificate
+      width: 936px
+    .btn-container
+      width: 936px
+    .card-list
+      margin-top: 8px
+      .card-item
+        margin-right: 24px
+        &:nth-child(3n)
+          margin-right: 0
+        // override CardAccountRadiusComponent
+        .card-container-arb
+          width: 296px
+
+@media only screen and (min-width: $break-desktop-lg-min)
+  .documents-certificate-ds
+    .form-certificate
+      width: 1128px
+    .btn-container
+      width: 1128px
+    .card-list
+      margin-top: 24px
+      .card-item
+        &:nth-child(3n)
+          margin-right: 24px
+        &:nth-child(4n)
+          margin-right: 0
+        // override CardAccountRadiusComponent
+        .card-container-arb
+          width: 264px

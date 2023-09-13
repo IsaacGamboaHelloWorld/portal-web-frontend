@@ -1,0 +1,144 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.smart-card-secondary-balances
+  position: relative
+  padding-top: 29px
+  .secondary-item, .secondary-item-tooltip
+    display: flex
+    margin-bottom: 9px
+    p
+      font-size: $f-14
+      color: $carbon-mid-400
+      a
+        font-size: $f-14 + 6
+        color: $carbon-dark-900
+        float: left
+        margin-right: 5px
+        margin-top: -2px
+    h4
+      margin-left: auto
+      app-btn
+        position: relative
+        top: -30px
+        right: -20px
+    a
+      font-weight: normal
+  .pockets-on-detail
+    display: none
+
+  .more-info
+    text-align: center
+    height: 20px
+    a
+      em
+        font-size: $f-14 + 10
+        color: $g-500
+        transform: rotate(90deg)
+        display: inline-block
+        position: absolute
+        margin-left: -12px
+        &:hover
+          margin-left: -22px
+          margin-top: 10px
+        &::before
+          z-index: 2
+          position: relative
+        &::after
+          width: 1px
+          height: 1px
+          display: inline-block
+          content: ''
+          position: relative
+          border-radius: 100%
+          z-index: 1
+        &:hover::after
+          width: 44px
+          height: 44px
+          animation-name: hover-back
+          animation-duration: .2s
+          background: $gb-500
+          left: -35px
+          top: 11px
+        &.opened
+          transform: rotate(-90deg)
+          &::before
+            z-index: 2
+            position: relative
+          &::after
+            z-index: 1
+          &:hover::before
+            top: -23px
+            left: 42px
+          &:hover::after
+            width: 44px
+            height: 44px
+            animation-name: hover-back
+            animation-duration: .2s
+            background: $gb-500
+            left: 5px
+            top: -11px
+
+  .secondary-item-tooltip
+    display: none
+    span
+      font-size: $f-14 - 1
+      color: $carbon-mid-400
+
+  .tooltip
+    background: $carbon-light-100
+    padding: 20px
+    max-width: 266px
+    border-radius: 15px
+    position: absolute
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.14)
+    margin-top: -35%
+
+  .on
+    display: block
+
+
+@media only screen and (max-width: $break-tablet)
+  .smart-card-secondary-balances
+    .secondary-item
+      p
+        a
+          display: none
+    .secondary-item-tooltip
+      display: block
+      span
+        font-size: $f-14 - 3
+        color: $carbon-mid-400
+        line-height: 2.09
+        letter-spacing: normal
+    .tooltip
+      background: $carbon-light-100
+      padding: 20px
+      max-width: 266px
+      border-radius: 15px
+      position: relative
+      box-shadow: none
+      margin-top: 0%
+
+@media only screen and (max-width: $break-mobile)
+  .smart-card-secondary-balances
+    .secondary-item
+      p
+        a
+          display: none
+    .secondary-item-tooltip
+      display: block
+      span
+        font-size: $f-14 - 3
+        color: $carbon-mid-400
+        line-height: 2.09
+        letter-spacing: normal
+    .tooltip
+      background: $carbon-light-100
+      padding: 0px
+      max-width: 266px
+      border-radius: 15px
+      position: relative
+      box-shadow: none
+      margin-top: 0%

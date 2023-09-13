@@ -1,0 +1,64 @@
+@import '../../../../../sass/colors'
+@import '../../../../../sass/mixins'
+@import '../../../../../sass/variables'
+
+.detail-product-loading
+  background: $carbon-light-100
+  min-width: 401px
+  border-radius: 15px
+  color: $carbon-dark-900
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.14)
+  .error-detail
+    text-align: center
+    max-width: 260px
+    margin: 100px auto 0
+    .btn
+      font-size: $f-14
+      line-height: 40px
+      margin-top: 10px
+  .cont-head-product
+    padding: 28px
+    margin-bottom: 70px
+    min-height: 295px
+    width: 100%
+
+    .account-type
+      margin-bottom: 10px
+      p
+        font-size: $f-20
+        text-align: left
+        i
+          +inline(middle)
+          background: transparent
+          margin-left: 10px
+          font-size: $f-20 - 2
+          cursor: pointer
+      .cont-img
+        width: 28px
+        height: 28px
+        display: inline-block
+        float: left
+        margin-right: 10px
+        position: relative
+        i
+          color: $g-500
+          font-size: $f-20 + 5
+        img
+          width: 100%
+
+@media only screen and (max-width: $break-tablet)
+  .detail-product-loading
+    max-width: 401px
+
+@media only screen and (max-width: 1023px)
+  .detail-product-loading
+    min-width: 100%
+
+@media only screen and (max-width: $break-mobile)
+  .detail-product-loading
+    min-width: 90%
+    max-width: 90%
+    margin: 0 auto 170px
+    padding: 0
+    .cont-head-product
+      padding: 20px

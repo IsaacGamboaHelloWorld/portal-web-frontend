@@ -1,0 +1,29 @@
+<!--
+<div class="cont-footer">
+  <img [src]="'/aval.png' | imageCdn" [alt]="'NAME_GROUP' | translate">
+  <p class="paragraph-small">
+    <span *ngIf="(hasHour$ | async) && showDate">
+      {{'LAST_AUTH_DATE' | translate}}:
+      <small class="capitalize">{{( hour$ | async ) | date:'dd/MMM/yyyy, h:mm:ss a' | replace : '.' : ''}}</small>
+      {{ 'IP_ADDRESS_TEXT' | translate }} {{ (ipAddress$ | async) }}
+    </span> © {{'NAME_BANK' | translate}} | v{{version}}
+  </p>
+</div>-->
+
+<div class="cont-footer">
+  <div class="grid-x">
+    <div class="cell cont-logos-footer">
+      <img [src]="'/aval.png' | imageCdn" [alt]="'NAME_GROUP' | translate">
+      <img [src]="'/logo-more-vigilado-footer.svg' | imageCdn" [alt]="'NAME_GROUP' | translate" class="logo-more">
+    </div>
+    <div class="cell cont-version-footer">
+      <p class="paragraph-small">
+        <span *ngIf="(hasHour$ | async) && showDate">
+          {{'LAST_AUTH_DATE' | translate}}:
+          <small class="capitalize">{{( hour$ | async ) | date:'dd/MMM/yyyy, h:mm:ss a' | replace : '.' : ''}}</small>
+          - {{ 'IP_ADDRESS_TEXT' | translate }} {{ (ipAddress$ | async) }}
+        </span> © {{'NAME_BANK' | translate}} | v{{version}}
+      </p>
+    </div>
+  </div>
+</div>

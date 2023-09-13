@@ -1,0 +1,214 @@
+@import 'variables'
+@import 'colors'
+@import 'mixins'
+
+.btn
+  height: 48px
+  line-height: 20px
+  font-family: $text-font
+  font-size: $f-14
+  transition: .3s
+  letter-spacing: 0
+  cursor: pointer
+  padding: 14px 32px
+  user-select: none
+  font-weight: 600
+  font-style: normal
+  .loading-dots
+    line-height: 48px
+    position: absolute
+    left: 0
+    right: 0
+    top: 0
+    bottom: 0
+    display: none
+    span
+      margin: 0 3px
+      animation-name: dotTwo
+      &:first-child
+        animation-name: dotOne
+      &:last-child
+        animation-name: dotThree
+  &:disabled
+    /*opacity: .5*/
+    cursor: inherit
+    &:hover,
+    &.active
+      box-shadow: inherit
+  &.btn-loading
+    font-size: 0 !important
+    position: relative
+    .loading-dots
+      display: block
+
+
+.dot-btn
+  width: 4px
+  height: 4px
+  margin: 0 3px
+  display: inline-block
+  position: relative
+  transform: translate3d(0, 0, 0)
+  animation: .6s ease-out
+  background: currentColor
+  border-radius: 50%
+  vertical-align: middle
+  animation-fill-mode: forwards
+  animation-iteration-count: infinite
+  transition: background-color .2s, border .2s, box-shadow .2s
+
+.btn-primary
+  background: $hlt-600
+  color: $carbon-light-100
+  border-radius: 8px
+  box-shadow: 0 0 0 0 rgba($g-500, 0)
+  &:disabled
+    background: $carbon-mid-100
+  &:hover,
+  &:active
+    box-shadow: 0 4px 8px 0 rgba($g-500, 0.5)
+
+.btn-primary-inverse
+  background: $carbon-light-100
+  border: solid 1.3px $gc-800
+  color: $gc-850
+  border-radius: 8px
+  padding: 8px 27px
+
+.btn-secondary-green
+  background: $g-100
+  color: $g-500
+  border-radius: 8px
+  box-shadow: 0 0 0 0 rgba($g-100, 0)
+  &:disabled
+    background: $carbon-mid-100
+  &:hover,
+  &:active
+    box-shadow: 0 4px 8px 0 rgba($g-100, 0.5)
+
+.btn-secundary
+  color: $orange-900
+  border: 2px solid $orange-900
+  position: relative
+  overflow: hidden
+  border-radius: 4px
+  background: transparent
+  z-index: 1
+  &::after
+    content: ''
+    position: absolute
+    left: 0
+    bottom: 0
+    right: -2px
+    background: linear-gradient(106deg, $orange-900, $orange-700)
+    height: 0
+    z-index: -1
+    transition: .3s
+  &:hover,
+  &:active
+    color: $carbon-light-100
+    &::after
+      height: 100%
+  &:disabled
+    &:hover,
+    &:active
+      color: $orange-900
+      &::after
+        height: 0
+
+.btn-gray
+  color: $carbon-light-100
+  background: $black-300
+  border-radius: 4px
+  box-shadow: 0 0 0 0 rgba($black-300, 0)
+  &:hover,
+  &:active
+    box-shadow: 0 4px 8px 0 rgba($black-300, 0.5)
+
+
+.link
+  color: $orange-900
+  font-size: $f-14 + 1
+  font-weight: 600
+  cursor: pointer
+  i,
+  em
+    position: relative
+    transition: .3s
+    transform: translateX(0)
+    +inline(middle)
+    font-size: 19.5px
+    margin-left: 9.5px
+  &:hover
+    i,
+    em
+      transform: translateX(+2px)
+
+.btn-graph
+  width: 257px
+  border-radius: 15px
+  border: solid 1px $carbon-light-900
+  background-color: $carbon-light-100
+  color: $gray3
+  padding: 18px 18px 16px
+  display: block
+  text-align: center
+  margin: 9px
+  font-size: $f-14 - 1
+  line-height: 23px
+  box-shadow: 0 1px 3px 0 rgba($carbon-dark-900, 0.15)
+  img
+    min-width: 78px
+    min-height: 72px
+    max-width: 78px
+    max-height: 72px
+    margin: 0 auto 10px
+    display: block
+  span
+    font-weight: 500
+    display: block
+    margin-bottom: 6px
+    font-size: $f-14 + 2
+    line-height: 24px
+    color: $carbon-dark-900
+  &.disabled
+    color: $gray3
+    cursor: default
+    user-select: none
+    img
+      opacity: 0.5
+  &:hover
+    border: solid 1px $g-500
+    background-color: $gb-500
+    box-shadow: none
+
+@media only screen and (max-width: $break-mobile)
+  .btn
+    width: 100%
+  .btn-graph
+    width: 100%
+    margin: 9px 0
+
+
+@keyframes dotOne
+  0%
+    transform: scale(1) translate3d(0, 0, 0)
+  20%
+    transform: scale(1) translate3d(0, 100%, 0)
+  80%
+    transform: scale(1) translate3d(0, 0, 0)
+
+@keyframes dotTwo
+  13.3333%
+    transform: scale(1) translate3d(0, 0, 0)
+  33.3333%
+    transform: scale(1) translate3d(0, 100%, 0)
+  93.3333%
+    transform: scale(1) translate3d(0, 0, 0)
+
+@keyframes dotThree
+  26.6667%
+    transform: scale(1) translate3d(0, 0, 0)
+  46.6667%
+    transform: scale(1) translate3d(0, 100%, 0)
+

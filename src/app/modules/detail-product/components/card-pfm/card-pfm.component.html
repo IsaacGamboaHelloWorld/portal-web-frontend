@@ -1,0 +1,45 @@
+<div class="card-pfm" [ngClass]="{'no-data': !(hasDataPfm$ | async), 'loading': loading}">
+  <ng-container *ngIf="!loading; else loadingState">
+    <ng-container *ngIf="hasDataPfm$ | async; else noData">
+      <div class="opacity-container">
+        <div class="card-pfm-container">
+          <div class="img-container">
+            <img [src]="'/money-analytics.svg' | imageCdn" alt="">
+          </div>
+          <div class="card-pfm-body">
+            <h3>{{ 'DETAIL.PFM_CARD_ENABLED.TITLE' | translate }}</h3>
+            <span> {{ 'DETAIL.PFM_CARD_ENABLED.DESCRIPTION' | translate }} </span>
+            <strong (click)="goToPFM()"> {{ 'DETAIL.PFM_CARD_ENABLED.BADGE' | translate }}
+              <img [src]="'/arrows-diagrams-right-4.svg' | imageCdn" alt="">
+            </strong>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-template #noData>
+    <div class="card-pfm-container">
+      <div class="img-container">
+        <img [src]="'/money-analytics.svg' | imageCdn" alt="">
+      </div>
+      <div class="card-pfm-body">
+        <strong> {{ 'DETAIL.PFM_CARD_COMING_SOON.BADGE' | translate }} </strong>
+        <h3>{{ 'DETAIL.PFM_CARD_COMING_SOON.TITLE' | translate }}</h3>
+        <span> {{ 'DETAIL.PFM_CARD_COMING_SOON.DESCRIPTION' | translate }} </span>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #loadingState>
+    <div class="box item-loading-cpfm">
+      <div class="bg-icon-loading placeholder pb-rounded-50"></div>
+      <div class="body-loading">
+        <p class="title-loading placeholder width-80"></p>
+        <p class="text-loading placeholder width-100"></p>
+        <p class="text-loading placeholder width-60"></p>
+      </div>
+    </div>
+  </ng-template>
+
+</div>

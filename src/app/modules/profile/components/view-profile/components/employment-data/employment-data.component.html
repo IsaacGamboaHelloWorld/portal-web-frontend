@@ -1,0 +1,25 @@
+<div class="content" *ngIf="(user$ | async)?.data as user">
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.EMPLOYMENT_DATA.COMPANY_ID_FIELD' | translate}}
+        </span>
+        <p>
+            {{setupValue(user?.employmentData?.companyId , 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate)}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.EMPLOYMENT_DATA.COMPANY_NAME_FIELD' | translate}}
+        </span>
+        <p>
+            {{setupValue(user?.employmentData?.companyName | titlecase, 'CUSTOMER_PROFILE.VIEW_PROFILE.UNKNOWN' | translate)}}
+        </p>
+    </div>
+    <div>
+        <span>
+            {{'CUSTOMER_PROFILE.VIEW_PROFILE.SECTIONS.EMPLOYMENT_DATA.SALARY_FIELD' | translate}}
+        </span>
+        <p [innerHTML]="user?.employmentData?.salary | currencyFormat: true">
+        </p>
+    </div>
+</div>

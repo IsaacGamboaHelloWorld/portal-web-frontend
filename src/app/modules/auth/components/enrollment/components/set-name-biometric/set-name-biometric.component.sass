@@ -1,0 +1,97 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import 'globalVars'
+
+.cont-set-name-biometric
+  text-align: center
+  .desc-bold
+    font-weight: 500
+  li
+    display: flex
+    white-space: break-spaces
+    .point
+      top: 3px
+      position: relative
+  .list-bold
+    line-height: 2.15
+    font-family: Inter
+    font-size: 13px
+    font-weight: normal
+    font-stretch: normal
+    font-style: normal
+    letter-spacing: normal
+    span
+      font-weight: 600
+  .top-image-container
+    margin: 0 auto
+    top: 0
+    display: block
+    width: auto
+    padding: 16px 17px
+    border-radius: 50%
+    img
+      height: 80px
+      width: auto
+  .title
+    margin-top: 16px
+    margin-bottom: 12px
+    font-weight: bold
+    margin: 24px 0 12px
+    font-family: Inter
+    font-size: 14px
+    font-weight: 500
+    font-stretch: normal
+    font-style: normal
+    line-height: 2
+    letter-spacing: normal
+  .desc-register
+    font-size: $f-14 - 1
+    font-family: Inter
+    font-weight: normal
+    font-stretch: normal
+    font-style: normal
+    line-height: 2.15
+    letter-spacing: normal
+    text-align: center
+  .label-name
+    margin: 24px 0 12px
+    font-family: Inter
+    font-size: 14px
+    font-weight: 500
+    font-stretch: normal
+    font-style: normal
+    line-height: 2
+    letter-spacing: normal
+  form
+    text-align: left
+    position: relative
+    margin-top: 24px
+  button
+    margin-top: 33px
+    width: 100%
+  a
+    color: $orange-900
+    font-size: $f-14 - 2
+    float: right
+    font-weight: 600
+  .disabled
+    pointer-events: none
+    cursor: not-allowed
+  .form-global
+    .form-group
+      label
+        display: inline-block
+        font-weight: 500
+
+
+
+@media only screen and (max-width: $break-mobile)
+  .validate-universal-password
+    margin-top: 34px
+    h4
+      margin: 0
+    form
+      margin-top: 40px
+    button
+      margin-top: 20px
+

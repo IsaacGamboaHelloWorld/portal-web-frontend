@@ -1,0 +1,96 @@
+<div class="card-container-arb type-arb-{{index}}"
+  [ngSwitch]="type"
+  [ngClass]="{  'pse-card-container': type === getTypeCard.PSE,
+                'text-card-container': type === getTypeCard.ONLY_TEXT,
+                'product-card-container': type === getTypeCard.PRODUCT_WITH_BALANCE
+              }"
+  >
+  <ng-container *ngSwitchCase="getTypeCard.PSE" [ngTemplateOutlet]="pseTmp"></ng-container>
+  <ng-container *ngSwitchCase="getTypeCard.ONLY_TEXT" [ngTemplateOutlet]="textTmp"></ng-container>
+  <ng-container *ngSwitchCase="getTypeCard.PRODUCT_WITH_BALANCE" [ngTemplateOutlet]="productTmp"></ng-container>
+  <ng-container *ngSwitchDefault [ngTemplateOutlet]="defaultTmp"></ng-container>
+</div>
+
+<ng-template #defaultTmp>
+  <div class="bar"></div>
+  <div class="body">
+    <p> {{'PRODUCT_TYPES.' + data?.typeAccount | translate}} <strong> {{ data?.id | slice: -4}} </strong> </p>
+
+    <div class="label-avaliable">
+      <app-label-radio-button
+        [index]="index"
+        [isActive]="isActive"
+        [text]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_1.AVALIABLE_BALANCE' | translate"
+        (checkEvent)="setClass($event)"
+      ></app-label-radio-button>
+    </div>
+
+    <p class="amount" [innerHTML]="(data?.productAccountBalances?.saldo_disponible?.amount) | currencyFormat : true : 'decimal-vouchers fs-18' " ></p>
+  </div>
+</ng-template>
+
+<ng-template #pseTmp>
+  <div class="body-pse">
+    <img [src]="'/logos-pse@3x.png' | imageCdn" alt="">
+    <div class="label-other-bank">
+      <app-label-radio-button
+        [index]="index"
+        [isActive]="isActive"
+        [text]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_1.PSE' | translate"
+        (checkEvent)="setClass($event)"
+      ></app-label-radio-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #textTmp>
+  <div class="label-only-text">
+    <app-label-radio-button
+      [index]="index"
+      [text]="text"
+      [isActive]="isActive"
+      (checkEvent)="setClass($event)"
+    ></app-label-radio-button>
+  </div>
+</ng-template>
+
+<!-- used in documents -->
+<ng-template #productTmp>
+  <div class="product-balance">
+    <app-label-radio-button
+      [index]="index"
+      [isActive]="isActive"
+      (checkEvent)="setClass($event)"
+    ></app-label-radio-button>
+    <div class="product-balance__body" [ngClass]="{'pd-bd-loading': loading}">
+      <ng-container *ngIf="!loading; else productLoadingTmp">
+        <div class="product-balance__body-header">
+          <div class="product-balance__body-header-icon" [ngClass]="{ 'bk-other': (data.accountInformation.productType !== 'DEPOSIT_ACCOUNT' && data.accountInformation.productType !== 'CURRENT_ACCOUNT' )}">
+            <ng-container [ngSwitch]="data.accountInformation.productType">
+              <img *ngSwitchCase="'DEPOSIT_ACCOUNT'" class="product-balance__body-header-icon-image" [src]="'/24-payments-finance-piggy-bank-2.svg' | imageCdn" alt="">
+              <img *ngSwitchCase="'CURRENT_ACCOUNT'" class="product-balance__body-header-icon-image" [src]="'/icon-list-edit.svg' | imageCdn" alt="">
+              <img *ngSwitchDefault class="product-balance__body-header-icon-image" [src]="(data.accountInformation.accountIdentifier | typeCreditCard)?.img | imageCdn" alt="">
+            </ng-container>
+          </div>
+          <small class="product-balance__body-header-name">  {{ 'PRODUCT_TYPES.' + data.accountInformation.productType | translate }} </small>
+          <small class="product-balance__body-header-number"> {{ data.accountInformation.accountIdentifier | slice:-4 }} </small>
+        </div>
+  
+        <small class="product-balance__available"> {{ 'DOCUMENTS.EXTRACTS.DETAIL.BALANCE_AVAILABLE' | translate }} </small>
+        <p class="product-balance__available-number" [innerHTML]="data.productAccountBalances?.saldo_disponible?.amount | currencyFormat : true : 'decimal-vouchers fs-14' " ></p>
+      </ng-container>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #productLoadingTmp>
+  <div class="product-balance__body-header">
+    <div class="product-balance__body-header-icon">
+      <p class="product-balance__body-header-icon-image"></p>
+    </div>
+    <small class="product-balance__body-header-name placeholder width-60"></small>
+  </div>
+
+  <p class="product-balance__available-number placeholder width-40"></p>
+  <p class="product-balance__available-number placeholder width-60"></p>
+</ng-template>

@@ -1,0 +1,42 @@
+<app-historic-transaction
+    [title]="'TRANSFER.HISTORIC.TITLE' | translate"
+    [columnOneName]="'PENDING_TRANSFER.TRANSFER' | translate"
+    [columnTwoName]="'MOVEMENT.DEPOSIT.VALUE' | translate"
+    [columnThreeName]="'PENDING_TRANSFER.STATUS' | translate"
+></app-historic-transaction>
+
+<ul>
+  <li *ngFor="let history of historic?.data">
+    <app-transaction
+        [amount]="history?.transferInformation?.amount | currencyFormat"
+        [status]="(history?.success ? 'TRANSFER.HISTORIC.STATUS.SUCCESS' : 'TRANSFER.HISTORIC.STATUS.FAIL') | translate"
+        [typeStatus]="history?.success ? 'success' : 'fail'"
+        [dataColumnOne]="columnOne"
+        [dataColumnTwo]="columnTwo"
+    ></app-transaction>
+
+    <ng-template #columnOne>
+      <p class="state visible-tablet {{history?.success ? 'success' : 'fail'}}">
+        {{(history?.success ? 'TRANSFER.HISTORIC.STATUS.SUCCESS' : 'TRANSFER.HISTORIC.STATUS.FAIL') | translate}}
+      </p>
+      <p class="capitalize">{{history?.date | createDate | date:'dd/MMM/yyyy': 'UTC' | replace : '.' : ''}}</p>
+      <p><strong>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}
+        :</strong> {{'PRODUCT_TYPES_SMALL.' + history?.accountFromInformation?.productType | uppercase | translate}}
+        {{history?.accountFromInformation?.accountIdentifier | slice: -4}}</p>
+      <p *ngIf="history?.accountToInformation?.name"><strong>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}
+        :</strong> {{history?.accountToInformation?.name}}</p>
+      <p class="visible-tablet"><strong>{{'TRANSFER.CONFIRMATION.FORM.AMOUNT' | translate}}
+        :</strong> {{history?.transferInformation?.amount | currencyFormat}}</p>
+    </ng-template>
+
+    <ng-template #columnTwo>
+      <p *ngIf="history?.notes"><strong>{{'TRANSFER.CONFIRMATION.FORM.DESCRIPTION' | translate}}:</strong> {{history?.notes}}</p>
+      <p *ngIf="history?.accountToInformation?.identificationType && history?.accountToInformation?.identificationNumber"><strong>{{'PENDING_TRANSFER.DOCUMENT_TO' | translate}}
+        :</strong> {{history?.accountToInformation?.identificationType}} {{history?.accountToInformation?.identificationNumber}}
+      </p>
+      <p><strong>{{'PENDING_TRANSFER.ACCOUNT_TO' | translate}}:</strong> {{(loadBankName(history?.accountToInformation?.bank) | async)?.name}}
+        - {{'PRODUCT_TYPES_SMALL.' + history?.accountToInformation?.productType | uppercase | translate}}
+        {{history?.accountToInformation?.accountIdentifier}}</p>
+    </ng-template>
+  </li>
+</ul>

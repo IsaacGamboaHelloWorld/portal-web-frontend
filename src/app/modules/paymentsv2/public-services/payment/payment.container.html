@@ -1,0 +1,24 @@
+<app-template-system 
+    [title]="title"
+    [subtitle]="subTitle" 
+    [maxStep]="4"
+    [sectionContent]="content" 
+    [fullContent]="true" 
+    [navigatorActive]="true"
+    [stepsActive]="!(activePayment$ | async)?.payData?.biller && showTimeLine"
+    [lineSteps]="(items$ | async)" 
+    [currentStep]="(step$|async).step" 
+    [biller]="isBiller" 
+    [backUrl]="backUrl" 
+    [navInternal]="false" 
+    [showClose]="true"
+    (eventModal)="backHome($event)" 
+    ></app-template-system>
+
+<ng-template #content>
+    <div class="container-payment-ps">
+        <div class="info-steps">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</ng-template>

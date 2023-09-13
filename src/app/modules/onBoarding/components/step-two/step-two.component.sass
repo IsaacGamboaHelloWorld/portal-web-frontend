@@ -1,0 +1,86 @@
+@import '../../../sass/variables'
+@import '../../../sass/colors'
+@import '../../../sass/mixins'
+
+.step-two-onboarding
+  width: 100%
+  max-width: 298px
+  margin: 0 auto
+  > p
+    color: $carbon-dark-900
+    font-size: $f-14 - 1
+    margin-bottom: 5px
+    line-height: 1.85
+  ul
+    background: $carbon-light-100
+    border-radius: 10px
+    box-shadow: 0 7px 16px 0 rgba($carbon-dark-900, .14)
+    li
+      padding: 15px 18px
+      &.scale
+        background: $g-500
+        padding: 20px 18px
+        color: $carbon-light-100
+        width: 324px
+        position: relative
+        left: - 13px
+        border-radius: 10px
+        box-shadow: 0 7px 16px 0 rgba($g-500, .36)
+        .info-step-two
+          width: calc(100% - 120px)
+          .text-info
+            small,
+            p
+              color: $carbon-light-100
+            small
+              font-size: $f-14 - 2
+            p
+              font-size: $f-14
+        .price
+          width: 120px
+  .info-step-two,
+  .price
+    +inline(middle)
+  .info-step-two
+    width: calc(100% - 70px)
+    .cont-img,
+    .text-info
+      +inline(middle)
+    .cont-img
+      width: 28px
+      img
+        width: 100%
+        height: auto
+    .text-info
+      width: calc(100% - 28px)
+      padding: 0 10px
+      small
+        display: block
+        font-size: $f-14 - 3
+        color: $gray3
+      p
+        font-size: $f-14 - 1
+        color: $carbon-dark-900
+  .price
+    width: 70px
+    text-align: right
+    p,
+    small
+      +inline(middle)
+    p
+      font-size: $f-14 - 1
+      font-weight: 500
+    small
+      width: 20px
+      height: 20px
+      border: 2px solid $carbon-light-100
+      border-radius: 50%
+      text-align: center
+      position: relative
+      margin-left: 10px
+    i
+      position: absolute
+      left: 50%
+      top: 50%
+      transform: translate(-50%, -50%)
+      font-weight: bold

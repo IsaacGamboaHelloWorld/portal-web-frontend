@@ -1,0 +1,129 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+.cont-display-flex-column
+  display: flex
+  flex-direction: column
+.cont-display-flex-row
+  display: flex
+  flex-direction: row
+  flex: 1
+.alert-icon-check
+  cursor: pointer
+  position: relative
+  width: 24px
+  height: 24px
+  background-color: $primary-600
+  mask: url('#{$base-url}/images/check.svg') no-repeat center / contain
+  -webkit-mask: url('#{$base-url}/images/check.svg') no-repeat center / contain
+
+.container-list-alerts
+  height: 100%
+  width: 100%
+  position: relative
+  display: flex
+  background: $carbon-light-100
+  flex-direction: column
+  border-radius: 12px
+  .cont-actions
+    height: auto
+    width: 100%
+    padding-top: 24px
+    padding-left: 24px
+    padding-right: 24px
+    .cont-type-alert
+      color: $carbon-light-100
+      background: $secondary-900
+      border-radius: 32px
+      justify-content: start
+      align-items: center
+      padding: 4px 16px
+      gap: 8px
+      height: 28px
+      line-height: 20px
+      .type-alert-img
+        cursor: pointer
+        position: relative
+        width: 24px
+        height: 24px
+        background-color: $carbon-light-100
+        mask: url('#{$base-url}/images/24-payments-finance-piggy-bank-1.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-payments-finance-piggy-bank-1.svg') no-repeat center / contain 
+    .cont-button
+      color: $secondary-900
+      height: 24px
+      justify-content: flex-end
+      align-items: center
+      padding: 12px 0px
+      gap: 8px
+      p
+        line-height: 20px
+        font-size: 14px
+        font-weight: 600
+      .edit-img
+        cursor: pointer
+        position: relative
+        width: 24px
+        height: 24px
+        background-color: $secondary-900
+        mask: url('#{$base-url}/images/edit.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/edit.svg') no-repeat center / contain  
+    .info-actions
+      align-items: center
+      padding: 0px
+      gap: 16px
+      color: $secondary-900
+      margin-top: 21px
+      .cont-icon
+        position: relative
+        display: flex
+        justify-content: center
+        align-items: center
+        width: 40px
+        height: 40px
+        background-color: $warning-100
+        border-radius: 200px
+        -moz-border-radius: 200px
+        -webkit-border-radius: 200px
+        img
+          width: 24px
+      p
+        color: $carbon-dark-600
+        line-height: 24px
+        font-size: 14px
+        font-weight: 600
+
+  .cont-info-alert
+    height: auto
+    width: 100%
+    padding-top: 24px
+    padding-left: 24px
+    padding-right: 24px
+    padding-bottom: 24px
+    .gap-row
+      gap: 24px
+    .cont-info-1
+      gap: 8px
+      width: 280px
+    .cont-info-3
+      gap: 8px
+    .cont-info-2
+      gap: 8px
+      width: 280px
+      .info-3
+        ul
+          li
+            display: flex
+            align-items: center
+            flex-direction: row
+            gap: 4px
+            span
+              font-size: 12px
+              line-height: 20px
+              font-weight: 400
+              color: $carbon-mid-600
+    .title
+      color: $carbon-dark-600

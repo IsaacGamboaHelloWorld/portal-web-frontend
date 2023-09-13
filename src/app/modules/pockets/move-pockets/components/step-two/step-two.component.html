@@ -1,0 +1,67 @@
+<div class="cont-step-two-pocket">
+    <div class="form-group">
+      <app-ticket
+        [imageTicket]="'/like_success.svg' | imageCdn"
+        [title]="'POCKETS.TICKET.MOVE_POCKET' | translate"
+        [messageTitle]="'POCKETS.TICKET.VALUE_TRANSACTION' | translate"
+        [messageText]="amount | currencyFormat : true : 'decimal-vouchers'"
+        [description]="'POCKETS.TICKET.INFO' | translate"
+        [btnText]="'ADVANCE.DOWNLOAD' | translate"
+        [btnLoadingText]="'ADVANCE.LOADING_DOWNLOAD' | translate: { img: ('/loading-text.gif' |imageCdn) } "
+        [disabled]="disabled"
+        (btnAction)="download()"
+        [id]="'move-pocket'"
+        [listTemplate]="list"
+        [pseVersion]="false"
+        [response]="(moveMoneyPocket$ | async)"
+        [classSucces]="true"></app-ticket>
+    </div>
+    <div class="form-group footer-step">
+      <app-btn [class]="'btn-primary'" [text]="'TRANSFER.PENDING.BTN' | translate" (clickBtn)="end()" ></app-btn>
+    </div>
+  </div>
+  <ng-template #list>
+    <div class="confirm">
+      <ul >
+        <li>
+          <span>{{'POCKETS.TICKET.ORIGIN' | translate}}</span>
+          <p *ngIf="typeActive === 'THIS' else originPocket">
+            {{ 'BANKS.'+ (activeProduct$ | async)?.dataComplete?.bank | translate }} -
+            {{'PRODUCT_TYPES_SMALL.' + (activeProduct$ | async)?.dataComplete?.productType | translate}}
+            **** {{(activeProduct$ | async)?.dataComplete?.accountIdentifier | slice: -4}}
+          </p>
+          <ng-template #originPocket>
+            <p>
+              {{ 'BANKS.'+ (activeProduct$ | async)?.dataComplete?.bank | translate }} -
+              {{(activePocket$ | async)?.pocketName}}
+            </p>
+          </ng-template>
+        </li>
+        <li>
+          <span>{{'POCKETS.TICKET.DESTINATION' | translate}}</span>
+          <p *ngIf="(typeActive === 'THIS') || (typeActive === 'POCKET') else destPocket">
+            {{ 'BANKS.'+ (activeProduct$ | async)?.dataComplete?.bank | translate }} -
+            {{(typeActive === 'THIS') ? (activePocket$ | async)?.pocketName : nameTo}}
+          </p>
+          <ng-template #destPocket>
+            <p>
+              {{ 'BANKS.'+ (activeProduct$ | async)?.dataComplete?.bank | translate }} -
+              {{'PRODUCT_TYPES_SMALL.' + (activeProduct$ | async)?.dataComplete?.productType | translate}}
+              **** {{(activeProduct$ | async)?.dataComplete?.accountIdentifier | slice: -4}}
+            </p>
+          </ng-template>
+
+        </li>
+        <li>
+          <div>
+            <span>{{'POCKETS.TICKET.VOUCHER' | translate}}</span>
+            <p>{{(moveMoneyPocket$ | async)?.rqUid}}</p>
+          </div>
+        </li>
+        <li>
+          <span>{{'POCKETS.TICKET.COST_TRANSACTION' | translate}}</span>
+          <p [innerHTML]="'0' | currencyFormat : true : 'decimal-vouchers fs-14' " ></p>
+        </li>
+      </ul>
+    </div>
+  </ng-template>

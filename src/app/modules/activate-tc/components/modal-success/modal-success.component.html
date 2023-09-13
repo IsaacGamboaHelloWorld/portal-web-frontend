@@ -1,0 +1,21 @@
+<div class="cont-modal-success">
+  <div class="imgModal">
+    <img [src]="img | imageCdn" alt="">
+  </div>
+  <div class="textModal">
+    <p class="title">{{'ACTIVATE_TC.MODAL_SUCCESS.TITLE' | translate}}</p>
+    <p class="subTitle">{{'ACTIVATE_TC.MODAL_SUCCESS.TEXT' | translate}}</p>
+  </div>
+  <div class="btnModal">
+    <app-btn (clickBtn)="emitClick()"
+      [text]="('ACTIVATE_TC.MODAL_SUCCESS.HOME' | translate)"
+      [isLoading]="loading"
+      [disabled]="loading"
+      [class]="'btn btn-primary'"></app-btn>
+      <div class="linkModal">
+        <a class="link" (click)="doNew()">{{'ACTIVATE_TC.MODAL_SUCCESS.LINK' | translate}}</a>
+      </div>
+  </div>
+</div>
+
+

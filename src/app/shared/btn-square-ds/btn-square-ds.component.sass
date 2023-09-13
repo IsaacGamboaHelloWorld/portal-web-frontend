@@ -1,0 +1,100 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+
+.btn-square-ds
+  background-color: $cbn-lgt-100
+  height: 220px
+  width: 343px
+  border-radius: 12px
+  box-shadow: 0 2px 4px 0 $transparent-08
+  display: flex
+  flex-direction: column
+  align-items: center
+  padding: 24px
+  overflow: hidden
+  &__icon
+    height: 64px
+    width: 64px
+    border-radius: 50%
+    background-color: $act-100
+    display: flex
+    align-items: center
+    justify-content: center
+    &-image
+      width: 32px
+      height: 32px
+      font-size: 32px
+      color: $act-600
+  &__body
+    display: flex
+    flex-direction: column
+    align-items: center
+    margin-top: 16px
+    width: 215px
+    &-title
+      font-size: 16px
+      font-weight: 600
+      line-height: 1.75
+      letter-spacing: normal
+      color: $black-750
+    &-description
+      margin-top: 8px
+      font-size: 13px
+      font-weight: normal
+      line-height: 2.15
+      letter-spacing: normal
+      color: $cbn-mid-600
+      text-align: center
+
+  // style for disabled
+  &.sqr-disabled
+    cursor: not-allowed
+    .btn-square-ds
+      &__icon
+        background-color: $cbn-lgt-400
+        &-image
+          color: $cbn-mid-100
+      &__body
+        &-title
+          color: $cbn-mid-400
+        &-description
+          color: $cbn-mid-100
+
+  // style for loading
+  &.sqr-loading
+    .btn-square-ds
+      &__icon
+        background-color: $cbn-lgt-600
+      &__body
+        margin-top: 24px
+        &-title
+          height: 12px
+          margin-bottom: 7px
+          background-color: $cbn-lgt-600
+        &-description
+          margin-top: 20px
+          height: 8px
+          background-color: $cbn-lgt-600
+
+@media only screen and (min-width: $break-small-table-min)
+  .btn-square-ds
+    height: 252px
+    width: 384px
+    padding: 40px
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .btn-square-ds
+    width: 296px
+
+@media only screen and (min-width: $break-medium-table-landscape-min)
+  .btn-square-ds
+    width: 262px
+
+@media only screen and (min-width: $break-desktop-min)
+  .btn-square-ds
+    width: 296px
+
+@media only screen and (min-width: $break-desktop-lg-min)
+  .btn-square-ds
+    width: 360px

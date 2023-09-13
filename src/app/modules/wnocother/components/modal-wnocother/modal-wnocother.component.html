@@ -1,0 +1,22 @@
+<div class="cont-modal-wconother">
+  <p class="title">{{'WITHDRAWAL.MODAL.TITLE' | translate}}</p>
+  <ul>
+    <li *ngFor="let item of listRules">
+      <p [innerHTML]="item"></p>
+    </li>
+  </ul>
+  <div class="checkbox">
+    <input type="checkbox" id="termsAndConditions" name="check" [(ngModel)]="check" [checked]="check">
+    <label for="termsAndConditions" ></label>
+    <p>{{'WITHDRAWAL.MODAL.CHECK' | translate}}</p>
+  </div>
+  <div class="btnModal">
+    <app-btn (clickBtn)="emitClick()"
+    [text]="('WITHDRAWAL.MODAL.BTN' | translate)"
+    [isLoading]="false"
+    [disabled]="false"
+    [class]="'btn btn-primary'"></app-btn>
+  </div>
+</div>
+
+

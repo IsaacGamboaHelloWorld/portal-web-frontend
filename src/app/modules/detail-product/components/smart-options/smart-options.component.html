@@ -1,0 +1,94 @@
+<div class="container-options">
+    <ul>
+        <ng-container *ngIf="withdrawalBtn">
+            <li id="NO_CARD_BTN">
+                <button (click)="withdrawals()">
+          <div class="cont-img">
+            <img [src]="'/icon-giros-y-retiros.svg' | imageCdn" width="24" [alt]="'DETAIL.NO_CARD_BTN' | translate">
+          </div>
+          <h6>{{'DETAIL.NO_CARD_BTN' | translate}}</h6>
+        </button>
+            </li>
+        </ng-container>
+        <ng-container *ngIf="payLoanBtn">
+            <li id="PAYMENT_BTN">
+                <button (click)="payment()">
+            <div class="cont-img">
+                <img [src]="'/icon-pagar-obligacion.svg' | imageCdn" width="24" [alt]="'DETAIL.PAYMENT_BTN' | translate">
+            </div>
+            <h6 [innerHtml]="'DETAIL.PAYMENT_BTN' | translate"></h6>
+        </button>
+            </li>
+        </ng-container>
+        <ng-container *ngIf="transferBtn">
+            <li id="TRANSFER_BTN">
+                <button (click)="transfer()">
+            <div class="cont-img">
+                <img [src]="'/icon-transferir-dinero.svg' | imageCdn" width="24" [alt]="'DETAIL.TRANSFER_BTN' | translate">
+            </div>
+            <h6>{{'DETAIL.TRANSFER_BTN' | translate}}</h6>
+        </button>
+            </li>
+        </ng-container>
+        <ng-container *ngIf="payCardBtn">
+            <li id="PAYMENT_CARD_BTN">
+                <button (click)="clickBox.emit(isPseTC ? navigate.paymentsv2payForPse : navigate.paymentsv2payloan)">
+                <div class="cont-img">
+                    <img [src]="'/icon-pagar-tc.svg' | imageCdn" width="24" [alt]="'DETAIL.PAYMENT_CARD_BTN' | translate">
+                </div>
+                <h6 [innerHtml]="'DETAIL.PAYMENT_CARD_BTN' | translate"></h6>
+                </button>
+            </li>
+        </ng-container>
+        <ng-container *ngIf="advanceBtn">
+            <li *ngIf="(showAdvance$ | async) && hasAmount(data?.productAccountBalances?.cupo_disponible_avances_pesos?.amount)" id="ADVANCE_BTN">
+                <button (click)="redirectAdvance()">
+          <div class="cont-img">
+            <img [src]="'/icon-usar-avance.svg' | imageCdn" width="24" [alt]="'DETAIL.GEN_STATEMENT_BTN' | translate">
+          </div>
+          <h6 [innerHtml]="'DETAIL.ADVANCE_BTN' | translate"></h6>
+        </button>
+            </li>
+        </ng-container>
+        <ng-container *ngIf="rechargeBtn">
+            <li id="RECHARGE">
+                <button (click)="recharge()">
+            <div class="cont-img">
+                <img [src]="'/icon-recarga-celular.svg' | imageCdn" width="24" [alt]="'DETAIL.RECHARGE' | translate">
+            </div>
+            <h6>{{'DETAIL.RECHARGE' | translate}}</h6>
+        </button>
+            </li>
+        </ng-container>
+        <ng-container *ngIf="pocketsBtn">
+            <li *ngIf="havePockets" id="VIEW_POCKETS_BTN">
+                <button (click)="pockets()">
+          <div class="cont-img">
+            <img [src]="'/icon-ver-bolsillos.svg' | imageCdn" width="24" [alt]="'DETAIL.VIEW_POCKETS_BTN' | translate">
+          </div>
+          <h6 [innerHtml]="'DETAIL.VIEW_POCKETS_BTN' | translate"></h6>
+        </button>
+            </li>
+        </ng-container>
+        <ng-container *ngIf="statementBtn">
+            <li id="GEN_STATEMENT_BTN">
+                <button (click)="doStatements()">
+          <div class="cont-img">
+            <img [src]="'/icon-generar-extracto.svg' | imageCdn" width="24" [alt]="'DETAIL.GEN_STATEMENT_BTN' | translate">
+          </div>
+          <h6>{{'DETAIL.GEN_STATEMENT_BTN' | translate}}</h6>
+        </button>
+            </li>
+        </ng-container>
+        <ng-container *ngIf="certificateBtn">
+            <li id="GEN_CERTIFICATE_BTN">
+                <button (click)="doCertificates()">
+          <div class="cont-img">
+            <img [src]="'/icon-generar-certificado.svg' | imageCdn" width="24" [alt]="'DETAIL.GEN_CERTIFICATE_BTN' | translate">
+          </div>
+          <h6>{{'DETAIL.GEN_CERTIFICATE_BTN' | translate}}</h6>
+        </button>
+            </li>
+        </ng-container>
+    </ul>
+</div>

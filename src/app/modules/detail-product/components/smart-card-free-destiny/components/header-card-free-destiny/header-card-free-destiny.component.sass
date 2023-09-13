@@ -1,0 +1,49 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.smart-card-header-fd
+  display: flex
+  .icon
+    max-width: 30px
+    margin-right: 8px
+  .header-data
+    width: 100%
+    .information-under-name
+      display: flex
+      margin-top: 8px
+      padding-bottom: 31px
+      .status
+        padding: 0px 16px
+        height: 24px
+        border-radius: 16px
+        background-color: $info-100
+        color: $info-600
+        font-family: Inter
+        font-size: 12px
+        font-weight: 500
+        line-height: 2
+        &.due
+          color: $err-600
+          background-color: $err-100
+      p
+        color: $carbon-mid-600
+        font-family: Inter
+        font-size: 14px
+        font-weight: normal
+        line-height: 2
+        margin: 0px 8px
+
+
+@media only screen and (max-width: $break-tablet)
+  .smart-card-header-fd
+    .header-data
+      .information-under-name
+        padding-bottom: 26px
+
+@media only screen and (max-width: $break-mobile)
+  .smart-card-header-fd
+    .header-data
+      .information-under-name
+        padding-bottom: 26px

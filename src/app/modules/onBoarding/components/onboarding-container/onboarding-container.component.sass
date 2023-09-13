@@ -1,0 +1,61 @@
+@import '../../../sass/variables'
+@import '../../../sass/mixins'
+@import '../../../sass/colors'
+
+.header-onboarding
+  display: flex
+  justify-content: space-between
+  align-items: center
+  position: absolute
+  left: 0
+  right: 0
+  padding: 0 78px
+  .link
+    cursor: pointer
+
+.footer-onboarding
+  position: absolute
+  left: 0
+  right: 0
+  padding: 0 78px
+
+.header-onboarding
+  top: 42px
+  z-index: 5
+  background: transparent
+  img
+    height: 30px
+
+.footer-onboarding
+  bottom: 48px
+
+.container-onBoarding
+  display: flex
+  justify-content: center
+  flex-direction: column
+  align-items: center
+  min-height: 100vh
+
+
+@media only screen and (max-width: $break-mobile)
+  .container-onBoarding
+    padding: 0 15px
+    &.show-slider
+      padding: 0
+    &.show-slider
+      padding: 0
+      display: inherit
+      min-height: inherit
+  .footer-onboarding,
+  .header-onboarding img
+    display: none
+  .header-onboarding
+    padding: 0 28px
+    top: 28px
+    display: inherit
+    justify-content: inherit
+    align-items: inherit
+    text-align: right
+    a
+      display: inline-block
+ 

@@ -1,0 +1,48 @@
+@import '~sass/colors'
+@import '~sass/variables'
+
+.container-product-pfm 
+  width: 100%
+  margin: auto
+
+@media only screen and (min-width: 0px) and (max-width: $break-small-table-min)
+  .changes-styles-in-detail-pfm
+    h2, h6
+      margin-left: auto
+      margin-right: auto
+      padding: 0 !important
+    h2
+      font-size: 16px !important
+      font-weight: bold !important
+      line-height: 1.75 !important
+      letter-spacing: normal !important
+      color: $cbn-900 !important
+
+@media only screen and (min-width: $break-small-table-min)
+  .container-product-pfm 
+    width: 100%
+    max-width: 616px
+
+  .changes-styles-in-detail-pfm
+    h2, h6
+      margin-left: auto
+      margin-right: auto
+      padding: 0 !important
+    h2
+      font-size: 21px !important
+      font-weight: 600 !important
+      line-height: 1.52 !important
+      letter-spacing: normal !important
+      color: $cbn-900 !important
+    .main-container-transaction_navigator
+      .navigation-opts
+        padding: 21px 0 !important
+
+@media only screen and (min-width: $break-desktop-min) 
+  .container-product-pfm 
+    max-width: 776px
+
+  .changes-styles-in-detail-pfm
+    h2, h6
+      flex: 0 0 auto
+      width: 83.3333333333%

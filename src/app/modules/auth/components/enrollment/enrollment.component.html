@@ -1,0 +1,44 @@
+<div class="cont-enrollment-ds">
+  <div class="reset-process" (click)="resetAndRedirectToLogin()" *ngIf="showBack">
+    <button class="cont-go-back" type="button">
+      <img class="go-back" alt="">
+    </button>
+    <span>{{'GO_BACK' | translate}}</span>
+  </div>
+  <app-line-time [step]="currentStep | async"
+    [items]="[
+    'AUTH.ENROLLMENT.STEPS.STEP_ONE' | translate,
+    'AUTH.ENROLLMENT.STEPS.STEP_TWO' | translate,
+    'AUTH.ENROLLMENT.STEPS.STEP_THREE' | translate]" *ngIf="showLine((enrollmentData$ | async)?.data)"></app-line-time>
+  <div class="cont-enrollment" [ngSwitch]="(enrollmentData$ | async)?.data?.step">
+    <!-- Version 1 -->
+    <app-validate-current-password *ngSwitchCase="steps.FILL_CURRENT_CHANNEL_PASSWORD" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-validate-current-password>
+    <app-fill-new-universal-password *ngSwitchCase="steps.FILL_NEW_UNIVERSAL_PASSWORD" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-fill-new-universal-password>
+    <app-validate-universal-password *ngSwitchCase="steps.FILL_UNIVERSAL_PASSWORD" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-validate-universal-password>
+    <app-validate-product-information *ngSwitchCase="steps.FILL_SECURE_DATA" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-validate-product-information>
+    <app-validate-code *ngSwitchCase="steps.FILL_OTP_DATA" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-validate-code>
+    <app-accept-channel-policies *ngSwitchCase="steps.ACCEPT_CHANNEL_POLICIES" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)"></app-accept-channel-policies>
+    <!-- end Version 1 -->
+
+    <!-- Version 2 -->
+    <app-validate-current-password *ngSwitchCase="steps.FILL_CURRENT_CHANNEL_CREDENTIALS" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-validate-current-password>
+    <app-fill-new-universal-password *ngSwitchCase="steps.FILL_NEW_CREDENTIALS" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-fill-new-universal-password>
+    <app-validate-universal-password *ngSwitchCase="steps.FILL_LOGIN_CREDENTIALS" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-validate-universal-password>
+    <app-register-biometric *ngSwitchCase="steps.PROCESS_WEBAUTHN_FLOW" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-register-biometric>
+    <app-info-register-biometric *ngSwitchCase="steps.FILL_LOGIN_CREDENTIALS_BIOMETRIC_I" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-info-register-biometric>
+    <app-set-name-biometric *ngSwitchCase="steps.FILL_LOGIN_CREDENTIALS_BIOMETRIC_U" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-set-name-biometric>
+    <app-validate-product-information *ngSwitchCase="steps.FILL_SECURITY_QUESTION" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-validate-product-information>
+    <app-validate-code *ngSwitchCase="steps.V2_FILL_OTP_DATA" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-validate-code>
+    <app-accept-channel-policies *ngSwitchCase="steps.V2_ACCEPT_CHANNEL_POLICIES" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="submit($event)"></app-accept-channel-policies>
+    <!-- end Version 2 -->
+    <app-enrollment-experian-wrapper *ngSwitchCase="steps.EXPERIAN_FLOW" [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" [loading] = "(enrollmentData$ | async)?.loading"  [error] = "(enrollmentData$ | async)?.error" (submitAction)="submit($event)" (resetAction)="resetAndRedirectToLogin()"></app-enrollment-experian-wrapper>
+
+    <app-alert *ngSwitchDefault [userEnrollmentFlowInformation] = "(enrollmentData$ | async)?.data" (submitAction)="resetAndRedirectToLogin()"></app-alert>
+  </div>
+  <div class="form-group" *ngIf="(enrollmentData$ | async)?.data?.step === steps.FILL_LOGIN_CREDENTIALS">
+    <p class="recaptcha">{{'AUTH.LOGIN.RECAPTCHA' | translate}} |
+      <span class="link-recaptcha" (click)="openPolicies('privacy')">{{'AUTH.LOGIN.RECAPTCHA_LINK1' | translate}} - </span>
+      <span class="link-recaptcha" (click)="openPolicies('terms')">{{'AUTH.LOGIN.RECAPTCHA_LINK2' | translate}}</span>
+    </p>
+  </div>
+</div>

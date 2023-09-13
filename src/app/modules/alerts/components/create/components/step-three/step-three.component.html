@@ -1,0 +1,58 @@
+<div class="create-container">
+    <form class="form-global" [formGroup]="formTypeAlert" (ngSubmit)="submitData()">
+        <div class="form-three-alerts">
+            <p class="title">Elige el tipo de alerta que necesitas</p>
+            <div class="list-options-container">
+                <div class="radio form-radiobutton-contanier type-alert-0">
+                    <label for="type-alert-0"><strong>Llegada de factura:</strong> fecha de vencimiento y pago mínimo disponible.</label>
+                    <input type="radio" formControlName="type_alert" [value]="3" name="type_alert" id="type-alert-0" (click)="setClass('0')">
+                </div>
+                <div class="radio form-radiobutton-contanier type-alert-1">
+                    <label for="type-alert-1"><strong>Pago programado: </strong>el valor de la factura supera el tope programado.</label>
+                    <input type="radio" formControlName="type_alert" [value]="4" name="type_alert" id="type-alert-1" (click)="setClass('1')">
+                </div>
+                <div class="radio form-radiobutton-contanier type-alert-2">
+                    <label for="type-alert-2">Pago programado éxitoso</label>
+                    <input type="radio" formControlName="type_alert" [value]="5" name="type_alert" id="type-alert-2" (click)="setClass('2')">
+                </div>
+                <div class="radio form-radiobutton-contanier type-alert3">
+                    <label for="type-alert-3">Pago programado no éxitoso</label>
+                    <input type="radio" formControlName="type_alert" [value]="6" name="type_alert" id="type-alert-3" (click)="setClass('3')">
+                </div>
+                <div class="radio form-radiobutton-contanier type-alert-4">
+                    <label for="type-alert-4">Fecha límite de pago</label>
+                    <input type="radio" formControlName="type_alert" [value]="14" name="type_alert" id="type-alert-4" (click)="setClass('4')">
+                </div>
+            </div>
+            <div class="alerts-where-container">
+                <p class="title">¿Dónde quieres recibir esta notificación?</p>
+                <div class="alerts-where-list">
+                    <div class="radio-image opt-search type-target-0" *ngIf="(getInfoUser$ | async)?.email">
+                        <div class="items-container">
+                            <input type="radio" formControlName="target" id="target0" value="O_MAIL" (click)="setClassTarget('0')">
+                            <div class="img-back">
+                                <img [src]="'/mail.png' | imageCdn" alt="">
+                            </div>
+                            <label for="target0"></label>
+                            <p class="custom-control-label">En mi correo</p>
+                        </div>
+                    </div>
+                    <div class="radio-image opt-search type-target-1" *ngIf="(getInfoUser$ | async)?.phoneNumber">
+                        <div class="items-container">
+                            <input type="radio" formControlName="target" id="target1" value="O_CELL" (click)="setClassTarget('1')">
+                            <div class="img-back">
+                                <img [src]="'/smartphone.png' | imageCdn" alt="">
+                            </div>
+                            <label for="target1"></label>
+                            <p class="custom-control-label">En mi celular</p>
+                        </div>
+                    </div>
+                </div>
+                <p *ngIf="description" class="desc">{{description}}</p>
+            </div>
+            <div class="button-container">
+                <app-btn [type]="'submit'" [disabled]="formTypeAlert.invalid || (createAlert$ | async)?.loading" [text]="'CONTINUE' | translate" [id]="'btn_login'" [isLoading]="(createAlert$ | async)?.loading" [class]="'btn btn-primary'"></app-btn>
+            </div>
+        </div>
+    </form>
+</div>

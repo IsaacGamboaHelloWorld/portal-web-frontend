@@ -1,0 +1,30 @@
+<div class="cont-new-payment">
+  <ng-container *ngIf="step$ | async as step">
+    <div class="navigation-opts not-select" *ngIf="!(step === 6 || step === 5)">
+      <a (click)="back()"><em class="icon-arrow-left"></em> {{'GO_BACK' | translate}}</a>
+      <a (click)="openAlert()" class="close-payment">{{'PAYMENTS.CLOSED.BTN' | translate}} <em class="icon-x-circle no-border"></em></a>
+    </div>
+  </ng-container>
+  <div class="steps-new-payment" *ngIf="step$ | async as step">
+    <ng-container [ngSwitch]="true">
+      <ng-container *ngSwitchCase="step === 0">
+        <app-choose-type [step]="step"></app-choose-type>
+      </ng-container>
+      <ng-container *ngSwitchCase="step === 1 || step === 2 || step === 3">
+        <app-step-default [step]="step"></app-step-default>
+      </ng-container>
+      <ng-container *ngSwitchCase="step === 4">
+        <app-step-confirmation></app-step-confirmation>
+      </ng-container>
+      <ng-container *ngSwitchCase="step === 5">
+        <app-step-success></app-step-success>
+      </ng-container>
+      <ng-container *ngSwitchCase="step === 6">
+        <app-step-alert></app-step-alert>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <app-step-default [step]="step"></app-step-default>
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

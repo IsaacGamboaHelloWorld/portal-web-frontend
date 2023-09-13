@@ -1,0 +1,186 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import 'globalVars'
+
+.card-container-arb
+  // styles default
+  width: 343px
+  height: 129px
+  border-radius: 12px
+  box-shadow: 0 1px 2px 0 $transparent-14
+  background-color: $carbon-light-100
+  display: flex
+  overflow: hidden
+  .bar
+    width: 3px
+    height: 100%
+    background-color: $gc-850
+  .body
+    width: 100%
+    height: 100%
+    padding: 24px 24px 24px 21px
+    p, strong
+      font-size: 13px
+      font-weight: normal
+      line-height: normal
+      letter-spacing: normal
+      color: $cbn-mid-600
+    strong
+      font-weight: 500
+      color: $brd-600
+    .label-avaliable
+      margin-top: 20px
+      height: 16px
+    .amount
+      margin-top: 8px
+      font-size: 18px
+      font-weight: 500
+      line-height: normal
+      letter-spacing: normal
+      color: $cbn-900
+  // styles for pse card
+  &.pse-card-container
+    height: 80px
+    padding: 16px 24px
+    .body-pse
+      display: flex
+      flex-direction: row
+      align-items: center
+      width: 100%
+      img
+        width: 48px
+        height: 48px
+        border-radius: 24px
+      .label-other-bank
+        width: 100%
+        height: 24px
+        margin-left: 18px
+        label
+          font-size: 14px
+          font-weight: normal
+          line-height: 2
+          letter-spacing: normal
+          color: $black-750
+
+  // styles for only text
+  &.text-card-container
+    height: 72px
+    padding: 22px 24px
+    .label-only-text
+      width: 100%
+      height: 28px
+      label
+        font-size: 14px
+        font-weight: normal
+        line-height: 2
+        letter-spacing: normal
+        color: $cbn-mid-600
+
+  // styles for products with balances
+  &.product-card-container
+    width: 231px
+    height: 128px
+    padding: 8px 8px 16px 16px
+    border: solid 1px $cbn-lgt-100
+    box-shadow: 0 2px 4px 0 $transparent-08
+    .product-balance
+      width: 100%
+      height: 100%
+      position: relative
+      &__body
+        width: 100%
+        &-header
+          display: flex
+          align-items: center
+          margin-top: 8px
+          margin-bottom: 16px
+          &-icon
+            width: 32px
+            height: 32px
+            display: flex
+            justify-content: center
+            align-items: center
+            background-color: rgba($hlt-100, 0.48)
+            border-radius: 50%
+            &.bk-other
+              background-color: $cbn-lgt-400
+            &-image
+              width: 24px
+              height: auto
+          &-name
+            margin-left: 8px
+            color: $cbn-mid-600
+            font-size: 13px
+            font-weight: normal
+            line-height: normal
+            letter-spacing: normal
+          &-number
+            margin-left: 2px
+            font-size: 13px
+            font-weight: 500
+            line-height: normal
+            letter-spacing: normal
+            color: $brd-600
+        &.pd-bd-loading
+          .product-balance
+            &__body
+              &-header
+                &-icon
+                  background-color: $cbn-lgt-600
+            &__available
+              &-number
+                margin-top: 24px
+                &:last-child
+                  margin-top: 17px
+                  height: 12px
+
+      &__available
+        font-size: 13px
+        font-weight: normal
+        line-height: normal
+        letter-spacing: normal
+        color: $black-750
+        &-number
+          font-size: 18px
+          font-weight: 600
+          line-height: 1.56
+          letter-spacing: normal
+          color: $cbn-900
+      // override style for label-radio-button
+      .lb-rb
+        height: 16px
+        width: 16px
+        right: 0
+        position: absolute
+        label
+          &::after
+            width: 16px
+            height: 16px
+            background-size: 16px
+
+  // Style for selected card
+  &.active
+    border: solid 1px $hlt-600
+    .label-only-text
+      label
+        color: $cbn-900
+        font-weight: 600
+
+@media only screen and (min-width: $break-mobile-min)
+  .card-container-arb
+    width: 296px
+    // styles for products with balances
+    &.product-card-container
+      width: 296px
+
+@media only screen and (min-width: $break-medium-table-portrait-min)
+  .card-container-arb
+    width: 262px
+    // styles for products with balances
+    &.product-card-container
+      width: 262px
+
+
+@media only screen and (min-width: $break-desktop-min)
+  .card-container-arb
+    width: 492px

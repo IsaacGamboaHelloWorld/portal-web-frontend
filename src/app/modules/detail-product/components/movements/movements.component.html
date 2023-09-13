@@ -1,0 +1,25 @@
+<section *ngIf="hasMovements" class="cont-movements">
+    <div class="pager-container">
+        <p>{{'MOVEMENT.RESULT' | translate}} {{totalRecords}}</p>
+        <div class="btns-contaniner">
+            <a (click)="prevPage()" [className]="haveLess ? 'inactive' : ''">
+                <i class="left icon-arrow2-right"></i>
+            </a>
+            <span>{{currentPage}} {{'MOVEMENT.OF' | translate}} {{totalPages}}</span>
+            <a (click)="nextPage()" [className]="haveMore ? 'inactive' : ''">
+                <i class="icon-arrow2-right"></i>
+            </a>
+        </div>
+    </div>
+    <ng-container [ngSwitch]="typeAccount | uppercase">
+        <ng-container *ngSwitchCase="account.DEPOSIT_ACCOUNT">
+            <app-deposit-movement [movements]="dataToPage" [filterText]="textFilter"></app-deposit-movement>
+        </ng-container>
+        <ng-container *ngSwitchCase="account.CURRENT_ACCOUNT">
+            <app-current-movement [movements]="dataToPage" [filterText]="textFilter"></app-current-movement>
+        </ng-container>
+        <ng-container *ngSwitchCase="account.CREDIT_CARD">
+            <app-credit-card-movement [movementsCC]="dataToPage" [filterText]="textFilter"></app-credit-card-movement>
+        </ng-container>
+    </ng-container>
+</section>

@@ -1,0 +1,991 @@
+@import '../../../../../sass/variables'
+@import '../../../../../sass/mixins'
+@import '../../../../../sass/colors'
+@import 'globalVars'
+
+.menu-container
+  position: fixed
+  left: 0
+  top: 0
+  bottom: 13px
+  z-index: 3
+  width: 128px
+  background: $carbon-light-100
+  border-radius: 0 24px 24px 0
+  box-shadow: 0 2px 4px 0 rgba($carbon-dark-900, 0.14)
+  height: 100vh
+  background: $hlt-600
+  .cont-logo
+    text-align: center
+    margin-top: 29px
+
+    .logo-popular-home, img
+      width: 90px
+      height: auto
+      fill: "currentColor"
+    .bg-logo-normal
+      background: $g-500
+    .bg-logo-active
+      background: $carbon-light-100
+    .box
+      width: 128px
+      height: 104px
+      position: absolute
+      top: 0px
+      left: 0px
+      border-radius: 0 24px 0 0
+      z-index: -1
+      a
+        img
+          margin: 29px 19px
+
+    .box-normal
+      background: $g-500
+      animation: 1s alternate circle-normal
+    @keyframes circle-normal
+      from
+        clip-path: circle(0px at 120px 50px)
+      to
+        clip-path: circle(350px at 0px 10px)
+    .box-active
+      animation: 1s alternate circle-active
+    @keyframes circle-active
+      from
+        clip-path: circle(350px at 0px 10px)
+      to
+        clip-path: circle(0px at 140px 50px)
+
+
+  nav
+    height: calc(100vh - 105px)
+    display: flex
+    justify-content: center
+    align-items: center
+    ul
+      max-height: 100%
+      position: relative
+      overflow-y: auto
+    li
+      margin: 0 0 30px
+      .desc-icon-menu
+        height: 20px
+        color: $carbon-light-100
+        margin-top: 2px
+      .disabled-option
+        color: $hlt-950
+        cursor: not-allowed
+    a, div
+      text-align: center
+      padding: 0 4px
+      text-decoration: none
+      font-size: $f-14 - 3
+      font-weight: 500
+      letter-spacing: -0.3px
+      width: 100%
+      display: block
+      position: relative
+      margin: 0 auto
+      height: 36px
+      .cont-active-img
+        padding: 0
+      small
+        color: $carbon-light-100
+        background: $orange-900
+        border-radius: 50px
+        position: absolute
+        left: 50%
+        padding: 0 4px
+        top: 0
+        letter-spacing: -0.2px
+        font-size: $f-14 - 5
+        font-weight: bold
+      .img-container
+        width: 28px
+        height: 28px
+        border-radius: 0
+        display: block
+        margin: 0 auto
+
+        &::before
+          width: 31px
+          height: 31px
+          display: block
+          content: ' '
+          background-size: 28px auto
+          filter: grayscale(1)
+          background-position: center center
+          background-repeat: no-repeat
+          transition: .3s
+          opacity: .8
+      .blob
+        background: black
+        border-radius: 50%
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, 1)
+        width: 12px
+        height: 12px
+        position: absolute
+        left: 50px
+        top: 0px
+        transform: scale(1)
+
+      .blob.orange
+        background-image: linear-gradient(to bottom, $orange-900, $orange-700)
+        box-shadow: 0 0 0 0 $orange-700
+        animation: pulse-orange 1s infinite
+
+      @keyframes pulse-orange
+        0%
+          transform: scale(0.95)
+          box-shadow: 0 0 0 0 $orange-700
+        70%
+          transform: scale(1)
+          box-shadow: 0 0 0 10px rgba(255, 121, 63, 0)
+
+        100%
+          transform: scale(0.95)
+          box-shadow: 0 0 0 0 rgba(255, 121, 63, 0)
+      .products
+        background-color: $carbon-light-100
+        mask: url('#{$base-url}/images/24-essential-home-9.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-essential-home-9.svg') no-repeat center / contain
+
+      .agenda
+        background-color: $hlt-950
+        mask: url('#{$base-url}/images/24-money-checkmark-2.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-money-checkmark-2.svg') no-repeat center / contain
+
+      .transfer
+        background-color: $carbon-light-100
+        mask: url('#{$base-url}/images/24-essential-arrows-5.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-essential-arrows-5.svg') no-repeat center / contain
+      .documents
+        background-color: $carbon-light-100
+        mask: url('#{$base-url}/images/24-essential-list-12.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-essential-list-12.svg') no-repeat center / contain
+      .pagos
+        background-color: $carbon-light-100
+        mask: url('#{$base-url}/images/24-payments-finance-dollar-1.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-payments-finance-dollar-1.svg') no-repeat center / contain
+
+      &.active
+        color: $carbon-dark-900
+        .cont-active-img
+          height: 36px
+          width: 36px
+          border-radius: 23px
+          background-color: #f3fef2
+          color: $carbon-dark-900
+          display: flex
+          justify-content: center
+          align-items: center
+        .cont-active-img:hover
+          color: $success-900
+        .img-container
+          background-color: $carbon-dark-900
+          &::before
+            filter: none
+            opacity: 1
+  .circle
+    border-radius: 50%
+    width: 0
+    height: 0
+    position: absolute
+    top: 30px
+    right: 20px
+    background: $carbon-light-100
+    transition: all 600ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+    display: none
+    z-index: 1
+
+.burger
+  user-select: none
+
+  svg
+    width: 60px
+    height: auto
+    cursor: pointer
+    transform: translate3d(0, 0, 0)
+    right: -18px
+    top: -4px
+    position: absolute
+
+  path
+    fill: none
+    transition: stroke-dashoffset .5s cubic-bezier(0.445, 0.050, 0.550, 0.950), stroke-dasharray .5s cubic-bezier(0.250, -0.250, 0.750, 1.250)
+    stroke-width: 24px
+    stroke-linecap: round
+    stroke: #ffffff
+    stroke-dashoffset: 0
+
+  #top,
+  #bottom
+    stroke-dasharray: 240px 920px
+
+  #middle
+    stroke-dasharray: 180px 240px
+    transform: translateX(32px)
+
+@media only screen and (max-width: $break-small-phone)
+  .menu-container
+    height: auto
+    display: block
+    width: 100%
+    position: fixed
+    left: 0
+    top: 0
+    right: 0
+    z-index: 2
+    margin: 0
+    padding: 0
+    bottom: inherit
+    border-radius: 0
+    border: none
+    box-shadow: none
+
+    .cont-logo
+      margin-top: 0
+      height: 72px
+      text-align: left
+      padding: 10px 20px
+      position: relative
+      z-index: 2
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      padding-top: constant(safe-area-inset-top)
+      padding-top: env(safe-area-inset-top)
+      .box
+        display: none
+      img
+        height: 30px
+        width: auto
+        margin-top: 10px
+
+    .burger
+      position: absolute
+      right: 23px
+      top: 50%
+      width: 40px
+      height: 40px
+      transform: translateY(-50%)
+
+    nav
+      padding: 0 0 75px 0
+      height: calc(100vh - 72px)
+      opacity: 0
+      text-align: center
+      transition: all 140ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+      position: absolute
+      left: 0
+      right: 0
+      bottom: 0
+      top: 72px
+      visibility: hidden
+      overflow-y: auto
+      z-index: -1
+      display: block
+
+      > ul
+        text-align: left
+        position: relative
+        top: 50px
+        padding: 35px 20px
+
+        li
+          +inline(top)
+          width: 50%
+          margin: 0 30px 35px 25px
+          width: 112px
+          height: 72px
+
+        a
+          font-size: $f-14
+
+          .img-container
+            width: 36px
+            height: 36px
+
+            &:before
+              width: 36px
+              height: 36px
+              background-size: 32px auto
+
+    .circle
+      display: block
+
+    .option-nav
+      padding: 0
+      border-bottom: 1px solid $carbon-light-400
+      height: 50px
+      overflow-y: initial
+      ul
+        height: 64px
+
+      li
+        margin: 0
+        display: inline-block
+
+        &:after
+          display: none
+
+        &.logout
+          position: fixed
+          left: 0
+          right: 0
+          background: $carbon-light-400
+          bottom: 0
+          margin: 0
+          z-index: 1
+          min-width: 100%
+          display: flex
+          justify-content: center
+          align-items: center
+        &.contact-container
+          position: absolute
+          top: 0
+          left: 0
+          min-width: 50%
+          margin: 0
+          height: 50px
+          #opt_contact
+            position: relative
+            top: 6px
+            .icon-contact-circle
+              background-color: $carbon-dark-900
+        &.security-container
+          min-width: 100%
+          position: absolute
+          top: 49px
+          right: 0
+          z-index: 210
+          margin: 0
+        &.perfil-container
+          min-width: 50%
+          position: absolute
+          top: 0
+          right: 0
+          margin: 0
+        a
+          color: $carbon-dark-900
+          font-size: $f-14
+          font-weight: 500
+          i
+            display: inline
+          img
+            display: inline
+            margin-right: 24px
+    &.active
+      .circle
+        width: $circle-diameter-menu
+        height: $circle-diameter-menu
+        top: -$circle-diameter-menu/2
+        right: -$circle-diameter-menu/2
+        transition: all 800ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+
+      nav
+        opacity: 1
+        transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+        z-index: 3
+        visibility: visible
+
+        .options-menu
+          display: none
+
+      .logo
+        display: none
+
+      .burger
+        svg
+          margin: 6px 12px
+          width: 32px
+          height: 32px
+          border-radius: 50%
+          background-color: rgba($hlt-100, 0.48)
+          #top,
+          #bottom
+            stroke-dashoffset: -650px
+            stroke: $hlt-600
+            stroke-opacity: 32px
+
+          #middle
+            stroke-dashoffset: -115px
+            stroke-dasharray: 1px 220px
+            transform: translateX(0)
+
+    .options-menu
+      display: none
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .menu-container
+    height: auto
+    display: block
+    width: 100%
+    position: fixed
+    left: 0
+    top: 0
+    right: 0
+    z-index: 2
+    margin: 0
+    padding: 0
+    bottom: inherit
+    border-radius: 0
+    border: none
+    box-shadow: none
+
+    .cont-logo
+      margin-top: 0
+      height: 72px
+      text-align: left
+      padding: 10px 20px
+      position: relative
+      z-index: 2
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      padding-top: constant(safe-area-inset-top)
+      padding-top: env(safe-area-inset-top)
+      .box
+        display: none
+      img
+        height: 30px
+        width: auto
+        margin-top: 10px
+
+    .burger
+      position: absolute
+      right: 23px
+      top: 50%
+      width: 40px
+      height: 40px
+      transform: translateY(-50%)
+
+    nav
+      padding: 0 0 75px 0
+      // height: calc(100vh - 72px)
+      height: 100vh
+      opacity: 0
+      text-align: center
+      transition: all 140ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+      position: absolute
+      left: 0
+      right: 0
+      bottom: 0
+      top: 72px
+      visibility: hidden
+      overflow-y: auto
+      z-index: -1
+      display: block
+
+      > ul
+        text-align: left
+        position: relative
+        top: 50px
+        padding: 35px 20px
+
+        li
+          +inline(top)
+          width: 50%
+          margin: 0 30px 35px 25px
+          width: 112px
+          height: 72px
+
+        a
+          font-size: $f-14
+
+          .img-container
+            width: 36px
+            height: 36px
+
+            &:before
+              width: 36px
+              height: 36px
+              background-size: 32px auto
+
+    .circle
+      display: block
+
+    .option-nav
+      padding: 0
+      border-bottom: 1px solid $carbon-light-400
+      height: 50px
+      overflow-y: initial
+      ul
+        height: 64px
+
+      li
+        margin: 0
+        display: inline-block
+
+        &:after
+          display: none
+
+        &.logout
+          position: fixed
+          left: 0
+          right: 0
+          background: $carbon-light-400
+          bottom: 0
+          margin: 0
+          z-index: 1
+          min-width: 100%
+          display: flex
+          justify-content: center
+          align-items: center
+        &.contact-container
+          position: absolute
+          top: 0
+          left: 0
+          min-width: 50%
+          margin: 0
+          height: 50px
+          #opt_contact
+            position: relative
+            top: 6px
+            .icon-contact-circle
+              background-color: $carbon-dark-900
+        &.security-container
+          min-width: 100%
+          position: absolute
+          top: 49px
+          right: 0
+          z-index: 210
+          margin: 0
+        &.perfil-container
+          min-width: 50%
+          position: absolute
+          top: 0
+          right: 0
+          margin: 0
+        a
+          color: $carbon-dark-900
+          font-size: $f-14
+          font-weight: 500
+          i
+            display: inline
+          img
+            display: inline
+            margin-right: 24px
+    &.active
+      .circle
+        width: $circle-diameter-menu
+        height: $circle-diameter-menu
+        top: -$circle-diameter-menu/2
+        right: -$circle-diameter-menu/2
+        transition: all 800ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+
+      nav
+        opacity: 1
+        transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+        z-index: 3
+        visibility: visible
+
+        .options-menu
+          display: none
+
+      .logo
+        display: none
+
+      .burger
+        svg
+          margin: 6px 12px
+          width: 32px
+          height: 32px
+          border-radius: 50%
+          background-color: rgba($hlt-100, 0.48)
+          #top,
+          #bottom
+            stroke-dashoffset: -650px
+            stroke: $hlt-600
+            stroke-opacity: 32px
+
+          #middle
+            stroke-dashoffset: -115px
+            stroke-dasharray: 1px 220px
+            transform: translateX(0)
+    .options-menu
+      display: none
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .menu-container
+    height: auto
+    display: block
+    width: 100%
+    position: fixed
+    left: 0
+    top: 0
+    right: 0
+    z-index: 2
+    margin: 0
+    padding: 0
+    bottom: inherit
+    border-radius: 0
+    border: none
+    box-shadow: none
+
+    .cont-logo
+      margin-top: 0
+      height: 72px
+      text-align: left
+      padding: 10px 20px
+      position: relative
+      z-index: 2
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      padding-top: constant(safe-area-inset-top)
+      padding-top: env(safe-area-inset-top)
+      .box
+        display: none
+      img
+        height: 30px
+        width: auto
+        margin-top: 10px
+
+    .burger
+      position: absolute
+      right: 23px
+      top: 50%
+      width: 40px
+      height: 40px
+      transform: translateY(-50%)
+
+    nav
+      padding: 0 0 75px 0
+      height: calc(100vh - 72px)
+      opacity: 0
+      text-align: center
+      transition: all 140ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+      position: absolute
+      left: 0
+      right: 0
+      bottom: 0
+      top: 72px
+      visibility: hidden
+      overflow-y: auto
+      z-index: -1
+      display: block
+
+      > ul
+        text-align: left
+        position: relative
+        top: 50px
+        padding: 35px 20px
+
+        li
+          +inline(top)
+          width: 50%
+          margin: 0 30px 35px 25px
+          width: 112px
+          height: 72px
+
+        a
+          font-size: $f-14
+
+          .img-container
+            width: 36px
+            height: 36px
+
+            &:before
+              width: 36px
+              height: 36px
+              background-size: 32px auto
+
+    .circle
+      display: block
+
+    .option-nav
+      padding: 0
+      border-bottom: 1px solid $carbon-light-400
+      height: 50px
+      overflow-y: initial
+      ul
+        height: 64px
+
+      li
+        margin: 0
+        display: inline-block
+
+        &:after
+          display: none
+
+        &.logout
+          position: fixed
+          left: 0
+          right: 0
+          background: $carbon-light-400
+          bottom: 0
+          margin: 0
+          z-index: 1
+          min-width: 100%
+          display: flex
+          justify-content: center
+          align-items: center
+        &.contact-container
+          position: absolute
+          top: 0
+          left: 0
+          min-width: 50%
+          margin: 0
+          height: 50px
+          #opt_contact
+            position: relative
+            top: 6px
+            .icon-contact-circle
+              background-color: $carbon-dark-900
+        &.security-container
+          min-width: 100%
+          position: absolute
+          top: 49px
+          right: 0
+          z-index: 210
+          margin: 0
+        &.perfil-container
+          min-width: 50%
+          position: absolute
+          top: 0
+          right: 0
+          margin: 0
+        a
+          color: $carbon-dark-900
+          font-size: $f-14
+          font-weight: 500
+          i
+            display: inline
+          img
+            display: inline
+            margin-right: 24px
+    &.active
+      .circle
+        width: $circle-diameter-menu
+        height: $circle-diameter-menu
+        top: -$circle-diameter-menu/2
+        right: -$circle-diameter-menu/2
+        transition: all 800ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+
+      nav
+        opacity: 1
+        transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+        z-index: 3
+        visibility: visible
+        .options-menu
+          display: none
+
+      .logo
+        display: none
+
+      .burger
+        svg
+          margin: 6px 12px
+          width: 32px
+          height: 32px
+          border-radius: 50%
+          background-color: rgba($hlt-100, 0.48)
+          #top,
+          #bottom
+            stroke-dashoffset: -650px
+            stroke: $hlt-600
+            stroke-opacity: 32px
+
+          #middle
+            stroke-dashoffset: -115px
+            stroke-dasharray: 1px 220px
+            transform: translateX(0)
+    .options-menu
+      display: none
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+  .menu-container
+    height: auto
+    display: block
+    width: 100%
+    position: fixed
+    left: 0
+    top: 0
+    right: 0
+    z-index: 2
+    margin: 0
+    padding: 0
+    bottom: inherit
+    border-radius: 0
+    border: none
+    box-shadow: none
+
+    .cont-logo
+      margin-top: 0
+      height: 72px
+      text-align: left
+      padding: 10px 20px
+      position: relative
+      z-index: 2
+      display: flex
+      justify-content: flex-start
+      align-items: center
+      padding-top: constant(safe-area-inset-top)
+      padding-top: env(safe-area-inset-top)
+      .box
+        display: none
+      img
+        height: 30px
+        width: auto
+        margin-top: 10px
+
+    .burger
+      position: absolute
+      right: 23px
+      top: 50%
+      width: 40px
+      height: 40px
+      transform: translateY(-50%)
+
+    nav
+      padding: 0 0 75px 0
+      height: calc(100vh - 72px)
+      opacity: 0
+      text-align: center
+      transition: all 140ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+      position: absolute
+      left: 0
+      right: 0
+      bottom: 0
+      top: 72px
+      visibility: hidden
+      overflow-y: auto
+      z-index: -1
+      display: block
+
+      > ul
+        text-align: left
+        position: relative
+        top: 50px
+        padding: 35px 20px
+
+        li
+          +inline(top)
+          width: 50%
+          margin: 0 30px 35px 25px
+          width: 112px
+          height: 72px
+
+        a
+          font-size: $f-14
+
+          .img-container
+            width: 36px
+            height: 36px
+
+            &:before
+              width: 36px
+              height: 36px
+              background-size: 32px auto
+
+    .circle
+      display: block
+
+    .option-nav
+      padding: 0
+      border-bottom: 1px solid $carbon-light-400
+      height: 50px
+      overflow-y: initial
+      ul
+        height: 64px
+
+      li
+        margin: 0
+        display: inline-block
+
+        &:after
+          display: none
+
+        &.logout
+          position: fixed
+          left: 0
+          right: 0
+          background: $carbon-light-400
+          bottom: 0
+          margin: 0
+          z-index: 1
+          min-width: 100%
+          display: flex
+          justify-content: center
+          align-items: center
+        &.contact-container
+          position: absolute
+          top: 0
+          left: 0
+          min-width: 50%
+          margin: 0
+          height: 50px
+          #opt_contact
+            position: relative
+            top: 6px
+            .icon-contact-circle
+              background-color: $carbon-dark-900
+        &.security-container
+          min-width: 100%
+          position: absolute
+          top: 49px
+          right: 0
+          z-index: 210
+          margin: 0
+        &.perfil-container
+          min-width: 50%
+          position: absolute
+          top: 0
+          right: 0
+          margin: 0
+        a
+          color: $carbon-dark-900
+          font-size: $f-14
+          font-weight: 500
+          i
+            display: inline
+          img
+            display: inline
+            margin-right: 24px
+    &.active
+      .circle
+        width: $circle-diameter-menu
+        height: $circle-diameter-menu
+        top: -$circle-diameter-menu/2
+        right: -$circle-diameter-menu/2
+        transition: all 800ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+
+      nav
+        opacity: 1
+        transition: all 300ms cubic-bezier(0.000, 0.995, 0.990, 1.000)
+        z-index: 3
+        visibility: visible
+        .options-menu
+          display: none
+
+      .logo
+        display: none
+
+      .burger
+        svg
+          margin: 6px 12px
+          width: 32px
+          height: 32px
+          border-radius: 50%
+          background-color: rgba($hlt-100, 0.48)
+          #top,
+          #bottom
+            stroke-dashoffset: -650px
+            stroke: $hlt-600
+            stroke-opacity: 32px
+
+          #middle
+            stroke-dashoffset: -115px
+            stroke-dasharray: 1px 220px
+            transform: translateX(0)
+    .options-menu
+      display: none
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+  .menu-container
+    height: 100%
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+  .menu-container
+    height: 100%
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+  .menu-container
+    height: 100%
+@media only screen and (min-width: $break-desktop-xlg-min)
+  .menu-container
+    height: 100%

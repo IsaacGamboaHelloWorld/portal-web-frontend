@@ -1,0 +1,22 @@
+<div class="animated fade-in-up cont-step-two">
+	<div class="box-step-two">
+		<div class="box-image">
+			<img [src]="'/money-hand.png' | imageCdn" alt="">
+		</div>
+		<div class="confirm">
+			<ul>
+				<li>
+					<span>{{'PAY_STACK.FORM_TWO.PAYROLL' | translate}}</span>
+					<p class="reference">{{(infoPaystack | async)?.invoiceNumber}}</p>
+				</li>
+				<li>
+					<span>{{'PAYMENT_TAXES.FORM_TWO.VALUE' | translate}}</span>
+					<p>{{(infoPaystack | async)?.amount | currencyFormat}}</p>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="footer-step">
+		<button class="btn btn-primary" (click)="submitData()">{{'WITHDRAWAL.CONFIRM_STEP.CONTINUE_BTN' | translate}}</button>
+	</div>
+</div>

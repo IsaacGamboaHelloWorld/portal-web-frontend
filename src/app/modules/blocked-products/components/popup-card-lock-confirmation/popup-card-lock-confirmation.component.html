@@ -1,0 +1,42 @@
+<div class="popup-card-lock-confirmation">
+    <h3>{{'BLOCK_PRODS.POPUPS.CARD_LOCK_CONFIRMATION_OPTIONS.TITLE' | translate}}</h3>
+    <form class="form-global" [formGroup]="typeBlock" (ngSubmit)="submitForm()">
+        <fieldset class="form-group">
+            <div class="options">
+
+                <div class="radio-option">
+                    <input type="radio" formControlName="whyBlock" id="whyBlock_2" value="DEFINITIVE_LOCK" (click)="setClass('.why-container-2')">
+                    <label class="custom-control-label" for="whyBlock_2"></label>
+
+                    <div class="radio form-radiobutton-contanier why-container-2">
+                        <div class="content">
+                            <label class="radio-img" (click)="setClass('.why-container-2')"></label>
+                            <div class="image-container">
+                                <img [src]="'/lock-product/lost-card@2x.png' | imageCdn" alt="" class="stolen-card">
+                            </div>
+                            <p>{{'BLOCK_PRODS.POPUPS.CARD_LOCK_CONFIRMATION_OPTIONS.BLOCK_OPT' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="radio-option">
+                    <input type="radio" formControlName="whyBlock" id="whyBlock_1" value="LOSS_LOCK" (click)="setClass('.why-container-1')">
+                    <label class="custom-control-label" for="whyBlock_1"></label>
+                    <div class="radio form-radiobutton-contanier why-container-1">
+                        <div class="content">
+                            <label class="radio-img" (click)="setClass('.why-container-1')"></label>
+                            <div class="image-container">
+                                <img [src]="'/lock-product/stole-card@2x.png' | imageCdn" alt="" class="lost-card">
+                            </div>
+                            <p>{{'BLOCK_PRODS.POPUPS.CARD_LOCK_CONFIRMATION_OPTIONS.STOLE_OPT' | translate}}</p>
+                        </div>
+                    </div>
+                </div>
+                    
+            </div>
+        </fieldset>
+        <fieldset class="form-group container_centered">
+            <button type="submit" class="btn btn-primary" [disabled]="typeBlock.invalid">{{'BLOCK_PRODS.POPUPS.CARD_LOCK_CONFIRMATION_OPTIONS.BTN_LOCK' | translate}}</button>
+        </fieldset>
+    </form>
+</div>

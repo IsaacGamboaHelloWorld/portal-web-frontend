@@ -1,0 +1,18 @@
+<div class="cont-alert-programmed-success" [ngClass]="{ 'error': isError }">
+  <div class="img-container">
+    <img [src]="img | imageCdn" alt="" *ngIf="hasImg">
+  </div>
+  <p [ngClass]="{'p-if': hasBtnCancel}">{{(hasTitle ? title : 'RECHARGE.MODAL.TITLE') | translate}}</p>
+  <p [ngClass]="{'p-text-if': hasBtnCancel}" class="desc paragraph-small" *ngIf="hasDesc" [innerHTML]="desc | translate"></p>
+  <div class="cont-buttons-alert">
+      <button [class]="classBtnCancel" (click)="actionCancel.emit()" *ngIf="hasBtnCancel">
+          {{  hasBtnCancel ? (btnCancel | translate) : ('NO' | translate) + ', ' + ('WITHDRAWAL.BACK_BTN' | translate)}}
+      </button>
+      <app-btn (clickBtn)="emitClick()"
+          [text]="hasBtnAgree ? (btnAgree | translate) : ('YES' | translate) + ',' + ('CANCEL' | translate)"
+          [isLoading]="loading"
+          [disabled]="loading"
+          [class]="classBtn">
+      </app-btn>
+  </div>
+</div>

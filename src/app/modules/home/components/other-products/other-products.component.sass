@@ -1,0 +1,30 @@
+@import '../../../../../sass/variables'
+@import '../../../../../sass/mixins'
+
+.name-bank
+  margin: 20px 0 14px
+  padding: 0 8px
+  img
+    height: 24px
+    width: auto
+    +inline(middle)
+    margin-right: 8px
+  &::after
+    content: ''
+    height: 1px
+    width: 100%
+    max-width: 175px
+    background: linear-gradient(to right, rgba($black-300, 1) 0%, rgba($carbon-light-400, 1) 100%)
+    display: inline-block
+    vertical-align: middle
+    margin-left: 10px
+
+.align-cards
+  +inline(top)
+
+
+@media only screen and (max-width: $break-mobile)
+  .name-bank
+    padding: 0 24px
+  .align-cards
+    width: 100%

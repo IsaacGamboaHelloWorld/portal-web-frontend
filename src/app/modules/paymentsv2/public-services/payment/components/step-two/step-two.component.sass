@@ -1,0 +1,27 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.cont-step-two-payment
+  max-width: 480px
+  min-width: 390px
+  margin-top: 40px
+  .field-container
+    margin-bottom: 20px
+    label
+      margin-bottom: 12px
+      font-size: $f-14 - 2
+      font-weight: 500
+      display: block
+  .button-container
+    display: flex
+    justify-content: center
+    button
+      margin: 0 auto
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-two-payment
+    min-width: 100%
+    margin-top: 32px
+

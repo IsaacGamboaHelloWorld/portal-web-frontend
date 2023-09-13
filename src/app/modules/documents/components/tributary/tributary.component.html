@@ -1,0 +1,78 @@
+<app-template-system [title]="'DOCUMENTS.TRIBUTARY.DETAIL.TITLE' | translate" [sectionHome]="true"
+  [sectionContent]="content" [fullContent]="true" [navigatorActive]="true" [backUrl]="navigate.documents_ds"
+  [showClose]="false">
+</app-template-system>
+
+<ng-template #content>
+  <div class="container-tributary">
+    <form class="form-global" [formGroup]="formTributary">
+      <p class="title">{{'DOCUMENTS.TRIBUTARY.DETAIL.ACTION' | translate}}</p>
+      <div class="form-group">
+        <ul class="cont-options" *ngIf="(options$ | async) else loadingTemplate">
+          <li *ngFor="let item of options; let i=index">
+            <ng-container *ngIf="showOption((optionDocuments$ | async), item.TEXT)">
+              <div class="box" (click)="setBorder(item.TEXT)"
+              [ngClass]="{'box-border': typeActive === item.TEXT,'not-view': item.STATUS !== 'TRUE'}">
+              <label class="container-radio">
+                <input type="radio" name="optionCertificate" [value]="item" [checked]="typeActive === item.TEXT">
+                <span class="checkmark"></span>
+              </label>
+              <div class="cont-icon">
+                <img [src]="'/24-payments-finance-invoice-2@3x.png' | imageCdn" alt="">
+              </div>
+              <p class="text-tributary">
+                {{item.TEXT}}
+              </p>
+            </div>
+            </ng-container>
+          </li>
+        </ul>
+      </div>
+      <div class="form-group cont-title-year" *ngIf="typeActive && optionDownload.RENTAL !== typeActive">
+        <p class="title-year">{{'DOCUMENTS.TRIBUTARY.DETAIL.YEAR_TITLE' | translate}}</p>
+      </div>
+      <div class="form-group cont-selects" *ngIf="typeActive">
+        <div class="grid-x">
+          <div class="cell large-auto select-year" *ngIf="typeActive && optionDownload.RENTAL !== typeActive">
+            <app-ds-dropdown-select [label]="'DOCUMENTS.TRIBUTARY.DETAIL.YEAR'" [form]="formTributary"
+              [property]="'year'" [fixedOptions]="years" [advancedLabel]="false">
+            </app-ds-dropdown-select>
+          </div>
+          <div class="cell large-auto cont-card-info">
+            <div class="cont-card-one-home center-card-info">
+              <div class="cont-icon-card-one">
+                <div class="circle-icon-card-one">
+                  <img class="icon-card-one" alt="">
+                </div>
+              </div>
+              <div class="cont-text-card-one">
+                <p class="text-card-info">
+                  {{copys | translate}}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group cont-download" *ngIf="typeActive">
+        <app-btn (clickBtn)="download()" [disabled]="loading || formTributary.invalid"
+          [text]="'DOCUMENTS.TRIBUTARY.DETAIL.BTN' | translate" [isLoading]="loading" [class]="'btn-primary'"></app-btn>
+      </div>
+    </form>
+  </div>
+
+
+  <ng-template #loadingTemplate>
+    <ul class="cont-options">
+      <li *ngFor="let item of [1,2,3,4]; let i=index">
+        <div class="box">
+          <div class="item-loading">
+            <p class="title-loading placeholder"></p>
+            <p class="text-loading placeholder"></p>
+            <p class="value-loading placeholder "></p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </ng-template>
+</ng-template>

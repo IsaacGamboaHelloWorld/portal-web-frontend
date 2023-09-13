@@ -1,0 +1,12 @@
+<div class="card-notification">
+  <div class="card-notification-container {{ typeNotification }}">
+    <div class="bar"></div>
+    <div class="img-container">
+      <div class="img"></div>
+    </div>
+    <div class="content">
+      <span class="message"> {{ message }} </span>
+      <span *ngIf="!!subMessage" class="sub-message" [innerHTML]="subMessage"></span>
+    </div>
+  </div>
+</div>

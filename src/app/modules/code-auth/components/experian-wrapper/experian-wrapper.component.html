@@ -1,0 +1,8 @@
+<app-experian [data]="(experianState$ | async)?.data" 
+            [isLoadingState]="(experianState$ | async)?.loading" 
+            [errorState]="(experianState$ | async)?.error" 
+            [transactionCommitStep]="(secureDataMdmState$ | async)?.loading"
+            (submitAction)="submitActionFlowHandler($event)" 
+            (submitCompletedFlow)="submitCompletedExperianFlowHandler($event)" 
+            (submitErrorFlow)="submitErrorExperianFlowHandler($event)"
+            [viewBtnClose]="false"></app-experian>

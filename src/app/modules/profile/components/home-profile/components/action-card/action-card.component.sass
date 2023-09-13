@@ -1,0 +1,69 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.profile-action-card
+  cursor: pointer
+  background: $carbon-light-100
+  width: 100%
+  border-radius: 10px
+  color: $carbon-dark-900
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+  padding: 15px
+  margin-bottom: 14px
+  text-align: left
+  display: block
+  .container
+    display: inline-flex
+    height: 47px
+    .icon
+      margin-right: 17px
+      padding: 2px
+      img
+        width: 38px
+        height: 38px
+    .action
+      div
+        span
+          display: block
+          width: 100%
+          height: 24px
+          font-family: Inter
+          font-size: 14px
+          font-weight: 500
+          line-height: 1.71
+        p
+          height: 23px
+          font-family: Inter
+          font-size: 11px
+          line-height: 2.09
+          color: $gray3
+          margin-top: -5px
+
+  .arrow
+    float: right 
+    top: 50%
+    right: 14px
+    color: $carbon-mid-100
+    font-size: $f-20
+    position: relative
+    padding: 20px 0px
+    em
+      transform: translateY(-50%)
+      font-size: $f-14 + 10
+      color: $carbon-mid-100
+      display: inline-block
+      position: absolute
+      margin-left: -12px
+      margin-top: 4px
+    
+@media only screen and (max-width: $break-tablet)
+  .profile-action-card
+
+@media only screen and (max-width: 1023px)
+  .profile-action-card
+
+@media only screen and (max-width: $break-mobile)
+  .profile-action-card
+
+    

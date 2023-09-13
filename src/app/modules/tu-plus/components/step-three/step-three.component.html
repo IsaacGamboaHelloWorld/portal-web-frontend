@@ -1,0 +1,167 @@
+<div class="animated fade-in-up main-step-three" id="main-step-three"
+  *ngIf="(toPlus$ | async).loaded && (configuration$ | async).loaded">
+  <h1 class="txt-title">{{'TO_PLUS.SCREEN_REDEEM.POINTS_AVAILABLE' | translate}}</h1>
+  <div class="cont-card-your-plus margin-bottom-16px shadow-1dp">
+    <div class="cont-img">
+      <img [src]="'/logo-redondo-tuplus.svg' | imageCdn" [alt]="'TO_PLUS.NAME' | translate">
+    </div>
+    <div class="txt-container">
+      <p class="txt-total-points"> {{((toPlus$ | async)?.data?.totalPoints | number)| replace : ',' : '.'}} </p>
+    </div>
+  </div>
+
+  <div class="cont-form">
+    <form class="form-global" [formGroup]="formCreateRedemption" (ngSubmit)="loadForm()">
+      <div class="cont-img-arrows">
+        <img [src]="'/arrows.svg' | imageCdn" [alt]="'TO_PLUS.NAME' | translate">
+      </div>
+      <div class="form-group cont-card-your-plus cont-card-your-plus-up border-bottom-1px">
+        <p class="txt-points-to-redeem text-align">{{'TO_PLUS.SCREEN_REDEEM.POINTS_TO_REDEEM' | translate}}</p>
+        <input appPrefixFocusAndSelect class="input-bp input-points" formControlName="totalPoints" placeholder="{{(configuration$ |
+        async)?.data?.MinCurAmt.Amt}}" appOnlyNumbers #inputTotalPoints (ngModelChange)="onChange()">
+        <div *ngIf="formCreateRedemption.get('totalPoints').hasError('error_input'); else maxMin">
+
+          <p class="txt-money" style="color: #e70000">{{'TO_PLUS.SCREEN_REDEEM.MIN_AND_MAX' | translate : { minPoints:
+            ((configuration$ |
+            async)?.data?.MinCurAmt.Amt | number), maxPoints: ((configuration$ | async)?.data?.MaxCurAmt.Amt|
+            number) } }}</p>
+        </div>
+        <ng-template #maxMin>
+          <p class="txt-money">{{'TO_PLUS.SCREEN_REDEEM.MIN_AND_MAX' | translate : { minPoints: ((configuration$ |
+            async)?.data?.MinCurAmt.Amt | number)| replace : ',' : '.', maxPoints: ((configuration$ |
+            async)?.data?.MaxCurAmt.Amt|
+            number)| replace : ',' : '.' } }}</p>
+        </ng-template>
+      </div>
+      <div class="form-group cont-card-your-plus cont-card-your-plus-down">
+        <div class="your-plus-card-money">
+          <p class="txt-money">{{'TO_PLUS.SCREEN_REDEEM.EQUIVALENT' | translate}}</p>
+          <div class="txt-container">
+            <p class="txt-amount">{{formCreateRedemption.get('curAmt').value | currencyFormat }}</p>
+          </div>
+        </div>
+      </div>
+      <div class="cont-txt-info">
+        <p class="txt-info">{{'TO_PLUS.SCREEN_REDEEM.INFO_1' | translate}}</p>
+      </div>
+
+      <p class="txt-points-to-redeem txt-title">{{'TO_PLUS.SCREEN_REDEEM.WHERE' | translate}}</p>
+      <div class="cards-redeem">
+        <div class="cont-card-check right" (click)="setSelectedAccount()"
+          [ngClass]="{'cont-card-check-border': isSelectedAccount}">
+          <label class="container-radio">
+            <input type="radio" name="optionCertificate" [checked]="isSelectedAccount">
+            <span class="checkmark"></span>
+          </label>
+          <div class="cont-img">
+            <img [src]="'/redeem-account.svg' | imageCdn" alt="TO_PLUS.NAME">
+          </div>
+          <div class="txt-container">
+            <p class="txt-info">
+              {{'TO_PLUS.SCREEN_REDEEM.ACCOUNT' | translate}}
+            </p>
+          </div>
+
+        </div>
+        <div class="cont-card-check left" (click)="setSelectedCreditCard()"
+          [ngClass]="{'cont-card-check-border': isSelectedCreditCard}">
+          <label class="container-radio">
+            <input type="radio" name="optionCertificate" [checked]="isSelectedCreditCard">
+            <span class="checkmark"></span>
+          </label>
+          <div class="cont-img">
+            <img [src]="'/redeem-credit-card.svg' | imageCdn" alt="TO_PLUS.NAME">
+          </div>
+          <div class="txt-container">
+            <p class="txt-info">
+              {{'TO_PLUS.SCREEN_REDEEM.CREDIT_CARD' | translate}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="isSelectedAccount">
+        <p *ngIf="(productDefault$ | async)" class="txt-points-to-redeem txt-title">{{'TO_PLUS.SCREEN_REDEEM.PAY_IN' |
+          translate}}</p>
+        <div class="select-account" *ngIf="(productDefault$ | async); else ALERT_ACCOUNT">
+          <div class="form-group"
+            *ngIf="((productDefault$ | async)?.productAccountBalances?.saldo_disponible) ; else LOADING_TEMPLATE">
+            <app-card-change-data [form]="formCreateRedemption" [property]="'accountData'"
+              [options]="(productsOrigin$ | async)" [append]="modal" [dataCard]="(productDefault$ | async)"
+              [label]="'PAYMENTS.CONFIRMATION.FORM.ORIGIN'" (event)="selectAccount($event)"></app-card-change-data>
+          </div>
+        </div>
+        <div class="cont-txt-info" *ngIf="(productDefault$ | async)">
+          <p class="txt-info">{{'TO_PLUS.SCREEN_REDEEM.INFO_2' | translate}}</p>
+        </div>
+      </div>
+      <div *ngIf="isSelectedCreditCard">
+        <p *ngIf="(productsCreditCard$ | async).length !== 0" class="txt-points-to-redeem txt-title">
+          {{'TO_PLUS.SCREEN_REDEEM.PAY_IN'
+          | translate}}</p>
+        <div class="cont-select-credit-card" *ngIf="(productsCreditCard$ | async).length !== 0; else ALERT_CREDIT_CARD">
+          <div *ngFor="let creditCard of (productsCreditCard$ | async)  ; let i=index" id="{{i}}">
+            <div *ngIf="creditCard.accountInformation?.accountIdentifier.length > 1; else ALERT_CREDIT_CARD_ERROR">
+              <app-ds-credit-card
+                [name]="'BLOCK_PRODS.CARDS_SECTION.CARD_FRANCHISE.' + (creditCard.accountInformation?.accountIdentifier | cardTypeclass).class | translate"
+                [className]="(creditCard.accountInformation?.accountIdentifier | cardTypeclass).class"
+                [number]="creditCard.accountInformation?.accountIdentifier | dsMaskCreditCard"
+                [thruText]="'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.VALID_THRU' | translate"
+                [symbols]="'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.VALID_THRU_SYMBOLS' | translate"
+                [loading]="creditCard.loading"
+                [logo]="'/lock-product' + (creditCard.accountInformation?.accountIdentifier | cardFranchiseType) | imageCdn"
+                [isSelected]="true" (actionEvent)="selectCard(creditCard)"
+                [cardId]="i">
+              </app-ds-credit-card>
+            </div>
+          </div>
+        </div>
+        <div class="cont-txt-info" *ngIf="(productsCreditCard$ | async).length !== 0">
+          <p class="txt-info">{{'TO_PLUS.SCREEN_REDEEM.INFO_3' | translate}}</p>
+        </div>
+      </div>
+      <div class="button-container">
+        <app-btn [type]="'submit'"
+          [disabled]="formCreateRedemption.invalid || (redemption$ | async).loading || (otpGeneration$ | async).loading"
+          [text]="'TO_PLUS.SCREEN_REDEEM.CONTINUE' | translate" [id]="'btn_login'"
+          [isLoading]="(redemption$ | async).loading || (otpGeneration$ | async).loading" [class]="'btn btn-primary'"
+          id="btn-submit-redeem">
+        </app-btn>
+      </div>
+    </form>
+  </div>
+</div>
+<ng-template #LOADING_TEMPLATE>
+  <div class="cont-form">
+    <div class="form-group">
+      <div class="card-account">
+        <div class="itemLoading shadow-1dp">
+          <p class="title-loading placeholder"></p>
+          <p class="txt-loading placeholder"></p>
+          <p class="value-loading placeholder "></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #ALERT_ACCOUNT>
+  <div class="margin-bottom-16px">
+    <app-card-notification [typeNotification]="'info'"
+      [message]="'TO_PLUS.SCREEN_REDEEM.INFO_ALERT_ACCOUNT' | translate">
+    </app-card-notification>
+  </div>
+</ng-template>
+<ng-template #ALERT_CREDIT_CARD>
+  <div class="margin-bottom-16px">
+    <app-card-notification [typeNotification]="'info'"
+      [message]="'TO_PLUS.SCREEN_REDEEM.INFO_ALERT_CREDIT_CARD' | translate"></app-card-notification>
+  </div>
+</ng-template>
+<ng-template #ALERT_CREDIT_CARD_ERROR>
+  <div class="margin-bottom-16px">
+    <app-card-notification [typeNotification]="'info'"
+      [message]= "'HOME.ERROR_PRODUCT.DESCRIPTION' | translate"></app-card-notification>
+  </div>
+</ng-template>
+
+<div #modal></div>

@@ -1,0 +1,43 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.enroll-financial-obligations
+  display: flex
+  width: 100%
+  justify-content: center
+  flex-direction: column
+  .section-container
+    min-width: 343px
+    max-width: 352px
+    padding: 15px 0
+    margin: 0 auto
+    label
+      font-size: $f-14 - 2
+      padding-bottom: 4px
+      display: block
+    .form-group
+      .radio
+        width: 100%
+        margin-bottom: 20px
+        &:last-child
+          margin-bottom: 0
+        label
+          font-size: $f-14
+          font-weight: 500
+          &::after
+            top: 20px
+      .form-radiobutton-contanier
+        background: $carbon-light-100
+        &.active
+          border: solid 1.5px $g-500
+          background: $gb-500
+    .number-account
+      &.ng-invalid
+        border: solid 1.3px $error-600
+      &.ng-pristine
+        border: solid 1.3px $carbon-mid-100
+    .button-container
+      text-align: center
+

@@ -1,0 +1,15 @@
+<div class="onboarding-pockets">
+    <h3>{{'POCKETS.HOME.POPUP_NOTIFICATION.TITLE' | translate}}</h3>
+    <p [innerHtml]="'POCKETS.HOME.POPUP_NOTIFICATION.PARAGRAF1' | translate"></p>
+    <p [innerHtml]="'POCKETS.HOME.POPUP_NOTIFICATION.PARAGRAF2' | translate"></p>
+    <p [innerHtml]="'POCKETS.HOME.POPUP_NOTIFICATION.PARAGRAF3' | translate"></p>
+    <form [formGroup]="formStepOne" (ngSubmit)="preferencesSubmit()">
+        <fieldset class="form-group">
+            <label>{{'POCKETS.HOME.POPUP_NOTIFICATION.NOT_SHOW' | translate}}</label>
+            <input type="checkbox" class="input-bp" formControlName="not_show">
+        </fieldset>
+        <fieldset class="continue-prefs">
+            <app-btn [class]="'btn-primary'" [text]="'CONTINUE' | translate" (clickBtn)="preferencesSubmit()"></app-btn>
+        </fieldset>
+    </form>
+</div>

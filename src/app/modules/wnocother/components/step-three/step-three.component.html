@@ -1,0 +1,52 @@
+
+<div class="animated fade-in-up cont-step-global cont-step-confirmation-wnocother">
+    <app-ticket *ngIf="(typeTransaction$ | async) === opWITHCARD" [imageTicket]="'/confirmation.png' | imageCdn" [title]="'WITHDRAWAL.CONFIRM_STEP.DESCRIPTION' | translate" [messageTitle]="(dataForm$ | async)?.textVoucher | translate" [messageText]="(dataForm$ | async).amount | currencyFormat : true : 'decimal-vouchers'"
+        [listTemplate]="list"></app-ticket>
+    <app-ticket *ngIf="(typeTransaction$ | async) !== opWITHCARD" [imageTicket]="'/confirmation.png' | imageCdn" [title]="'WITHDRAWAL.CONFIRM_STEP.DESCRIPTIONG' | translate" [messageTitle]="(dataForm$ | async)?.textVoucher | translate" [messageText]="(dataForm$ | async).amount | currencyFormat : true : 'decimal-vouchers'"
+        [listTemplate]="list"></app-ticket>
+    <div class="footer-step">
+        <app-btn [class]="'btn-primary'" [disabled]="(getOtp$ | async)?.loading" [text]="'WITHDRAWAL.CONFIRM_STEP.CONTINUE_BTN' | translate" [isLoading]="(getOtp$ | async)?.loading" (clickBtn)="submitData()"></app-btn>
+    </div>
+</div>
+<ng-template #list>
+    <div class="confirm-withdrawal">
+        <ul *ngIf="(typeTransaction$ | async) && (typeTransaction$ | async) === opWITHCARD">
+            <li>
+                <span>{{'WITHDRAWAL.CONFIRM_STEP.WHERE_ACCOUNT' | translate}}</span>
+                <p>{{'WITHDRAWAL.CONFIRM_STEP.'+(dataForm$ | async).where | translate}}</p>
+            </li>
+            <li>
+                <span>{{'WITHDRAWAL.CONFIRM_STEP.FROM_ACCOUNT' | translate}}</span>
+                <p>
+                    {{'PRODUCT_TYPES_SMALL.' + (dataForm$ | async)?.product?.typeAccount | translate}} {{((dataForm$ | async)?.product?.accountId ? (dataForm$ | async)?.product?.accountId : (dataForm$ | async)?.product?.id) | slice: -4}} -
+                    {{'PRODUCT.DEPOSIT_ACCOUNT.BALANCE_AVAILABLE' | translate}}
+                </p>  <p [innerHTML]="(dataForm$ | async)?.product?.productAccountBalances?.saldo_disponible?.amount | currencyFormat : true : 'decimal-vouchers-custom'"></p>
+            </li>
+            <li>
+                <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+                <p [innerHTML]="cost | currencyFormat : true : 'decimal-vouchers-custom'"></p>
+            </li>
+        </ul>
+        <ul *ngIf="(typeTransaction$ | async) && (typeTransaction$ | async) !== opWITHCARD">
+            <li>
+                <span>{{'WITHDRAWAL.CONFIRM_STEP.WHERE_ACCOUNT' | translate}}</span>
+                <p>{{'WITHDRAWAL.CONFIRM_STEP.'+(dataForm$ | async).where | translate}}</p>
+            </li>
+            <li>
+                <span>{{'WITHDRAWAL.CONFIRM_STEP.FROM_ACCOUNT' | translate}}</span>
+                <p>
+                    {{'PRODUCT_TYPES_SMALL.' + (dataForm$ | async)?.product?.typeAccount | translate}} {{((dataForm$ | async)?.product?.accountId ? (dataForm$ | async)?.product?.accountId : (dataForm$ | async)?.product?.id) | slice: -4}} -
+                    {{'PRODUCT.DEPOSIT_ACCOUNT.BALANCE_AVAILABLE' | translate}}
+                </p>  <p [innerHTML]="(dataForm$ | async)?.product?.productAccountBalances?.saldo_disponible?.amount | currencyFormat : true : 'decimal-vouchers-custom'"></p>
+            </li>
+            <li>
+                <span>{{'WITHDRAWAL.CONFIRM_STEP.WHO_OWNER' | translate}}</span>
+                <p>{{(dataForm$ | async).document}}</p>
+            </li>
+            <li>
+              <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+              <p [innerHTML]="cost | currencyFormat : true : 'decimal-vouchers-custom'"></p>
+            </li>
+        </ul>
+    </div>
+</ng-template>

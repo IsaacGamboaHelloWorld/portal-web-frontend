@@ -1,0 +1,14 @@
+<div class="cont-modal-dropdown animated fade-in-up" [ngClass]="{'full-screen': viewFull , 'screen': !viewFull}">
+  <div class="button-full">
+    <button type="button" (click)="viewFull = true"></button>
+  </div>
+  <ul [ngClass]="{'ul-height': viewFull}">
+    <li *ngFor="let item of options; let i = index" (click)="selectOption(item, i)" [ngClass]="{'selected': index === i}">
+      {{item['label'] | translate}}
+    </li>
+  </ul>
+  <hr>
+  <div class="button-card-footter">
+    <button type="button" (click)="viewFull = false;emitCancel()">{{'CODE_AUTH.MODAL_ALERT.CANCEL' | translate}}</button>
+  </div>
+</div>

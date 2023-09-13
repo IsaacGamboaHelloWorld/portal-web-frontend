@@ -1,0 +1,47 @@
+<div class="animated fade-in-up cont-step-global cont-step-success-wncother">
+    <app-ticket
+      [imageTicket]="'/80-money-success@3x.png' | imageCdn"
+      [title]="'WITHDRAWAL.SUCCESS_STEP.TITLE' | translate"
+      [description]="'WITHDRAWAL.SUCCESS_STEP.DESC' | translate"
+      [messageTitle]="(dataForm$ | async)?.textVoucher | translate"
+      [messageText]="(dataForm$ | async).amount | currencyFormat : true : 'decimal-vouchers'"
+      [listTemplate]="list"
+      [response]="(getOtp$ | async)?.data"
+      [btnText]="'ADVANCE.DOWNLOAD' | translate: { value: 'icon-download-bottom' }"
+      [btnLoadingText]="'TRANSFER.SUCCESS.LOADING_DOWNLOAD' | translate: { img: ('/loading-text.gif' |imageCdn) } "
+      [disabled]="disabled"
+      (btnAction)="download()"
+      [note]="((typeTransaction$ | async) === opWITHCARD ? 'WITHDRAWAL.SUCCESS_STEP.TIME_CARD' : 'WITHDRAWAL.SUCCESS_STEP.TIME_USER') | translate"
+      [id]="'voucher-withdrawals'"></app-ticket>
+    <div class="footer-step">
+        <div class="box-green">
+            <a class="link" (click)="doRestart()">{{(dataForm$ | async)?.textBtnAgain | translate}}</a>
+        </div>
+        <button class="btn btn-primary" (click)="goBack()">{{'FINAL' | translate}}</button>
+    </div>
+</div>
+
+<ng-template #list>
+    <div class="confirm-withdrawal">
+        <ul>
+            <li>
+                <span>{{'WITHDRAWAL.CONFIRM_STEP.WHERE_ACCOUNT' | translate}}</span>
+                <p>{{'WITHDRAWAL.CONFIRM_STEP.'+(dataForm$ | async).where | translate}}</p>
+            </li>
+            <li>
+                <span>{{'WITHDRAWAL.CONFIRM_STEP.FROM_ACCOUNT' | translate}}</span>
+                <p>
+                    {{'PRODUCT_TYPES_SMALL.' + (dataForm$ | async)?.product?.typeAccount | translate}} {{((dataForm$ | async)?.product?.accountId ? (dataForm$ | async)?.product?.accountId : (dataForm$ | async)?.product?.id) | slice: -4}}
+                </p>
+            </li>
+            <li *ngIf="(dataForm$ | async).document">
+                <span>{{'WITHDRAWAL.CONFIRM_STEP.WHO_OWNER' | translate}}</span>
+                <p>{{(dataForm$ | async).document}}</p>
+            </li>
+            <li>
+                <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+                <p [innerHTML]="cost | currencyFormat : true : 'decimal-vouchers-custom'"></p>
+            </li>
+        </ul>
+    </div>
+</ng-template>

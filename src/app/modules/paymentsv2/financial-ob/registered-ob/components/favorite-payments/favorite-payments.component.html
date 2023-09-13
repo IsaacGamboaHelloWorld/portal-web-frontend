@@ -1,0 +1,11 @@
+<div class="card-favorite shadow-1dp">
+
+    <div class="text-container">
+      <strong>{{ 'PAYMENTSV2.FINANCIAL_OP.SECTIONS.REGISTERED.FAVORITE_PAYMENT' | translate}}</strong>
+      <p>{{ 'PAYMENTSV2.FINANCIAL_OP.SECTIONS.REGISTERED.DESCRIPTION_MESSAGE' | translate}}</p>
+    </div>
+    <div class="check-container">
+        <app-checkbox-slide [inline]="true" [check]="actived" [hidelabel]="true" (stateCheck)="changeStatus($event)"></app-checkbox-slide>
+    </div>
+
+</div>

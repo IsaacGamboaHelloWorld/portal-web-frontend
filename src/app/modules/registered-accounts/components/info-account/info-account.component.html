@@ -1,0 +1,35 @@
+<div class="info-account-affiliation" *ngIf="hasProduct">
+  <div class="info-affiliation-product">
+    <div class="cont-name-affiliation visible-mobile">
+      <div class="affiliation-initials">{{initials}}</div>
+      <p class="name-affiliation">{{product?.customerName}}</p>
+    </div>
+    <ul>
+      <li>
+        <div class="column medium-6 large-4">
+          <span>{{'TRANSFER.NEW_ACCOUNT.BANK' | translate}}</span>
+          <p>{{product?.bankName}}</p>
+        </div>
+        <div class="column mediun-6 large-8">
+          <span>{{'REGISTERED_ACCOUNTS.ACCOUNT' | translate}}</span>
+          <p>{{'PRODUCT_TYPES_SMALL.' + product.destinationAccountType | translate}} {{product.destinationAccountId}}</p>
+        </div>
+      </li>
+      <li>
+        <span>{{'REGISTERED_ACCOUNTS.DOCUMENT' | translate}}</span>
+        <p>{{product?.customerIdType}} {{product?.customerId}}</p>
+      </li>
+    </ul>
+    <button type="button" class="btn btn-primary" (click)="actionTransfer.emit()">{{'REGISTERED_ACCOUNTS.TRANSFER' | translate}}</button>
+  </div>
+  <a class="link" (click)="action.emit()">{{'REGISTERED_ACCOUNTS.DELETE' | translate}}</a>
+</div>
+
+<div class="info-account-affiliation-loading placeholder-box loading-global" *ngIf="!hasProduct">
+  <ul>
+    <li *ngFor="let i of [].constructor(loadings)">
+      <p class="placeholder width-40"></p>
+      <p class="placeholder width-100"></p>
+    </li>
+  </ul>
+</div>

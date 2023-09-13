@@ -1,0 +1,50 @@
+@import 'colors'
+
+=placeholder($color)
+ &::-webkit-input-placeholder
+   color: $color
+ &::-moz-placeholder
+   color: $color
+ &:-ms-input-placeholder
+   color: $color
+ &:-moz-placeholder
+   color: $color
+
+=scroll($horizontal: false, $size: 4px,  $color: $carbon-dark-900)
+ -webkit-overflow-scrolling: touch
+ &::-webkit-scrollbar-track
+   border-radius: 20px
+   background-color: transparent
+ &::-webkit-scrollbar
+   @if $horizontal
+     height: $size
+   @else
+     width: $size
+ &::-webkit-scrollbar-thumb
+   border-radius: 10px
+   background-color: $color
+
+=inline($position: top)
+  display: inline-block
+  vertical-align: $position
+  zoom: 1
+
+=loading($background: var(--n-100), $radius: 7px, $height: 8px, $width: 100%)
+  background: $background
+  border-radius: $radius
+  height: $height
+  width: $width
+
+=statusProduct
+  padding: 0px 10px
+  border-radius: 4px
+  font-size: 12px
+  font-weight: 500
+  background: $g-100
+  color: $gc-800
+  margin-right: 8px
+
+@mixin rounded($size)
+  width: $size
+  height: $size
+  border-radius: $size / 2

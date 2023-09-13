@@ -1,0 +1,89 @@
+<div class="cont-modal-detail">
+    <div class="cont-options animation" *ngIf="viewOptions">
+      <ul class="list-options">
+        <li *ngFor="let item of (options$ | async); let i=index" (click)="selectOption(item, i)">
+          <span>{{item}}</span>
+        </li>
+      </ul>
+      <div class="footer-btn">
+        <button type="button" (click)="close()">{{'TRANSFER.SCHEDULED.MODAL.BTN' | translate}}</button>
+      </div>
+    </div>
+    <div class="cont-detail animation" *ngIf="viewDetail">
+      <div class="head">
+        <p>{{'TRANSFER.SCHEDULED.DETAIL.TITLE' | translate}}</p>
+        <p class="date">
+          {{today | date: 'dd/MMM/yyyy':'UTC' | replace : '.' : '' | titlecase }} -
+          {{today | date: 'h:mm a':'UTC' | lowercase }} - IP {{infoScheduled['ip']}}</p>
+        <button class="btn-close" (click)="close()">
+          <img [src]="'/close.png' | imageCdn" alt="">
+        </button>
+      </div>
+      <div class="body">
+        <p class="text-amount">{{'TRANSFER.SCHEDULED.DETAIL.AMOUNT' | translate}}</p>
+        <p class="amount">{{infoScheduled['transferInformation']['amount'] | currencyFormat}}</p>
+
+        <table class="list-detail">
+          <tr>
+            <td class="detail-left" >
+              {{'TRANSFER.SCHEDULED.DETAIL.FROM' | translate}}
+            </td>
+            <td class="detail-right">
+              {{'PRODUCT_TYPES_SMALL.' + infoScheduled['accountFromInformation']['productType'] | uppercase | translate}} {{infoScheduled['accountFromInformation']['accountIdentifier'] | slice: -4}}
+            </td>
+          </tr>
+          <tr>
+            <td class="detail-left">
+              {{'TRANSFER.SCHEDULED.DETAIL.TO' | translate}}
+            </td>
+            <td class="detail-right">
+              {{infoScheduled['accountToInformation']['name'] | titlecase}}
+            </td>
+          </tr>
+          <tr>
+            <td class="detail-left">
+              {{'TRANSFER.SCHEDULED.DETAIL.DESTINATION_ACCOUNT' | translate}}
+            </td>
+            <td class="detail-right">
+               {{(infoScheduled['accountToInformation']['bankName'] ? infoScheduled['accountToInformation']['bankName'] +' -' : '')}}
+              {{'PRODUCT_TYPES_SMALL.' + infoScheduled['accountToInformation']['productType'] | uppercase | translate}} {{infoScheduled['accountToInformation']['accountIdentifier']}}
+            </td>
+          </tr>
+          <tr>
+            <td class="detail-left">
+              {{'TRANSFER.SCHEDULED.DETAIL.DESC' | translate}}
+            </td>
+            <td class="detail-right">
+              {{infoScheduled['scheduleInfo']['description'] | titlecase}}
+            </td>
+          </tr>
+          <tr>
+            <td class="detail-left">
+              {{'TRANSFER.SCHEDULED.DETAIL.COST' | translate}}
+            </td>
+            <td class="detail-right">
+              {{_cost}}
+            </td>
+          </tr>
+        </table>
+        <p class="copy-footer">{{'TRANSFER.SCHEDULED.DETAIL.COST_DESC' | translate}}</p>
+      </div>
+    </div>
+
+    <div class="cont-cancel animation" *ngIf="viewCancel">
+      <img [src]="'/delete.png' | imageCdn" alt="">
+      <span class="title">{{'TRANSFER.SCHEDULED.CANCEL.TITLE' | translate}}</span>
+      <div class="cont-btn-cancel">
+        <app-btn (clickBtn)="close()"
+        [text]="('TRANSFER.SCHEDULED.CANCEL.BTN_CANCEL' | translate)"
+        [class]="'btn btn-primary cancel'"></app-btn>
+
+        <app-btn (clickBtn)="delete()"
+        [text]="('TRANSFER.SCHEDULED.CANCEL.BTN_OK' | translate)"
+        [class]="'btn btn-primary ok'"
+        [isLoading]="loading"
+        [disabled]="loading"></app-btn>
+      </div>
+    </div>
+
+</div>

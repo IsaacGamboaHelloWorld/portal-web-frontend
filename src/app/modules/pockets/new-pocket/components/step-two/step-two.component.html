@@ -1,0 +1,14 @@
+<div class="cont-step-two-pocket" *ngIf="formStepTwo">
+    <img [src]="'/icon-bolsillos-2.png' | imageCdn" alt="">
+    <h3 *ngIf="(firstStep$ | async).type === typeSave">{{'POCKETS.NEW.STEP_TWO.HOW_MUCH_SAVE' | translate}}</h3>
+    <h3 *ngIf="(firstStep$ | async).type !== typeSave">{{'POCKETS.NEW.STEP_TWO.HOW_MUCH_SPEND' | translate}}</h3>
+    <form class="form-global" [formGroup]="formStepTwo" (ngSubmit)="submitForm()">
+        <div class="form-group">
+            <label>{{'POCKETS.NEW.STEP_TWO.GOAL' | translate}}</label>
+            <input type="tel" class="input-bp" placeholder="$" formControlName="goal" appCurrency [form]="formStepTwo" [property]="'goal'">
+        </div>
+        <fieldset class="submit-step-two">
+            <button type="submit" class="btn btn-primary" [disabled]="formStepTwo.invalid">{{'CONTINUE' | translate}}</button>
+        </fieldset>
+    </form>
+</div>

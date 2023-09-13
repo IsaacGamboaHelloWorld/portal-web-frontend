@@ -1,0 +1,46 @@
+<div class="otp-modal-container" id="otp-modal-container">
+  <form class="form-global" [formGroup]="formG" autocomplete="off">
+    <img class="icon-close-mdl" [src]="'/close-s@3x.png' | imageCdn" alt="" (click)="close()">
+    <div class="img-modal">
+      <img class="logo-modal" [src]="img | imageCdn" alt="">
+    </div>
+
+    <div class="txt-mdl">
+      <p *ngIf="!!txtTitle" class="title" [innerHTML]="txtTitle | translate"></p>
+      <p *ngIf="!!txtDescription" class="sub-title" [innerHTML]="(txtDescription | translate).replace('\{\{otp-digits\}\}', maxItemsOTP)"></p>
+    </div>
+
+    <div class="form-group">
+      <label class="txt-secure" [innerHTML]="txtCode | translate"></label>
+      <fieldset id="input-otp" [ngClass]="{ 'error-otp': !!txtError }">
+        <input *ngFor="let key of inputs; index as i"
+          [ngClass]="{'invalid-otp-input': !!txtError }"
+          (keyup)="goToNextInput(i, $event)"
+          type="text"
+          min="0"
+          max="9"
+          maxlength="1"
+          size="1"
+          formControlName="char{{key}}"
+          id="input-otp-{{key}}"
+          autocomplete="off"
+          appOnlyNumbers
+          placeholder="-" >
+      </fieldset>
+    </div>
+
+    <div class="form-group error-msg" *ngIf="!!txtError">
+      <p>{{ txtError | translate}}</p>
+    </div>
+
+    <div class="btn-modal">
+      <app-btn
+      (clickBtn)="emitClick()"
+      [text]="txtBtn | translate"
+      [isLoading]="isLoading"
+      [disabled]="formG.invalid || isDisabled"
+      [class]="'btn btn-primary'"></app-btn>
+    </div>
+
+  </form>
+</div>

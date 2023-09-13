@@ -1,0 +1,308 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.space-ticket
+  margin: -10px
+  width: 703px
+.cont-global-ticket
+  background: var(--n-50)
+.ticket-global
+  background: $carbon-light-100
+  border-radius: 15px
+  box-shadow: 0 2px 4px 0 $transparent-08
+  .btn-ticket
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    padding: 24px 0 0
+    border-top: 1px dashed $carbon-light-900
+    position: absolute
+    bottom: 0
+    left: 0
+    button
+      font-weight: 500
+      text-align: center
+      cursor: pointer
+      color: $orange-900
+      border-radius: 0 0 15px 15px
+      background: transparent
+      i
+        margin-left: 4px
+      img
+        +inline(middle)
+        width: 10px
+        transform: scale(3)
+        margin-left: 10px
+      &:disabled
+        opacity: .5
+        cursor: default
+    .img-download 
+      height: 24px
+      width: 24px
+      margin-left: 4px
+  .container-ticket-left,
+  .container-ticket-right
+    +inline(middle)
+    position: relative
+  .container-ticket-left
+    padding: 0
+    width: 332px
+    text-align: center
+    .ticket-image-container
+      min-height: 380px
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-direction: column
+    .cont-img
+      min-height: 78px
+      img
+        width: 78px
+        height: auto
+        margin-bottom: 18px
+    .cont-img-success
+      min-height: 48px
+      width: 48px
+      border-radius: 200px
+      background: $scs-100
+      display: flex
+      justify-content: center
+      align-items: center
+      margin-bottom: 12px
+      img
+        width: 32px
+        height: auto
+        margin-bottom: 0
+    h5
+      font-size: $f-14 + 2
+      font-weight: 600
+      line-height: 1.5
+    .desc
+      padding: 0 21px
+    p
+      font-size: $f-14 - 1
+      color: $gray3
+      line-height: 1.77
+    .box-blue
+      background: $info-100
+      width: 214px
+      border-radius: 16px
+      margin-top: 8px
+      display: flex
+      justify-content: center
+      align-items: center
+      p
+        line-height: 2
+        font-size: 12px
+        width: 100%
+        color: $info-600
+  .container-ticket-right
+    border-left: 1px dashed $carbon-light-900
+    width: calc(100% - 334px)
+    min-height: 380px
+    strong::last-letter
+        color: blue
+        font-size: 35px
+    .btn-ticket
+      display: none
+    ul
+      padding: 24px
+    li
+      text-align: left
+      margin-bottom: 15px
+      position: relative
+      > div
+        +inline(middle)
+        width: 50%
+        &.apr_code_id
+          position: absolute
+          right: 0
+          top: 0
+          white-space: nowrap
+      &:last-child
+        margin-bottom: 0
+      span
+        font-size: $f-14 - 1
+        color: $gray3
+        line-height: 2.15
+      p
+        font-weight: 500
+        line-height: 2
+    &.half-circles
+      &::after
+        top: inherit
+        bottom: -1px
+        right: inherit
+        left: -10px
+        transform: rotate(0deg)
+      &::before
+        top: -1.7px
+        bottom: inherit
+        left: -10px
+        right: inherit
+        transform: rotate(180deg)
+  .head-message-ticket
+    text-align: center
+    padding-bottom: 24px
+    padding-top: 50px
+    border-bottom: 1px dashed $carbon-light-900
+    span,
+    strong
+      display: block
+    span
+      font-size: $f-14 - 1
+      color: $gray3
+    strong
+      line-height: 1.62
+      font-weight: 600
+      font-size: $f-30 - 2
+    .audit-transaction-data
+      background: $info-100
+      line-height: 2
+      font-size: $f-14 - 2
+      border-radius: $f-14 - 2
+      color: $info-600
+      margin: 0 31px 0 35px
+      font-weight: 500
+      span
+        line-height: 2
+        font-size: $f-14 - 2
+        display: inline
+        color: $info-600
+  &.pseTicket
+    .container-ticket-left,
+    .container-ticket-right
+      display: block
+      width: 100%
+    .container-ticket-left
+      .btn-ticket
+        display: none
+      .ticket-image-container
+        min-height: inherit
+      button
+        display: none
+    .container-ticket-right
+      border-top: 1px dashed $carbon-light-900
+      border-left: inherit
+      padding: 20px 22px
+      min-height: inherit
+      &.show-btn
+        padding-bottom: 66px
+        .btn-ticket
+          display: flex
+      &.half-circles
+        &::after
+          bottom: inherit
+          top: -7px
+          right: -7px
+          left: inherit
+          transform: rotate(-90deg)
+        &::before
+          top: -5px
+          transform: rotate(90deg)
+          left: -7px
+    .head_message-ticket
+      border-bottom: none
+      padding: 15px
+
+
+.cont-step-global
+  max-width: 720px
+  margin: 0 auto
+  display: block
+  padding: 50px 0
+  .footer-step
+    clear: both
+    text-align: center
+    margin-top: 30px
+    display: flex
+    justify-content: center
+    align-items: center
+    button
+      padding: 0 40px
+    a
+      letter-spacing: 0
+      margin-left: 30px
+  &.pseTicket
+    padding: 0 15px
+    margin-top: 16px
+    max-width: 344px
+    width: 344px
+    .footer-step
+      flex-direction: column
+      app-btn
+        width: 100%
+      button
+        min-height: inherit
+        width: 100%
+        margin-bottom: 36px
+      a
+        margin: 0
+
+#download-ticket
+  width: 400px
+  background: $carbon-light-400
+  position: fixed
+  top: -200%
+
+@media only screen and (max-width: $break-tablet)
+  .space-ticket
+    margin: 0
+    width: 100%
+  .ticket-global
+    .btn-ticket
+      padding: 24px 0 24px
+    .container-ticket-left,
+    .container-ticket-right
+      display: block
+      width: 100%
+    .container-ticket-left
+      .btn-ticket
+        display: none
+      .ticket-image-container
+        padding: 39px 0 21px
+        min-height: inherit
+      button
+        display: none
+    .container-ticket-right
+      border-top: 1px dashed $carbon-light-900
+      border-left: inherit
+      min-height: inherit
+      ul
+        padding: 24px 24px
+      &.show-btn
+        padding-bottom: 66px
+        .btn-ticket
+          display: flex
+      &.half-circles
+        &::after
+          top: -5px
+          bottom: inherit
+          right: -6px
+          left: inherit
+          transform: rotate(270deg)
+        &::before
+          top: -5px
+          bottom: inherit
+          left: -7px
+          right: inherit
+          transform: rotate(90deg)
+
+
+@media only screen and (max-width: $break-mobile)
+  .cont-step-global
+    margin-top: 0
+    padding-top: 0
+    max-width: 344px
+    .footer-step
+      flex-direction:  column
+      app-btn
+        width: 100%
+      button
+        min-height: inherit
+        width: 100%
+        margin-bottom: 36px
+      a
+        margin: 0

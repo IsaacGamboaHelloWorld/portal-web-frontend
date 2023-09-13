@@ -1,0 +1,10 @@
+<header id="header">
+	<div class="cont-header">
+		<div class="header-left">
+			<p>{{ 'GREETINGS.STAY_AT_HOME' | translate }} &nbsp;<span class="capitalize" *ngIf="hasName$ | async">{{name$ | async | lowercase}}</span></p>
+		</div>
+		<div class="header-right">
+			<app-option-nav-ds [disableProfile]="getDisabeOptions.profile"></app-option-nav-ds>
+		</div>
+	</div>
+</header>

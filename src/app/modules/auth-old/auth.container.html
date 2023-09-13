@@ -1,0 +1,31 @@
+<div class="cont-auth">
+	<div class="cont-img-auth">
+    <ng-container *ngIf="!isMobile">
+      <img [src]="'/popular_white.svg' | imageCdn" [alt]="'NAME_BANK' | translate">
+      <ul>
+        <li *ngFor="let item of slider; let i = index;"
+            [ngClass]="{'show': i === index}"
+            [ngStyle]="{'background-image': 'url('+ ('/' + item | imageCdn) +')'}"
+        ></li>
+      </ul>
+      <div class="cont-dots">
+        <span *ngFor="let item of slider; let i = index;"
+              (click)="setIndex(i)"
+              [ngClass]="{'active': i === index}"
+        ></span>
+      </div>
+      <div class="footer-slider">
+        <img [src]="'/aval-white.png' | imageCdn" [alt]="'NAME_GROUP' | translate">
+        <p>© {{'NAME_BANK' | translate}} | v{{version}}</p>
+      </div>
+    </ng-container>
+	</div>
+	<div class="cont-forms-auth">
+		<div class="center-forms-auth">
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+	<div class="footer-auth visible-tablet">
+    <app-global-footer [showDate]="false"></app-global-footer>
+	</div>
+</div>

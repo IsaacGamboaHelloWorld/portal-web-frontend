@@ -1,0 +1,31 @@
+<div class="cont-modal-code-auth">
+  <form class="form-global" [formGroup]="formG" autocomplete="off">
+    <img class="icon-close-modal" [src]="'/close-s@3x.png' | imageCdn" alt="" (click)="close()">
+  <div class="img-modal">
+    <img class="logo-modal" [src]="img | imageCdn" alt="">
+  </div>
+  <div class="text-modal">
+    <p class="title">{{'CODE_AUTH.HOME.MODAL.TITLE' | translate}}</p>
+    <p class="sub-title">{{'CODE_AUTH.HOME.MODAL.TEXT' | translate}}</p>
+  </div>
+  <div class="form-group" *ngIf="hasSecureDataMessage | async">
+    <label class="label-secure">{{'CODE_AUTH.HOME.MODAL.LABEL' | translate: {value: (secureDataMessage | async)} }}</label>
+    <fieldset>
+      <input *ngFor="let key of inputs; index as i"
+      (keyup)="goToNextInput(i, $event)" type="text" min="0" max="9" appOnlyNumbers
+      maxlength="1" size="1" formControlName="char{{key}}" id="char{{key}}" autocomplete="off"
+      placeholder="-" #inputToken>
+    </fieldset>
+  </div>
+  <div class="form-group error-msg" *ngIf="!(stateValidQuestion | async)?.success && (stateValidQuestion | async)?.errorMessage">
+    <p>{{ (stateValidQuestion | async)?.errorMessage }}</p>
+  </div>
+  <div class="btn-modal">
+    <app-btn (clickBtn)="emitClick()"
+      [text]="('CODE_AUTH.HOME.BTN.VALIDATE' | translate)"
+      [isLoading]="(stateUpdateSecureData | async)?.loading || (stateValidQuestion | async)?.loading"
+      [disabled]="formG.invalid || (stateUpdateSecureData | async)?.loading || (stateValidQuestion | async)?.loading"
+      [class]="'btn btn-primary'"></app-btn>
+  </div>
+  </form>
+</div>

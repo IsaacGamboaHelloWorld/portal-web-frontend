@@ -1,0 +1,70 @@
+<div class="animated fade-in-up cont-step-one-payment-taxes">
+  <div class="cont-step-one">
+    <form class="form-global" [formGroup]="formStepOne" (ngSubmit)="submitForm()"
+    *ngIf="((productDefault$ | async)?.productAccountBalances?.saldo_disponible) else loadingTemplate">
+    <div class="form-group">
+      <app-card-change-data [form]="formStepOne" [property]="'account_origin'"
+        [options]="(productsOrigin$ | async)" [append]="modal"
+        [dataCard]="(productDefault$ | async)" [label]="'PAYMENTS.CONFIRMATION.FORM.ORIGIN'"
+        [ifDefaultData]="(infoPaymentTaxes | async)?.account_origin"></app-card-change-data>
+    </div>
+
+    <div class="auto-complete form-group">
+      <label>{{'PAYMENT_TAXES.FORM_ONE.CITY_LABEL' | translate}}</label>
+      <p-autoComplete
+        formControlName="city_destination"
+        [suggestions]="filtered"
+        (completeMethod)="filter($event)"
+        [minLength]="1"
+        [placeholder]="'PAYMENT_TAXES.FORM_ONE.CITY' | translate" [autoHighlight]="true"
+        [dropdown]="false" (onSelect)="selectCity()" [field]="'name'">
+        <ng-template let-brand pTemplate="item">
+          {{brand['name'] | titlecase}}
+        </ng-template>
+      </p-autoComplete>
+    </div>
+    <div class="form-group" *ngIf="viewTaxes">
+      <app-dropdown-select
+        [label]="'PAYMENT_TAXES.FORM_ONE.TAXES'"
+        [form]="formStepOne"
+        [property]="'taxes'"
+        [fixedOptions]="taxes"
+        [advancedLabel]="true"
+        [placeHolder]="'PAYMENT_TAXES.FORM_ONE.TAXES_LABEL'"></app-dropdown-select>
+    </div>
+    <div class="form-group" *ngIf="viewTaxes">
+      <label>{{'PAYMENT_TAXES.FORM_ONE.REFERENCE' | translate}}</label>
+      <input class="input-bp" formControlName="reference" appOnlyNumbers #inputReference (ngModelChange)="stateError()">
+      <div *ngIf="error" class="error-msg">
+				<p>{{'PAYMENT_TAXES.FORM_ONE.REFERENCE_ERROR' | translate}}</p>
+			</div>
+    </div>
+    <div class="submit-step-one">
+      <app-btn
+      [type]="'submit'"
+      [disabled]="formStepOne.invalid || ((reference | async)?.loading)"
+      [text]="'CONTINUE' | translate"
+      [id]="'btn-step-one'"
+      [isLoading]="(reference | async)?.loading"
+      [class]="(formStepOne.invalid ? 'btn-disabled' : 'btn-primary')"
+      ></app-btn>
+    </div>
+  </form>
+  </div>
+</div>
+
+<ng-template #loadingTemplate>
+  <div class="cont-step-one">
+    <div class="form-group" >
+      <div class="card-account">
+        <div class="itemLoading shadow-1dp" *ngFor="let i of [].constructor(loadingItems)">
+          <p class="title-loading placeholder"></p>
+          <p class="text-loading placeholder"></p>
+          <p class="value-loading placeholder "></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<div #modal></div>

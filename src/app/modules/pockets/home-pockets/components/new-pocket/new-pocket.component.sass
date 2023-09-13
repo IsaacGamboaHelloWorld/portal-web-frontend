@@ -1,0 +1,26 @@
+@import '~sass/variables'
+@import '~sass/colors'
+
+.new_pocket_btn
+  width: 343px
+  height: 248px
+  border-radius: 15px
+  background: $carbon-light-100
+  display: block
+  box-shadow: 0 2px 4px 0 rgba($carbon-dark-900, 0.14)
+  cursor: pointer
+  &:hover
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.14)
+  img
+    width: 56px
+    height: 72px
+    padding-bottom: 16px
+    position: relative
+  p
+    font-size: $f-14 + 2
+    font-weight: 500
+
+@media only screen and (max-width: $break-mobile)
+  .new_pocket_btn
+    width: 100%
+    height: 160px

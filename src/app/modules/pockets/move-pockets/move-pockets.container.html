@@ -1,0 +1,17 @@
+<app-template-system
+  [title]="'POCKETS.MOVE.TITLE' | translate"
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [showClose]="false"
+  [currentStep]="step"
+  [maxStep]="1"
+  [backUrl]="backUrl"
+  (eventModal)="backHome($event)"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-move-pockets">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

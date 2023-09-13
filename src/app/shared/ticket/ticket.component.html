@@ -1,0 +1,48 @@
+<div class="space-ticket">
+  <div class="cont-global-ticket" id="{{id}}">
+    <div class="ticket-global" [ngClass]="{'pseTicket': pseVersion}">
+        <div class="container-ticket-left">
+            <div *ngIf="pseVersion" class="head-message-ticket">
+                <span>{{messageTitle}}</span>
+                <strong [innerHTML]="messageText"></strong>
+            </div>
+            <div *ngIf="!pseVersion" class="ticket-image-container">
+                <div *ngIf="!!imageTicket" class="cont-img" [ngClass]="{'cont-img-success': classSucces}">
+                    <img [src]="imageTicket" [alt]="title">
+                </div>
+                <h5>{{title}}</h5>
+                <p class="desc">{{description}}</p>
+                <div *ngIf="note" class="box-blue">
+                    <p>{{note}}</p>
+                </div>
+            </div>
+            <div *ngIf="showBtn" class="btn-ticket hidden-in-image">
+                <button type="button"
+                    [innerHTML]="disabled ? btnLoadingText : btnText"
+                    (click)="btnAction.emit()"
+                    [disabled]="disabled"
+                ></button>
+                <img class="img-download" *ngIf="!disabled" [src]="'/24-download@3x.png' | imageCdn " alt="">
+            </div>
+        </div>
+        <div class="container-ticket-right half-circles" [ngClass]="{'show-btn': showBtn}">
+            <div *ngIf="!pseVersion" class="head-message-ticket">
+                <span *ngIf="!!messageTitle">{{messageTitle}}</span>
+                <strong *ngIf="!!messageText" [innerHTML]="messageText"></strong>
+                <p *ngIf="response && ip && showIp" class="audit-transaction-data">
+                    <span>{{ date | date:'dd/MMM/yyyy - h:mm' | replace: './' : '/' | titlecase }} {{ date | date:'a' | replace: '. ' : '.' | lowercase }}</span>
+                     - IP {{ip}}</p>
+            </div>
+            <ng-container *ngTemplateOutlet="listTemplate"></ng-container>
+            <div *ngIf="showBtn" class="btn-ticket hidden-in-image">
+                <button type="button"
+                    [innerHTML]="disabled ? btnLoadingText : btnText"
+                    (click)="btnAction.emit()"
+                    [disabled]="disabled"
+                ></button>
+                <img class="img-download" *ngIf="!disabled" [src]="'/24-download@3x.png' | imageCdn " alt="">
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

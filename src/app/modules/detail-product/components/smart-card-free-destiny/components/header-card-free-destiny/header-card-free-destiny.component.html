@@ -1,0 +1,13 @@
+<div class="smart-card-header-fd" *ngIf="hasData">
+  <div class="header-data">
+    <div class="cont-head-edit">
+      <h4 class="title">{{ data?.creditName | titlecase }}</h4>
+    </div>
+    <div class="information-under-name">
+      <span class="status paragraph-small" [ngClass]="{ 'due': data.currentStatus === 'N' }">{{ data.currentStatus |
+        statusProduct: 'FREE_DESTINATION' }}</span>
+      <p class="paragraph-default">{{'DETAIL.FREE_DESTINATION.TEXT_PRE_NUMBER' | translate}} . {{ data.accountIdentifier
+        }}</p>
+    </div>
+  </div>
+</div>

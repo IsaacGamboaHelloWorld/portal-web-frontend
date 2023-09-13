@@ -1,0 +1,71 @@
+<div class="cont-modal-calendar" *ngIf="formModal">
+  <div class="form-global" [formGroup]="formModal">
+    <div class="form-group">
+      <app-dropdown-select
+      [label]="'TRANSFER.FORM_THREE.TEXT_PERIODICITY'"
+      [form]="formModal"
+      [property]="'propertySelect'"
+      [fixedOptions]="options"
+      [advancedLabel]="false"
+      (event)="setData($event)"></app-dropdown-select>
+    </div>
+    <div class="form-group cont-calendar">
+      <label for="calendar">
+        {{'TRANSFER.FORM_THREE.SCHEDULED_DATE' | translate}}
+      </label>
+      <p-calendar
+        #calendar
+        formControlName="{{propertyDate}}"
+        [touchUI]="false"
+        [locale]="es"
+        [minDate]="minDate"
+        dateFormat="dd/M/yy"
+        [icon]="'icon-calendar'"
+        [showIcon]="true"
+        placeholder="dd/mm/aaaa"
+        [inputId]="'calendar'"
+        [monthNavigator]="true"
+        [yearNavigator]="true"
+        yearRange="2000:2030"
+        (onSelect)="selectDate($event,optionTwo)"
+        [readonlyInput]="true" ></p-calendar>
+    </div>
+    <div class="form-group">
+      <label>{{'TRANSFER.FORM_THREE.REPEAT.LABEL' | translate}}</label>
+      <div class="cont-options-repeat">
+        <div class="box-repeat box-undefined" (click)="selectBox('UNDEFINED')" [ngClass]="{'box-selected': boxSelect === 'UNDEFINED'}">
+          <label class="container-radio">
+            <input type="radio" name="optionCertificate" [value]="1" [checked]="boxSelect === 'UNDEFINED'">
+            <span class="checkmark"></span>
+          </label>
+          <div class="cont-text">
+            <p class="name">{{'TRANSFER.FORM_THREE.REPEAT.BTN1' | translate}}</p>
+          </div>
+        </div>
+        <div class="box-repeat box-defined" (click)="selectBox('DEFINED')" [ngClass]="{'box-selected': boxSelect === 'DEFINED'}">
+          <label class="container-radio">
+            <input type="radio" name="optionCertificate" [value]="2" [checked]="boxSelect === 'DEFINED'">
+            <span class="checkmark"></span>
+          </label>
+          <div class="cont-text">
+            <p class="name">{{'TRANSFER.FORM_THREE.REPEAT.BTN2' | translate}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group" *ngIf="boxSelect === 'DEFINED'">
+      <input class="input-bp input-repeat" type="number" formControlName="{{propertyRepeat}}" autocomplete="off"
+      placeholder="{{'TRANSFER.FORM_THREE.REPEAT.PLACEHOLDER' | translate}}">
+    </div>
+    <div class="form-group">
+      <p class="desc-repeat">{{'TRANSFER.FORM_THREE.REPEAT.DESC_DEFINED' | translate}}</p>
+    </div>
+    <div class="form-group cont-btn">
+      <app-btn
+      [class]="'btn-primary'"
+      [text]="'TRANSFER.FORM_THREE.BTN' | translate"
+      [disabled]="formModal.invalid"
+      (clickBtn)="emitClick()"></app-btn>
+    </div>
+  </div>
+</div>

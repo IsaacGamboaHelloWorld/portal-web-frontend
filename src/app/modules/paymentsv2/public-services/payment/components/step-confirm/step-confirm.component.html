@@ -1,0 +1,48 @@
+<div class="animated fade-in-up cont-step-global cont-step-confirmation" *ngIf="from">
+    <app-ticket 
+        [imageTicket]="'/confirmation.png' | imageCdn" 
+        [title]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_CONFIRMATION.TITLE' | translate" 
+        [messageTitle]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_CONFIRMATION.AMOUNT_LBL' | translate" 
+        [messageText]="amount | currencyFormat : true : 'decimal-vouchers'" 
+        [listTemplate]="list"
+        ></app-ticket>
+    <div class="footer-step-confirmation">
+        <app-btn [class]="'btn-primary'" [disabled]="from && (paymentBill$ | async)?.loading" [text]="'PAYMENTS.CONFIRMATION.BTN' | translate" [isLoading]="(paymentBill$ | async)?.loading" (clickBtn)="submitData()"></app-btn>
+    </div>
+</div>
+
+<ng-template #list>
+    <ul *ngIf="formStepOne$ | async as one">
+        <li>
+            <span>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_CONFIRMATION.FROM_LBL' | translate}}</span>
+            
+            <p [innerHTML]="
+                ('BANKS.'+ one.account_origin?.accountInformation?.bank | translate) + 
+                ' - ' +
+                ('PRODUCT_TYPES.' + one.account_origin.accountInformation.productType?.toUpperCase() | translate) +
+                ' - ' +
+                ( one?.account_origin?.accountInformation?.accountIdentifier?.toUpperCase() | slice: -4 ) +
+                ' ' +
+                ( 'PRODUCT.DEPOSIT_ACCOUNT.BALANCE_AVAILABLE' | translate ) +
+                ' ' +
+                ( one?.account_origin?.productAccountBalances?.saldo_actual?.amount | currencyFormat : true : 'decimal-vouchers fs-14' )
+            ">
+        </p>
+        </li>
+        <li>
+            <span>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_CONFIRMATION.TO_LBL' | translate}}</span>
+            <p> {{ one?.service_destination?.billerName | translate}} - 
+                {{ one?.service_destination?.billerNickName || one?.service_destination?.billerNickname }}
+                {{ 'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.REF_PAYMENT' | translate}} {{one?.service_destination?.contract}}
+            </p>
+        </li>
+        <li>
+            <span>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.PAYMENT.STEPS.STEP_CONFIRMATION.DATE_LBL' | translate}}</span>
+            <p class="capitalize">{{ one?.account_origin?.dueDate  | date:'dd/MMM/yyyy' | replace : '.' : ''}}</p>
+        </li>
+        <li>
+            <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+            <p [innerHTML]=" costTransfer | currencyFormat : true : 'decimal-vouchers fs-14' " ></p>
+        </li>
+    </ul>
+</ng-template>

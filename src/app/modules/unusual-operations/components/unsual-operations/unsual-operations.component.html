@@ -1,0 +1,21 @@
+<div class="operations-container">
+
+  <ng-container *ngFor="let product of (unusualOperationsQuery$ | async)?.data; let i = index">
+    <app-unsual-operation-product [product]="product" [form]="form" [indexOp]="i"></app-unsual-operation-product>
+  </ng-container>
+
+  <div class="btn-first">
+    <app-btn (clickBtn)="rejectOperation()"
+    [text]="('UNUSUALES_OPERATIONS.HOME.BTN_CANCEL' | translate)"
+    [disabled]="form.invalid"
+    [class]="'btn btn-primary btn-wasnot'"></app-btn>
+  </div>
+
+  <div class="btn-second">
+    <app-btn (clickBtn)="confirmOperation(true)"
+    [text]="('UNUSUALES_OPERATIONS.HOME.BTN_OK' | translate)"
+    [disabled]="form.invalid"
+    [class]="'btn btn-primary btn-was'"></app-btn>
+  </div>
+
+</div>

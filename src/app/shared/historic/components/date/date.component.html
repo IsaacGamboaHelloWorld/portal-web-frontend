@@ -1,0 +1,53 @@
+<div class="filter-date">
+	<h4>{{'DETAIL.FILTER.TITLE' | translate}}:</h4>
+	<form class="form-global clearfix" [formGroup]="formDate" (ngSubmit)="submitForm()">
+		<fieldset class="form-group">
+			<div class="align-radio">
+				<div class="radio" (click)="selectedOption(filterOne)">
+					<input type="radio" formControlName="typeFilter" id="option-1" [value]="filterOne" name="typeFilter">
+					<label for="option-1"></label>
+				</div>
+			</div>
+			<div class="align-inputs">
+				<div class="select-bp">
+					<select formControlName="range" [compareWith]="compareFnRange">
+						<option *ngFor="let filter of range" [ngValue]="filter">{{filter.name}}</option>
+					</select>
+				</div>
+			</div>
+		</fieldset>
+		<fieldset class="form-group">
+			<div class="align-radio">
+				<div class="radio" (click)="selectedOption(filterTwo)">
+					<input type="radio" formControlName="typeFilter" id="option-2" [value]="filterTwo" name="typeFilter">
+					<label for="option-2"></label>
+				</div>
+			</div>
+			<div class="align-inputs">
+				<fieldset class="relative">
+					<label>{{'DETAIL.FILTER.FROM' | translate}}</label>
+					<p-calendar formControlName="fromDate"
+											[placeholder]="'dd/mm/aaaa'"
+											dateFormat="dd/mm/yy"
+											[locale]="es"
+											[minDate]="minDate"
+											[maxDate]="maxDate"
+											[readonlyInput]="true"></p-calendar>
+				</fieldset>
+				<fieldset class="relative">
+					<label>{{'DETAIL.FILTER.TO' | translate}}</label>
+					<p-calendar formControlName="toDate"
+											[placeholder]="'dd/mm/aaaa'"
+											dateFormat="dd/mm/yy"
+											[minDate]="minDate"
+											[maxDate]="maxDate"
+											[locale]="es"
+											[readonlyInput]="true"></p-calendar>
+				</fieldset>
+			</div>
+		</fieldset>
+		<fieldset  class="form-group">
+			<button class="btn btn-primary" type="submit" [disabled]="formDate.invalid">{{'DETAIL.FILTER.BTN' | translate}}</button>
+		</fieldset>
+	</form>
+</div>

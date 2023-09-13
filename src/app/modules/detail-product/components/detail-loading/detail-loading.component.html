@@ -1,0 +1,39 @@
+<div class="detail-product-loading detail-products product-loading">
+    <div class="cont-head-product">
+        <div class="account-type" *ngIf="hasData">
+            <ng-container *ngIf="data.type == 'deposit_account'">
+                <h4>{{'PRODUCT_TYPES.DEPOSIT_ACCOUNT' | translate}}</h4>
+            </ng-container>
+            <ng-container *ngIf="data.type == 'current_account'">
+                <h4>{{'PRODUCT_TYPES.CURRENT_ACCOUNT' | translate}}</h4>
+            </ng-container>
+            <ng-container *ngIf="data.type == 'certified_deposit_term'">
+                <h4>{{'PRODUCT_TYPES.CERTIFIED_DEPOSIT_TERM' | translate}}</h4>
+            </ng-container>
+            <ng-container *ngIf="data.type == 'credit_card'">
+                <div class="cont-img">
+                    <img [src]="(product?.id | typeCreditCard)?.img | imageCdn" alt="">
+                </div>
+                <h4>{{'PRODUCT_TYPES.CREDIT_CARD' | translate}}</h4>
+            </ng-container>
+        </div>
+
+        <ng-container *ngIf="product?.loading">
+            <div class="lds-css ng-scope">
+                <div class="lds-flickr">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </div>
+            <p class="paragraph-small">{{'DETAIL.LOADING_TEXT' | translate}}</p>
+        </ng-container>
+
+        <div *ngIf="!product?.loading && product?.error" class="error-detail">
+            <p *ngIf="!hasErrorMessage$" class="paragraph-small">{{'PRODUCT.ERROR.ERROR_MESSAGE' | translate}}</p>
+            <p *ngIf="hasErrorMessage$" class="paragraph-small">{{product?.errorMessage}}</p>
+            <button type="button" class="btn btn-primary" (click)="btnClick()">{{'PRODUCT.ERROR.BTN' | translate}}</button>
+        </div>
+
+    </div>
+</div>

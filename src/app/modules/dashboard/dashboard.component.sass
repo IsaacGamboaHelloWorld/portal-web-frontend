@@ -1,0 +1,101 @@
+@import '../../../sass/colors'
+@import '../../../sass/variables'
+@import '../../../sass/mixins'
+
+.container-dash
+  height: 100vh
+  width: 100%
+  display: grid
+  grid-template-columns: 128px 1fr
+  grid-template-rows: 88px auto 1px
+  grid-template-areas: "sidebar header" "sidebar body-dash"
+  .header
+    grid-area: header
+  .sidebar
+    grid-area: sidebar
+  .body-dash
+    grid-area: body-dash
+    display: grid
+    grid-template-rows: 1fr auto
+    grid-template-columns: 1fr
+    overflow-y: scroll
+    grid-template-areas: "content" "footer"
+    .content
+      grid-area: content
+    .footer
+      grid-area: footer
+  ::-webkit-scrollbar-thumb
+    background: $carbon-mid-100
+
+@media only screen and (max-width: $break-small-phone)
+  .container-dash
+    grid-template-columns: 1fr
+    grid-template-rows: 72px auto 1fr 64px
+    grid-template-areas: "header" "sidebar" "body-dash" "tab-bar"
+    .tab-bar
+      grid-area: tab-bar
+    .body-dash
+      grid-area: body-dash
+      grid-template-rows: 1fr 100px
+      grid-template-columns: 100%
+      overflow-y: scroll
+      grid-template-areas: "content" "footer"
+      .content
+        grid-area: content
+      .footer
+        grid-area: footer
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .container-dash
+    grid-template-columns: 1fr
+    grid-template-rows: 72px auto 1fr 64px
+    grid-template-areas: "header" "sidebar" "body-dash" "tab-bar"
+    .tab-bar
+      grid-area: tab-bar
+    .body-dash
+      grid-area: body-dash
+      grid-template-rows: 1fr 100px
+      grid-template-columns: 100%
+      overflow-y: scroll
+      grid-template-areas: "content" "footer"
+      .content
+        grid-area: content
+      .footer
+        grid-area: footer
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .container-dash
+    grid-template-columns: 1fr
+    grid-template-rows: 72px auto 1fr 64px
+    grid-template-areas: "header" "sidebar" "body-dash" "tab-bar"
+    .tab-bar
+      grid-area: tab-bar
+    .body-dash
+      grid-area: body-dash
+      grid-template-rows: 1fr 100px
+      grid-template-columns: 100%
+      overflow-y: scroll
+      grid-template-areas: "content" "footer"
+      .content
+        grid-area: content
+      .footer
+        grid-area: footer
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+  .container-dash
+    grid-template-columns: 1fr
+    grid-template-rows: 72px auto 1fr 64px
+    grid-template-areas: "header" "sidebar" "body-dash" "tab-bar"
+    .tab-bar
+      grid-area: tab-bar
+    .body-dash
+      grid-area: body-dash
+      grid-template-rows: 1fr 100px
+      grid-template-columns: 100%
+      overflow-y: scroll
+      grid-template-areas: "content" "footer"
+      .content
+        grid-area: content
+      .footer
+        grid-area: footer
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+@media only screen and (min-width: $break-desktop-xlg-min)

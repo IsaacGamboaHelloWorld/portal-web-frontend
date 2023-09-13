@@ -1,0 +1,104 @@
+<app-template-system
+  [title]="'DOCUMENTS.EXTRACTS.DETAIL.TITLE' | translate"
+  [sectionContent]="content" 
+  [fullContent]="true"
+  [backUrl]="navigateDocuments.home"
+  [sectionHome]="true"
+  [navigatorActive]="true"
+></app-template-system>
+
+<ng-template #content>
+  <div class="documents-extracts-ds">
+    <p> {{ 'DOCUMENTS.EXTRACTS.DETAIL.ACTION' | translate }} </p>
+
+    <form [formGroup]="formProduct" class="card-list" (scroll)="scrollHandler($event)">
+      <div class="card-item" *ngFor="let item of products$ | async; let i = index; trackBy: trackByFn">
+        <app-card-account-radius
+          [form]="formProduct"
+          [isActive]="indexAlias.value === i"
+          [property]="'index'"
+          [index]="i"
+          [data]="item"
+          [type]="getTypeCard.PRODUCT_WITH_BALANCE"
+          [loading]="!item.productAccountBalances"
+          (setDataEmit)="selectData($event)"
+        ></app-card-account-radius>
+      </div>
+    </form>
+
+    <ul class="list-carousel" *ngIf="(products$ | async)?.length > 1">
+      <li class="list-carousel_item" [ngClass]="{'active-li': activeStep === i}" data-id="card-{{i}}" *ngFor="let item of (products$ | async) | slice:0:5; let i = index"></li>
+    </ul>
+
+    <ng-container *ngIf="formProduct.valid">
+      <h5 class="periods-title"> {{ 'DOCUMENTS.EXTRACTS.DETAIL.PERIOD' | translate }} </h5>
+
+      <ng-container [ngSwitch]="true">
+        <ng-container *ngSwitchCase="!(statePeriodsEstracts$ | async)?.loading && !(statePeriodsEstracts$ | async)?.success" [ngTemplateOutlet]="periodsErrorTmp"> </ng-container>
+        <ng-container *ngSwitchCase="!(statePeriodsEstracts$ | async)?.loading && (statePeriodsEstracts$ | async)?.success" [ngTemplateOutlet]="periodsSuccessTmp"> </ng-container>
+        <ng-container *ngSwitchDefault [ngTemplateOutlet]="periodsLoadingTmp"> </ng-container>
+      </ng-container>
+
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #periodsLoadingTmp>
+  <div class="periods-loading">
+    <p class="placeholder p-1 width-60"></p>
+    <p class="placeholder p-2 width-100"></p>
+    <p class="placeholder p-3 width-80"></p>
+
+    <p class="placeholder p-4 width-60"></p>
+    <p class="placeholder p-5 width-100"></p>
+    <p class="placeholder p-6 width-80"></p>
+  </div>
+</ng-template>
+
+<ng-template #periodsErrorTmp>
+  <div class="error-container">
+    <app-ds-states-card
+      [title]="'DOCUMENTS.EXTRACTS.ERROR.TITLE' | translate"
+      [description]="'DOCUMENTS.EXTRACTS.ERROR.DESCRIPTION' | translate"
+      [btnTextPrimary]="'DOCUMENTS.EXTRACTS.ERROR.BTN' | translate"
+      [state]="getCardStates.error"
+      (eventClick)="retryLoad()"
+    ></app-ds-states-card>
+  </div>
+</ng-template>
+
+<ng-template #periodsSuccessTmp>
+  <form [formGroup]="formDate" class="form-periods">
+    <div class="input-year">
+      <app-ds-dropdown-select
+        [form]="formDate"
+        [property]="'date'"
+        [loading]="(statePeriodsEstracts$ | async)?.loading"
+        [fixedOptions]="selectOption">
+      </app-ds-dropdown-select>
+    </div>
+
+		<div class="form-notification">
+			<div class="form-notification-container" >
+				<div class="bar"></div>
+				<div class="img-container">
+					<div class="img"></div>
+				</div>
+				<div class="content">
+					<span class="message"> {{'DOCUMENTS.EXTRACTS.DETAIL.MESSAGE_INFO' | translate}} </span>
+				</div>
+			</div>
+		</div>
+
+  </form>
+  <div class="btn-container">
+    <app-btn 
+      (clickBtn)="donwload()"
+      [text]="((stateEstracts$ | async)?.success ? 'DOCUMENTS.EXTRACTS.DETAIL.BTN_BACK' : (retryCount !== 0 ? 'DOCUMENTS.EXTRACTS.DETAIL.BTN_RETRY' : 'DOCUMENTS.EXTRACTS.DETAIL.BTN')) | translate"
+      [isLoading]="(stateEstracts$ | async)?.loading"
+      [disabled]="formDate.invalid"
+      [class]="'btn btn-primary'"
+      >
+    </app-btn>
+  </div>
+</ng-template>

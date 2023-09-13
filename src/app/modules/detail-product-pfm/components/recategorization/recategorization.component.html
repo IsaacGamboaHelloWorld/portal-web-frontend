@@ -1,0 +1,99 @@
+<div class="reca-container">
+
+  <div class="title-container">
+    <img [src]="'/payment-pfm.svg' | imageCdn" alt="">
+    <div class="title-texts">
+      <strong class="title"> {{ title }} </strong>
+      <p class="subtitle">  {{ dateFormatted }} </p>
+    </div>
+  </div>
+
+  <div class="tabs-container">
+    <pzl-tabs [options]="optionTabs" [value]="tabSelected" (tabOptionChange)="tabOptionChange($event)"></pzl-tabs>
+  </div>
+
+  <div class="container-inex" [ngSwitch]="tabSelected.id">
+    <ng-container *ngSwitchCase="getTabs.expenses" [ngTemplateOutlet]="expensesTmp"></ng-container>
+    <ng-container *ngSwitchCase="getTabs.expensesManually" [ngTemplateOutlet]="expensesManuallyTmp"></ng-container>
+  </div>
+
+</div>
+
+<ng-template #expensesTmp>
+  <div class="expenses-body">
+    <p class="description-expenses"> {{ 'PFM_RECATEGORIZATION.EXPENESES_DESCRIPTION' | translate }} </p>
+
+    <!-- <hr class="hr-border">
+    <p class="total-lbl">{{ 'PFM_RECATEGORIZATION.TOTAL_EXPENSES' | translate }} <strong class="total-value">{{ (total$ | async) | currencyFormat : false }}</strong> </p>
+    <hr class="hr-border"> -->
+
+    <div class="mov-table">
+      <ng-container *ngIf="!(pfmMoviments$ | async)?.loading; else loadingTmp">
+        <ng-container *ngIf="(pfmMoviments$ | async)?.data?.movements?.length > 0; else noDataTmp">
+          <pzl-table-movements [selected]="movimentsSelected" [negative]="true" [data]="(pfmMoviments$ | async)?.data?.movements" (selectedChanges)="selectedChanges($event)"></pzl-table-movements>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="mov-list">
+      <ng-container *ngIf="!(pfmMoviments$ | async)?.loading; else loadingTmp">
+        <ng-container *ngIf="(pfmMoviments$ | async)?.data?.movements?.length > 0; else noDataTmp">
+          <pzl-list-movements [selected]="movimentsSelected" [negative]="true" [data]="(pfmMoviments$ | async)?.data?.movements" (selectedChanges)="selectedChanges($event)"></pzl-list-movements>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <hr class="hr-border bt-1">
+
+  <div class="select-container">
+    <p class="label-select"> {{ 'PFM_RECATEGORIZATION.LABEL_TITLE_RECATEGORIZATION' | translate }} </p>
+
+    <div class="select-categories">
+      <app-ds-dropdown-select
+        [label]="'PFM_RECATEGORIZATION.LABEL_RECATEGORIZATION' | translate"
+        [form]="form"
+        [property]="nameItemForm"
+        [fixedOptions]="pfmItemsOptions$ | async">
+      </app-ds-dropdown-select>
+    </div>
+
+  </div>
+
+  <hr class="hr-border">
+
+  <div class="btns-container">
+    <app-btn
+      [text]="'PFM_RECATEGORIZATION.BTN_CANCEL' | translate"
+      [isLoading]="false"
+      [class]="'btn-secondary-green'"
+      (clickBtn)="cancelRecategorization()"
+    ></app-btn>
+
+    <app-btn
+      [type]="'submit'"
+      [disabled]="form.invalid || movimentsSelected.length <= 0"
+      [text]="'PFM_RECATEGORIZATION.BTN_MOVE' | translate"
+      [isLoading]="(pfmRecategorizarion$ | async)?.loading"
+      [class]="'btn-primary'"
+      (clickBtn)="moveRecategorization()"
+    ></app-btn>
+  </div>
+</ng-template>
+
+<ng-template #expensesManuallyTmp>
+  <h1>expensesManuallyTmp</h1>
+</ng-template>
+
+<ng-template #loadingTmp>
+  <app-ds-loading></app-ds-loading>
+</ng-template>
+
+<ng-template #noDataTmp>
+  <div class="graph-pfm-no-data">
+    <div class="icon">
+      <img [src]="'/24-essential-bell-5.svg' | imageCdn" [alt]="">
+    </div>
+    <strong class="title"> {{ 'PFM_PRODUCT_DETAIL.NO_DATA.TITLE' | translate }} </strong>
+    <p class="description"> {{ 'PFM_PRODUCT_DETAIL.NO_DATA.DESCRIPTION' | translate }} </p>
+  </div>
+</ng-template>

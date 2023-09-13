@@ -1,0 +1,31 @@
+<section class="cont-movements-loading">
+    <div class="cont-table-movements">
+        <div class="scroll-table-header">
+            <p class="datecell">{{'MOVEMENT.DEPOSIT.DATE' | translate}}</p>
+            <p class="titlecell">{{'MOVEMENT.DEPOSIT.DESCRIPTION' | translate}}</p>
+            <p class="valuecell">{{'MOVEMENT.DEPOSIT.VALUE' | translate}}</p>
+        </div>
+        <div class="scroll-table">
+            <div class="product-loading">
+                <ng-container *ngIf="movements.loading">
+                    <div class="lds-css ng-scope">
+                        <div class="lds-flickr">
+                            <div></div>
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <p class="paragraph-small">{{'DETAIL.LOADING_TEXT' | translate}}</p>
+                </ng-container>
+                <div *ngIf="!movements.loading && movements.error" class="error-movement">
+                    <span>
+                      <img [src]="'/movimientos.png' | imageCdn" alt="">
+                    </span>
+                    <p *ngIf="!hasErrorMessage$" class="paragraph-small">{{'MOVEMENT.ERROR_MESSAGE' | translate}}</p>
+                    <p *ngIf="hasErrorMessage$" class="paragraph-small">{{movements?.errorMessage}}</p>
+                    <button type="button" class="btn btn-primary" (click)="btnClick()">{{'PRODUCT.ERROR.BTN' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

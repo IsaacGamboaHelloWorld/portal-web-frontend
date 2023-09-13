@@ -1,0 +1,73 @@
+<div class="cards">
+  <div class="credit-cards" *ngIf="(optionsModule$ | async)?.data?.block_product?.options?.credit_card && productsTC; let creditCards">
+    <div *ngIf="creditCards.length !== 0">
+      <h2 class="subsection-title" [ngClass]="{ 'one': creditCards.length === 1 }">
+        {{  ( creditCards.length > 1 ? 'BLOCK_PRODS.CARDS_SECTION.CREDIT_CARD_SUBSECTIONS' : 'BLOCK_PRODS.CARDS_SECTION.CREDIT_CARD_SUBSECTION') | translate }}
+        <p class="amount">{{ creditCards.length }}</p>
+      </h2>
+      <ul>
+        <li *ngFor="let card of creditCards">
+          <app-ds-credit-card
+            [name]="'BLOCK_PRODS.CARDS_SECTION.CARD_FRANCHISE.' + (card.accountInformation?.accountIdentifier | cardTypeclass).class | translate"
+            [className]="(card.accountInformation?.accountIdentifier | cardTypeclass).class"
+            [number]="card.accountInformation?.accountIdentifier | dsMaskCreditCard"
+            [thruText]="'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.VALID_THRU' | translate"
+            [symbols]="'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.VALID_THRU_SYMBOLS' | translate"
+            [loading]="card.loading"
+            [logo]="'/lock-product' + (card.accountInformation?.accountIdentifier | cardFranchiseType) | imageCdn"
+            [actionText]="('ACTIVE' === card.status ?
+                                    'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.LOCK_BUTTON' :
+                                    'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.UNLOCK_BUTTON')| translate"
+            [actionImage]="'/lock-product/bloqueado-blanco@2x.png' | imageCdn" (actionEvent)="clickCard(card)">
+          </app-ds-credit-card>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="debit-cards" *ngIf="(optionsModule$ | async)?.data?.block_product?.options?.debit_card && (debitCardListState$ | async); let debitCardState">
+    <div *ngIf="debitCardState?.loading">
+      <h2 class="subsection-title" [ngClass]="{ 'one': (debitCardListState$ | async)?.data?.debitCards?.length === 1 }">{{'BLOCK_PRODS.CARDS_SECTION.DEBIT_CARD_SUBSECTION' | translate}}</h2>
+      <div class="card-base loading loading-global shadow-1dp">
+        <p class="title-card placeholder width-30"></p>
+        <p class="card-mask placeholder width-80"></p>
+        <p class="cvv-card placeholder width-20"></p>
+      </div>
+    </div>
+
+    <div class="error" *ngIf="!debitCardState?.loading && debitCardState?.error">
+      <h2 class="subsection-title">{{'BLOCK_PRODS.CARDS_SECTION.DEBIT_CARD_SUBSECTION' | translate}}</h2>
+      <strong class="title"> {{ 'BLOCK_PRODS.CARDS_SECTION.NO_PRODUCTS.TITLE' | translate }} </strong>
+      <p class="description"> {{ 'BLOCK_PRODS.CARDS_SECTION.NO_PRODUCTS.DESCRIPTION' | translate }} </p>
+      <app-btn
+        (clickBtn)="retryLoadDebitCardList()"
+        [text]="'BLOCK_PRODS.CARDS_SECTION.NO_PRODUCTS.RETRY' | translate"
+        [id]="'btn-step-one'"
+        [class]="'btn-primary'"
+      ></app-btn>
+    </div>
+
+    <div *ngIf="!debitCardState?.loading && debitCardState?.success">
+      <div *ngIf="debitCardState?.data?.debitCards?.length !== 0">
+        <h2 class="subsection-title" [ngClass]="{ 'one': debitCardState?.data?.debitCards?.length === 1 }">
+          {{ ( debitCardState?.data?.debitCards?.length > 1 ? 'BLOCK_PRODS.CARDS_SECTION.DEBIT_CARD_SUBSECTIONS' : 'BLOCK_PRODS.CARDS_SECTION.DEBIT_CARD_SUBSECTION') | translate}}
+          <p class="amount">{{debitCardState?.data?.debitCards?.length}}</p>
+        </h2>
+        <ul>
+          <li *ngFor="let card of debitCardState.data.debitCards">
+            <app-ds-credit-card
+              [name]="'BLOCK_PRODS.CARDS_SECTION.CARD_FRANCHISE.debit_card' | translate"
+              [number]="card.card?.cardId | dsMaskCreditCard"
+              [thruText]="'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.VALID_THRU' | translate"
+              [symbols]="'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.VALID_THRU_SYMBOLS' | translate"
+              [loading]="card && card['loading']" [logo]="('/lock-product/logo_visa_blanco.png' | imageCdn)"
+              [actionText]="'BLOCK_PRODS.CARDS_SECTION.CARD_CONTENT.LOCK_BUTTON' | translate"
+              [actionImage]="'/lock-product/bloqueado-blanco@2x.png' | imageCdn" (actionEvent)="clickCard(card)">
+            </app-ds-credit-card>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>

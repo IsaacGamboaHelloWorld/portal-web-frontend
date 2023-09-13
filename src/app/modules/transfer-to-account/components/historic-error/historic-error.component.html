@@ -1,0 +1,27 @@
+<div class="empty-pending" *ngIf="hasHistoric">
+	<ng-container *ngIf="historic.loading">
+		<div>
+			<div class="lds-css ng-scope">
+				<div class="lds-flickr">
+					<div></div>
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+			<p class="paragraph-small">{{'DETAIL.LOADING_TEXT' | translate}}</p>
+		</div>
+	</ng-container>
+	<ng-container *ngIf="!historic.loading && historic.error">
+		<div class="error-pending">
+			<p *ngIf="!hasErrorText">{{'TRANSFER.HISTORIC.ERROR' | translate}}</p>
+			<p *ngIf="hasErrorText">{{historic.errorMessage}}</p>
+			<button
+					type="button"
+					class="btn btn-primary" (click)="btnClick()">{{'PRODUCT.ERROR.BTN' | translate}}</button>
+		</div>
+	</ng-container>
+	<div *ngIf="emptyHistoric">
+		<img [src]="'/empty-state.png' | imageCdn" [alt]="'TRANSFER.EMPTY_TRANSFER' | translate">
+		<p>{{'TRANSFER.EMPTY_TRANSFER' | translate}}</p>
+	</div>
+</div>

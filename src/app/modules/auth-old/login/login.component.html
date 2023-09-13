@@ -1,0 +1,40 @@
+<div class="box-login">
+	<img [src]="'/logotipo-horizontalx3.png' | imageCdn" alt="Banco popular">
+	<h4>{{'AUTH.LOGIN.TITLE' | translate}}</h4>
+	<form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form-global" autocomplete="off">
+		<div formGroupName="content">
+			<div class="form-group">
+				<app-dropdown-select
+					[label]="'AUTH.LOGIN.TITLE_DOCUMENT'"
+					[form]="registerForm"
+					[property]="'content'"
+					[subProperty]="'idType'"
+					[fixedOptions]="options"></app-dropdown-select>
+			</div>
+			<div class="form-group">
+				<label>{{'AUTH.LOGIN.DOCUMENT_NUMBER' | translate}}</label>
+				<input #idInput type="text" formControlName="id" class="form-control input-bp" autocomplete="nope" pattern="\d*" appOnlyNumbers
+					appStateInput
+					[formState]="registerForm"
+					(viewError)="stateError($event)">
+			</div>
+			<div *ngIf="error" class="error-msg">
+				<p>{{'AUTH.LOGIN.DOCUMENT_NUMBER' | translate}} {{'INVALID' | translate}}</p>
+			</div>
+			<div class="form-group">
+				<app-checkbox-slide [text]="'AUTH.LOGIN.REMEMBER' | translate" [check]="registerForm.value['remember']" [form]="registerForm" [property]="'remember'"></app-checkbox-slide>
+			</div>
+
+			<div class="form-group">
+				<app-btn
+					[type]="'submit'"
+					[disabled]="registerForm.invalid || ((isLoading$ | async) || disabled)"
+					[text]="'AUTH.LOGIN.BTN' | translate"
+					[id]="'btn_login'"
+					[isLoading]="(isLoading$ | async) || disabled"
+					[class]="'btn-primary'"
+				></app-btn>
+			</div>
+		</div>
+	</form>
+</div>

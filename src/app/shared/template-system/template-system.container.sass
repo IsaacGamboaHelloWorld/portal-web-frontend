@@ -1,0 +1,254 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import '~sass/layout'
+
+.main-container-transaction
+  margin: 16px 100px 0
+  position: relative
+  &.back-green
+    &::before
+      content: ''
+      top: 0
+      position: absolute
+      left: 0
+      right: 0
+      background: $g-500
+      height: 394px
+      z-index: -1
+  &.back-green-height
+    &::before
+      content: ''
+      top: 0
+      position: absolute
+      left: 0
+      right: 0
+      background: $g-500
+      height: 260px
+      z-index: -1
+  .main-container-transaction_navigator
+    display: flex
+    &.active
+      display: block
+      margin-bottom: 24px
+    .navigation-opts
+      padding: 0 0 24px
+      width: 100%
+      display: flex
+      z-index: 1
+      .cont-icon-back
+        width: 28px
+        height: 28px
+        margin: 0 8px 0 0
+        padding: 2px
+        opacity: 0.48
+        transform: rotate(180deg)
+        display: flex
+        justify-content: center
+        align-items: center
+        background-color: $hlt-100
+        border-radius: 200px
+        -moz-border-radius: 200px
+        -webkit-border-radius: 200px
+        .icon-arrows-diagrams-right-3
+          font-size: 25px
+          border: none
+      .cont-icon-close
+        width: 28px
+        height: 28px
+        margin: 0 8px 0 0
+        padding: 2px
+        opacity: 0.48
+        display: flex
+        justify-content: center
+        align-items: center
+        background-color: $hlt-100
+        border-radius: 200px
+        -moz-border-radius: 200px
+        -webkit-border-radius: 200px
+        .icon-close
+          font-size: 12.5px
+          border: none
+      .white-opt
+        color: $carbon-light-100
+        em
+          color: $carbon-light-100
+          border-color: $carbon-light-100
+      .back-payment
+        display: flex
+        justify-content: center
+        align-items: center
+      .close-payment
+        font-weight: 500
+        display: flex
+        justify-content: center
+        align-items: center
+        margin-left: auto
+  h2
+    font-size: $f-14 + 14
+    font-weight: bold
+    font-stretch: normal
+    font-style: normal
+    line-height: normal
+    letter-spacing: -0.2px
+    color: $carbon-dark-900
+    margin-bottom: 24px
+  h6
+    font-size: $f-14
+    font-weight: normal
+    font-stretch: normal
+    font-style: normal
+    line-height: 1.71
+    letter-spacing: normal
+    color: $carbon-dark-900
+  .main-container-transaction-steps
+    height: 51px
+    max-width: 377px
+    margin: 23px auto 0
+    .line
+      max-width: 80%
+  .main-container-transaction-section
+    max-width: 717px
+    min-height: 410px
+    margin: 0 auto
+    display: flex
+    padding-bottom: 30px
+    &.full-content
+      max-width: 100%
+  &.test-mode
+    background: red
+    .main-container-transaction_navigator
+      background: green
+    h2
+      background: blue
+    h6
+      background: blue
+    .main-container-transaction-steps
+      background: blue
+    .main-container-transaction-section
+      background: yellow
+
+@media only screen and (max-width: $break-tablet)
+@media only screen and (max-width: $break-mobile)
+
+@media only screen and (max-width: $break-small-phone)
+  .main-container-transaction
+    margin: 3px
+    h2
+      font-size: $f-14 + 7
+      padding: 0 16px
+    .main-container-transaction_navigator
+      .navigation-opts
+        padding: 21px 16px 24px
+        .white-opt
+          color: $carbon-light-100
+          em
+            color: $carbon-light-100
+            border-color: $carbon-light-100
+    &.back-green.back-green-height
+      &::before
+        content: ''
+        top: 0
+        position: absolute
+        left: 0
+        right: 0
+        background: $g-500
+        height: 340px
+        z-index: -1
+      .main-container-transaction_navigator
+        .navigation-opts
+          padding: 21px 16px 24px 16px
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .main-container-transaction
+    margin: 3px
+    h2
+      font-size: $f-14 + 7
+      padding: 0 16px
+    .main-container-transaction_navigator
+      .navigation-opts
+        padding: 21px 16px 24px
+        .white-opt
+          color: $carbon-light-100
+          em
+            color: $carbon-light-100
+            border-color: $carbon-light-100
+    &.back-green.back-green-height
+      &::before
+        content: ''
+        top: 0
+        position: absolute
+        left: 0
+        right: 0
+        background: $g-500
+        height: 340px
+        z-index: -1
+      .main-container-transaction_navigator
+        .navigation-opts
+          padding: 21px 16px 24px 16px
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .main-container-transaction
+    margin: 24px 26px 0 26px
+    .main-container-transaction_navigator
+      .navigation-opts
+        padding: 21px 16px 24px
+        .white-opt
+          color: $carbon-light-100
+          em
+            color: $carbon-light-100
+            border-color: $carbon-light-100
+    &.back-green.back-green-height
+      &::before
+        content: ''
+        top: 0
+        position: absolute
+        left: 0
+        right: 0
+        background: $g-500
+        height: 380px
+        z-index: -1
+      .main-container-transaction_navigator
+        .navigation-opts
+          padding: 0 16px 24px 0
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+  .main-container-transaction
+    margin: 16px 0
+    h2
+      padding: 0 16px
+    .main-container-transaction_navigator
+      .navigation-opts
+        padding: 21px 16px 24px
+        .white-opt
+          color: $carbon-light-100
+          em
+            color: $carbon-light-100
+            border-color: $carbon-light-100
+    &.back-green.back-green-height
+      &::before
+        content: ''
+        top: 0
+        position: absolute
+        left: 0
+        right: 0
+        background: $g-500
+        height: 380px
+        z-index: -1
+      .main-container-transaction_navigator
+        .navigation-opts
+          padding: 0 16px 24px 0
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+  .main-container-transaction
+    margin: 16px 31px 0
+
+@media only screen and (min-width: $break-desktop-min)
+  .main-container-transaction
+    margin: 16px auto 0
+    max-width: 936px
+    .main-container-transaction-steps
+      max-width: 500px
+
+@media only screen and (min-width: $break-desktop-lg-min)
+  .main-container-transaction
+    margin: 16px auto 0
+    max-width: 1128px
+
+@media only screen and (min-width: $break-desktop-xlg-min)

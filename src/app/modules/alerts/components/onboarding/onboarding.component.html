@@ -1,0 +1,124 @@
+
+<!--
+<div class="onboarding-container" *ngIf="showDashboard || (alerts$ | async).error">
+  <div class="container-background">
+    <div>
+      <div class="step step1 active">
+        <div class="card-onboarding shadow-1dp">
+          <img [src]="'/idea-2.png' | imageCdn" alt="">
+          <p>Hola {{(basicData$ | async)?.data?.personalData?.customerNames?.firstName | titlecase}}</p>
+          <span>{{'ALERTS.ONBOARDING.STEP1.DESC' | translate}}</span>
+        </div>
+        <button class="btn btn-primary" (click)="nextStep()">{{'ALERTS.ONBOARDING.BTN_OK' | translate}}</button>
+        <a class="link" (click)="nextStep()">{{'ALERTS.ONBOARDING.BTN_MORE' | translate}}</a>
+      </div>
+    </div>
+    <div>
+      <div class="step step2">
+        <div class="card-onboarding shadow-1dp">
+          <img [src]="'/processing.png' | imageCdn" alt="">
+          <p>{{'ALERTS.ONBOARDING.STEP2.TITLE' | translate}}</p>
+          <span [innerHTML]="'ALERTS.ONBOARDING.STEP2.DESC' | translate"></span>
+        </div>
+        <button class="btn btn-primary" (click)="nextStep()">{{'ALERTS.ONBOARDING.BTN_NEXT' | translate}}<em class="icon-arrow-right"></em></button>
+      </div>
+    </div>
+    <div>
+      <div class="step step3">
+        <div class="card-onboarding shadow-1dp">
+          <img [src]="'/devices.png' | imageCdn" alt="">
+          <p>{{'ALERTS.ONBOARDING.STEP3.TITLE' | translate}}</p>
+          <span>{{'ALERTS.ONBOARDING.STEP3.DESC' | translate}}</span>
+        </div>
+        <button class="btn btn-primary close-onboarding" (click)="closeOnboarding()">{{'ALERTS.ONBOARDING.BTN_END' | translate}}<em class="icon-plus"></em></button>
+        <a class="link" (click)="backStep()"><em class="icon-arrow-left"></em>{{'ALERTS.ONBOARDING.BTN_BACK' | translate}}</a>
+      </div>
+    </div>
+  </div>
+</div>
+-->
+
+<!--
+  <div class="animated fade-in-up cont-step-one-2fa">
+  <div class="form-group column small-12 medium-12 large-12" *ngIf="(stateActivate | async)?.success">
+    <div class="cont-images">
+      <div class="border-box box-one"></div>
+      <div class="border-box box-two"></div>
+      <div class="bg-box box-three"></div>
+      <img class="box-image" [ngClass]="{'img-operator': count === 2,'img-phone': count === 1}" [src]="imgStep | imageCdn" alt="">
+    </div>
+    <div class="cont-text">
+      <div class="copys">
+        <p class="title">{{titleStep | translate}}</p>
+        <p #step class="text animated" [innerHTML]="textStep | translate"></p>
+      </div>
+    </div>
+    <div class="cont-slides">
+      <form class="controls">
+        <button class="left" type="button" (click)="toggle('prev')" [ngClass]="{'back-left': count >= 1}">
+          <i [ngClass]="{'icon-arrow3-left': true}"></i>
+        </button>
+        <div class="points" [ngClass]="{'display-point': count === (listPoints.length - 1)}">
+          <div *ngFor="let point of listPoints; let i=index">
+            <input class="page-point" type="radio" name="page" [value]="point.value">
+            <label for="page"></label>
+          </div>
+        </div>
+        <div class="cont-btn-end">
+          <button class="right" type="button" (click)="toggle('next')" *ngIf="count < (listPoints.length - 1)">
+            <i [ngClass]="{'icon-arrow3-right': true}"></i>
+          </button>
+          <app-btn *ngIf="count === (listPoints.length - 1)"
+            [type]="'button'"
+            (clickBtn)="submitData()"
+            [text]="'CODE_AUTH.ONBOARDING.BTN' | translate"
+            [id]="'btn-step-two'"
+            [isLoading]="false"
+            [class]="'btn-primary btn-send'"
+          ></app-btn>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+-->
+
+<div class="cont-onboarding-alerts">
+  <div class="form-group">
+    <div class="cont-img">
+      <img class="box-image" [src]="imgStep | imageCdn" alt="'box-image'">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="cont-text">
+      <p class="title" [innerHTML]="titleStep | translate : {name: (name$ | async) | titlecase}"></p>
+      <p #step class="text animated" [innerHTML]="textStep | translate"></p>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="cont-slides">
+      <form class="controls" >
+        <button class="left" type="button" (click)="toggle('prev')" [ngClass]="{'back-left': count >= 1}" *ngIf="count >= 1">
+          <i [ngClass]="{'icon-arrow3-left': true}"></i>
+        </button>
+        <div class="points" [ngClass]="{'display-point': count === (listPoints.length - 1)}">
+          <div *ngFor="let point of listPoints; let i=index">
+            <input class="page-point" type="radio" name="page" [value]="point.value">
+            <label for="page"></label>
+          </div>
+        </div>
+        <div class="cont-btn-end">
+          <button class="right" type="button" (click)="toggle('next')" *ngIf="count < (listPoints.length - 1)">
+            <i [ngClass]="{'icon-arrow3-right': true}"></i>
+          </button>
+          <button  *ngIf="count === (listPoints.length - 1)" class="btn btn-primary close-onboarding" type="button" (click)="closeOnboardingAlert()">
+            {{'ALERTS.ONBOARDING.BTN_END' | translate}}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="form-group cont-skip">
+    <a class="link" (click)="skip()">{{'Omitir' | translate}}</a>
+  </div>
+</div>

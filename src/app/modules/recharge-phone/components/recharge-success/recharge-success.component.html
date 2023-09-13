@@ -1,0 +1,54 @@
+<div class="confirmation-recharge cont-step-global animated element-hidden block fade-in-up">
+  <ng-container *ngIf="hasInfo$ | async">
+    <app-ticket
+        [imageTicket]="'/like_success.svg' | imageCdn"
+        [title]="'RECHARGE.STEP_SUCCESS.TITLE' | translate"
+        [description]="'RECHARGE.STEP_SUCCESS.DESC' | translate"
+        [messageTitle]="'RECHARGE.STEP_SUCCESS.AMOUNT' | translate"
+        [messageText]="(infoRecharge$ | async)?.data?.request?.amount | currencyFormat : true : 'decimal-vouchers'"
+        [btnText]="'TRANSFER.SUCCESS.DOWNLOAD' | translate: { value: 'icon-download-bottom' }"
+        [btnLoadingText]="'TRANSFER.SUCCESS.LOADING_DOWNLOAD' | translate: { img: ('/loading-text.gif' |imageCdn) } "
+        [disabled]="disabled"
+        (btnAction)="download()"
+        [id]="'voucher-recharge'"
+        [response]="(infoRecharge$ | async)?.data"
+        [listTemplate]="list"
+        [classSucces]="true"></app-ticket>
+
+    <div class="footer-step">
+      <div class="box-green">
+        <a class="link" (click)="newRecharge()">{{'RECHARGE.STEP_ONE.NEW_RECHARGE' | translate}}</a>
+      </div>
+      <app-btn
+          [class]="'btn-primary'"
+          [text]="'TRANSFER.PENDING.BTN' | translate"
+      (clickBtn)="newRecharge()"></app-btn>
+    </div>
+  </ng-container>
+
+</div>
+
+<ng-template #list>
+  <ul *ngIf="infoRecharge$ | async as info">
+    <li>
+      <span>{{'TRANSFER.CONFIRMATION.FORM.ORIGIN' | translate}}</span>
+      <p>{{'BANKS.'+ info?.data?.request?.companyId | translate}} - {{'PRODUCT_TYPES_SMALL.' + info?.data?.request?.accountType | translate}} {{info?.data?.request?.accountId | slice: -4}}</p>
+    </li>
+    <li>
+      <span>{{'TRANSFER.CONFIRMATION.FORM.DESTINATION' | translate}}</span>
+      <p>Telefonía {{info?.data?.request?.operatorName}}</p>
+    </li>
+    <li>
+      <span>{{'RECHARGE.VOUCHER.NUMBER' | translate}}</span>
+      <p>{{info?.data?.request?.phoneNumber}}</p>
+    </li>
+    <li>
+      <span>{{'RECHARGE.STEP_ONE.APPROVAL' | translate}}</span>
+      <p>{{info?.data?.approvalId}}</p>
+    </li>
+    <li>
+      <span>{{'TRANSFER.CONFIRMATION.FORM.COST_TRANSACTION' | translate}}</span>
+      <p [innerHTML]="cost | currencyFormat : true : 'decimal-vouchers-custom'"></p>
+    </li>
+  </ul>
+</ng-template>

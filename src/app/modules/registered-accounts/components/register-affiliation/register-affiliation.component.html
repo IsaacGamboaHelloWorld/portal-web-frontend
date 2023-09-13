@@ -1,0 +1,27 @@
+<div class="cont-register-affiliation">
+    <h2>{{'REGISTER_PRODUCT_AFFILIATION.TITLE' | translate}}</h2>   
+    <div class="head-new-transfer not-select">
+        <a (click)="back()"><em class="icon-arrow-left"></em> {{'REGISTER_PRODUCT_AFFILIATION.BACK_BTN' | translate}}</a>
+        <a (click)="openAlert()" class="close-transfer">{{'REGISTER_PRODUCT_AFFILIATION.CLOSE_BTN' | translate}} <em class="icon-x-circle"></em></a>
+    </div> 
+    <div class="container">
+        
+        <div class="fill-information-steps" *ngIf="operationData.step !== 4">
+            <app-line-time [step]="operationData.step" [items]="items$ | async"></app-line-time>
+            <div class="info-steps">
+                <div class="animated element-hidden" [ngClass]="{'block fade-in-up': operationData.step === 1 }" *ngIf="operationData.step === 1">
+                    <app-step-one [registerAffiliationProductData]="operationData"  (saveInformation)="updateRegisterAffiliationProductData($event)"></app-step-one>
+                </div>
+                <div class="animated element-hidden" [ngClass]="{'block fade-in-up': operationData.step === 2 }" *ngIf="operationData.step === 2">
+                    <app-step-two [registerAffiliationProductData]="operationData" (saveInformation)="updateRegisterAffiliationProductData($event)"></app-step-two>  
+                </div>
+                <div class="animated element-hidden" [ngClass]="{'block fade-in-up': operationData.step === 3 }" *ngIf="operationData.step === 3">
+                    <app-step-three [registerAffiliationProductData]="operationData" (saveInformation)="updateRegisterAffiliationProductData($event)"></app-step-three>
+                </div>
+            </div>
+        </div>
+        <div class="confirmation-step" *ngIf="operationData.step === 4">
+            <app-step-confirmation [registerAffiliationProductData]="operationData" (saveInformation)="loadRegisterProductAffiliationAction($event)" (redirectToFirstStep)="redirectToFirstStep($event)"></app-step-confirmation>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,93 @@
+<app-template-system [title]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.ENROLL.TITLE' | translate" [subtitle]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.ENROLL.SUBTITLE' | translate" [sectionContent]="content" [maxStep]="1" [fullContent]="true" [navigatorActive]="true"
+    [stepsActive]="false" [backUrl]="navigate.paymentsv2services" [showClose]="true" [navInternal]="true"></app-template-system>
+
+<ng-template #content>
+    <div class="enroll-public-service">
+        <div class="filter-container">
+            <label>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.ENROLL.WHICH_SERV' | translate}}</label>
+            <div class="filter-input form-global">
+                <input type="text" name="entity-name" [placeholder]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.ENROLL.WHICH_SERV_PROMPT' | translate" [disabled]="hideControls" [(ngModel)]="textFilter" (change)="onChange($event)" (keyup)="onKeyUp($event)" class="input-bp entity-name">
+                <ng-container *ngIf="!hideControls">
+                    <em class="search-input icon-search" *ngIf="emptyState"></em>
+                    <a class="clear-input" *ngIf="!emptyState" (click)="doClear($event)">
+                        <em class="icon-plus"></em>
+                    </a>
+                </ng-container>
+            </div>
+        </div>
+        <div class="content-companies" *ngIf="textFilter !== '' && stepOne">
+            <form class="form-global" [formGroup]="formEnroll" (ngSubmit)="submitForm()">
+                <div class="search-container">
+                    <div class="companies-list">
+                        <ng-container *ngIf="!(companies$ | async)?.error; else nocompanies">
+                            <ng-container *ngIf="(companies$ | async)?.data?.agreements?.length > 0; else loadingCompanies">
+                                <ul class="content">
+                                    <li *ngFor="let company of (companies$ | async)?.data?.agreements; let i = index">
+                                        <div class="radio form-radiobutton-container opt-search type-company-{{i}} shadow-1dp">
+                                            <div class="labels-container">
+                                                <input type="radio" formControlName="entity" id="entity{{i}}" [value]="company" (click)="setClass(i)">
+                                                <label class="custom-control-label" for="entity{{i}}">{{company.entityName}}</label>
+                                                <span>{{company.city | titlecase}}</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </ng-container>
+                        </ng-container>
+                    </div>
+                </div>
+                <div class="button-container" *ngIf="(companies$ | async)?.data?.agreements?.length > 0">
+                    <button type="submit" class="btn btn-primary" *ngIf="(companies$ | async)?.data?.agreements" [disabled]="formEnroll.invalid">{{'CONTINUE' | translate}}</button>
+                </div>
+            </form>
+        </div>
+        <div class="form-add-service" *ngIf="(companyActive$ | async)?.data">
+            <form class="form-global" [formGroup]="formAddService">
+                <div class="filter-input form-global">
+                    <fieldset class="form-group">
+                        <label>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.ENROLL.NAME_SERV' | translate}}</label>
+                        <input type="text" class="input-bp" formControlName="name_serv" [placeholder]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.ENROLL.PROMPT_NAME_SERV' | translate">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label>{{'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.ENROLL.NRO_SERV' | translate}}</label>
+                        <input type="tel" class="input-bp" formControlName="no_serv" appOnlyNumbers>
+                    </fieldset>
+                </div>
+                <div class="button-container">
+                    <app-btn [class]="'btn-primary'" [disabled]="formAddService.invalid || (savedAggrement$ | async)?.loading" [text]="'PAYMENTSV2.PUBLIC_SERVICES.SECTIONS.ENROLL.CONTINUE_BTN' | translate" [isLoading]="(savedAggrement$ | async)?.loading" (clickBtn)="doRegister()"></app-btn>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #loadingCompanies>
+    <ul class="content">
+        <li>
+            <div class="card-info-loading loading-global shadow-1dp">
+                <div class="icon placeholder width-40"></div>
+                <div class="icon placeholder width-40"></div>
+            </div>
+        </li>
+        <li>
+            <div class="card-info-loading loading-global shadow-1dp">
+                <div class="icon placeholder width-40"></div>
+                <div class="icon placeholder width-40"></div>
+            </div>
+        </li>
+        <li>
+            <div class="card-info-loading loading-global shadow-1dp">
+                <div class="icon placeholder width-40"></div>
+                <div class="icon placeholder width-40"></div>
+            </div>
+        </li>
+    </ul>
+</ng-template>
+
+<ng-template #nocompanies>
+    <div class="no-companies">
+        <img [src]="'/otros-pagos.png' | imageCdn" alt="">
+        <p class="title">{{'PAYMENTS.POPUP_SEARCH.NO_COMPANIES_TITLE' | translate}}</p>
+        <p [innerHTML]="'PAYMENTS.POPUP_SEARCH.NO_COMPANIES' | translate"></p>
+    </div>
+</ng-template>

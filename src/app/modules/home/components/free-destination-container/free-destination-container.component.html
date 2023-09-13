@@ -1,0 +1,10 @@
+<section class="home-products" *ngIf="hasProducts">
+    <h6>{{ 'PRODUCT_TYPES.FREE_DESTINATION' | translate}} ({{quantityProducts}})</h6>
+  
+    <ul class="cont-section-products">
+      <li *ngFor="let product of products; trackBy: trackByFn; let i of index">
+          <app-product-free-destination [product]="product"></app-product-free-destination>
+      </li>
+    </ul>
+  </section>
+  

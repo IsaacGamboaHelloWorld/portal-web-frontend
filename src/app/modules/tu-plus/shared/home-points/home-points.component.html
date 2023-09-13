@@ -1,0 +1,99 @@
+<div class="main-total-points shadow-1dp" *ngIf="!loading else loadingState">
+  <div class="cont-header-total-points border-bottom-1px">
+    <div class="cont-logo">
+      <img class="round-img" [src]="'/logo-redondo-tuplus.svg' | imageCdn" [alt]="'TO_PLUS.NAME' | translate">
+      <p class="txt-logo">{{'TO_PLUS.NAME' | translate}}</p>
+    </div>
+    <div class="display-flex">
+      <div [ngClass]="dataConfiguration?.error? 'cont-total-points-error': 'cont-total-points'">
+        <p class="txt-total-points" style="padding : 0">{{'TO_PLUS.TOTAL_POINTS' | translate}}</p>
+        <p class="txt-amount">{{(dataTuPlus?.data?.totalPoints | number)| replace : ',' : '.' }}</p>
+      </div>
+      <div class="cont-img-total-points" [ngStyle]="{'display':dataConfiguration?.error ? 'none' : 'block' }">
+        <img [src]="'/money-green.svg' | imageCdn" [alt]="'TO_PLUS.NAME' | translate">
+      </div>
+      <div class="cont-total-money" *ngIf="!dataConfiguration?.error">
+        <p class="txt-total-points text-align-right">{{'TO_PLUS.IN_MONEY' | translate}}</p>
+        <p class="txt-amount text-align-right"
+          [innerHTML]=" (dataTuPlus?.data?.totalPoints) * (dataConfiguration?.data?.ConversionFactor) | currencyFormat : true ">
+        </p>
+      </div>
+    </div>
+
+
+  </div>
+  <div class="cont-body-list-bank">
+    <div class="cont-bank-items">
+      <div class="cont-bank-img">
+        <img class="round-img" [src]="bank_icon.POPULAR | imageCdn" [alt]="'TO_PLUS.NAME' | translate">
+      </div>
+      <div class="cont-bank-name">
+        <p class="txt-bank-name"> {{'BANKS.BANCO_POPULAR' | translate}}</p>
+      </div>
+      <div class="cont-bank-points">
+        <p class="txt-bank-points">{{(dataTuPlus?.data?.points.BANCO_POPULAR | number)| replace : ',' : '.'}}</p>
+      </div>
+    </div>
+    <div class="cont-bank-items">
+      <div class="cont-bank-img">
+        <img class="round-img" [src]="bank_icon.BOGOTA | imageCdn" [alt]="'TO_PLUS.NAME' | translate">
+      </div>
+      <div class="cont-bank-name">
+        <p class="txt-bank-name"> {{'BANKS.BANCO_DE_BOGOTA' | translate}}</p>
+      </div>
+      <div class="cont-bank-points">
+        <p class="txt-bank-points">{{(dataTuPlus?.data?.points.BANCO_DE_BOGOTA | number)| replace : ',' : '.'}}</p>
+      </div>
+    </div>
+    <div class="cont-bank-items">
+      <div class="cont-bank-img">
+        <img class="round-img" [src]="bank_icon.AVVILLAS | imageCdn" [alt]="'TO_PLUS.NAME' | translate">
+      </div>
+      <div class="cont-bank-name">
+        <p class="txt-bank-name"> {{'BANKS.BANCO_AV_VILLAS' | translate}}</p>
+      </div>
+      <div class="cont-bank-points">
+        <p class="txt-bank-points">{{(dataTuPlus?.data?.points.BANCO_AV_VILLAS | number)| replace : ',' : '.'}}</p>
+      </div>
+    </div>
+    <div class="cont-bank-items">
+      <div class="cont-bank-img">
+        <img class="round-img" [src]="bank_icon.OCCIDENTE | imageCdn" [alt]="'TO_PLUS.NAME' | translate">
+      </div>
+      <div class="cont-bank-name">
+        <p class="txt-bank-name"> {{'BANKS.BANCO_OCCIDENTE' | translate}}</p>
+      </div>
+      <div class="cont-bank-points">
+        <p class="txt-bank-points">{{(dataTuPlus?.data?.points.BANCO_OCCIDENTE | number)| replace : ',' : '.'}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="cont-footer-redeem ">
+    <app-btn id="btn-total-points" (clickBtn)="goToHow()" [disabled]="false" [text]="'TO_PLUS.REDEEM' | translate"
+      [isLoading]="false" [class]="'btn-primary'"></app-btn>
+  </div>
+
+</div>
+
+
+<ng-template #loadingState>
+
+  <div class="main-total-points loading shadow-1dp">
+    <div class="cont-header-total-points border-bottom-1px loading-global">
+      <div class="display-flex justify-content-center">
+        <div class="placeholder width-30"></div>
+        <div class="placeholder width-10"></div>
+        <div class="placeholder width-30"></div>
+      </div>
+    </div>
+    <div class="cont-body-list-bank border-bottom-1px loading-global">
+      <div class="placeholder width-20"></div>
+      <div class="placeholder width-60"></div>
+      <div class="placeholder width-20"></div>
+    </div>
+    <div class="cont-footer-redeem loading-global">
+      <div class="placeholder width-40"></div>
+    </div>
+
+  </div>
+</ng-template>

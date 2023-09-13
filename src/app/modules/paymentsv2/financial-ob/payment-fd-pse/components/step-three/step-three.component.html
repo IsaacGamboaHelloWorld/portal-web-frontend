@@ -1,0 +1,23 @@
+<div class="step-three-fd animated fade-in-up">
+  <form [formGroup]="form" class="input-container">
+    <app-ds-input
+      [label]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_3.VALUE' | translate"
+      [placeholder]="'$'"
+      [typeText]="'tel'"
+      [form]="form"
+      [property]="'amountText'"
+      [useCurrency]="true"
+    ></app-ds-input>
+  </form>
+
+  <div class="btn-container">
+    <app-btn
+      (clickBtn)="next()"
+      [disabled]="form.invalid"
+      [text]="'PAYMENTSV2.FINANCIAL_OP.SECTIONS.PAYMENT_PSE.STEP_3.BUTTON_OK' | translate"
+      [isLoading]="false"
+      [class]="'btn-primary'"
+    ></app-btn>
+  </div>
+</div>
+  

@@ -1,0 +1,72 @@
+@import '../../../sass/variables'
+@import '../../../sass/colors'
+@import '../../../sass/mixins'
+
+.step-four-onboarding
+  background: $carbon-light-100
+  width: 100%
+  max-width: 238px
+  margin: 20px auto 0
+  border-radius: 15px
+  box-shadow: 0 7px 16px 0 rgba($carbon-dark-900, .14)
+  padding: 14px
+  text-align: center
+  position: relative
+  &::after
+    content: ''
+    width: 258px
+    height: 178px
+    border-radius: 15px
+    background: $carbon-light-100
+    position: absolute
+    bottom: -8px
+    top: 50%
+    left: 50%
+    transform: translate(-50%, -50%)
+    box-shadow: 0 7px 16px 0 rgba($carbon-dark-900, .14)
+    z-index: -1
+  img
+    margin: 28px auto
+    height: 64px
+    width: auto
+  .footer-step-four
+    background: $g-500
+    padding: 10px 0
+    border-radius: 10px
+    box-shadow: 0 7px 16px 0 rgba($g-500, 0.36)
+    small,
+    p
+      color: $carbon-light-100
+    small
+      font-size: $f-14 - 1
+      display: block
+    p
+      font-size: $f-20 + 4
+      font-weight: 500
+
+.circle-small-step-four
+  width: 280px
+  height: 280px
+  p
+    font-size: $f-14 - 2
+    line-height: 1.92
+    padding: 4px 12px
+    border-radius: 4px
+    position: absolute
+    font-weight: 500
+    &.in_progress
+      background: $warning-100
+      color: $warning-900
+      left: -24px
+      top: 118px
+    &.success
+      background: $success-100
+      color: $success-900
+      top: 0
+      left: 50%
+      margin-left: -33px
+    &.error
+      background: $red-100
+      color: $red-900
+      right: -12px
+      top: 70px

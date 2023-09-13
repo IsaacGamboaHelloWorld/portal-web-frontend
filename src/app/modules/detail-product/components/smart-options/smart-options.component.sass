@@ -1,0 +1,106 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.container-options
+  margin-bottom: 32px
+  ul
+    li
+      padding: 0
+      float: left
+      margin-right: 8px
+      margin-bottom: 8px
+      width: 128px
+      &:nth-child(3n+3)
+        margin-right: 0
+      button
+        border-radius: 12px
+        background: $carbon-light-100
+        height: 126px
+        width: 100%
+        cursor: pointer
+        text-align: center
+        font-size: $f-14 - 1
+        padding: 12px 16px
+        transition: .3s
+        border: solid 2px $carbon-light-100
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14)
+        display: block
+        h6
+          color: $carbon-dark-900
+          line-height: 1.62
+          font-family: $text-font
+          font-size: $f-14 - 1
+          font-weight: 600
+          letter-spacing: -0.5px
+        .cont-img
+          background: $g-50
+          padding: 10px
+          width: 44px
+          border-radius: 100%
+          margin: 0 auto 8px
+          img, i
+            width: 22px
+            max-height: 24px
+            font-size: $f-14 + 10
+        &:hover
+          background-image: $carbon-light-100
+          border: $g-500 2px solid
+        &.inverse
+          background: $g-500
+          padding: 10px 21px
+          border: none
+          p
+            color: $carbon-light-100
+          img
+              color: $carbon-light-100
+          i
+            &::before
+              color: $carbon-light-100
+
+@media only screen and (max-width: $break-tablet)
+  .container-options
+    padding-left: 0
+    width: 100%
+    overflow-y: auto
+    left: auto
+    ul
+      white-space: nowrap
+      overflow-y: none
+      padding-right: 0
+      li
+        padding: 0
+        float: left
+        width: 127px
+        float: none !important
+        margin-right: 8px
+        margin-bottom: 8px
+        +inline(top)
+        white-space: normal
+        &:nth-child(3n+3)
+          margin-right: 8px
+
+@media only screen and (max-width: $break-mobile)
+  .container-options
+    padding-left: 20px
+    width: 100
+    overflow-y: auto
+    -webkit-overflow-scrolling: touch
+    left: 0
+    ul
+      white-space: nowrap
+      overflow-y: none
+      padding-right: 0
+      li
+        width: 127px
+        float: none !important
+        margin-right: 8px
+        margin-bottom: 3px
+        +inline(top)
+        white-space: normal
+        &:first-child
+          margin-left: 0px
+        &:nth-child(3n+3)
+          margin-right: 8px
+        &:last-child
+          margin-right: 20px

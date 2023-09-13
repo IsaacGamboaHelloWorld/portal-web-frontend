@@ -1,0 +1,147 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.evidente-otp
+  text-align: center
+  background-color: transparent
+  max-width: 327px
+  min-height: 84px
+  border-radius: 12px
+  margin: 0 auto
+  .security-code-blue
+    height: 118px
+    display: flex
+    justify-content: center
+    align-items: center
+    border: 2px #008CFF solid
+    border-radius: 10px
+    margin-top: 15px
+    margin-bottom: 25px
+    background-color: #e9f2f9
+    .circle-icon-subcard
+      width: 24px
+      height: 24px
+      background-color: $info-100
+      border-radius: 200px
+      -moz-border-radius: 200px
+      -webkit-border-radius: 200px
+      display: flex
+      justify-content: center
+      align-items: center
+      margin-left: 12px
+      .icon-subcard
+        width: 16px
+        height: 16px
+        background-color: $info-600
+        mask: url('#{$base-url}/images/24-essential-bell-5.svg') no-repeat center / contain
+        -webkit-mask: url('#{$base-url}/images/24-essential-bell-5.svg') no-repeat center / contain
+    .cont-text-subcard
+      width: 100%
+      display: inline-block
+      text-align: left
+      position: relative
+      .title
+        height: 28px
+        margin: 0 8px
+        font-family: Inter
+        font-size: 13px
+        font-weight: 600
+        font-stretch: normal
+        font-style: normal
+        line-height: 2.15
+        letter-spacing: normal
+        color: #0d0d0d
+      .sub-title
+        margin: 0 8px
+        font-family: Inter
+        font-size: 12px
+        font-weight: 500
+        font-stretch: normal
+        font-style: normal
+        line-height: 2
+        letter-spacing: normal
+        color: $carbon-mid-400
+  .top-image-container
+    margin: 0 auto
+    top: 0
+    display: block
+    width: 120px
+    padding: 25px 17px
+    background-color: $g-50
+    border-radius: 50%
+    img
+      height: 66px
+      width: auto
+  h4
+    margin-top: 24px
+    margin-bottom: 12px
+    font-weight: 600
+    font-size: 16px
+  p
+    line-height: 1.6
+    font-size: $f-14 + 1
+    font-size: 13px
+  .label-code
+    font-weight: 500
+    line-height: 2
+  .desc-bold
+    font-weight: 500
+  .timer
+    text-align: center
+    color: $orange-900
+    font-weight: bold
+  form
+    text-align: left
+    fieldset
+      height: 48px
+      border-radius: 8px
+      border: solid 1.2px #d9d9d9
+      background: #ffffff
+      display: flex
+      justify-content: center
+      align-items: center
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button
+        -webkit-appearance: none
+        margin: 0
+      input[type=number]
+        -moz-appearance: textfield
+      input
+        border-radius: 3px
+        font-size: 20px
+        height: 40px
+        outline: none
+        text-align: center
+        transition: all .2s ease-in-out
+        width: 40px
+        &::selection
+          background: transparent
+    button
+      width: 100%
+    .cancel
+      box-shadow: none
+      background: transparent
+      color: $act-900
+
+@media only screen and (max-width: $break-desktop-min)
+  .evidente-otp
+    .security-code-blue
+      .security-code-warning
+        .cont-text-subcard
+          .sub-title
+            width: 300px
+
+@media only screen and (max-width: $break-mobile)
+  .evidente-otp
+    .security-code-blue
+      .security-code-warning
+        .cont-text-subcard
+          .sub-title
+            width: 230px
+            font-size: 11px
+    form
+      fieldset
+        input
+          width: 35px

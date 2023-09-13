@@ -1,0 +1,272 @@
+@import '~sass/mixins'
+@import '~sass/colors'
+@import '~sass/variables'
+
+.container-contact
+  height: 100%
+  width: 100%
+  position: relative
+  padding-top: 48px
+  .container-main-contact
+    text-align: center
+    display: flex
+    flex-direction: column
+    width: 757px
+    height: 240px
+    padding: 40px 238px 40px 240px
+    border-radius: 12px
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.08)
+    background-color: $carbon-light-100
+    img
+      width: 80px
+      height: 80px
+      margin: 0 99px 12px 100px
+      object-fit: contain
+    p
+      color: $carbon-dark-900
+      letter-spacing: normal
+    .title
+      width: 279px
+      height: 32px
+      font-size: 21px
+      font-weight: bold
+      line-height: 1.52
+      margin: 12px 0 8px
+    .sub-title
+      width: 279px
+      height: 28px
+      font-size: 14px
+      font-weight: normal
+      line-height: 2
+      margin: 8px 0 0
+  .container-cards-contact
+    width: 757px
+    height: 100%
+    padding-top: 32px
+    .link-text
+      color: $secondary-900
+      cursor: pointer
+      font-size: 14px
+      font-weight: 600
+      line-height: 1.71
+    .light-text
+      font-weight: 600
+    .cont-text-card
+      position: relative
+      left: 0
+      ul
+        .head
+          height: 28px
+          font-size: 16px
+          font-weight: bold
+          font-stretch: normal
+          font-style: normal
+          line-height: 1.75
+        li
+          height: 28px
+          margin: 8px 0 8px 20px
+          font-size: 13px
+          font-weight: 500
+          font-stretch: normal
+          font-style: normal
+          line-height: 2.15
+          letter-spacing: normal
+    .cont-icon-card
+      position: relative
+      width: 48px
+      height: 48px
+      padding: 12px
+      border-radius: 200px
+      -moz-border-radius: 200px
+      -webkit-border-radius: 200px
+      img
+        width: 24px
+        height: 24px
+        object-fit: contain
+    .card
+      width: 100%
+      max-width: 100%
+      padding: 0
+      margin: 0
+      background: transparent
+      .column
+        position: relative
+        width: 367px
+        margin: 0 0 24px
+        padding: 0
+      .card-phone
+        display: flex
+        flex-direction: row
+        width: 100%
+        height: 184px
+        padding: 24px 30px 60px 24px
+        border-radius: 12px
+        background-color: $g-500
+        ul
+          color: $carbon-light-100
+        .phone
+          background-color: $carbon-light-100
+          top: 40px
+      .card-credit
+        display: flex
+        flex-direction: row
+        width: 100%
+        height: 184px
+        padding: 24px 30px 60px 24px
+        border-radius: 12px
+        background-color: $carbon-light-100
+        .head
+          color: $carbon-mid-600
+        .credit
+          background-color: $carbon-light-400
+          top: 40px
+      .card-credit-basic
+        display: flex
+        flex-direction: row
+        width: 100%
+        height: 140px
+        padding: 24px 37px 46px 24px
+        border-radius: 12px
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08)
+        background-color: $carbon-light-100
+        .head
+          color: $carbon-mid-600
+        .credit
+          background-color: $carbon-light-400
+          top: 25px
+      .card-office
+        display: flex
+        flex-direction: row
+        width: 100%
+        height: 140px
+        padding: 24px 37px 46px 24px
+        border-radius: 12px
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08)
+        background-color: $carbon-light-100
+        .head
+          color: $carbon-mid-600
+        .credit
+          background-color: $carbon-light-400
+          top: 25px
+.screen
+  height: 252px
+.full-screen
+  height: 100%
+
+.ui-sidebar-bottom
+  transform: translateY(240%)
+.ui-sidebar
+  background: $carbon-light-100
+  width: 375px
+  border-radius: 12px
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.14)
+  top: 35%
+  left: 40%
+  ul
+    position: absolute
+    left: 27px
+    right: 27px
+    top: 40px
+    height: 150px
+    overflow: auto
+    li
+      height: 24px
+      font-size: 14px
+      font-weight: 500
+      font-stretch: normal
+      font-style: normal
+      line-height: 1.71
+      letter-spacing: normal
+      margin-bottom: 24px
+      cursor: pointer
+      &:hover
+        color: $g-800
+  hr
+    height: 1px
+    background-color: #d9d9d9
+    position: absolute
+    bottom: 67px
+    left: 27px
+    right: 27px
+    z-index: 999
+  .button-card-footter
+    width: 100%
+    display: flex
+    justify-content: center
+    position: absolute
+    bottom: 24px
+    background: $carbon-light-100
+    z-index: 999
+    left: 0
+    button
+      background: transparent
+      margin-top: 24px
+      color: $orange-900
+      font-size: 15px
+      font-weight: 600
+      cursor: pointer
+  ::-webkit-scrollbar
+    width: 4px
+    border-radius: 8px
+
+  ::-webkit-scrollbar-track
+    background: transparent
+
+  ::-webkit-scrollbar-thumb
+    background: $g-100
+    border-radius: 8px
+    height: 40px
+    border-radius: 4px
+
+@media only screen and (max-width: $break-tablet)
+  .container-contact
+    height: 100%
+    width: 100%
+    position: relative
+    padding-top: 48px
+    .container-main-contact
+      text-align: center
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      width: 100%
+      height: 240px
+      padding: 0
+    .container-cards-contact
+      width: 100%
+      height: 100%
+      padding-top: 32px
+      .card
+        width: 100%
+        .column
+          position: relative
+          width: 100%
+          margin: 0 0 24px 0
+          padding: 0
+@media only screen and (max-width: $break-mobile)
+  .container-contact
+    height: 100%
+    width: 100%
+    position: relative
+    padding-top: 48px
+    .container-main-contact
+      text-align: center
+      display: flex
+      flex-direction: column
+      justify-content: center
+      align-items: center
+      width: 100%
+      height: 240px
+      padding: 0
+    .container-cards-contact
+      width: 100%
+      height: 100%
+      padding-top: 32px
+      .card
+        width: 100%
+        .column
+          position: relative
+          width: 100%
+          margin: 0 0 24px 0
+          padding: 0

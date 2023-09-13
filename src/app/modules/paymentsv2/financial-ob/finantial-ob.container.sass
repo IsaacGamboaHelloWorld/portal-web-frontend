@@ -1,0 +1,225 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.finalcial-op-container
+  width: 100%
+  overflow: hidden
+  &.zero-records
+    display: flex
+    align-self: center
+    justify-content: center
+  .title-arrows, .manager-header
+    display: flex
+    h5
+      font-size: $f-14 + 4
+      font-weight: 500
+      font-stretch: normal
+      font-style: normal
+      line-height: 1.56
+      color: $carbon-dark-900
+      margin-bottom: 24px
+      flex-grow: 1
+    .cont-arrows
+      width: 50%
+      text-align: right
+      .left
+        margin-right: 24px
+        cursor: pointer
+      .left-invested
+        transform: rotate(180deg)
+      .right
+        cursor: pointer
+  .finalcial-op-container-next-items
+    overflow: hidden
+    width: 100%
+    .next-payments-list
+      display: flex
+      margin-bottom: 20px
+      overflow-y: scroll
+      scroll-snap-type: x mandatory
+      margin-top: -4px
+      .card-next
+        scroll-snap-align: start
+        padding-left: 24px
+        .card-enterprise::before
+          left: -24px
+  .finalcial-op-container-manager
+    .manager-header
+      display: flex
+      min-width: 30px
+      padding-right: 10px
+      a
+        justify-self: flex-end
+        padding-top: 5px
+    .finalcial-op-container-manager-content
+      display: flex
+      position: relative
+      padding-bottom: 10px
+      .finalcial-op-listed
+        flex-grow: .3
+        margin-right: 40px
+        position: relative
+        .delete-link
+          display: block
+          text-align: right
+          margin-bottom: 20px
+        .btn-register-service
+          padding: 12px 20px 12px 23px
+          position: relative
+          border-radius: 10px
+          margin-bottom: 8px
+          width: calc(100% - 10px)
+          font-size: $f-14 + 2
+          text-align: left
+          display: flex
+          justify-content: space-between
+          align-items: center
+          background: $g-500
+          box-shadow: 0 16px 24px 0 rgba(74, 194, 70, 0.14)
+          img
+            display: inline-flex
+            width: 19px
+            margin-right: 14px
+            align-self: center
+          em
+            border: 1.3px solid $carbon-light-100
+            font-size: $f-14 + 5
+            border-radius: 100%
+            width: 24px
+            height: 24px
+            padding: 1px
+            font-weight: normal
+            background: $carbon-light-100
+            color: $gc-850
+        .list-payments
+          display: flex
+          flex-direction: column
+          max-height: 450px
+          overflow: hidden
+          overflow-y: scroll
+          padding-right: 10px
+          position: initial
+          &::after
+            width: 100%
+            height: 40px
+            position: absolute
+            bottom: -15px
+            left: 0
+            background: $carbon-light-400
+            content: ''
+            filter: blur(6px)
+            display: none
+      .shadow-bottom
+        width: calc(100% + 10px)
+        height: 40px
+        background: $carbon-light-400
+        content: ''
+        filter: blur(6px)
+        position: relative
+        bottom: 15px
+      .financial-op-admin
+        flex-grow: 1
+
+.zero-background
+  display: flex
+  flex-direction: column
+  max-width: 343px
+  margin: 0 auto
+  position: relative
+  z-index: 1
+  .circle-green
+    padding-left: 18px
+  img
+    max-width: 124px
+  p
+    font-size: $f-14 + 1
+    margin-bottom: 32px
+    text-align: center
+    z-index: 5
+    &.title
+      font-size: $f-14 + 2
+      font-weight: 600
+      line-height: 1.5
+      margin-bottom: 8px
+  button
+    z-index: 6
+
+
+@media only screen and (max-width: $break-mobile)
+  .main-container-transaction.container-ob
+    margin: 3px 0px
+    color: $black-750
+    h2
+      margin-bottom: 24px
+
+  .container-ob
+    .finalcial-op-container
+      .next-payments-list
+        margin-left: 0px
+        margin-right: -4px
+      .title-arrows
+        .cont-arrows
+          margin-right: 16px
+          width: 40%
+      .finalcial-op-container-next-items
+        h5
+          padding: 0 16px
+      .finalcial-op-container-manager
+        .manager-header
+          min-width: 100%
+          padding: 0 10px 0 0
+          h5
+            padding-left: 0
+            margin-left: 3px
+          .cont-arrows
+            margin-right: 16px
+        .finalcial-op-container-manager-content
+          display: flex
+          flex-direction: column
+          padding: 0 10px 0px 13px
+          .finalcial-op-listed
+            margin-right: 0
+          .btn-register-service
+            margin-left: 3px
+        .shadow-bottom
+          position: relative
+          bottom: 0px
+          width: 105%
+
+
+.circle-big
+  width: 482px
+  height: 482px
+  border: 1px solid #eee
+  margin: -241px 0 0 -241px
+  transition-delay: 2s
+  position: absolute
+  left: 50%
+  top: 40%
+  border-radius: 100%
+  z-index: 3
+
+.circle-medium
+  width: 374px
+  height: 374px
+  border: 1px solid #e9e9e9
+  margin: -187px 0 0 -187px
+  transition-delay: 1.5s
+  position: absolute
+  left: 50%
+  top: 30%
+  border-radius: 100%
+  z-index: 2
+
+.circle-small
+  width: 280px
+  height: 280px
+  border: 1px solid #d9d9d9
+  margin: -140px 0 0 -140px
+  transition-delay: 1s
+  position: absolute
+  left: 50%
+  top: 30%
+  border-radius: 100%
+  z-index: 1

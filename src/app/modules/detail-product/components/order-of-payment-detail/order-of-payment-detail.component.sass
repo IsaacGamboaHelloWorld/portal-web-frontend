@@ -1,0 +1,122 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+
+.cont-detail
+  display: flex
+  .detail-smart-card-payrolloans
+    margin-right: 58px
+    width: 591px
+    background-color: $carbon-light-100
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.14)
+    border-radius: 15px
+    padding: 0
+    .header
+      padding-top: 29px
+      padding-left: 29px
+      padding-right: 29px
+      h4
+        margin-bottom: 4px
+      .information-under-name
+        display: flex
+        padding-bottom: 31px
+        .status
+          +statusProduct
+        p
+          color: $carbon-mid-400
+    .balances
+      padding-top: 0px
+      padding-bottom: 32px
+      padding-left: 29px
+      padding-right: 20px
+      position: relative
+      h5
+        color: $carbon-mid-400
+        margin-bottom: 5px
+      .main-balance
+        font-size: $f-30 + 4
+        color: $carbon-dark-900
+        letter-spacing: -1.1px
+        min-height: 41px
+    .line
+      height: 1px
+      width: 100%
+      background: $carbon-light-900
+    .secondary-balances
+      position: relative
+      padding: 29px
+      .secondary-item, .secondary-item-tooltip
+        display: flex
+        margin-bottom: 9px
+        p
+          font-size: $f-14
+          color: $carbon-mid-400
+        .text-detail
+          font-size: $f-14 - 3
+        h4
+          margin-left: auto
+          app-btn
+            position: relative
+            top: -30px
+            right: -20px
+        a
+          font-weight: normal
+  .cont-movements
+    width: 100%
+    height: 100%
+    border-radius: 15px
+    background-color: $carbon-light-100
+    margin-right: 26px
+    .table-header
+      padding: 20px 24px
+      font-size: $f-14 + 4
+      display: flex
+      border-bottom: 1px solid $gray2
+    .detail
+      position: relative
+      padding: 22px 26px
+      .secondary-item
+        display: flex
+        margin-bottom: 15px
+        p
+          font-size: $f-14
+        h4
+          text-align: right
+          font-weight: normal
+          margin-left: auto
+          font-size: $f-14
+
+@media only screen and (max-width: $break-tablet)
+  .cont-detail
+    display: block
+    .detail-smart-card-payrolloans
+      min-width: 90%
+      max-width: 90%
+      margin: 0 auto 32px
+      min-height: 320px
+      .balances
+        padding-bottom: 22px
+        &::after
+          width: 1000px
+    .cont-movements
+      width: 100%
+      h4
+        width: 50%
+
+@media only screen and (max-width: $break-mobile)
+  .cont-detail
+    display: block
+    .detail-smart-card-payrolloans
+      min-width: 90%
+      max-width: 90%
+      margin: 0 auto 32px
+      min-height: 320px
+      .balances
+        padding-bottom: 22px
+        &::after
+          width: 475px
+    .cont-movements
+      min-width: 100%
+      max-width: 100%
+      h4
+        width: 50%

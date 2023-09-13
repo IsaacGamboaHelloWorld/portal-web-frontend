@@ -1,0 +1,131 @@
+@import '../../../../../sass/variables'
+@import '../../../../../sass/colors'
+@import '../../../../../sass/mixins'
+
+.product-cdt-btn
+  border-radius: 15px
+  background: $hlt-600
+  height: 190px
+  width: 100%
+  transition: .3s
+  text-align: center
+  margin-right: 8px
+  .img-card-offer
+    position: absolute
+    width: 148px
+    height: 208px
+    object-fit: contain
+    top: -18px
+    right: 0
+  figcaption
+    text-align: left
+    .title-offer
+      width: 182px
+      height: 50px
+      margin: 0 0 3.6px
+      font-size: 21px
+      font-weight: bold
+      font-stretch: normal
+      font-style: normal
+      line-height: 1.2
+      letter-spacing: normal
+      color: $carbon-light-100
+      position: absolute
+      top: 24px
+      left: 5%
+    .desc-offer
+      width: 182px
+      height: 36px
+      margin: 3.6px 0 12px
+      font-family: Inter
+      font-size: 12px
+      font-weight: 500
+      font-stretch: normal
+      font-style: normal
+      line-height: 1.5
+      letter-spacing: normal
+      color: $carbon-light-100
+      position: absolute
+      top: 78px
+      left: 5%
+    .btn-offer
+      width: 128px
+      height: 40px
+      margin: 12px 21px 0 0
+      padding: 8px 24px
+      border-radius: 8px
+      background-color: $carbon-light-100
+      position: absolute
+      color: black
+      line-height: 0
+      padding: 0
+      left: 5%
+      bottom: 20px
+  &:hover
+    border-color: $g-500
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+  .product-cdt-btn
+    width: 100%
+    .img-card-offer
+      top: -18px
+      width: 148px
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+  .product-cdt-btn
+    width: 100%
+    .img-card-offer
+      top: -18px
+      right: -1px
+      width: 148px
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+  .product-cdt-btn
+    width: 296px
+    .img-card-offer
+      top: -18px
+      right: -1px
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+  .product-cdt-btn
+    width: 100%
+    overflow: unset
+    display: flex
+    justify-content: center
+    flex-direction: row-reverse
+    .img-card-offer
+      top: -18px
+      right: -10px
+      width: 148px
+      position: relative
+    figcaption
+      width: 190px
+      argin-right: 40px
+      position: relative
+      .title-offer
+        left: 0
+      .desc-offer
+        left: 0
+      .btn-offer
+        left: 0
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .product-cdt-btn
+    width: 100%
+    .img-card-offer
+      top: -18px
+      object-fit: fill
+      background-size: cover
+      border-top-right-radius: 18px
+      border-bottom-right-radius: 18px
+@media only screen and (max-width: $break-small-phone)
+  .product-cdt-btn
+    width: 100%
+    .img-card-offer
+      top: -18px
+      object-fit: fill
+      background-size: cover
+      border-top-right-radius: 18px
+      border-bottom-right-radius: 18px
+    figcaption
+      .title-offer
+        left: 5%
+      .desc-offer
+        left: 5%
+      .btn-offer
+        left: 5%

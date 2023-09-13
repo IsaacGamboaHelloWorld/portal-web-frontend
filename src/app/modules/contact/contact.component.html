@@ -1,0 +1,80 @@
+<app-template-system
+  [sectionHome]="false" [sectionContent]="content"
+  [fullContent]="false" [navigatorActive]="false" [backGreenHeight]="false">
+</app-template-system>
+
+<ng-template #content>
+  <div class="container-contact">
+    <div class="container-main-contact">
+      <img [src]="'/idea.png' | imageCdn" alt="">
+      <p class="title">{{'VIEW_CONTACT.TITLE' | translate}}</p>
+      <p class="sub-title">{{'VIEW_CONTACT.SUB_TITLE' | translate}}</p>
+    </div>
+    <div class="container-cards-contact">
+      <div class="card">
+        <div class="column small-6 medium-6 large-6" (click)="openModal();visibleModal = true">
+          <div class="card-phone">
+            <div class="cont-icon-card phone">
+              <img [src]="'/icons-basic-phone@3x.png' | imageCdn" alt="">
+            </div>
+            <div class="cont-text-card">
+              <ul>
+                <li class="head">{{'VIEW_CONTACT.CARD_ONE.TITLE' | translate}}</li>
+                <li><span class="text-light">{{'VIEW_CONTACT.CARD_ONE.LIGHT_TEXT1' | translate}}</span> {{'VIEW_CONTACT.CARD_ONE.TEXT1' | translate}}</li>
+                <li><span class="text-light">{{'VIEW_CONTACT.CARD_ONE.LIGHT_TEXT2' | translate}}</span> {{'VIEW_CONTACT.CARD_ONE.TEXT2' | translate}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="column small-6 medium-6 large-6">
+          <div class="card-credit">
+            <div class="cont-icon-card credit">
+              <img [src]="'/icons-basic-credit-cards@3x.png' | imageCdn" alt="">
+            </div>
+            <div class="cont-text-card">
+              <ul>
+                <li class="head">{{'VIEW_CONTACT.CARD_TWO.TITLE' | translate}}</li>
+                <li>{{'VIEW_CONTACT.CARD_TWO.TEXT1' | translate}}</li>
+                <li>{{'VIEW_CONTACT.CARD_TWO.TEXT2' | translate}}</li>
+                <li>{{'VIEW_CONTACT.CARD_TWO.TEXT3' | translate}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="column small-6 medium-6 large-6">
+          <div class="card-credit-basic">
+            <div class="cont-icon-card credit">
+              <img [src]="'/icons-basic-credit-card@3x.png' | imageCdn" alt="">
+            </div>
+            <div class="cont-text-card">
+              <ul>
+                <li class="head">{{'VIEW_CONTACT.CARD_THREE.TITLE' | translate}}</li>
+                <li>{{'VIEW_CONTACT.CARD_THREE.TEXT1' | translate}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="column small-6 medium-6 large-6">
+          <div class="card-office">
+            <div class="cont-icon-card credit">
+              <img [src]="'/icons-basic-office@3x.png' | imageCdn" alt="">
+            </div>
+            <div class="cont-text-card">
+              <ul>
+                <li class="head">{{'VIEW_CONTACT.CARD_FOUR.TITLE' | translate}}</li>
+                <li>{{'VIEW_CONTACT.CARD_FOUR.TEXT1' | translate}} <span class="link-text" (click)="redirect()">{{'VIEW_CONTACT.CARD_FOUR.LINK_TEXT' | translate}}</span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="visibleModal">
+    <app-card-change-data [append]="modal" [modalContact]="visibleModal" [options]="optionsContact" (event)="select($event)" [dismissible]="false"></app-card-change-data>
+  </div>
+</ng-template>
+
+<div #modal></div>

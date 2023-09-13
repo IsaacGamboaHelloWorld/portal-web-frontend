@@ -1,0 +1,47 @@
+<div class="animated fade-in-up cont-home-biometric" *ngIf="validRegister">
+  <div class="cont-title">
+    <h2 class="title">{{'AUTH.ENROLLMENT.BIOMETRIC.HOME.TITLE' | translate}}</h2>
+    <p class="desc">{{'AUTH.ENROLLMENT.BIOMETRIC.HOME.DESC' | translate}}</p>
+  </div> 
+  <div class="label-action form-group">
+    <h4 class="label-action">{{'AUTH.ENROLLMENT.BIOMETRIC.HOME.DESC_ACTION' | translate}}</h4>
+  </div>
+  <div class="cont-cards form-group">
+    <ul class="cont-options">
+      <li *ngFor="let item of list">
+        <div class="box">
+          <div class="cont-dots" (click)="more(item)">
+            <img [src]="'/24-essential-dots-1.svg' | imageCdn" alt="icon">
+          </div>
+          <div class="cont-icon">
+            <img [src]="'/24-essential-cellphone.svg' | imageCdn" alt="icon">
+          </div>
+          <span class="text-tributary">
+            {{item['name']}}
+          </span>
+          <p class="status-biometric" *ngIf="item['active']">
+            {{'AUTH.ENROLLMENT.BIOMETRIC.HOME.STATE' | translate}}
+          </p>
+          <div class="footer-text">
+            <!--
+            <p class="last-label-date">Último ingreso</p>
+            <p class="last-date">04/06/2021, 8:30 a.m.</p>
+            -->
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="space-div"></div>
+    <div class="cont-options" (click)="create()" *ngIf="!list.length">
+      <div class="box box-create">
+        <div class="cont-icon">
+          <img [src]="'/24-essential-add-27.svg' | imageCdn" alt="icon">
+        </div>
+        <span class="text-create-biometric">
+          {{'AUTH.ENROLLMENT.BIOMETRIC.HOME.CONFIG' | translate}}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+

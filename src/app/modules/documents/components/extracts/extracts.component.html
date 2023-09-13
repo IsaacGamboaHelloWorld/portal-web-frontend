@@ -1,0 +1,79 @@
+<app-template-system [title]="'DOCUMENTS.EXTRACTS.DETAIL.TITLE' | translate" [sectionHome]="true" [sectionContent]="content" [fullContent]="true" [navigatorActive]="true" [backUrl]="navigate.documents_ds" [showClose]="false">
+</app-template-system>
+
+<ng-template #content>
+  <div class="container-extracts">
+    <form class="form-global" [formGroup]="formExtracts">
+      <p class="title">{{'DOCUMENTS.EXTRACTS.DETAIL.ACTION' | translate}}</p>
+      <div class="form-group">
+        <div class="cont-section">
+          <button class="left" type="button" (click)="onLeft()" [ngClass]="{'left-invested': iconColorLeft}" *ngIf="(products | async).length > 1">
+            <img class="arrow-left" alt="">
+          </button>
+          <ul class="cont-options scroll-horizontal" #scroll (scroll)="scrollHandler($event)">
+            <li *ngFor="let product of (products | async); let i=index">
+              <div class="box" (click)="setBorder(product.accountInformation)" [ngClass]="{'box-border': typeActive === product.accountInformation}"
+                *ngIf="(product?.productAccountBalances?.saldo_disponible || product?.productAccountBalances?.cupo_total) else loadingTemplate">
+                <label class="container-radio">
+                  <input type="radio" name="optionCertificate" [value]="product" [checked]="typeActive === product.accountInformation">
+                  <span class="checkmark"></span>
+                </label>
+                <div class="cont-text">
+                  <img [src]="setImg(product?.accountInformation?.productType, product.id) ? (setImg(product?.accountInformation?.productType, product.id) | imageCdn) : ''" alt="">
+                  <p class="name">{{'PRODUCT_TYPES.' + product?.accountInformation?.productType | translate}}</p>
+                  <p class="number">{{'DOCUMENTS.CERTIFICATE.DETAIL.NUMBER' | translate}} {{product?.accountInformation?.accountIdentifier | slice: -4}}</p>
+                  <p class="amount">
+                    {{
+                      product?.productAccountBalances?.saldo_disponible?.amount ?
+                      (product?.productAccountBalances?.saldo_disponible?.amount | currencyFormat) :
+                      (product?.productAccountBalances?.cupo_total?.amount | currencyFormat)
+                    }}
+                  </p>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <button class="right" type="button" (click)="onRight()" [ngClass]="{'right-invested': iconColorRight}" *ngIf="(products | async).length > 1">
+            <img class="arrow-right" alt="">
+          </button>
+        </div>
+      </div>
+      <div class="cont-form">
+        <div class="form-group" *ngIf="(periodsData$ | async) else periodNotFound">
+          <app-dropdown-select
+            [label]="'DOCUMENTS.EXTRACTS.DETAIL.PERIOD'"
+            [form]="formExtracts"
+            [property]="'period'"
+            [fixedOptions]="select"
+            [advancedLabel]="false"
+            (event)="selectPeriod($event)"
+            ></app-dropdown-select>
+        </div>
+      </div>
+      <div class="form-group cont-download">
+        <app-btn (clickBtn)="download()"
+          [disabled]="loading || formExtracts.invalid"
+          [text]="(again ? 'DOCUMENTS.EXTRACTS.DETAIL.AGAIN' : 'DOCUMENTS.EXTRACTS.DETAIL.BTN') | translate"
+          [isLoading]="loading"
+          [class]="'btn-primary'"
+        ></app-btn>
+      </div>
+    </form>
+  </div>
+
+  <ng-template #loadingTemplate>
+    <div class="box">
+      <div class="itemLoading">
+        <p class="title-loading placeholder"></p>
+        <p class="text-loading placeholder"></p>
+        <p class="value-loading placeholder "></p>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #periodNotFound>
+    <div class="form-group cont-not-found" *ngIf="viewNotFound">
+      <img [src]="'/technical-problems.png' | imageCdn" [alt]="'LOADING' | translate">
+      <p class="name">{{'DOCUMENTS.EXTRACTS.DETAIL.NOT_FOUND' | translate}}</p>
+    </div>
+  </ng-template>
+</ng-template>

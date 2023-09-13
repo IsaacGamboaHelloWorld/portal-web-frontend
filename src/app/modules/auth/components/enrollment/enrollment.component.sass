@@ -1,0 +1,76 @@
+@import '~sass/colors'
+@import '~sass/variables'
+@import '~sass/mixins'
+@import 'globalVars'
+
+.cont-enrollment-ds
+  width: 298px
+  .line-time
+    margin: 20px auto
+    .line
+      width: calc(100% - 30px)
+  .recaptcha
+    height: 20px
+    margin: 48px 4px 0 5px
+    font-family: Inter
+    font-size: 11px
+    font-weight: 500
+    font-stretch: normal
+    font-style: normal
+    line-height: 1.82
+    letter-spacing: normal
+    color: $cbn-mid-400
+    .link-recaptcha
+      color: $act-900
+      cursor: pointer
+.reset-process
+  display: flex
+  align-items: center
+  height: auto
+  text-align: left
+  margin-bottom: 13px
+  top: 34px
+  left: 34px
+  position: absolute
+  color: $gray3
+  font-size: $f-14
+  cursor: pointer
+  .cont-go-back
+    position: relative
+    width: 24px
+    height: 24px
+    background-color: $g-100
+    border-radius: 200px
+    .go-back
+      width: 24px
+      height: 24px
+      background-color: $g-500
+      mask: url('#{$base-url}/images/arrow-left.svg') no-repeat center / contain
+      -webkit-mask: url('#{$base-url}/images/arrow-left.svg') no-repeat center / contain
+  span
+    position: relative
+    margin-left: 10px
+    font-weight: 500
+    color: $cbn-900
+
+@media only screen and (max-width: $break-small-phone)
+  .cont-enrollment-ds
+    width: 100%
+    .reset-process
+      left: 0
+      top: 24px
+      position: relative
+
+@media only screen and (min-width: $break-mobile-min) and (max-width: $break-mobile-max)
+  .cont-enrollment-ds
+    .reset-process
+      left: 0
+      top: 14px
+      position: relative
+@media only screen and (min-width: $break-small-table-min) and (max-width: $break-small-table-max)
+@media only screen and (min-width: $break-medium-table-portrait-min) and (max-width: $break-medium-table-portrait-max)
+@media only screen and (min-width: $break-medium-table-landscape-min) and (max-width: $break-medium-table-landscape-max)
+@media only screen and (min-width: $break-desktop-min) and (max-width: $break-desktop-max)
+@media only screen and (min-width: $break-desktop-lg-min) and (max-width: $break-desktop-lg-max)
+@media only screen and (min-width: $break-desktop-xlg-min)
+

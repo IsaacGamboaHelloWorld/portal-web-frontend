@@ -1,0 +1,16 @@
+<app-template-system
+    [title]="'TRANSFER.FAST_TRANSFER.TITLE' | translate"
+    [sectionContent]="content"
+    [navigatorActive]="true"
+    [currentStep]="viewBack ? (step$ | async) : maxStep"
+    [maxStep]="maxStep"
+    [showClose]="true"
+    [fullContent]="true"
+    [backUrl]="backUrl"
+    (eventModal)="backHome($event)"
+></app-template-system>
+<ng-template #content>
+    <div class="main-transfer main-fast-transfer width-height-auto">
+        <router-outlet></router-outlet>
+    </div>
+</ng-template>

@@ -1,0 +1,39 @@
+<div class="ds-input {{typeInput}}" [formGroup]="form">
+    <img *ngIf="iconLeft" class="left" [src]="iconLeft" alt="icon left">
+    <div class="ds-icon-right">
+        <img *ngIf="iconRight && !action" class="right" [src]="iconRight" alt="icon right" (click)="clickIcon()">
+        <span>{{textTooltip}}</span>
+    </div>
+    <strong *ngIf="action">{{action}}</strong>
+    <label *ngIf="!!label">{{ label }}</label>
+    <input *ngIf="!useCurrency"
+        #dsInput
+        [type]="typeText"
+        [value]="value"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        (input)="valuechange($event)"
+        (keypress)="keypress($event)"
+        (keyup)="keyup($event)"
+        (keydown)="keydown($event)"
+        (blur)="onBlur($event)"
+        [formControlName]="(subProperty ? property + subProperty: property)"
+        autocomplete="new-password"
+        >
+    <input *ngIf="useCurrency"
+        #dsInput
+        appCurrency [form]="form" [property]="property"
+        [type]="typeText"
+        [value]="value"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        (input)="valuechange($event)"
+        (keypress)="keypress($event)"
+        (keyup)="keyup($event)"
+        (keydown)="keydown($event)"
+        (blur)="onBlur($event)"
+        [formControlName]="(subProperty ? property + subProperty: property)"
+        autocomplete="new-password"
+        >
+    <small *ngIf="!!caption">{{caption}}</small>
+</div>

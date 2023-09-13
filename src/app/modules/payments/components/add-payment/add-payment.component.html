@@ -1,0 +1,17 @@
+<div class="add-payment-component">
+    <div class="navigation-opts not-select" *ngIf="!(step === 6 || step === 5)">
+        <a [routerLink]="navigate.paymentsOld"><em class="icon-arrow-left"></em> {{'GO_BACK' | translate}}</a>
+    </div>
+    <div class="add-head-payment">
+        <h2>{{'PAYMENTS.PAYMENTS_LIST_TITLE' | translate}}</h2>
+    </div>
+    <div class="add-payment-option">
+        <a class="btn-graph animated shadow-1dp active" (click)="setPaymentType('public')">
+            <app-lottie-animation [width]="'72px'" [height]="'68px'" [path]="baseAssets + '/assets/animations/serviciospublicos.json'" [renderer]="'canvas'"></app-lottie-animation>
+            <span>{{'PAYMENTS.PUBLIC_BILL' | translate}}</span>
+        </a>
+    </div>
+    <div class="payments-list">
+        <app-payments-list></app-payments-list>
+    </div>
+</div>

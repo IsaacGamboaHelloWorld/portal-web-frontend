@@ -1,0 +1,66 @@
+<div class="container-edit-profile">
+    <div class="cont-edit-profile">
+        <div class="not-space-mobile">
+            <div class="head-nav not-select">
+                <a (click)="back()"><em class="icon-arrow-back"></em> {{'REGISTER_PRODUCT_AFFILIATION.BACK_BTN' | translate}}</a>
+                <a (click)="openAlert()" class="close-transfer">{{'REGISTER_PRODUCT_AFFILIATION.CLOSE_BTN' | translate}} <em class="icon-x-circle"></em></a>
+            </div>
+            <div class="top-edit-profile-section">
+                <h2>{{'CUSTOMER_PROFILE.EDIT_PROFILE.TITLE' | translate}}</h2>
+            </div>
+            <div class="align-edit-profile">
+                <div class="edit-card-container">
+                    <div class="edit-profile-section-card">
+                        <app-section-header [iconPath]="'/profile/education-data@3x.png'" [title]="'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.EDUCATION_DATA.TITLE' | translate"></app-section-header>
+                        <div class="bottom-profile-section-card" *ngIf="(user$ | async)?.data as user">
+                            <form [formGroup]="formData" *ngIf="(catalogs$ | async)?.data">
+                                <div class="bottom-profile-section-container">
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.EDUCATION_DATA.EDUCATION_LEVEL_FIELD' | translate}}
+                                        </span>
+                                        <ng-select
+                                            formControlName="educationLevelCode"
+                                            [items]="(educationLevelElements$ | async)"
+                                            bindLabel="longName"
+                                            [closeOnSelect]="true"
+                                            [multiple]="false"
+                                            [hideSelected]="true"
+                                            placeholder="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.EDUCATION_DATA.EDUCATION_LEVEL_PLACEHOLDER_FIELD' | translate}}"
+                                            typeToSearchText="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.EDUCATION_DATA.EDUCATION_LEVEL_TYPEAHEAD_FIELD' | translate}}"
+                                            markFirst="true"
+                                            [typeahead]="subject$">
+                                            </ng-select>
+                                    </div>
+
+                                    <div class="item">
+                                        <span>
+                                            {{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.EDUCATION_DATA.EDUCATION_DEGREE_FIELD' | translate}}
+                                        </span>
+                                        <ng-select
+                                            formControlName="degreeReceivedCode"
+                                            [items]="(educationDegreeElements$ | async)"
+                                            bindLabel="longName"
+                                            [closeOnSelect]="true"
+                                            [multiple]="false"
+                                            placeholder="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.EDUCATION_DATA.EDUCATION_DEGREE_PLACEHOLDER_FIELD' | translate}}"
+                                            typeToSearchText="{{'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.EDUCATION_DATA.EDUCATION_DEGREE_TYPEAHEAD_FIELD' | translate}}"
+                                            markFirst="true"
+                                            searchable="true"
+                                            [hideSelected]="false"
+                                            [typeahead]="subject$">
+                                            </ng-select>
+                                    </div>
+                                </div>
+                                <fieldset class="form-group">
+                                    <app-btn [class]="'btn-primary'" [disabled]="(formData && formData.invalid) || (updateProfileResponse$ | async)?.loading" [text]="'CUSTOMER_PROFILE.EDIT_PROFILE.SECTIONS.EDUCATION_DATA.SAVE_BTN' | translate" [isLoading]="(updateProfileResponse$ | async)?.loading" (clickBtn)="submitData()"></app-btn>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

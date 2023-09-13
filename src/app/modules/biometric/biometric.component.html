@@ -1,0 +1,14 @@
+<app-template-system
+  [sectionContent]="content"
+  [fullContent]="true"
+  [navigatorActive]="true"
+  [showClose]="true"
+  [backUrl]="backUrl"
+  (eventModal)="backHome($event)"
+></app-template-system>
+
+<ng-template #content>
+  <div class="container-biometric">
+    <router-outlet></router-outlet>
+  </div>
+</ng-template>

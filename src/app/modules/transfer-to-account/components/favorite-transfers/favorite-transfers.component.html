@@ -1,0 +1,14 @@
+<section class="favorite-transfer">
+  <p>{{'FAVORITE.TITLE' | translate}} <a *ngIf="(optionsModule$ | async)?.data?.transfers?.options?.edit" (click)="toggleDelete()" class="link">{{(!showDelete ? 'EDIT' : 'CANCEL') | translate }}</a></p>
+  <ul class="scroll-horizontal">
+    <li *ngFor="let favorite of favorites">
+      <button type="button" (click)="fetchDeleteFavorite(favorite)" *ngIf="showDelete" class="animated bounceIn"><em class="icon-delete"></em></button>
+      <div class="favorite-item" (click)="setTransferFavorite(favorite)">
+        <em class="icon-transfer"></em>
+        <p>{{ favorite?.accountToInformation?.name }}</p>
+        <small>{{'PRODUCT_TYPES_SMALL.' + favorite?.accountToInformation?.productType | translate }} {{favorite?.accountToInformation?.accountIdentifier | slice: -4}}
+          {{favorite?.transferInformation?.amount | currencyFormat}}</small>
+      </div>
+    </li>
+  </ul>
+</section>

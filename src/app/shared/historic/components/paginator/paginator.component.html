@@ -1,0 +1,12 @@
+<div class="pager-container-historic">
+  <p>{{'MOVEMENT.RESULT' | translate}} {{totalRecords}}</p>
+  <div class="btns-contaniner">
+      <a (click)="prevPage()">
+          <i class="left icon-arrow2-right"></i>
+      </a>
+      <span>{{objPaginator['page']}} {{'MOVEMENT.OF' | translate}} {{objPaginator['total_pages']}}</span>
+      <a (click)="nextPage()">
+          <i class="icon-arrow2-right"></i>
+      </a>
+  </div>
+</div>

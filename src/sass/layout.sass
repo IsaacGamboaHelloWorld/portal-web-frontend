@@ -1,0 +1,78 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.navigation-opts
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0 50px 24px
+  position: relative
+  a
+    color: $carbon-mid-400
+    transition: .3s
+    em
+      +inline(middle)
+      color: $gc-800
+      font-size: $f-14 + 4
+      padding: 1px
+      border: 1px solid $gc-800
+      border-radius: 100%
+      &.no-border
+        border: none
+        font-size: $f-14 + 8
+    &:hover
+      color: $carbon-dark-900
+    &.reverse
+      color: $carbon-light-100
+      margin-right: -10px
+      transition: .3s
+      em
+        color: $carbon-light-100
+        border: 1px solid $carbon-light-100
+    &.button-close
+      position: absolute
+      right: 50px
+      top: 24px
+
+.container-section
+  margin-top: 14px
+  .head-section-container
+    display: flex
+    justify-content: space-between
+    align-items: center
+    h2
+      font-weight: bold
+        padding: 0 8px
+  .body-section-container
+    display: flex
+    justify-content: center
+    align-items: center
+    min-height: 400px
+
+div
+  /* width */
+  ::-webkit-scrollbar
+    width: 4px
+    &:horizontal
+      display: none
+
+  /* Track */
+  ::-webkit-scrollbar-track
+    background: transparent
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb
+    background: $g-100
+    width: 8px
+    height: 48px
+    border-radius: 10px
+
+
+@media only screen and (max-width: $break-medium-table-portrait-max)
+  .navigation-opts
+    padding: 17px 14px 24px
+    a
+      color: $carbon-mid-400
+      &:nth-child(2)
+        margin: 0 -5px

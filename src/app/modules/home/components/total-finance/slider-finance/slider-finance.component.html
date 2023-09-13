@@ -1,0 +1,9 @@
+
+<div class="cont-slider-finance-wrapper">
+	<div class="cont-slider-items">
+		<div *ngFor="let slide of items">
+			<p>{{'HOME.ALL_AMOUNT.TYPES.' + slide.propertyName | uppercase | translate}}</p>
+			<span [innerHTML]="slide.amount | currencyFormat: true"></span>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,12 @@
+<div class="limit-onboarding">
+  <img class="limit-onboarding__image" [src]="'/money-cap.svg' | imageCdn" alt="">
+  <strong class="limit-onboarding__name" [innerHTML]="('LIMIT_MANAGEMENT.ONBOARDING.NAME' | translate)?.replace('\{\{name\}\}', (userInfoData$ | async)?.firstName)"></strong>
+  <p class="limit-onboarding__description" [innerHTML]="'LIMIT_MANAGEMENT.ONBOARDING.DESCRIPTION' | translate"></p>
+
+  <div class="limit-onboarding__button">
+    <app-btn (clickBtn)="emitClick()"
+      [text]="('LIMIT_MANAGEMENT.ONBOARDING.BUTTON' | translate)"
+      [class]="'btn btn-primary'">
+    </app-btn>
+  </div>
+</div>

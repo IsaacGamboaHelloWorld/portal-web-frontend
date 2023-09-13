@@ -1,0 +1,17 @@
+<div class="container-home-alerts">
+  <!--Mientras se le da uso a esta funcionalidad-->
+  <!--<div class="cont-search-alert">
+    <app-search></app-search>
+  </div>-->
+  <div class="cont-tags-alerts" *ngIf="(hasAlertUser$ | async)">
+    <app-tags (eventType)="typeEvent($event)"></app-tags>
+  </div>
+  <div class="new-alerts">
+    <app-new-alert (clickBtn)="create()"></app-new-alert>
+  </div>
+  <div class="my-alerts" *ngIf="(hasAlertUser$ | async)">
+    <div class="alerts-list" *ngFor="let item of alertsArray">
+      <app-list [data]="item"></app-list>
+    </div>
+  </div>
+</div>

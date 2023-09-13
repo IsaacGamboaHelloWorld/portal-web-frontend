@@ -1,0 +1,28 @@
+<div class="container-dates">
+  <div class="cont" *ngIf="viewToday" [ngClass]="{'cont-border': typeActive === optionOne}" (click)="setBorder('TODAY')">
+    <div class="cont-today">
+      <p><small>{{'PAYMENTS.FORM_THREE.TODAY' | translate}}</small></p>
+      <p class="date">{{today | date: 'dd/MMM/yyyy' | replace : '.' : '' | titlecase}}</p>
+    </div>
+    <div class="cont-radio">
+     <label class="container">
+      <input type="radio" id="option-1" name="scheduledTransfer" [value]="optionOne" [checked]="typeActive === optionOne">
+      <span class="checkmark"></span>
+    </label>
+    </div>
+  </div>
+  <div class="cont" (click)="setBorder('DATE')"  [ngClass]="{'cont-border': typeActive === optionTwo, 'cont-height': nRepeat >= 1}" *ngIf="viewCalendar">
+    <div class="cont-today" [ngClass]="{'cont-today-repeat': nRepeat >= 1}">
+      <p><small>{{'TRANSFER.FORM_THREE.SCHEDULED' | translate}}</small></p>
+      <p class="date" *ngIf="nRepeat >= 1">{{'TRANSFER.FORM_THREE.REPEAT.NUMBER_REPEAT' | translate: { number: nRepeat } }}</p>
+      <p class="date" *ngIf="nRepeat >= 1">{{namePeriodicity}}</p>
+      <p [ngClass]="{'date': dateSheduled}" class="text-date"><span *ngIf="nRepeat >= 1" class="date">Desde el</span> {{dateSheduled ? (dateSheduled | date: 'dd/MMM/yyyy' | replace : '.' : '' | titlecase ) : 'TRANSFER.FORM_THREE.REPEAT.DATE' | translate}}</p>
+    </div>
+    <div class="cont-radio">
+      <label class="container">
+        <input type="radio" id="option-2" name="scheduledTransfer" [value]="optionTwo" [checked]="typeActive === optionTwo">
+        <span class="checkmark" [ngClass]="{'checkmark-repeat': nRepeat >= 1}"></span>
+      </label>
+    </div>
+  </div>
+</div>

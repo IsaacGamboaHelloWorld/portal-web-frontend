@@ -1,0 +1,28 @@
+<div class="cont-step-three-pocket" *ngIf="formStepThree">
+    <form class="form-global" [formGroup]="formStepThree">
+        <fieldset class="form-group variation-field">
+            <label>{{'POCKETS.NEW.STEP_THREE.HOW_MUCH' | translate}}</label>
+            <input type="tel" class="input-bp" (keyup)="checkStart()" formControlName="amount" placeholder="$" appCurrency [form]="formStepThree" [property]="'amount'" pattern="^(?!\s.*$).*">
+            <div *ngIf="amountError1" class="error-msg">
+                {{'POCKETS.NEW.ERRORS.AMOUNT1' | translate}}
+            </div>
+            <div *ngIf="amountError2" class="error-msg">
+              {{'POCKETS.NEW.ERRORS.AMOUNT2' | translate}}
+          </div>
+        </fieldset>
+        <h3>{{'POCKETS.NEW.STEP_THREE.RECURSIVE_DEBIT' | translate}}</h3>
+        <fieldset class="form-group">
+            <label>{{'POCKETS.NEW.STEP_THREE.PERIODIC' | translate}}</label>
+            <input type="tel" class="input-bp" (keyup)="checkPeriodic()" formControlName="amountPeriodic" placeholder="$" appCurrency [form]="formStepThree" [property]="'amountPeriodic'" pattern="^(?!\s.*$).*">
+            <div *ngIf="periodicityError" class="error-msg">
+                {{'POCKETS.NEW.ERRORS.AMOUNT3' | translate}}
+            </div>
+        </fieldset>
+        <fieldset class="form-group">
+            <app-dropdown-select [label]="'POCKETS.NEW.STEP_THREE.WHEN_MOVE'" [form]="formStepThree" [property]="'period'" [fixedOptions]="options"></app-dropdown-select>
+        </fieldset>
+        <fieldset class="submit-step-three">
+            <app-btn [class]="'btn-primary'" [disabled]="formStepThree.invalid || (pocketInfo$ | async)?.returnedInfo.loading" [isLoading]="(pocketInfo$ | async)?.returnedInfo.loading" [text]="'POCKETS.NEW.STEP_THREE.BTN'  | translate" (clickBtn)="submitForm()"></app-btn>
+        </fieldset>
+    </form>
+</div>

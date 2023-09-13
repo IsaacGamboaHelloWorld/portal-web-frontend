@@ -1,0 +1,55 @@
+<div class="home-blocked-container  not-space-mobile">
+  <div class="head-blocked-prods">
+    <h2>{{ (typeOptionCards.cards === typeSelected ? 'BLOCK_PRODS.TITLE' : 'BLOCK_PRODS.TITLE_ACCOUNT') | translate}}</h2>
+  </div>
+  <div class="lock-products-container">
+    <div class="lock-type">
+      <div class="options"
+      [ngClass]="{ 'bk-transparent': 
+      (optionsModule$ | async)?.data?.block_product?.options?.option_account === false || 
+      (optionsModule$ | async)?.data?.block_product?.options?.option_card === false
+    }">
+    <button class="option-type" [ngClass]="{'selected': typeOptionCards.cards === typeSelected}" *ngIf="(optionsModule$ | async)?.data?.block_product?.options?.option_card"
+    (click)="changeSelectedType(typeOptionCards.cards)">{{'BLOCK_PRODS.CARDS_SECTION.TITLE' | translate}}</button>
+    <button class="option-type" [ngClass]="{'selected': typeOptionCards.account === typeSelected}" *ngIf="(optionsModule$ | async)?.data?.block_product?.options?.option_account"
+    (click)="changeSelectedType(typeOptionCards.account)">{{'BLOCK_PRODS.ACCOUNTS_SECTION.TITLE' | translate}}</button>
+  </div>
+</div>
+
+<ng-container *ngIf="typeOptionCards.cards === typeSelected">
+  <ng-container 
+  *ngIf="((optionsModule$ | async)?.data?.block_product?.options?.credit_card && (productsTC$ | async)?.length > 0) || 
+  ((optionsModule$ | async)?.data?.block_product?.options?.debit_card && (debitCardListState$ | async)?.success && !!(debitCardListState$ | async)?.data?.debitCards && (debitCardListState$ | async)?.data?.debitCards?.length > 0);
+  else noCreditCard">
+  <div class="selected-view bg-cards">
+    <app-cards-list-blocked [productsTC]="productsTC$ | async"></app-cards-list-blocked>
+  </div>
+</ng-container>
+</ng-container>
+
+<div class="selected-view" *ngIf="typeOptionCards.account === typeSelected">
+  <app-accounts-list-blocked></app-accounts-list-blocked>
+</div>
+<div class="common-lock-link-container">
+  <p [innerHTML]="'BLOCK_PRODS.LINK_FOOTER' | translate"></p>
+</div>
+</div>
+
+<ng-template #noCreditCard>
+  <div class="container-no-credit-card">
+    <div class="icon">
+      <img [src]="'/24-essential-sticker-14.svg' | imageCdn"
+      [alt]="'BLOCK_PRODS.CARDS_SECTION.NO_PRODUCTS.TITLE' | translate">
+    </div>
+    <strong class="title"> {{ 'BLOCK_PRODS.CARDS_SECTION.NO_PRODUCTS.TITLE' | translate }} </strong>
+    <p class="description"> {{ 'BLOCK_PRODS.CARDS_SECTION.NO_PRODUCTS.DESCRIPTION' | translate }} </p>
+    <app-btn
+    (clickBtn)="retryLoadDebitCardList()"
+    [text]="'BLOCK_PRODS.CARDS_SECTION.NO_PRODUCTS.RETRY' | translate"
+    [id]="'btn-step-one'"
+    [isLoading]="loading"
+    [class]="'btn-primary'"
+    ></app-btn>
+  </div>
+</ng-template>
+</div>

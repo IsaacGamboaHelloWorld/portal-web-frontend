@@ -1,0 +1,46 @@
+<ng-container *ngIf="!loading else loadingState">
+    <div class="card-alert shadow-1dp">
+        <div class="card-alert-header">
+            <div class="img-back">
+                <img [src]="'/cards.png' | imageCdn" alt="">
+            </div>
+            <!--<p>{{data?.alert?.groupName}} - {{data?.product?.accountId | slice:-4}}</p>-->
+            <p>Tarjeta de crédito 9010</p>
+            <!--<app-checkbox-slide [check]="data?.status?.description==='ACTIVO'" [hidelabel]="true"></app-checkbox-slide>-->
+        </div>
+        <div class="card-alert-body">
+            <ul>
+                <!--<li><em class="icon-check"></em>{{data?.alert?.name}}</li>
+                <li *ngFor="let target of data?.target"><em class="icon-check"></em>Destino: {{target.value}}</li>-->
+                <!--Mock-->
+                <li><em class="icon-check"></em><span>Recordatorio de fecha limite de pago Master Card.</span></li>
+                <li><em class="icon-check"></em>Destino: alejandraperez@gmail.com</li>
+            </ul>
+        </div>
+        <div class="card-alert-footer">
+            <a class="link">Editar destino <em class="icon-edit"></em></a>
+            <a class="link delete">Eliminar <em class="icon-delete"></em></a>
+        </div>
+    </div>
+</ng-container>
+
+<ng-template #loadingState>
+    <div class="card-alert shadow-1dp">
+        <div class="card-alert-header-loading">
+            <div class="card-info-loading img-back loading-global">
+                <div class="icon placeholder width-100"></div>
+            </div>
+            <div class="card-info-loading title loading-global">
+                <div class="icon placeholder width-100"></div>
+            </div>
+        </div>
+        <div class="card-alert-header-loading-body">
+            <div class="card-info-loading loading-global">
+                <div class="icon placeholder width-100"></div>
+            </div>
+            <div class="card-info-loading loading-global">
+                <div class="icon placeholder width-100"></div>
+            </div>
+        </div>
+    </div>
+</ng-template>

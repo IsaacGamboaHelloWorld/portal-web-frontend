@@ -1,0 +1,52 @@
+<ng-container *ngIf="!loading else loadingState">
+    <ng-container *ngIf="!nodata; else noData">
+        <div class="card-next shadow-1dp">
+            <div class="card-enterprise">{{'BANKS.'+enterprise | translate }}</div>
+            <div class="card-info-options">
+                <div class="card-info-payment">
+                    <h4><img [src]="(ref | typeCreditCard)?.img | imageCdn" alt="">{{'PRODUCT_TYPES.'+nameService | translate}}</h4>
+                    <p *ngIf="ref">{{'PAYMENTSV2.SHARED_COPY.LBL_NUMBER' | translate}} {{ref | creditCardMask | creditCardHidden}}</p>
+                </div>
+                <ng-container *ngIf="!data?.lastTransactionDate">
+                    <div class="card-info-btn">
+                        <button (click)="pay()">{{'PAYMENTSV2.SHARED_COPY.BTN_PAY' | translate}}</button>
+                    </div>
+                </ng-container>
+            </div>
+            <ng-container *ngIf="data?.lastTransactionDate">
+                <div class="card-info-date">{{'PAYMENTSV2.SHARED_COPY.LBL_LAST_PAYMENT' | translate}}: {{data?.lastTransactionDate | date: 'dd/MMM/yyyy' | replace : '.' : ''}}</div>
+            </ng-container>
+            <ng-container *ngIf="!data?.lastTransactionDate">
+                <div class="card-info-date" [ngClass]="{'green': programmed}" *ngIf="programmed">{{'PAYMENTSV2.SHARED_COPY.LBL_PROGRAMED' | translate}}: {{date | date: 'dd/MMM/yyyy' | replace : '.' : ''}}</div>
+                <div class="card-info-date" [ngClass]="{'green': programmed}" *ngIf="!programmed">{{'PAYMENTSV2.SHARED_COPY.LBL_OUTDATE' | translate}}: {{date | date: 'dd/MMM/yyyy' | replace : '.' : ''}}</div>
+            </ng-container>
+        </div>
+    </ng-container>
+</ng-container>
+<ng-template #loadingState>
+    <div class="card-next shadow-1dp">
+        <div class="card-info-loading title loading-global">
+            <div class="icon placeholder width-40"></div>
+        </div>
+        <div class="card-info-loading loading-global">
+            <div class="icon placeholder width-40"></div>
+        </div>
+        <div class="card-info-loading loading-global">
+            <div class="icon placeholder width-60"></div>
+        </div>
+        <div class="card-info-loading loading-global">
+            <div class="icon placeholder width-40"></div>
+        </div>
+    </div>
+</ng-template>
+<ng-template #noData>
+    <div class="card-next shadow-1dp no-data">
+        <img [src]="'/success.png' | imageCdn" alt=""/>
+        <div class="card-info-options">
+            <div class="card-info-payment">
+                <h4>{{ 'PAYMENTSV2.FINANCIAL_OP.SECTIONS.FAVORITE.NO_DATA.TITLE' | translate}}</h4>
+                <p>{{ 'PAYMENTSV2.FINANCIAL_OP.SECTIONS.FAVORITE.NO_DATA.DESCRIPTION' | translate}}</p>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,34 @@
+<article class="product-global product-cdt shadow-4dp hover-16dp {{nameBank}}">
+    <div class="product-global-content">
+        <div class="product-global-account-type">
+            <div class="cont-img">
+                <img [src]="'/24-essential-analytics-1.svg' | imageCdn" [alt]="'PRODUCT_TYPES.CERTIFIED_DEPOSIT_TERM' | translate">
+            </div>
+            <div class="product-global-account-type-info">
+                <p>{{product?.accountInformation?.productName}}</p>
+                <small>{{'PRODUCT.NUMBER' | translate}}. {{ hasNameBank ? product?.accountInformation?.accountIdentifier : product.id}}</small>
+            </div>
+        </div>
+        <ng-container *ngIf="hasProduct; else loadingOrError">
+          <div class="product-global-account-amount">
+              <p>{{'PRODUCT.CDT.INVEST_VALUE' | translate}}</p>
+              <strong [innerHTML]="product?.productAccountBalances?.valor_constitucion?.amount | currencyFormat: true"></strong>
+          </div>
+        </ng-container>
+    </div>
+    <span *ngIf="hasProduct" class="product-global-footer-line"></span>
+    <div class="product-global-footer" *ngIf="showFooter(product?.closedDate)">
+        <div>
+            <span>{{'PRODUCT.CDT.DATE' | translate}}</span>
+            <strong class="capitalize">{{product?.closedDate | date: 'dd/MMM/yyyy' | replace : '.' : '' }}</strong>
+        </div>
+        <div>
+            <span><!--{{'MOVEMENT.CDT.TERM' | translate}}--></span>
+            <strong><!--{{product?.term?.count}} {{product?.term?.units | replace : 'Days' : 'Días'}}--></strong>
+        </div>
+    </div>
+</article>
+
+<ng-template #loadingOrError>
+  <app-product-loading-error [product]="product"></app-product-loading-error>
+</ng-template>

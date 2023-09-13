@@ -1,0 +1,7 @@
+export enum Action {
+  ALLOW = 'ALLOW',
+  CHALLENGE = 'CHALLENGE',
+  DENY = 'DENY',
+  RESPONSE = 'RESPONSE',
+  SELECT_CHALLENGE = 'SELECT_CHALLENGE',
+}

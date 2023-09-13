@@ -1,0 +1,71 @@
+<article class="product-global product-credit-card  shadow-4dp hover-16dp {{nameBank}}">
+  <div class="product-global-content">
+    <div class="product-global-account-type p-tc">
+      <div class="cont-img">
+        <img [src]="(product.id | typeCreditCard)?.img | imageCdn" alt="">
+      </div>
+      <div class="product-global-account-type-info">
+        <p>{{product?.accountInformation?.productName}}</p>
+        <small>{{'PRODUCT.NUMBER' | translate}}. {{ (hasNameBank ? product?.accountInformation?.accountIdentifier : product.id) | creditCardMask | creditCardHidden}}</small>
+      </div>
+    </div>
+    <ng-container *ngIf="hasProduct; else loadingOrError">
+      <div class="product-global-account-amount">
+        <ng-container *ngIf="neededToPay; else notPay">
+          <p>{{'PRODUCT.CREDIT_CARD.NEXT_PAYMENT' | translate}} {{'PRODUCT.CREDIT_CARD.MINIMUM' | translate}}</p>
+          <strong [innerHTML]="product?.productAccountBalances?.valor_pago_minimo?.amount | currencyFormat: true"></strong>
+          <small>{{'PRODUCT.CREDIT_CARD.FULL_PAYMENT' | translate}}: <span [innerHTML]="product?.productAccountBalances?.pago_total_pesos?.amount | currencyFormat: true"></span></small>
+          </ng-container>
+        </div>
+        <div class="product-global-account-view-detail">
+          <a class="link" (click)="redirect(product.typeAccount, product.id)" *ngIf="!hasNameBank && (optionsModule$ | async).data.product_detail.show">{{'PRODUCT.VIEW_DETAIL' | translate}} <em class="icon-arrow-right-circle"></em></a>
+        </div>
+      </ng-container>
+    </div>
+    <span *ngIf="hasProduct" class="product-global-footer-line"></span>
+    <div class="product-global-footer" *ngIf="product.success && product?.productAccountBalances?.pago_total_pesos">
+
+      <div *ngIf="neededToPay">
+        <span *ngIf="neededToPay">{{'PRODUCT.CREDIT_CARD.NEXT_PAYMENT' | translate}}</span>
+        <span *ngIf="!neededToPay && !pilotView">{{'PRODUCT.CREDIT_CARD.CUT_OFF_DATE' | translate}}</span>
+        <strong>{{product.dueDate | date: 'dd/MMM/yyyy' | replace : '.' : ''}}</strong>
+      </div>
+      <div class="payment-button-container" *ngIf="neededToPay">
+        <button type="button" (click)="payCreditCard()" class="btn btn-primary">{{'PRODUCT.CREDIT_CARD.BUTTON_PAY' | translate}}</button>
+      </div>
+      <div *ngIf="!neededToPay">
+        <span>{{'PRODUCT.CREDIT_CARD.TOTAL_DEBT' | translate}}</span>
+        <strong [innerHTML]="product?.productAccountBalances?.pago_total_pesos?.amount | currencyFormat: true"></strong>
+        <progress class="debt_status" max="100" [value]="debt"></progress>
+      </div>
+    </div>
+
+  </article>
+
+  <ng-template #notPay>
+    <div *ngIf="product?.productAccountBalances?.cupo_disponible_compras_pesos?.amount; else availableAmount">
+      <p>{{'PRODUCT.CREDIT_CARD.QUOTA_AVAILABLE' | translate}}</p>
+      <strong [innerHTML]="product?.productAccountBalances?.cupo_disponible_compras_pesos?.amount | currencyFormat: true"></strong>
+    </div>
+  </ng-template>
+
+  <ng-template #availableAmount>
+    <div *ngIf="product?.accountInformation?.bank !== 'BANCO_POPULAR'">
+      <div *ngIf="product?.productAccountBalances?.cupo_disponible_avances_pesos?.amount">
+        <p>{{'PRODUCT.CREDIT_CARD.QUOTA_AVAILABLE' | translate}}</p>
+        <strong [innerHTML]="product?.productAccountBalances?.cupo_disponible_avances_pesos?.amount | currencyFormat: true"></strong>
+      </div>
+      <div *ngIf="product?.productAccountBalances?.pago_total?.amount">
+        <p>{{'PRODUCT.CREDIT_CARD.FULL_PAYMENT' | translate}}</p>
+        <strong [innerHTML]="product?.productAccountBalances?.pago_total?.amount | currencyFormat: true"></strong>
+      </div>
+      <div *ngIf="product?.productAccountBalances?.cupo_disponible_compras?.amount">
+        <p>{{'PRODUCT.CREDIT_CARD.QUOTA_AVAILABLE' | translate}}</p>
+        <strong [innerHTML]="product?.productAccountBalances?.cupo_disponible_compras?.amount | currencyFormat: true"></strong>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template #loadingOrError>
+    <app-product-loading-error [product]="product"></app-product-loading-error>
+  </ng-template>

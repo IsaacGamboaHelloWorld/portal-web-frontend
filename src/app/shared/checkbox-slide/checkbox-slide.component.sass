@@ -1,0 +1,104 @@
+@import '../../../sass/colors'
+@import '../../../sass/mixins'
+@import '../../../sass/variables'
+
+
+.checkbox-slide-new
+  display: flex
+  flex-direction: row
+  width: 100%
+  height: 100%
+  margin-bottom: 32px
+  margin-top: 24px
+  input[type="checkbox"]
+    cursor: pointer
+    position: relative
+    width: 32px
+    height: 20px
+    appearance: none
+    -webkit-appearance: none
+    background: $carbon-light-900
+    outline: none
+    border-radius: 20px
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .2)
+    transition: .5s
+  input:checked[type="checkbox"]
+    background: $g-500
+  input[type="checkbox"]::before
+    content: ''
+    width: 16px
+    height: 16px
+    border-radius: 20px
+    position: absolute
+    top: 2px
+    left: 2px
+    background: $carbon-light-100
+    transition: .5s
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14)
+  input:checked[type="checkbox"]::before
+    left: 14px
+  .text-label
+    position: relative
+    padding-left: 8px
+    min-height: 20px
+    cursor: pointer
+    margin-bottom: 0
+    font-size: 12px
+    font-weight: 500
+    line-height: 2
+
+.checkbox-slide
+  +inline(top)
+  input
+    display: none
+  label
+    position: relative
+    padding-left: 46px
+    min-height: 20px
+    cursor: pointer
+    &::before,
+    &::after
+      top: 50%
+      transform: translateY(-50%)
+      cursor: pointer
+    &::before
+      content: ''
+      position: absolute
+      left: 0
+      border-radius: 100px
+      background: $carbon-light-900
+      width: 35px
+      height: 13px
+    &::after
+      content: ''
+      width: 20px
+      height: 20px
+      border-radius: 50%
+      position: absolute
+      left: 0
+      background: $carbon-mid-400
+      transition: .3s
+  &.active
+    label
+      &::after
+        left: 18px
+        background: $g-500
+  &.inline
+    display: flex
+    background: red
+.active
+  input[type="checkbox"]
+    box-shadow: none
+  input[type="checkbox"]::before
+    box-shadow: none
+
+@media only screen and (max-width: $break-mobile)
+  .checkbox-slide
+    label
+      padding-left: 8px
+      &::before
+        height: 16px
+        width: 42px
+      &::after
+        width: 26px
+        height: 26px

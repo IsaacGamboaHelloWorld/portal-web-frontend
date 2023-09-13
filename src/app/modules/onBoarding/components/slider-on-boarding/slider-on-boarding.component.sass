@@ -1,0 +1,225 @@
+@import '../../../sass/variables'
+@import '../../../sass/colors'
+
+.center-slider
+  width: 100%
+  max-width: 500px
+  padding: 0 28px
+  margin: 0 auto
+
+  .tns-outer
+    margin-top: 120px
+  .cont-steps-onBoarding
+    overflow: hidden
+    min-height: 610px
+    justify-content: center
+    display: flex
+    position: relative
+    padding-top: 70px
+  .tns-controls
+    position: absolute
+    bottom: 24px
+    width: 100%
+    max-width: 320px
+    left: 0
+    right: 0
+    margin: 0 auto
+    height: 30px
+    button
+      top: inherit
+      transform: inherit
+      width: 48px
+      height: 48px
+      border-radius: 50%
+      background: $orange-900
+      color: $carbon-light-100
+      transition: .3s
+      display: flex
+      justify-content: center
+      align-items: center
+      cursor: pointer
+      box-shadow: 0 0 0 0 rgba($orange-900, 0.5)
+      &:hover
+        box-shadow: 0 3px 8px 0 rgba($orange-900, 0.5)
+      &::after
+        font-size: $f-14 - 4
+      &:disabled
+        background: $carbon-light-900
+        color: $carbon-mid-100
+        box-shadow: inherit
+        cursor: default
+    button[data-controls='next']::after
+      content: '\e927'
+    button[data-controls='prev']::after
+      content: '\e91e'
+  .tns-nav
+    bottom: 20px
+    button
+      background: $black-300
+      &.tns-nav-active
+        background: $orange-900
+        transform: scale(1.2)
+        box-shadow: 0 1px 3px 0 rgba($orange-900, 0.38)
+  .btn
+    position: absolute
+    bottom: 8px
+    right: 62px
+    width: 100%
+    max-width: 245px
+    z-index: 2
+  &.finish
+    .tns-nav,
+    .tns-controls button[data-controls='next']
+      display: none
+
+
+.text-slides
+  position: absolute
+  top: 25px
+  width: 100%
+  max-width: 315px
+  left: 0
+  right: 0
+  margin: 0 auto
+  text-align: center
+  padding: 0 10px
+  min-height: 72px
+  p
+    line-height: 1.6
+    font-size: $f-14 + 1
+  strong
+    font-weight: 500
+
+
+.cont-circles
+  position: absolute
+  z-index: -1
+  width: 100%
+  height: 100%
+  overflow: hidden
+
+.circle-big,
+.circle-medium,
+.circle-small,
+.cont-signs
+  position: absolute
+  left: 50%
+  top: 242px
+  border-radius: 50%
+  transition-property: transform
+
+.circle-big
+  width: 482px
+  height: 482px
+  border: 1px solid #eeeeee
+  margin: -241px 0 0 -241px
+  transition-delay: 2s
+
+.circle-medium,
+.cont-signs
+  width: 374px
+  height: 374px
+  border: 1px solid $black-100
+  margin: -187px 0 0 -187px
+  transition-delay: 1.5s
+
+
+.circle-small
+  width: 280px
+  height: 280px
+  border: 1px solid $carbon-light-900
+  margin: -140px 0 0 -140px
+  transition-delay: 1s
+
+.circles-step-one
+  border-radius: 50%
+  position: absolute
+  top: 120px
+  left: 50%
+  transform: translate(-50%, -50%)
+  div
+    width: 54px
+    height: 54px
+    border-radius: 50%
+    background: $carbon-light-100
+    box-shadow: 0 7px 16px 0 rgba($carbon-dark-900, 0.14)
+    position: absolute
+    display: flex
+    justify-content: center
+    align-items: center
+    z-index: 3
+    img
+      width: 26px
+      height: auto
+
+
+.cont-signs
+  border: none
+  z-index: -2
+  div
+    position: absolute
+    &.circle-one
+      top: 38px
+      left: 27px
+    &.circle-two
+      top: 18px
+      right: 45px
+    &.circle-three
+      bottom: 18px
+      left: 140px
+    &.plus-one
+      top: 24px
+      right: 140px
+    &.plus-two
+      bottom: 146px
+      left: 30px
+    &.plus-three
+      bottom: 56px
+      right: 68px
+  .c-small
+    width: 10px
+    height: 10px
+    border-radius: 50%
+    border: 2px solid $g-500
+  .plus-small
+    color: $g-300
+    font-weight: bold
+    font-size: $f-14 + 2
+
+
+
+@media only screen and (max-width: $break-mobile)
+  .center-slider
+    padding: 0
+    .tns-outer
+      margin-top: 25vh
+    .cont-steps-onBoarding
+      display: inherit
+      padding-top: 16px
+      min-height: 92vh
+      position: inherit
+    .center-slider
+      padding: 0
+    .tns-controls
+      bottom: 38px
+    .tns-nav
+      bottom: 36px
+    .btn
+      max-width: 245px
+      bottom: 20px
+      right: 28px
+
+  .text-slides
+    bottom: inherit
+    max-width: 320px
+    top: 64px
+  .circle-big,
+  .circle-medium,
+  .circle-small,
+  .cont-signs
+    top: 188px
+  .cont-circles
+    height: 90%
+    top: 18vh
+
+

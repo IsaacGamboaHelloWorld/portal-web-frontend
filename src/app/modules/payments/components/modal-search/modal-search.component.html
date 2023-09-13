@@ -1,0 +1,57 @@
+<div class="search-modal-container">
+    <div class="title">
+        <a class="icon-arrow2-right back" (click)="doClear($event)" *ngIf="!stepOne"></a>
+        <p>{{'PAYMENTS.POPUP_SEARCH.TITLE' | translate}}</p>
+        <a class="icon-close" (click)="doClose()"></a>
+    </div>
+    <div class="filter-container">
+        <div class="filter-input form-global">
+            <input type="text" name="entity-name" [placeholder]="'PAYMENTS.POPUP_SEARCH.SERVICE_PROMPT' | translate" [(ngModel)]="textFilter" (change)="onChange($event)" (keyup)="onKeyUp($event)" class="input-bp">
+            <em class="search-input icon-search" *ngIf="emptyState"></em>
+            <a class="clear-input" *ngIf="!emptyState" (click)="doClear($event)">
+                <em class="icon-plus"></em>
+            </a>
+        </div>
+    </div>
+    <div class="content-companies" *ngIf="textFilter != '' && stepOne">
+        <form class="form-global" [formGroup]="formSearch" (ngSubmit)="submitForm()">
+            <ul class="head" *ngIf="companies$ | async">
+                <li class="results paragraph-default">{{'PAYMENTS.POPUP_SEARCH.RESULTS' | translate}}: {{(companyList$ | async)?.agreements?.length}}</li>
+                <li class="header-table paragraph-small">
+                    <div>{{'PAYMENTS.POPUP_SEARCH.ENTERPRISE_TITLE' | translate}}</div>
+                </li>
+            </ul>
+            <ul class="content" *ngIf="companies$ | async else nocompanies">
+                <li *ngFor="let company of (companyList$ | async)?.agreements; let i = index">
+                    <div class="radio form-radiobutton-contanier opt-search">
+                        <input type="radio" formControlName="entity" id="entity{{i}}" [value]="company">
+                        <label class="custom-control-label" for="entity{{i}}">{{company.entityName}}</label>
+                    </div>
+                </li>
+            </ul>
+            <button type="submit" *ngIf="companies$ | async" class="btn btn-primary" [disabled]="formSearch.invalid">{{'CONTINUE' | translate}}</button>
+        </form>
+    </div>
+    <div class="form-add-service" *ngIf="(companyActive$ | async)">
+        <form class="form-global" [formGroup]="formAddService">
+            <div class="filter-input form-global">
+                <fieldset class="form-group">
+                    <label>{{'PAYMENTS.POPUP_SEARCH.NAME_SERVICE' | translate}}</label>
+                    <input type="text" class="input-bp" formControlName="name_serv" [placeholder]="'PAYMENTS.POPUP_SEARCH.NAME_SERVICE_PROMPT' | translate">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>{{'PAYMENTS.POPUP_SEARCH.NO_BILL' | translate}}</label>
+                    <input type="tel" class="input-bp" formControlName="no_serv" appOnlyNumbers>
+                </fieldset>
+            </div>
+            <app-btn [class]="'btn-primary'" [disabled]="formAddService.invalid || (savedAggrement$ | async)?.loading" [text]="'PAYMENTS.POPUP_SEARCH.ADD_BUTON' | translate" [isLoading]="(savedAggrement$ | async)?.loading" (clickBtn)="doRegister()"></app-btn>
+        </form>
+    </div>
+</div>
+
+<ng-template #nocompanies>
+    <div class="no-companies">
+        <img [src]="'/otros-pagos.png' | imageCdn" alt="">
+        <p [innerHTML]="'PAYMENTS.POPUP_SEARCH.NO_COMPANIES' | translate"></p>
+    </div>
+</ng-template>

@@ -1,0 +1,175 @@
+@import '~sass/mixins'
+@import '~sass/forms'
+@import '~sass/colors'
+@import '~sass/variables'
+
+.animation
+  animation-name: zoomInModal
+  animation-duration: .2s
+  animation-fill-mode: both
+
+.cont-modal-detail
+  background: transparent
+  border-radius: 15px
+  .cont-options
+    border-radius: 15px
+    text-align: center
+    width: 100%
+    height: 170px
+    padding: 24px
+    background: $carbon-light-100
+    .text-select
+      color: $g-500
+    .list-options
+      text-align: left
+      li span
+        cursor: pointer
+        font-size: 14px
+        font-weight: 500
+        font-stretch: normal
+        font-style: normal
+        line-height: 3
+        letter-spacing: normal
+      li:hover
+        color: $g-500
+    .footer-btn
+      width: 100%
+      display: flex
+      justify-content: center
+      border-top: 1px solid $carbon-light-900
+      button
+        background: transparent
+        margin-top: 24px
+        color: $orange-900
+        font-size: 15px
+        font-weight: 600
+        cursor: pointer
+  .cont-detail
+    height: 100%
+    width: 374px
+    background: $carbon-light-100
+    border-radius: 15px
+    &.cont-modal-detail
+      width: 374px
+    .head
+      height: 85px
+      border-radius: 12px
+      background-color: $carbon-light-400
+      padding-top: 20px
+      padding-bottom: 40px
+      position: relative
+      .btn-close
+        width: 24px
+        height: 24px
+        position: absolute
+        right: 16px
+        top: 20px
+        background: transparent
+        cursor: pointer
+      p
+        font-size: 16px
+        font-weight: 600
+        font-stretch: normal
+        font-style: normal
+        line-height: 1.75
+        letter-spacing: normal
+        text-align: center
+        color: $black-750
+      .date
+        font-size: $f-14 - 2
+        font-weight: 500
+        margin-bottom: 16px
+        line-height: 1.5
+        color: $g-500
+    .body
+      position: relative
+      .text-amount
+        font-size: 14px
+        font-weight: 500
+        color: $carbon-mid-600
+        padding-top: 36px
+      .amount
+        font-size: 28px
+        font-weight: normal
+        font-stretch: normal
+        font-style: normal
+        line-height: 1.43
+        letter-spacing: -0.2px
+        text-align: center
+      .list-detail
+        width: 100%
+        padding: 24px 24px 0
+        .detail-left
+          text-align: left
+          font-size: 14px
+          line-height: 2
+          letter-spacing: normal
+          color: $carbon-mid-600
+        .detail-right
+          text-align: right
+          font-size: 14px
+          line-height: 2
+          letter-spacing: normal
+      .list-detail .detail-left
+        white-space: nowrap
+      .copy-footer
+        padding: 6px 24px 24px
+        font-size: $f-14 - 3
+        color: $carbon-mid-400
+  .cont-cancel
+    background: $carbon-light-100
+    border-radius: 15px
+    height: 318px
+    padding: 33px 20px
+    display: flex
+    align-items: center
+    flex-direction: column
+    img
+      position: relative
+      width: 115px
+      height: 108px
+    .title
+      padding-top: 25px
+      font-size: 16px
+      font-weight: 600
+      font-stretch: normal
+      font-style: normal
+      line-height: 1.5
+      letter-spacing: normal
+      text-align: center
+      color: $black-750
+    .cont-btn-cancel
+      padding-top: 32px
+      .cancel
+        background: $g-100
+        color: $g-500
+        right: 10px
+      .ok
+        left: 10px
+    button
+      border-radius: 8px
+      font-size: 14px
+      position: relative
+      width: 127px
+      padding: 0
+
+@media only screen and (max-width: $break-mobile)
+  .cont-modal-detail
+    width: 100%
+    .cont-options
+      background: $carbon-light-100
+      position: fixed
+      bottom: 0
+      left: 0
+      border-radius: 15px 15px 0 0
+      text-align: center
+      width: 100%
+      height: 252px
+      .list-options
+        li span
+          line-height: 4
+      .footer-btn
+        position: relative
+        margin-top: 10%
+    .cont-detail
+      width: 100%

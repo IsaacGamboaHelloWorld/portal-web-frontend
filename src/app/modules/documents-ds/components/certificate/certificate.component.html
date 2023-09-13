@@ -1,0 +1,73 @@
+<app-template-system
+  [title]="'DOCUMENTS.CERTIFICATE.DETAIL.TITLE' | translate"
+  [sectionContent]="content" 
+  [fullContent]="true"
+  [backUrl]="navigateDocuments.home"
+  [sectionHome]="true"
+  [navigatorActive]="true"
+></app-template-system>
+
+<ng-template #content>
+  <div class="documents-certificate-ds">
+    <p> {{ 'DOCUMENTS.CERTIFICATE.DETAIL.ACTION' | translate }} </p>
+
+    <form [formGroup]="formProduct" class="card-list" (scroll)="scrollHandler($event)">
+      <div class="card-item" *ngFor="let item of products$ | async; let i = index; trackBy: trackByFn">
+        <app-card-account-radius
+          [form]="formProduct"
+          [isActive]="indexAlias.value === i"
+          [property]="'index'"
+          [index]="i"
+          [data]="item"
+          [type]="getTypeCard.PRODUCT_WITH_BALANCE"
+          [loading]="!item.productAccountBalances"
+          (setDataEmit)="selectData($event)"
+        ></app-card-account-radius>
+      </div>
+    </form>
+
+    <ul class="list-carousel" *ngIf="(products$ | async)?.length > 1">
+      <li class="list-carousel_item" [ngClass]="{'active-li': activeStep === i}" data-id="card-{{i}}"
+        *ngFor="let item of products$ | async | slice:0:5; let i = index"></li>
+    </ul>
+
+    <ng-container *ngIf="formProduct.valid">
+      <h5 class="form-title"> {{ 'DOCUMENTS.CERTIFICATE.DETAIL.TITLE_FORM' | translate }} </h5>
+
+      <form [formGroup]="formCertificate" class="form-certificate">
+        <div class="input-recipient">
+          <app-ds-input
+            [form]="formCertificate"
+            [label]="'DOCUMENTS.CERTIFICATE.DETAIL.TO' | translate"
+            [placeholder]="'DOCUMENTS.CERTIFICATE.DETAIL.TO_PLACEHOLDER' | translate"
+            [property]="'recipient'"
+          >
+          </app-ds-input>
+        </div>
+
+        <div class="input-type">
+          <app-ds-dropdown-select
+            [form]="formCertificate"
+            [label]="'DOCUMENTS.CERTIFICATE.DETAIL.TYPE' | translate"
+            [placeHolder]="'DOCUMENTS.CERTIFICATE.DETAIL.TYPE_PLACEHOLDER' | translate"
+            [property]="'includeBalance'"
+            [fixedOptions]="selectOption"
+          >
+          </app-ds-dropdown-select>
+        </div>
+
+      </form>
+
+      <div class="btn-container">
+        <app-btn
+          (clickBtn)="donwload()"
+          [text]="((stateCertificate$ | async)?.success ? 'DOCUMENTS.CERTIFICATE.DETAIL.BTN_BACK' : (retryCount !== 0 ? 'DOCUMENTS.CERTIFICATE.DETAIL.BTN_RETRY' : 'DOCUMENTS.CERTIFICATE.DETAIL.BTN')) | translate"
+          [isLoading]="(stateCertificate$ | async)?.loading"
+          [disabled]="formCertificate.invalid"
+          [class]="'btn btn-primary'">
+        </app-btn>
+      </div>
+
+    </ng-container>
+  </div>
+</ng-template>

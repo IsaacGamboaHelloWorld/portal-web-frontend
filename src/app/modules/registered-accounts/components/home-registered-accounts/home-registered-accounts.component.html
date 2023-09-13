@@ -1,0 +1,71 @@
+<div class="cont-registered-accounts">
+  <div class="cont-btn">
+    <button class="back" [title]="'GO_BACK' | translate" (click)="back()"><i class="icon-arrow-back"></i> {{'GO_BACK' | translate}}</button>
+    <div class="mask-btn" (click)="backMask()"></div>
+  </div>
+  <div class="animation-mobile" [ngClass]="{'active': hasProduct}">
+    <h3>{{'REGISTERED_ACCOUNTS.TITLE' | translate}}</h3>
+    <div class="cont-accounts">
+      <div class="form">
+        <form class="form-global" [formGroup]="formAccounts">
+          <div class="form-group">
+            <label>{{'REGISTERED_ACCOUNTS.ACCOUNT' | translate}}</label>
+            <div class="select-bp">
+              <select formControlName="account_origin" (change)="changeProduct()" [compareWith]="compareFnOrigin">
+                <option value="" disabled>{{'TRANSFER.SELECT_ORIGIN_DEFAULT' | translate}}</option>
+                <option *ngFor="let product of productsOrigin$ | async; trackBy: trackByFn" [ngValue]="product">
+                  {{'PRODUCT_TYPES_SMALL.' + product.typeAccount | translate}}
+                  {{product.id | slice: -4}} {{product.loading |
+                  loadAmount: (product?.productAccountBalances?.saldo_disponible?.amount | currencyFormat) :
+                  product.loaded : ('PAYMENTS.AVAILABLE_BALANCE' | translate) :
+                  ('TRANSFER.LOADING_AMOUNT' | translate) }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </form>
+        <div class="new-account">
+          <a class="btn btn-primary register-account" [routerLink]="navigate.new_product_affiliation_for_transfers">{{'REGISTER_PRODUCT_AFFILIATION.CONFIRMATION_BTN' | translate}}<em class="icon-plus "></em></a>
+        </div>
+        <ul *ngIf="hasProducts$ | async; else loadingOrError">
+          <li *ngFor="let product of (affiliation$ | async)?.products; let i = index;">
+            <app-account [product]="product" (action)="clickProduct(product, i)" [isActive]="i === active"></app-account>
+          </li>
+        </ul>
+      </div>
+      <div class="info-account">
+        <app-info-account [product]="product" (action)="deleteAffiliation()" (actionTransfer)="transfer()"></app-info-account>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<ng-template #loadingOrError>
+  <ng-container *ngIf="(affiliation$ | async)?.loading">
+    <ul>
+      <li *ngFor="let i of [].constructor(loadings)">
+        <div class="loading-product loading-global placeholder-box">
+          <div class="loading-product-profile placeholder"></div>
+          <div class="loading-product-text">
+            <p class="placeholder width-50"></p>
+            <p class="placeholder width-90"></p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </ng-container>
+
+  <div class="error-affiliation retry" *ngIf="(affiliation$ | async)?.error">
+    <div *ngIf="(hasMessageNotProduct$ | async)">
+      <img [src]="'/otros-pagos.png' | imageCdn" alt="">
+      <p>{{'TRANSFER.ACCOUNT_REGISTRATION.EMPTY.TEXT' | translate}}</p>
+    </div>
+    <div *ngIf="!(hasMessageNotProduct$ | async)" class="error-affiliation" [class.retry]="limitRetry">
+      <img [src]="(limitRetry ? '/numero-de-intentos-excedidos.png' : '/problemas-tecnicos.png') | imageCdn" alt="">
+      <strong>¡{{(limitRetry ? 'TRANSFER.ACCOUNT_REGISTRATION.RETRY.TITLE' : 'ACTIONS_AVAL.ERROR.TITLE') | translate}}!</strong>
+      <p [innerHTML]="(limitRetry ? 'TRANSFER.ACCOUNT_REGISTRATION.RETRY.TEXT' : 'TRANSFER.ACCOUNT_REGISTRATION.ERROR.TEXT') | translate"></p>
+      <button class="btn btn-primary" (click)="btnRetry()" *ngIf="!limitRetry">{{'ERROR_TITLE' | translate}}</button>
+    </div>
+  </div>
+</ng-template>

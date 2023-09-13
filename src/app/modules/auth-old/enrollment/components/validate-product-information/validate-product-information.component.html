@@ -1,0 +1,34 @@
+<div class="reset-process">
+    <a (click)="resetActionHandler()"><i class="icon-arrow-back"></i> {{'GO_BACK' | translate}}</a>
+</div>
+<div class="animated fade-in-up cont-validate-product-information">
+    <fieldset class="cont-bar-enrollment form-group">
+        <app-bar-progress [desc]="userEnrollmentFlowInformation?.progressBar?.description" [valueProgress]="userEnrollmentFlowInformation?.progressBar?.percent"></app-bar-progress>
+    </fieldset>
+    <div class="validate-product-information">
+        <div class="top-image-container">
+            <img [src]="'/enrollment/product-information.png' | imageCdn" alt="">
+        </div>
+        <h4>{{'AUTH.ENROLLMENT.VALIDATE_PRODUCT_INFORMATION.TITLE' | translate}}</h4>
+        <p>{{'AUTH.ENROLLMENT.VALIDATE_PRODUCT_INFORMATION.DESCRIPTION' | translate}}</p>
+        <form class="form-global" autocomplete="off" [formGroup]="registerForm" (ngSubmit)="submitForm()">
+            <fieldset class="form-group">
+                <div class="validate-product-password-fields" formGroupName="content" *ngIf="'password' == inputType">
+                    <label>{{'AUTH.ENROLLMENT.VALIDATE_PRODUCT_INFORMATION.PASSWORD_PREFIX' | translate}} {{'PRODUCT_TYPES.' + userEnrollmentFlowInformation.secureDataBriefQuestion.productType  | translate}} {{'AUTH.ENROLLMENT.VALIDATE_PRODUCT_INFORMATION.WITH_SUFFIX' | translate}} {{accountSuffix()}}</label>
+                    <input [type]="inputType" class="form-control input-bp" formControlName="secureDataSecret" />
+                </div>
+                <div class="validate-product-number-fields" formGroupName="content" *ngIf="'text' == inputType">
+                    <label>{{'AUTH.ENROLLMENT.VALIDATE_PRODUCT_INFORMATION.COMPLETE_PRODUCT_NUMBER' | translate}} {{'PRODUCT_TYPES.' + userEnrollmentFlowInformation.secureDataBriefQuestion.productType  | translate}}</label>
+                    <div [ngSwitch]="accountType">
+                        <ng-otp-input [config]="{length:answerLength - accountSuffix().length}" (onInputChange)="onInputChange($event)" *ngSwitchCase="'CCA'"></ng-otp-input>
+                        <input [type]="inputType" class="form-control input-bp product-number" formControlName="secureDataSecret" *ngSwitchDefault/>
+                        <label>{{accountSuffix()}}</label>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <app-btn [type]="'submit'" [disabled]="registerForm.invalid || (isLoading$ | async)" [text]="'AUTH.ENROLLMENT.VALIDATE_PRODUCT_INFORMATION.BTN' | translate" [id]="'btn_login'" [isLoading]="(isLoading$ | async)" [class]="'btn btn-primary'"></app-btn>
+            </fieldset>
+        </form>
+    </div>
+</div>

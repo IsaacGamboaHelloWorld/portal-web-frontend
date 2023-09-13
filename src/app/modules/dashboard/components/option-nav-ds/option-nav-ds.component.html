@@ -1,0 +1,94 @@
+<div class="option-nav-ds">
+  <ul class="option-list-ds">
+
+    <li *ngIf="(optionsModule$ | async)?.data?.profile?.show" class="perfil-container"
+      [ngClass]="{ 'disabled': disableProfile }">
+      <a (click)="redirect(navigate.user_profile)" routerLinkActive="a-active" id="opt_profile">
+        <i class="icon-essential-sticker-4"></i>{{'OPTION_NAV.PROFILE' | translate}}
+      </a>
+      <small class="bar-bottom" [ngClass]="{ 'active': urlActive === navigate.user_profile }"></small>
+    </li>
+
+    <!-- security for desktop -->
+    <li *ngIf="(optionsModule$ | async)?.data?.security?.show" class="security-container hidden-mobile">
+      <a [routerLink]="navigate.security" routerLinkActive="a-active">
+        <i class="icon-essential-lock-37"></i>{{'OPTION_NAV.SECURITY.TITLE' | translate}}
+      </a>
+      <small class="bar-bottom" [ngClass]="{ 'active': urlActive === navigate.security }"></small>
+    </li>
+    <!-- security for mobile -->
+    <li *ngIf="(optionsModule$ | async)?.data?.security?.show" class="security-container visible-mobile">
+      <a (click)="toggleMenuSecurity()" [ngClass]="{ 'selected': openedSecurity }">
+        <i class="icon-essential-lock-37"></i>
+        {{'OPTION_NAV.SECURITY.TITLE' | translate}}
+        <i class="icon-arrows-diagrams-right-3"></i>
+      </a>
+
+      <ul *ngIf="openedSecurity" class="ul-security visible-mobile">
+        <ng-container *ngFor="let sub of securityOptions">
+          <li *ngIf="sub.show" (click)="redirect(sub.url, sub.url === null)"> {{ sub.name | keyFuncionalityAssets | translate }} </li>
+        </ng-container>
+      </ul>
+    </li>
+
+    <!-- documents only appear for mobile -->
+    <li *ngIf="(optionsModule$ | async)?.data?.documents?.show" class="documents-container">
+      <a (click)="toggleMenuDocuments()" id="opt_documents" [ngClass]="{ 'selected': openedDocuments }">
+        <i class="icon-essential-list-12"></i>
+        {{'OPTION_NAV.DOCUMENTS.TITLE' | translate}}
+        <i class="icon-arrows-diagrams-right-3"></i>
+      </a>
+
+      <ul *ngIf="openedDocuments" class="ul-documents visible-mobile">
+        <ng-container *ngFor="let sub of documentsOptions">
+          <li *ngIf="sub.show" (click)="redirect(sub.url)"> {{ sub.name | keyFuncionalityAssets | translate }} </li>
+        </ng-container>
+      </ul>
+    </li>
+
+    <!-- contact only appear for desktop -->
+    <li *ngIf="(optionsModule$ | async)?.data?.contact?.show" class="contact-container">
+      <a [routerLink]="navigate.contact" id="opt_contact" routerLinkActive="a-active">
+        <i class="icon-essential-phone-3"></i>{{'OPTION_NAV.CONTACT' | translate}}
+      </a>
+      <small class="bar-bottom" [ngClass]="{ 'active': urlActive === navigate.contact }"></small>
+    </li>
+
+    <li class="offers-container hidden-mobile">
+      <a (click)="redirect(navigate.open_offers_products)" [routerLink]="navigate.open_offers_products" id="opt_offers" routerLinkActive="a-active">
+        <i class="icon-request-products"></i>{{'OPTION_NAV.OPEN' | translate}}
+      </a>
+      <small class="bar-bottom" [ngClass]="{ 'active': urlActive === navigate.open_offers_products }"></small>
+    </li>
+
+    <li class="offers-container visible-mobile">
+      <a (click)="openedOffers = !openedOffers" id="opt_offers_bm" [ngClass]="{ 'selected': openedOffers }">
+        <i class="icon-request-products color-request-products"></i>
+        {{'OPTION_NAV.OPEN' | translate}}
+        <i class="icon-arrows-diagrams-right-3"></i>
+      </a>
+
+      <ul *ngIf="openedOffers" class="ul-documents visible-mobile">
+        <ng-container *ngFor="let item of optionsOffers$ | async; let i = index;">
+          <li (click)="redirect('', false, item)"> {{item['NAME']}} </li>
+        </ng-container>
+      </ul>
+    </li>
+
+    <li class="logout">
+      <a (click)="doLogout()" id="opt_safe_logout"><i class="icon-essential-log-out-6"></i>{{'OPTION_NAV.LOGOUT' |
+        translate}}</a>
+    </li>
+  </ul>
+
+  <div class="footer-menu-ds">
+    <img class="footer-menu-ds__logo" [src]="'/aval.png' | imageCdn" [alt]="'NAME_GROUP' | translate">
+    <p *ngIf="!!(hasHour$ | async) || true" class="footer-menu-ds__last-entry">
+      {{'LAST_AUTH_DATE' | translate}}: {{( hour$ | async ) | date:'dd/MMM/yyyy, h:mm:ss a' | replace : '.' : ''}}
+      <br>
+    </p>
+    <p class="footer-menu-ds__company">
+      ©{{'NAME_BANK' | translate}} | v{{version}}
+    </p>
+  </div>
+</div>

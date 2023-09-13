@@ -1,0 +1,75 @@
+@import '../../../../../../../sass/colors'
+@import '../../../../../../../sass/variables'
+
+.cont-table-movements
+  border-radius: 15px
+  overflow: hidden
+  margin-top: 16px
+  .type-product-movement
+    background: $carbon-light-400
+    line-height: 64px
+    padding: 0 24px
+    i
+      color: $g-500
+      margin-right: 5px
+      font-size: $f-20 + 2
+      display: inline-block
+    p
+      color: $carbon-dark-900
+      font-size: $f-20
+  .scroll-table
+    max-height: 528px
+    overflow-y: auto
+    .product-loading
+      .lds-css
+          margin-top: 45px
+  table
+    width: 100%
+    background: $carbon-light-100
+    text-align: left
+    border-collapse: collapse
+    font-size: $f-14
+    tr th
+      font-weight: 100
+    tr
+      border-bottom: 1px solid $gray2
+    th, td
+      padding: 37px 24px
+    tr th
+      color: $carbon-mid-400
+    tr td
+      color: $carbon-dark-900
+      p
+        margin-bottom: 5px
+        &.date
+          text-transform: capitalize
+        &.green
+          color: $gc-800
+        small
+          min-width: 120px
+          color: $carbon-mid-400
+          display: inline-block
+        &.green
+          color: $gc-800
+        
+
+
+@media only screen and (max-width: $break-mobile)
+  .cont-table-movements
+    width: 100%
+    .type-product-movement
+      background: $carbon-light-100
+      border-bottom: 1px solid $gray2
+      i
+        display: none
+    .scroll-table
+      overflow: inherit
+      max-height: inherit
+    table
+      tr td
+        vertical-align: middle
+        p
+          font-size: $f-14
+          small
+            display: none
+

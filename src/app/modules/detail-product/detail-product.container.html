@@ -1,0 +1,88 @@
+<app-template-system
+  [title]=""
+  [subtitle]=""
+  [sectionContent]="content"
+  [maxStep]="1" [fullContent]="true"
+  [navigatorActive]="true"
+  [stepsActive]="false"
+  [backUrl]="navigate.home"
+  [showClose]="false"
+  [navInternal]="true"
+  [backGreen]="false"
+  ></app-template-system>
+
+<ng-template #content>
+  <div class="cont-detail">
+    <div class="cont-detail-product cont-payrollloans" *ngIf="viewPayrollLoans">
+      <app-order-of-payment-detail [data]="(payrollLoans$ | async)" [id_data]="account"></app-order-of-payment-detail>
+    </div>
+
+    <div class="cont-detail-product" *ngIf="!viewPayrollLoans">
+      <ng-container *ngIf="((hasInfoProduct$ | async) || (hasFreeDestinationDetail$ | async)) else loadingOrErrorProduct">
+
+        <app-smart-card *ngIf="(hasInfoProduct$ | async)" [data]="(product$ | async) || (freeDestinations$ | async)" [pocketsByProductState]="(pockets$ | async)" (callGetPockets)="fetchPockets()" (clickBox)="redirect($event)"></app-smart-card>
+
+        <ng-container [ngSwitch]="account?.type | uppercase">
+          <ng-container *ngSwitchCase="ACCOUNT.DEPOSIT_ACCOUNT">
+            <app-smart-options
+              [data]="(product$ | async)"
+              [withdrawalBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.orders_withdrawals"
+              [payLoanBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.payment_obligation"
+              [transferBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.transfer_money"
+              [rechargeBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.recharge_cellphone"
+              [pocketsBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.pockets"
+              [statementBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.generate_statements"
+              [certificateBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.generate_certificates"
+              (clickBox)="redirect($event)"
+            ></app-smart-options>
+          </ng-container>
+          <ng-container *ngSwitchCase="ACCOUNT.CURRENT_ACCOUNT">
+            <app-smart-options
+              [data]="(product$ | async)"
+              [payLoanBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.payment_obligation"
+              [transferBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.transfer_money"
+              [statementBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.generate_statements"
+              [pocketsBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.pockets"
+              [rechargeBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.recharge_cellphone"
+              [certificateBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.generate_certificates"
+              (clickBox)="redirect($event)"
+            ></app-smart-options>
+          </ng-container>
+          <ng-container *ngSwitchCase="ACCOUNT.CREDIT_CARD">
+            <app-smart-options
+              [data]="(product$ | async)"
+              [payCardBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.pay_credit_card"
+              [advanceBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.advance"
+              [statementBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.generate_statements"
+              [isPseTC]="(optionsModule$ | async)?.data?.payments?.options?.payment_pse_credit_card"
+              (clickBox)="redirect($event)"
+            ></app-smart-options>
+          </ng-container>
+          <ng-container *ngSwitchCase="ACCOUNT.FREE_DESTINATION">
+            <app-smart-card-free-destiny [freeDestination]="(freeDestinations$ | async)"></app-smart-card-free-destiny>
+            <app-smart-options
+              [data]="(freeDestinations$ | async)"
+              [payLoanBtn]="(optionsModule$ | async)?.data?.product_detail?.options?.payment_obligation"
+              [statementBtn]="false"
+              (clickBox)="redirect($event)"
+            ></app-smart-options>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+
+    <div class="cont-movements-products" *ngIf="!viewPayrollLoans && !isFreeDestination">
+      <app-card-pfm *ngIf="(account?.type | uppercase) === ACCOUNT.DEPOSIT_ACCOUNT && isFlexcubePFM && (optionsModule$ | async)?.data?.product_detail?.options?.pfm"
+        [account]="account"></app-card-pfm>
+      <app-smart-movements *ngIf="(optionsModule$ | async)?.data?.product_detail?.options?.last_movements" [cdtInfo]="cdtData"></app-smart-movements>
+    </div>
+
+    <div class="cont-movements-products" *ngIf="isFreeDestination && (optionsModule$ | async).data.product_detail.options.last_movements">
+      <app-card-detail-free-destination [data]="(freeDestinations$ | async)"></app-card-detail-free-destination>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #loadingOrErrorProduct>
+  <app-detail-loading [data]="account" [product]="product$ | async" (clickBtn)="fetchDetail()"></app-detail-loading>
+</ng-template>

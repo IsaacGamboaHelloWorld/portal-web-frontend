@@ -1,0 +1,95 @@
+@import '~sass/variables'
+@import '~sass/colors'
+@import '~sass/mixins'
+
+.pwa-install
+  position: fixed
+  left: 0
+  right: 0
+  padding: 48px 78px
+  bottom: 0
+  background: $carbon-light-100
+  transform: translateY(120%)
+  transition: 1s transform
+  z-index: 3
+  &.show
+    transform: translateY(0%)
+  .close-pwa
+    position: absolute
+    right: 78px
+    top: 48px
+    color: $carbon-mid-100
+    border: 1px solid $carbon-mid-100
+    cursor: pointer
+    background: transparent
+    width: 48px
+    height: 48px
+    border-radius: 5px
+    font-weight: lighter
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: $f-14 - 2
+  .cont-info
+    .cont-img,
+    .cont-text
+      +inline(middle)
+    .cont-img
+      width: 48px
+      height: 48px
+      border-radius: 50%
+      position: relative
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14), 0 0 0 1px rgba(233, 233, 233, 0.6)
+      img
+        width: 40px
+        height: auto
+        position: absolute
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
+    .cont-text
+      padding: 0 35px 0 12px
+      user-select: none
+      width: calc(100% - 84px)
+      p,
+      span
+        text-overflow: ellipsis
+        overflow: hidden
+        white-space: nowrap
+        display: block
+      p
+        font-size: $f-14 + 2
+        font-weight: 500
+      span
+        font-size: $f-14 - 1
+        line-height: 1.77
+        color: $gray3
+  .btn
+    line-height: 48px
+    font-size: $f-14
+    position: absolute
+    top: 48px
+    right: 142px
+    transition: box-shadow .3s
+
+
+@media only screen and (max-width: 810px)
+  .pwa-install
+    padding: 18px 15px
+    .close-pwa
+      right: 16px
+      top: 24px
+      width: 24px
+      height: 24px
+      border-radius: 50%
+      border-color:  $gc-600
+      color: $gc-600
+      line-height: 24px
+    .btn
+      margin-top: 16px
+      position: relative
+      left: 0
+      top: inherit
+      width: 100%
+      right: 0
+
